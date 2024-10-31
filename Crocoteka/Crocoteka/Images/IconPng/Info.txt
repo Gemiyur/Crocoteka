@@ -1,0 +1,2 @@
+iconPacks:MaterialDesign Kind=AccountBalance
+Foreground="LightSeaGreen"

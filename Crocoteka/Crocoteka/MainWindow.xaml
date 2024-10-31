@@ -1,0 +1,16 @@
+﻿<Window x:Class="Crocoteka.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Crocoteka"
+        mc:Ignorable="d"
+        Title="Крокотека"
+        Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+
+    <Grid>
+        <Button x:Name="AboutButton" Height="25" Width="75" Content="About" Click="AboutButton_Click" />
+
+    </Grid>
+</Window>
