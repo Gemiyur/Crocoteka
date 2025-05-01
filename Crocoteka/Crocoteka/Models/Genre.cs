@@ -1,4 +1,6 @@
-﻿namespace Crocoteka.Models
+﻿using LiteDB;
+
+namespace Crocoteka.Models
 {
     /// <summary>
     /// Класс жанра.
@@ -6,9 +8,10 @@
     public class Genre : BaseModel
     {
         /// <summary>
-        /// Идентификатор жанра.
+        /// Код жанра.
         /// </summary>
-        public int GenreId { get; set; }
+        [BsonId]
+        public string Code { get; set; } = string.Empty;
 
         private string title = string.Empty;
 

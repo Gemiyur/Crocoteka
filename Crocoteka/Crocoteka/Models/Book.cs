@@ -1,5 +1,6 @@
-﻿using LiteDB;
+﻿using System.IO;
 using System.Windows.Media.Imaging;
+using LiteDB;
 
 namespace Crocoteka.Models
 {
@@ -12,6 +13,9 @@ namespace Crocoteka.Models
         /// Идентификатор книги.
         /// </summary>
         public int BookId { get; set; }
+
+        [BsonIgnore]
+        public bool IsAudio => FileExtension == ".m4b";
 
         private string title = string.Empty;
 
@@ -90,12 +94,12 @@ namespace Crocoteka.Models
         /// Изображение обложки книги.
         /// </summary>
         [BsonIgnore]
-        public BitmapFrame? Picture => PictureData != null ? App.GetBitmap(PictureData) : null;
+        public BitmapFrame? Cover => CoverData != null ? App.GetBitmap(CoverData) : null;
 
         /// <summary>
         /// Массив байт изображения обложки книги.
         /// </summary>
-        public byte[]? PictureData;
+        public byte[]? CoverData { get; set; }
 
         private Lector? lector;
 
@@ -123,6 +127,12 @@ namespace Crocoteka.Models
         /// Файл книги с полным путём.
         /// </summary>
         public string FileName { get; set; } = string.Empty;
+
+        /// <summary>
+        /// Возвращает расширение файла книги. Начинается с точки.
+        /// </summary>
+        [BsonIgnore]
+        public string FileExtension => Path.GetExtension(FileName);
 
         /// <summary>
         /// Продолжительность аудио книги.
