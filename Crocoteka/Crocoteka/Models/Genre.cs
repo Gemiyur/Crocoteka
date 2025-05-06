@@ -1,31 +1,30 @@
 ﻿using LiteDB;
 
-namespace Crocoteka.Models
+namespace Crocoteka.Models;
+
+/// <summary>
+/// Класс жанра.
+/// </summary>
+public class Genre : BaseModel
 {
     /// <summary>
-    /// Класс жанра.
+    /// Код жанра.
     /// </summary>
-    public class Genre : BaseModel
+    [BsonId]
+    public string Code { get; set; } = string.Empty;
+
+    private string title = string.Empty;
+
+    /// <summary>
+    /// Название жанра.
+    /// </summary>
+    public string Title
     {
-        /// <summary>
-        /// Код жанра.
-        /// </summary>
-        [BsonId]
-        public string Code { get; set; } = string.Empty;
-
-        private string title = string.Empty;
-
-        /// <summary>
-        /// Название жанра.
-        /// </summary>
-        public string Title
+        get => title;
+        set
         {
-            get => title;
-            set
-            {
-                title = value;
-                OnPropertyChanged("Title");
-            }
+            title = value ?? string.Empty;
+            OnPropertyChanged("Title");
         }
     }
 }

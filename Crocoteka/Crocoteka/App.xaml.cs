@@ -3,42 +3,40 @@ using System.Windows;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
-namespace Crocoteka
-{
-    #region Задачи (TODO).
+namespace Crocoteka;
 
-    #endregion
+#region Задачи (TODO).
+
+#endregion
+
+/// <summary>
+/// Класс приложения.
+/// </summary>
+public partial class App : Application
+{
+    /// <summary>
+    /// Имя файла базы данных с полным путём.
+    /// </summary>
+    public static string? DbName { get; set; }
 
     /// <summary>
-    /// Класс приложения.
+    /// Аналог System.Windows.Forms.Application.DoEvents.
     /// </summary>
-    public partial class App : Application
-    {
-        /// <summary>
-        /// Имя файла базы данных с полным путём.
-        /// </summary>
-        public static string? DbName { get; set; }
+    public static void DoEvents() =>
+        Current?.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
 
-        /// <summary>
-        /// Аналог System.Windows.Forms.Application.DoEvents.
-        /// </summary>
-        public static void DoEvents() =>
-            Current?.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
+    /// <summary>
+    /// Возвращает изображение из указанного массива байт.
+    /// </summary>
+    /// <param name="data">Массив байт.</param>
+    /// <returns>Изображение.</returns>
+    public static BitmapFrame GetBitmap(byte[] data) =>
+        BitmapDecoder.Create(new MemoryStream(data), BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames[0];
 
-        /// <summary>
-        /// Возвращает изображение из указанного массива байт.
-        /// </summary>
-        /// <param name="data">Массив байт.</param>
-        /// <returns>Изображение.</returns>
-        public static BitmapFrame GetBitmap(byte[] data) =>
-            BitmapDecoder.Create(new MemoryStream(data), BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames[0];
-
-        /// <summary>
-        /// Возвращает строковое представление указанного интервала времени в формате h:mm:ss.
-        /// </summary>
-        /// <param name="timeSpan">Интервал времени.</param>
-        /// <returns>Строковое представление интервала времени.</returns>
-        public static string TimeSpanToString(TimeSpan timeSpan) => timeSpan.ToString(@"h\:mm\:ss");
-    }
-
+    /// <summary>
+    /// Возвращает строковое представление указанного интервала времени в формате h:mm:ss.
+    /// </summary>
+    /// <param name="timeSpan">Интервал времени.</param>
+    /// <returns>Строковое представление интервала времени.</returns>
+    public static string TimeSpanToString(TimeSpan timeSpan) => timeSpan.ToString(@"h\:mm\:ss");
 }
