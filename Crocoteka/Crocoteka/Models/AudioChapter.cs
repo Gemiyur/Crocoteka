@@ -1,5 +1,4 @@
 ﻿using LiteDB;
-using System.Windows.Media.Imaging;
 
 namespace Crocoteka.Models;
 
@@ -20,8 +19,16 @@ public class AudioChapter : BaseModel
         {
             startTime = value;
             OnPropertyChanged("StartTime");
+            OnPropertyChanged("StartTimeText");
+            OnPropertyChanged("Duration");
         }
     }
+
+    /// <summary>
+    /// Позиция начала раздела в файле аудиокниги в виде строки.
+    /// </summary>
+    [BsonIgnore]
+    public string StartTimeText => App.TimeSpanToString(StartTime);
 
     private TimeSpan endTime;
 
@@ -35,6 +42,7 @@ public class AudioChapter : BaseModel
         {
             endTime = value;
             OnPropertyChanged("EndTime");
+            OnPropertyChanged("Duration");
         }
     }
 
@@ -58,17 +66,6 @@ public class AudioChapter : BaseModel
             OnPropertyChanged("Title");
         }
     }
-
-    /// <summary>
-    /// Изображение обложки раздела аудиокниги.
-    /// </summary>
-    [BsonIgnore]
-    public BitmapFrame? Picture => PictureData != null ? App.GetBitmap(PictureData) : null;
-
-    /// <summary>
-    /// Массив байт изображения обложки раздела аудиокниги.
-    /// </summary>
-    public byte[]? PictureData;
 
     /// <summary>
     /// Список подразделов раздела аудиокниги.
