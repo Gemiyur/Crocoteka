@@ -8,7 +8,7 @@ public class AudioBookmark : BaseModel
     private TimeSpan position;
 
     /// <summary>
-    /// Позиция закладки в файле аудиокниги.
+    /// Позиция закладки в файле книги.
     /// </summary>
     public TimeSpan Position
     {
@@ -23,7 +23,7 @@ public class AudioBookmark : BaseModel
     private string title = string.Empty;
 
     /// <summary>
-    /// Название закладки аудиокниги.
+    /// Название закладки книги.
     /// </summary>
     public string Title
     {

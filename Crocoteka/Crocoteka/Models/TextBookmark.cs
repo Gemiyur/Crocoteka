@@ -8,7 +8,7 @@ public class TextBookmark : BaseModel
     private int position;
 
     /// <summary>
-    /// Позиция закладки в файле текстовой книги.
+    /// Позиция закладки в файле книги.
     /// </summary>
     public int Position
     {
@@ -23,7 +23,7 @@ public class TextBookmark : BaseModel
     private string title = string.Empty;
 
     /// <summary>
-    /// Название закладки текстовой книги.
+    /// Название закладки книги.
     /// </summary>
     public string Title
     {

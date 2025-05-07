@@ -1,17 +1,22 @@
-﻿using System.Windows.Media.Imaging;
+﻿namespace Crocoteka.Media;
 
-namespace Crocoteka.Media
+/// <summary>
+/// Класс данных раздела аудиокниги из тега.
+/// </summary>
+public class ChapterData
 {
-    public class ChapterData
-    {
-        public string Title = string.Empty;
+    /// <summary>
+    /// Название раздела книги.
+    /// </summary>
+    public string Title = string.Empty;
 
-        public TimeSpan StartTime;
+    /// <summary>
+    /// Время начала раздела книги.
+    /// </summary>
+    public TimeSpan StartTime;
 
-        public TimeSpan EndTime;
-
-        public BitmapFrame? Picture;
-
-        public byte[]? PictureData;
-    }
+    /// <summary>
+    /// Время конца раздела книги.
+    /// </summary>
+    public TimeSpan EndTime;
 }

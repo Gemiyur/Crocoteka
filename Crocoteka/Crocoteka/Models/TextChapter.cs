@@ -8,7 +8,7 @@ public class TextChapter : BaseModel
     private int position;
 
     /// <summary>
-    /// Позиция раздела в файле текстовой книги.
+    /// Позиция раздела в файле книги.
     /// </summary>
     public int Position
     {
@@ -23,7 +23,7 @@ public class TextChapter : BaseModel
     private string title = string.Empty;
 
     /// <summary>
-    /// Название раздела текстовой книги.
+    /// Название раздела книги.
     /// </summary>
     public string Title
     {
@@ -36,7 +36,7 @@ public class TextChapter : BaseModel
     }
 
     /// <summary>
-    /// Список подразделов раздела текстовой книги.
+    /// Список подразделов раздела книги.
     /// </summary>
     public List<TextChapter> Chapters { get; set; } = [];
 }

@@ -10,7 +10,7 @@ public class AudioChapter : BaseModel
     private TimeSpan startTime;
 
     /// <summary>
-    /// Позиция начала раздела в файле аудиокниги.
+    /// Позиция начала раздела в файле книги.
     /// </summary>
     public TimeSpan StartTime
     {
@@ -25,7 +25,7 @@ public class AudioChapter : BaseModel
     }
 
     /// <summary>
-    /// Позиция начала раздела в файле аудиокниги в виде строки.
+    /// Позиция начала раздела в файле книги в виде строки.
     /// </summary>
     [BsonIgnore]
     public string StartTimeText => App.TimeSpanToString(StartTime);
@@ -33,7 +33,7 @@ public class AudioChapter : BaseModel
     private TimeSpan endTime;
 
     /// <summary>
-    /// Позиция конца раздела в файле аудиокниги.
+    /// Позиция конца раздела в файле книги.
     /// </summary>
     public TimeSpan EndTime
     {
@@ -47,7 +47,7 @@ public class AudioChapter : BaseModel
     }
 
     /// <summary>
-    /// Продолжительность раздела аудиокниги.
+    /// Продолжительность раздела книги.
     /// </summary>
     [BsonIgnore]
     public TimeSpan Duration => EndTime - StartTime;
@@ -55,7 +55,7 @@ public class AudioChapter : BaseModel
     private string title = string.Empty;
 
     /// <summary>
-    /// Название раздела аудиокниги.
+    /// Название раздела книги.
     /// </summary>
     public string Title
     {
@@ -68,7 +68,7 @@ public class AudioChapter : BaseModel
     }
 
     /// <summary>
-    /// Список подразделов раздела аудиокниги.
+    /// Список подразделов раздела книги.
     /// </summary>
     public List<AudioChapter> Chapters { get; set; } = [];
 }
