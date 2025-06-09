@@ -25,7 +25,7 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Databases\\LiteDB\\Крокотека\\Crocoteka.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Геннадий\\OneDrive\\Базы данных\\LiteDB\\Крокотека\\Crocoteka.db")]
         public string DbName {
             get {
                 return ((string)(this["DbName"]));
@@ -37,7 +37,7 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Databases\\LiteDB\\Крокотека\\CrocotekaDebug.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Геннадий\\OneDrive\\Базы данных\\LiteDB\\Крокотека\\CrocotekaDebug.db")]
         public string DebugDbName {
             get {
                 return ((string)(this["DebugDbName"]));
