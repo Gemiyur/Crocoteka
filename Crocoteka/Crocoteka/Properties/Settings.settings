@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="DbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Геннадий\OneDrive\Базы данных\LiteDB\Крокотека\Crocoteka.db</Value>
+      <Value Profile="(Default)">C:\Databases\LiteDB\Крокотека\Crocoteka.db</Value>
     </Setting>
     <Setting Name="DebugDbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Users\Геннадий\OneDrive\Базы данных\LiteDB\Крокотека\CrocotekaDebug.db</Value>
+      <Value Profile="(Default)">C:\Databases\LiteDB\Крокотека\CrocotekaDebug.db</Value>
     </Setting>
   </Settings>
 </SettingsFile>
