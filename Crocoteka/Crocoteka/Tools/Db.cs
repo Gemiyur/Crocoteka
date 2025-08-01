@@ -84,6 +84,20 @@ public static class Db
             .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
 
+    public static int InsertBook(Book book)
+    {
+        using var db = GetDatabase();
+        return InsertBook(book, db);
+    }
+
+    public static int InsertBook(Book book, LiteDatabase db) => GetBooksCollection(db).Insert(book);
+
+    public static bool DeleteBook(int bookId)
+    {
+        using var db = GetDatabase();
+        return GetBooksCollection(db).Delete(bookId);
+    }
+
     public static bool DeleteBooK(int bookId)
     {
         using var db = GetDatabase();
