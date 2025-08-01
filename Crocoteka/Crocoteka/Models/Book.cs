@@ -168,24 +168,4 @@ public class Book : BaseModel
     /// </summary>
     [BsonIgnore]
     public bool IsReading => ReadPosition > 0;
-
-    /// <summary>
-    /// Список разделов аудиокниги.
-    /// </summary>
-    public List<AudioChapter> AudioChapters { get; set; } = [];
-
-    /// <summary>
-    /// Список закладок аудиокниги.
-    /// </summary>
-    public List<AudioBookmark> AudioBookmarks { get; set; } = [];
-
-    /// <summary>
-    /// Список разделов текстовой книги.
-    /// </summary>
-    public List<TextChapter> TextChapters { get; set; } = [];
-
-    /// <summary>
-    /// Список закладок текстовой книги.
-    /// </summary>
-    public List<TextBookmark> TextBookmarks { get; set; } = [];
 }
