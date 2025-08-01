@@ -65,7 +65,7 @@ public static class Db
     public static Book GetBook(int bookId, LiteDatabase db) =>
         GetBooksCollection(db)
             .Include(x => x.Authors)
-            .Include(x => x.CycleParts.Select(p => p.Cycle))
+            .Include(x => x.Cycle)
             .Include(x => x.Genres)
             .FindById(bookId);
 
@@ -78,7 +78,7 @@ public static class Db
     public static List<Book> GetBooks(LiteDatabase db) =>
         GetBooksCollection(db)
             .Include(x => x.Authors)
-            .Include(x => x.CycleParts.Select(p => p.Cycle))
+            .Include(x => x.Cycle)
             .Include(x => x.Genres)
             .FindAll()
             .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
@@ -187,7 +187,7 @@ public static class Db
     public static bool DeleteCycle(int cycleId, LiteDatabase db)
     {
         var booksCollection = GetBooksCollection(db);
-        if (booksCollection.Exists(x => x.CycleParts.Exists(p => p.Cycle != null && p.Cycle.CycleId == cycleId)))
+        if (booksCollection.Exists(x => x.Cycle != null && x.Cycle.CycleId == cycleId))
             return false;
         return GetCyclesCollection(db).Delete(cycleId);
     }

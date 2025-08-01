@@ -67,10 +67,28 @@ public class Book : BaseModel
     /// </summary>
     public byte[]? CoverData { get; set; }
 
+    private Cycle? cycle;
+
     /// <summary>
-    /// Список частей (номеров) книги в циклах книг.
+    /// Серия книг.
     /// </summary>
-    public List<CyclePart> CycleParts { get; set; } = [];
+    [BsonRef("Cycles")]
+    public Cycle? Cycle
+    {
+        get => cycle;
+        set
+        {
+            cycle = value;
+            OnPropertyChanged("Cycle");
+            OnPropertyChanged("CycleTitle");
+        }
+    }
+
+    /// <summary>
+    /// Возвращает название серии книг.
+    /// </summary>
+    [BsonIgnore]
+    public string CycleTitle => Cycle != null ? Cycle.Title : string.Empty;
 
     private string lector = string.Empty;
 
