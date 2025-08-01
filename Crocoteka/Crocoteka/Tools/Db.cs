@@ -3,16 +3,14 @@ using Crocoteka.Models;
 
 namespace Crocoteka.Tools;
 
-#region Задачи (TODO).
-
-// TODO: Нужно ли сортировать книги, авторов, циклы и жанры при получении их из базы данных?
-// TODO: Возможно для методов удаления авторов, циклов и жанров надо сделать выходной параметр сообщения.
-
-#endregion
-
 /// <summary>
 /// Статический класс методов работы с базой данных.
 /// </summary>
+/// <remarks>
+/// Содержит основные (базовые) методы: вставка, удаление и обновление.<br/>
+/// Методы удаления обеспечивают целостность данных,<br/>
+/// не позволяя удалять авторов и серии, если на них есть ссылки у книг.
+/// </remarks>
 public static class Db
 {
     public static LiteDatabase GetDatabase() => new(App.DbName);
@@ -70,13 +68,12 @@ public static class Db
     }
 
     public static List<Book> GetBooks(LiteDatabase db) =>
-        GetBooksCollection(db)
+        [.. GetBooksCollection(db)
             .Include(x => x.Authors)
             .Include(x => x.Cycle)
             .Include(x => x.Genres)
             .FindAll()
-            .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
-            .ToList();
+            .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
     public static int InsertBook(Book book)
     {
@@ -126,7 +123,10 @@ public static class Db
         return GetAuthors(db);
     }
 
-    public static List<Author> GetAuthors(LiteDatabase db) => GetAuthorsCollection(db).FindAll().ToList();
+    public static List<Author> GetAuthors(LiteDatabase db) =>
+        [.. GetAuthorsCollection(db)
+            .FindAll()
+            .OrderBy(x => x.NameLastFirstMiddle, StringComparer.CurrentCultureIgnoreCase)];
 
     public static int InsertAuthor(Author author)
     {
@@ -176,7 +176,10 @@ public static class Db
         return GetCycles(db);
     }
 
-    public static List<Cycle> GetCycles(LiteDatabase db) => GetCyclesCollection(db).FindAll().ToList();
+    public static List<Cycle> GetCycles(LiteDatabase db) =>
+        [.. GetCyclesCollection(db)
+            .FindAll()
+            .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
     public static int InsertCycle(Cycle cycle)
     {
@@ -228,6 +231,11 @@ public static class Db
 
     public static List<Genre> GetGenres(LiteDatabase db) => GetGenresCollection(db).FindAll().ToList();
 
+    //public static List<Tag> GetTags(LiteDatabase db) =>
+    //    [.. GetTagsCollection(db)
+    //        .FindAll()
+    //        .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
+
     public static int InsertGenre(Genre genre)
     {
         using var db = GetDatabase();
@@ -249,6 +257,14 @@ public static class Db
             return false;
         return GetGenresCollection(db).Delete(code);
     }
+
+    //public static bool DeleteTag(int tagId, LiteDatabase db)
+    //{
+    //    var booksCollection = GetBooksCollection(db);
+    //    if (booksCollection.Exists(x => x.Tags.Select(t => t.TagId).Any(id => id == tagId)))
+    //        return false;
+    //    return GetTagsCollection(db).Delete(tagId);
+    //}
 
     public static bool UpdateGenre(Genre genre)
     {
