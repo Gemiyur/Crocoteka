@@ -90,6 +90,35 @@ public class Book : BaseModel
     [BsonIgnore]
     public string CycleTitle => Cycle != null ? Cycle.Title : string.Empty;
 
+    private int cycleNumber;
+
+    /// <summary>
+    /// Номер книги в серии книг.
+    /// </summary>
+    public int CycleNumber
+    {
+        get => cycleNumber;
+        set
+        {
+            cycleNumber = value;
+            OnPropertyChanged("CycleNumber");
+            OnPropertyChanged("CyclePart");
+        }
+    }
+
+    /// <summary>
+    /// Возвращает номер книги в серии книг в виде строки.
+    /// </summary>
+    /// <remarks>Для нуля возвращает пустую строку.</remarks>
+    [BsonIgnore]
+    public string CyclePart => CycleNumber > 0 ? CycleNumber.ToString() : "";
+
+    /// <summary>
+    /// Возвращает строку номера книги серии для отображения в списке.
+    /// </summary>
+    [BsonIgnore]
+    public string CyclePartText => CycleNumber > 0 ? $"Номер в серии: {CyclePart}" : "Номер в серии не указан";
+
     private string lector = string.Empty;
 
     /// <summary>
