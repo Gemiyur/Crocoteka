@@ -23,22 +23,16 @@ public static class Db
 
         var cycle1 = new Cycle() { Title = "НИИЧАВО" };
         GetCyclesCollection(db).Insert(cycle1);
-        var cycle2 = new Cycle() { Title = "Миры Стругацких" };
+        var cycle2 = new Cycle() { Title = "Полдень" };
         GetCyclesCollection(db).Insert(cycle2);
-        var cycle3 = new Cycle() { Title = "Полдень" };
-        GetCyclesCollection(db).Insert(cycle3);
 
-        var book = new Book() { Title = "Понедельник начинается в субботу" };
-        //book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 1 });
-        //book.CycleParts.Add(new CyclePart() { Cycle = cycle2 });
+        var book = new Book() { Title = "Понедельник начинается в субботу", Cycle = cycle1, CycleNumber = 1 };
         GetBooksCollection(db).Insert(book);
 
-        book = new Book() { Title = "Сказка о Тройке" };
-        //book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 2 });
+        book = new Book() { Title = "Сказка о Тройке", Cycle = cycle1, CycleNumber = 2 };
         GetBooksCollection(db).Insert(book);
 
-        book = new Book() { Title = "Полдень. 22-й век" };
-        //book.CycleParts.Add(new CyclePart() { Cycle = cycle3, Number = 1 });
+        book = new Book() { Title = "Полдень. 22-й век", Cycle = cycle2, CycleNumber = 1 };
         GetBooksCollection(db).Insert(book);
     }
 

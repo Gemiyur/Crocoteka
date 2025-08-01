@@ -51,7 +51,7 @@ public partial class MainWindow : Window
 #endif
         if (!File.Exists(App.DbName))
         {
-            //Db.GenerateTestDb();
+            Db.GenerateTestDb();
         }
         Authors.AddRange(Db.GetAuthors());
         Cycles.AddRange(Db.GetCycles());
