@@ -29,16 +29,16 @@ public static class Db
         GetCyclesCollection(db).Insert(cycle3);
 
         var book = new Book() { Title = "Понедельник начинается в субботу" };
-        book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 1 });
-        book.CycleParts.Add(new CyclePart() { Cycle = cycle2 });
+        //book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 1 });
+        //book.CycleParts.Add(new CyclePart() { Cycle = cycle2 });
         GetBooksCollection(db).Insert(book);
 
         book = new Book() { Title = "Сказка о Тройке" };
-        book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 2 });
+        //book.CycleParts.Add(new CyclePart() { Cycle = cycle1, Number = 2 });
         GetBooksCollection(db).Insert(book);
 
         book = new Book() { Title = "Полдень. 22-й век" };
-        book.CycleParts.Add(new CyclePart() { Cycle = cycle3, Number = 1 });
+        //book.CycleParts.Add(new CyclePart() { Cycle = cycle3, Number = 1 });
         GetBooksCollection(db).Insert(book);
     }
 
@@ -81,57 +81,6 @@ public static class Db
             .Include(x => x.CycleParts.Select(p => p.Cycle))
             .Include(x => x.Genres)
             .FindAll()
-            .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
-            .ToList();
-
-    // TODOL: Нужны ли методы получения книг автора, цикла и жанра из базы данных? Пусть пока будут.
-
-    public static List<Book> GetAuthorBooks(int authorId)
-    {
-        using var db = GetDatabase();
-        return GetAuthorBooks(authorId, db);
-    }
-
-    public static List<Book> GetAuthorBooks(int authorId, LiteDatabase db) =>
-        GetBooksCollection(db)
-            .Include(x => x.Authors)
-            .Include(x => x.CycleParts.Select(p => p.Cycle))
-            .Include(x => x.Genres)
-            .FindAll()
-            .Where(x => x.Authors.Exists(a => a.AuthorId == authorId))
-            .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
-            .ToList();
-
-    public static List<Book> GetCycleBooks(int cycleId)
-    {
-        using var db = GetDatabase();
-        return GetCycleBooks(cycleId, db);
-    }
-
-    public static List<Book> GetCycleBooks(int cycleId, LiteDatabase db) =>
-        GetBooksCollection(db)
-            .Include(x => x.Authors)
-            .Include(x => x.CycleParts.Select(p => p.Cycle))
-            .Include(x => x.Genres)
-            .FindAll()
-            .Where(x => x.CycleParts.Exists(p => p.Cycle != null && p.Cycle.CycleId == cycleId))
-            // TODO: Подумать над компаратором для сортировки книг в цикле книг.
-            //.OrderBy(x => Cycle.BooksComparer)
-            .ToList();
-
-    public static List<Book> GetGenreBooks(string code)
-    {
-        using var db = GetDatabase();
-        return GetGenreBooks(code, db);
-    }
-
-    public static List<Book> GetGenreBooks(string code, LiteDatabase db) =>
-        GetBooksCollection(db)
-            .Include(x => x.Authors)
-            .Include(x => x.CycleParts.Select(p => p.Cycle))
-            .Include(x => x.Genres)
-            .FindAll()
-            .Where(x => x.Genres.Exists(g => g.Code == code))
             .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)
             .ToList();
 
