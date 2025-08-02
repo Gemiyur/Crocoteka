@@ -56,17 +56,6 @@ public class Book : BaseModel
     [BsonRef("Authors")]
     public List<Author> Authors { get; set; } = [];
 
-    /// <summary>
-    /// Изображение обложки книги.
-    /// </summary>
-    [BsonIgnore]
-    public BitmapFrame? Cover => CoverData != null ? App.GetBitmap(CoverData) : null;
-
-    /// <summary>
-    /// Массив байт изображения обложки книги.
-    /// </summary>
-    public byte[]? CoverData { get; set; }
-
     private Cycle? cycle;
 
     /// <summary>
@@ -183,21 +172,9 @@ public class Book : BaseModel
     public TimeSpan Duration { get; set; }
 
     /// <summary>
-    /// Продолжительность аудио книги в виде строки.
-    /// </summary>
-    [BsonIgnore]
-    public string DurationText => App.TimeSpanToString(Duration);
-
-    /// <summary>
     /// Позиция воспроизведения аудиокниги.
     /// </summary>
     public TimeSpan PlayPosition { get; set; }
-
-    /// <summary>
-    /// Позиция воспроизведения аудиокниги в виде строки.
-    /// </summary>
-    [BsonIgnore]
-    public string PlayPositionText => App.TimeSpanToString(PlayPosition);
 
     /// <summary>
     /// Находится ли аудиокнига в состоянии прослушивания.

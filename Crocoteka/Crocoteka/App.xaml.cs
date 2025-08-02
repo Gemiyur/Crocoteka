@@ -1,13 +1,6 @@
-﻿using System.IO;
-using System.Windows;
-using System.Windows.Media.Imaging;
-using System.Windows.Threading;
+﻿using System.Windows;
 
 namespace Crocoteka;
-
-#region Задачи (TODO).
-
-#endregion
 
 /// <summary>
 /// Класс приложения.
@@ -28,25 +21,4 @@ public partial class App : Application
     /// Расширения файлов текстовых книг.
     /// </summary>
     public static readonly List<string> TextExtensions = [".fb2", ".epub"];
-
-    /// <summary>
-    /// Аналог System.Windows.Forms.Application.DoEvents.
-    /// </summary>
-    public static void DoEvents() =>
-        Current?.Dispatcher.Invoke(DispatcherPriority.Background, new ThreadStart(delegate { }));
-
-    /// <summary>
-    /// Возвращает изображение из указанного массива байт.
-    /// </summary>
-    /// <param name="data">Массив байт.</param>
-    /// <returns>Изображение.</returns>
-    public static BitmapFrame GetBitmap(byte[] data) =>
-        BitmapDecoder.Create(new MemoryStream(data), BitmapCreateOptions.None, BitmapCacheOption.OnLoad).Frames[0];
-
-    /// <summary>
-    /// Возвращает строковое представление указанного интервала времени в формате h:mm:ss.
-    /// </summary>
-    /// <param name="timeSpan">Интервал времени.</param>
-    /// <returns>Строковое представление интервала времени.</returns>
-    public static string TimeSpanToString(TimeSpan timeSpan) => timeSpan.ToString(@"h\:mm\:ss");
 }
