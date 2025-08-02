@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using LiteDB;
 
 namespace Crocoteka.Models;
@@ -29,6 +24,8 @@ public class BookFile : BaseModel
             OnPropertyChanged("Name");
             OnPropertyChanged("NameOnly");
             OnPropertyChanged("Extension");
+            OnPropertyChanged("IsAudio");
+            OnPropertyChanged("IsText");
         }
     }
 
@@ -85,4 +82,16 @@ public class BookFile : BaseModel
     /// </summary>
     [BsonIgnore]
     public string Extension => Path.GetExtension(filename);
+
+    /// <summary>
+    /// Возвращает является ли файл аудио книгой.
+    /// </summary>
+    [BsonIgnore]
+    public bool IsAudio => App.AudioExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
+
+    /// <summary>
+    /// Возвращает является ли файл текстовой книгой.
+    /// </summary>
+    [BsonIgnore]
+    public bool IsText => App.TextExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
 }
