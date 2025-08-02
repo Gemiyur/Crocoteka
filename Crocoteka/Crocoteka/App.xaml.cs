@@ -20,6 +20,16 @@ public partial class App : Application
     public static string? DbName { get; set; }
 
     /// <summary>
+    /// Расширения файлов аудио книг.
+    /// </summary>
+    public static readonly List<string> AudioExtensions = [".m4b", ".mp3"];
+
+    /// <summary>
+    /// Расширения файлов текстовых книг.
+    /// </summary>
+    public static readonly List<string> TextExtensions = [".fb2", ".epub"];
+
+    /// <summary>
     /// Аналог System.Windows.Forms.Application.DoEvents.
     /// </summary>
     public static void DoEvents() =>
