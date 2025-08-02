@@ -14,12 +14,6 @@ public class Book : BaseModel
     /// </summary>
     public int BookId { get; set; }
 
-    /// <summary>
-    /// Это аудиокнига?
-    /// </summary>
-    [BsonIgnore]
-    public bool IsAudio => FileExtension == ".m4b";
-
     private string title = string.Empty;
 
     /// <summary>
@@ -35,6 +29,12 @@ public class Book : BaseModel
         }
     }
 
+    /// <summary>
+    /// Список авторов книги.
+    /// </summary>
+    [BsonRef("Authors")]
+    public List<Author> Authors { get; set; } = [];
+
     private string annotation = string.Empty;
 
     /// <summary>
@@ -49,12 +49,6 @@ public class Book : BaseModel
             OnPropertyChanged("Annotation");
         }
     }
-
-    /// <summary>
-    /// Список авторов книги.
-    /// </summary>
-    [BsonRef("Authors")]
-    public List<Author> Authors { get; set; } = [];
 
     private Cycle? cycle;
 
