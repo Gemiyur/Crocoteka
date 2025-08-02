@@ -1,6 +1,4 @@
-﻿using System.IO;
-using System.Windows.Media.Imaging;
-using LiteDB;
+﻿using LiteDB;
 
 namespace Crocoteka.Models;
 
@@ -35,10 +33,42 @@ public class Book : BaseModel
     [BsonRef("Authors")]
     public List<Author> Authors { get; set; } = [];
 
+    /// <summary>
+    /// Возвращает список авторов книги в виде строки Имя-Фамилия.
+    /// Список отсортирован по Фамилия-Имя.
+    /// </summary>
+    [BsonIgnore]
+    public string AuthorNamesFirstLast =>
+        App.ListToString(Authors.OrderBy(x => x.NameLastFirst), ", ", x => ((Author)x).NameFirstLast);
+
+    /// <summary>
+    /// Возвращает список авторов книги в виде строки Имя-Отчество-Фамилия.
+    /// Список отсортирован по Фамилия-Имя-Отчество.
+    /// </summary>
+    [BsonIgnore]
+    public string AuthorNamesFirstMiddleLast =>
+        App.ListToString(Authors.OrderBy(x => x.NameLastFirstMiddle), ", ", x => ((Author)x).NameFirstMiddleLast);
+
+    /// <summary>
+    /// Возвращает список авторов книги в виде строки Фамилия-Имя.
+    /// Список отсортирован по Фамилия-Имя.
+    /// </summary>
+    [BsonIgnore]
+    public string AuthorNamesLastFirst =>
+        App.ListToString(Authors.OrderBy(x => x.NameLastFirst), ", ", x => ((Author)x).NameLastFirst);
+
+    /// <summary>
+    /// Возвращает список авторов книги в виде строки Фамилия-Имя-Отчество.
+    /// Список отсортирован по Фамилия-Имя-Отчество.
+    /// </summary>
+    [BsonIgnore]
+    public string AuthorNamesLastFirstMiddle =>
+        App.ListToString(Authors.OrderBy(x => x.NameLastFirstMiddle), ", ", x => ((Author)x).NameLastFirstMiddle);
+
     private string annotation = string.Empty;
 
     /// <summary>
-    /// Аннотация книги.
+    /// Аннотация к книге.
     /// </summary>
     public string Annotation
     {
@@ -86,6 +116,7 @@ public class Book : BaseModel
             cycleNumber = value;
             OnPropertyChanged("CycleNumber");
             OnPropertyChanged("CyclePart");
+            OnPropertyChanged("CyclePartText");
         }
     }
 
@@ -102,36 +133,6 @@ public class Book : BaseModel
     [BsonIgnore]
     public string CyclePartText => CycleNumber > 0 ? $"Номер в серии: {CyclePart}" : "Номер в серии не указан";
 
-    private string lector = string.Empty;
-
-    /// <summary>
-    /// Чтец книги.
-    /// </summary>
-    public string Lector
-    {
-        get => lector;
-        set
-        {
-            lector = value ?? string.Empty;
-            OnPropertyChanged("Lector");
-        }
-    }
-
-    private string translator = string.Empty;
-
-    /// <summary>
-    /// Переводчик книги.
-    /// </summary>
-    public string Translator
-    {
-        get => translator;
-        set
-        {
-            translator = value ?? string.Empty;
-            OnPropertyChanged("Translator");
-        }
-    }
-
     /// <summary>
     /// Список жанров книги.
     /// </summary>
@@ -139,51 +140,7 @@ public class Book : BaseModel
     public List<Genre> Genres { get; set; } = [];
 
     /// <summary>
-    /// Файл книги с полным путём.
+    /// Список файлов книги.
     /// </summary>
-    public string FileName { get; set; } = string.Empty;
-
-    /// <summary>
-    /// Существует ли файл книги.
-    /// </summary>
-    [BsonIgnore]
-    public bool FileExists => File.Exists(FileName);
-
-    /// <summary>
-    /// Возвращает расширение файла книги. Начинается с точки.
-    /// </summary>
-    [BsonIgnore]
-    public string FileExtension => Path.GetExtension(FileName);
-
-    /// <summary>
-    /// Размер файла книги в байтах.
-    /// </summary>
-    public long FileSize { get; set; }
-
-    /// <summary>
-    /// Продолжительность аудио книги.
-    /// </summary>
-    public TimeSpan Duration { get; set; }
-
-    /// <summary>
-    /// Позиция воспроизведения аудиокниги.
-    /// </summary>
-    public TimeSpan PlayPosition { get; set; }
-
-    /// <summary>
-    /// Находится ли аудиокнига в состоянии прослушивания.
-    /// </summary>
-    [BsonIgnore]
-    public bool IsListening => PlayPosition > TimeSpan.Zero;
-
-    /// <summary>
-    /// Позиция чтения текстовой книги.
-    /// </summary>
-    public int ReadPosition { get; set; }
-
-    /// <summary>
-    /// Находится ли текстовая книга в состоянии чтения.
-    /// </summary>
-    [BsonIgnore]
-    public bool IsReading => ReadPosition > 0;
+    public List<BookFile> Files { get; set; } = [];
 }

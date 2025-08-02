@@ -94,4 +94,10 @@ public class BookFile : BaseModel
     /// </summary>
     [BsonIgnore]
     public bool IsText => App.TextExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
+
+    /// <summary>
+    /// Существует ли файл книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool Exists => File.Exists(filename);
 }
