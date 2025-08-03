@@ -19,19 +19,46 @@ public static class Db
     {
         using var db = GetDatabase();
 
+        var author1 = new Author() { FirstName = "Аркадий", MiddleName = "Натанович", LastName = "Стругацкий" };
+        author1.AuthorId = InsertAuthor(author1, db);
+        var author2 = new Author() { FirstName = "Борис", MiddleName = "Натанович", LastName = "Стругацкий" };
+        author2.AuthorId = InsertAuthor(author2, db);
+        var author3 = new Author() { FirstName = "Виктор", LastName = "Пелевин" };
+        author3.AuthorId = InsertAuthor(author3, db);
+
         var cycle1 = new Cycle() { Title = "НИИЧАВО" };
-        GetCyclesCollection(db).Insert(cycle1);
+        cycle1.CycleId = InsertCycle(cycle1, db);
         var cycle2 = new Cycle() { Title = "Полдень" };
-        GetCyclesCollection(db).Insert(cycle2);
+        cycle2.CycleId = InsertCycle(cycle2, db);
+
+        var genre1 = new Genre() { Title = "Фантастика" };
+        genre1.GenreId = InsertGenre(genre1, db);
+        var genre2 = new Genre() { Title = "Юмор" };
+        genre2.GenreId = InsertGenre(genre2, db);
 
         var book = new Book() { Title = "Понедельник начинается в субботу", Cycle = cycle1, CycleNumber = 1 };
-        GetBooksCollection(db).Insert(book);
+        book.Authors.Add(author1);
+        book.Authors.Add(author2);
+        book.Genres.Add(genre1);
+        book.Genres.Add(genre2);
+        InsertBook(book, db);
 
         book = new Book() { Title = "Сказка о Тройке", Cycle = cycle1, CycleNumber = 2 };
-        GetBooksCollection(db).Insert(book);
+        book.Authors.Add(author1);
+        book.Authors.Add(author2);
+        book.Genres.Add(genre1);
+        book.Genres.Add(genre2);
+        InsertBook(book, db);
 
         book = new Book() { Title = "Полдень. 22-й век", Cycle = cycle2, CycleNumber = 1 };
-        GetBooksCollection(db).Insert(book);
+        book.Authors.Add(author1);
+        book.Authors.Add(author2);
+        book.Genres.Add(genre1);
+        InsertBook(book, db);
+
+        book = new Book() { Title = "Священная книга оборотня" };
+        book.Authors.Add(author3);
+        InsertBook(book, db);
     }
 
     #region Получение коллекций.
