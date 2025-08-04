@@ -9,7 +9,9 @@
     <Version>1.0.0</Version>
     <Company>Gemiyur</Company>
     <Product>Крокотека</Product>
-    <Description>Библиотека электронных книг</Description>
+    <Description>Библиотека электронных книг.
+Аудио и текстовые книги
+на локальном компьютере.</Description>
     <Copyright>Copyright © Gemiyur 2025</Copyright>
     <ApplicationIcon>Images\Crocoteka.ico</ApplicationIcon>
   </PropertyGroup>
