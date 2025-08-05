@@ -13,7 +13,7 @@
 Аудио и текстовые книги
 на локальном компьютере.</Description>
     <Copyright>Copyright © Gemiyur 2025</Copyright>
-    <ApplicationIcon>Images\Crocoteka.ico</ApplicationIcon>
+    <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Images\Crocoteka.ico" />
+    <Content Include="Images\Icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
