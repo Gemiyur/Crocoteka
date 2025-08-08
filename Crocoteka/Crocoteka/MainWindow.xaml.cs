@@ -64,4 +64,91 @@ public partial class MainWindow : Window
     {
         new AboutDialog() { Owner = this }.ShowDialog();
     }
+
+    #region Обработчики команд группы "Библиотека".
+
+    private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Authors_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Cycles_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Genres_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void CheckLibrary_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    #endregion
+
+    #region Обработчики команд группы "Книга".
+
+    private void Info_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void Info_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    #endregion
+
+    #region Обработчики команд группы "Справка".
+
+    private void About_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    #endregion
 }
