@@ -6,6 +6,75 @@
              ShutdownMode="OnMainWindowClose">
 
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="TextBoxReadOnlyBackgroundBrush" Color="#FFF0F0F0" />
+
+            <SolidColorBrush x:Key="SelectedListItemBackgroundBrush" Color="#FFCBE8F6" />
+
+            <SolidColorBrush x:Key="MouseOverListItemBackgroundBrush" Color="AliceBlue" />
+
+            <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="ListBoxItem">
+                            <Border Name="Border" Padding="2">
+                                <ContentPresenter />
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter TargetName="Border" Property="Background"
+                                            Value="{StaticResource SelectedListItemBackgroundBrush}" />
+                                </Trigger>
+                                <MultiTrigger>
+                                    <MultiTrigger.Conditions>
+                                        <Condition Property="IsSelected" Value="False" />
+                                        <Condition Property="IsMouseOver" Value="True" />
+                                    </MultiTrigger.Conditions>
+                                    <MultiTrigger.Setters>
+                                        <Setter TargetName="Border" Property="Background"
+                                                Value="{StaticResource MouseOverListItemBackgroundBrush}" />
+                                    </MultiTrigger.Setters>
+                                </MultiTrigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="ListViewItemStyle" TargetType="ListViewItem">
+                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+                <Style.Triggers>
+                    <Trigger Property="IsSelected" Value="True">
+                        <Setter Property="Background" Value="{StaticResource SelectedListItemBackgroundBrush}" />
+                    </Trigger>
+                    <MultiTrigger>
+                        <MultiTrigger.Conditions>
+                            <Condition Property="IsSelected" Value="False" />
+                            <Condition Property="IsMouseOver" Value="True" />
+                        </MultiTrigger.Conditions>
+                        <MultiTrigger.Setters>
+                            <Setter Property="Background" Value="{StaticResource MouseOverListItemBackgroundBrush}" />
+                        </MultiTrigger.Setters>
+                    </MultiTrigger>
+                </Style.Triggers>
+            </Style>
+
+            <DataTemplate x:Key="AuthorFullNameDataTemplate">
+                <TextBlock Text="{Binding NameLastFirstMiddle}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="AuthorShortNameDataTemplate">
+                <TextBlock Text="{Binding NameLastFirst}" ToolTip="{Binding NameLastFirstMiddle}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="CycleDataTemplate">
+                <TextBlock Text="{Binding Title}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="GenreDataTemplate">
+                <TextBlock Text="{Binding Title}" />
+            </DataTemplate>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
