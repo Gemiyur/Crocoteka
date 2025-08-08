@@ -120,7 +120,6 @@
                         <Image Source="Images\Buttons\Enabled\Info.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <Separator />
                 <MenuItem x:Name="EditMenuItem" Style="{StaticResource MenuItemStyle}"
                           Command="local:AppCommands.Edit">
                     <MenuItem.Icon>
@@ -184,7 +183,6 @@
                         Command="local:AppCommands.Info">
                     <Image Source="Images\Buttons\Enabled\Info.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
-                <Separator />
                 <Button x:Name="EditButton" Style="{StaticResource ToolBarButtonStyle}"
                         Command="local:AppCommands.Edit">
                     <Image Source="Images\Buttons\Enabled\Edit.png" Style="{StaticResource ToolBarIconStyle}" />
@@ -208,13 +206,13 @@
                 <TextBlock>Всего книг:</TextBlock>
             </StatusBarItem>
             <StatusBarItem>
-                <TextBlock x:Name="StatusBarBooksCount">0</TextBlock>
+                <TextBlock x:Name="BooksCountTextBlock">0</TextBlock>
             </StatusBarItem>
             <StatusBarItem x:Name="ActionStatusBarItem"
                            HorizontalAlignment="Right"
                            Margin="10,0,20,0"
                            Visibility="Collapsed">
-                <TextBlock x:Name="StatusBarAction">Выполняемое действие...</TextBlock>
+                <TextBlock x:Name="ActionTextBlock">Выполняемое действие...</TextBlock>
             </StatusBarItem>
         </StatusBar>
     </Grid>
