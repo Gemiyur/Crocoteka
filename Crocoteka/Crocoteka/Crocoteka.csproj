@@ -32,7 +32,6 @@
     <None Remove="Images\Buttons\Enabled\FindBooks.png" />
     <None Remove="Images\Buttons\Enabled\Info.png" />
     <None Remove="Images\Buttons\Enabled\Settings.png" />
-    <None Remove="Images\Buttons\Enabled\Tags.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -65,7 +64,7 @@
     <Resource Include="Images\Buttons\Enabled\FindBooks.png" />
     <Resource Include="Images\Buttons\Enabled\Info.png" />
     <Resource Include="Images\Buttons\Enabled\Settings.png" />
-    <Resource Include="Images\Buttons\Enabled\Tags.png" />
+    <Resource Include="Images\Buttons\Enabled\Genres.png" />
   </ItemGroup>
 
   <ItemGroup>

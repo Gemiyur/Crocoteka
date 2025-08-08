@@ -60,10 +60,19 @@ public partial class MainWindow : Window
 
     }
 
-    private void AboutButton_Click(object sender, RoutedEventArgs e)
+    #region Обработчики событий окна.
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        new AboutDialog() { Owner = this }.ShowDialog();
+
     }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+
+    }
+
+    #endregion
 
     #region Обработчики команд группы "Библиотека".
 
@@ -104,7 +113,7 @@ public partial class MainWindow : Window
 
     private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        Close();
     }
 
     #endregion
@@ -147,7 +156,7 @@ public partial class MainWindow : Window
 
     private void About_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        new AboutDialog() { Owner = this }.ShowDialog();
     }
 
     #endregion
