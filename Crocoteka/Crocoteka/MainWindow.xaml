@@ -201,6 +201,93 @@
             </ToolBar>
         </ToolBarTray>
 
+        <!-- Панель навигации и список книг -->
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="225" MinWidth="150" MaxWidth="300" />
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <!-- Панель навигации -->
+            <Border Grid.Column="0" BorderBrush="MidnightBlue" BorderThickness="0.5">
+                <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" Margin="10,0,0,0">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ToggleButton Grid.Row="0" x:Name="AllBooksToggleButton" Content="Все книги"
+                                      Style="{StaticResource NavToggleButtonStyle}"
+                                      DataContext="/Images/Buttons/Enabled/AllBooks.png"
+                                      IsChecked="True"
+                                      Click="AllBooksToggleButton_Click" />
+                        <Expander Grid.Row="2" x:Name="AuthorsExpander" Header="Авторы"
+                                  Style="{StaticResource NavExpanderStyle}">
+                            <ListBox x:Name="AuthorsListBox"
+                                     Style="{StaticResource NavListBoxStyle}"
+                                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                                     ItemTemplate="{StaticResource AuthorFullNameDataTemplate}"
+                                     SelectionChanged="AuthorsListBox_SelectionChanged" />
+                        </Expander>
+                        <Expander Grid.Row="3" x:Name="CyclesExpander" Header="Серии"
+                                  Style="{StaticResource NavExpanderStyle}">
+                            <ListBox x:Name="CyclesListBox"
+                                     Style="{StaticResource NavListBoxStyle}"
+                                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                                     ItemTemplate="{StaticResource CycleDataTemplate}"
+                                     SelectionChanged="CyclesListBox_SelectionChanged" />
+                        </Expander>
+                        <Expander Grid.Row="4" x:Name="GenresExpander" Header="Жанры"
+                                  Style="{StaticResource NavExpanderStyle}">
+                            <ListBox x:Name="GenresListBox"
+                                     Style="{StaticResource NavListBoxStyle}"
+                                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                                     ItemTemplate="{StaticResource GenreDataTemplate}"
+                                     SelectionChanged="GenresListBox_SelectionChanged" />
+                        </Expander>
+                    </Grid>
+                </ScrollViewer>
+            </Border>
+            <!-- Сплиттер -->
+            <GridSplitter Grid.Row="1" Grid.Column="1" Width="5"
+                          HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+            <!-- Список книг -->
+            <ListBox Grid.Row="1" Grid.Column="2" x:Name="BooksListBox"
+                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                     ItemTemplate="{StaticResource BookDataTemplate}"
+                     MouseDoubleClick="BooksListBox_MouseDoubleClick"
+                     ContextMenuOpening="BooksListBox_ContextMenuOpening">
+                <ListBox.ContextMenu>
+                    <ContextMenu x:Name="BookContextMenu">
+                        <MenuItem x:Name="InfoContextMenuItem" Style="{StaticResource MenuItemStyle}" FontWeight="Bold"
+                                  Command="local:AppCommands.Info">
+                            <MenuItem.Icon>
+                                <Image Source="Images\Buttons\Enabled\Info.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem x:Name="EditContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                                  Command="local:AppCommands.Edit">
+                            <MenuItem.Icon>
+                                <Image Source="Images\Buttons\Enabled\Edit.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                        <Separator />
+                        <MenuItem x:Name="DeleteContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                                  Command="local:AppCommands.Delete">
+                            <MenuItem.Icon>
+                                <Image Source="Images\Buttons\Enabled\Delete.png" />
+                            </MenuItem.Icon>
+                        </MenuItem>
+                    </ContextMenu>
+                </ListBox.ContextMenu>
+            </ListBox>
+        </Grid>
+
         <StatusBar Grid.Row="3">
             <StatusBarItem Margin="4,0,0,0">
                 <TextBlock>Всего книг:</TextBlock>

@@ -181,4 +181,34 @@ public partial class MainWindow : Window
     }
 
     #endregion
+
+    private void AllBooksToggleButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void CyclesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void GenresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void BooksListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    {
+
+    }
+
+    private void BooksListBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+    {
+
+    }
 }
