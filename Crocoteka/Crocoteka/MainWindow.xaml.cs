@@ -54,11 +54,31 @@ public partial class MainWindow : Window
             Db.GenerateTestDb();
         }
         Authors.AddRange(Db.GetAuthors());
+        AuthorsListBox.ItemsSource = Authors;
+        CheckAuthorsNameFormat();
         Cycles.AddRange(Db.GetCycles());
+        CyclesListBox.ItemsSource = Cycles;
         Genres.AddRange(Db.GetGenres());
+        GenresListBox.ItemsSource = Genres;
         ShownBooks.AddRange(Db.GetBooks());
-
+        BooksListBox.ItemsSource = ShownBooks;
+        UpdateStatusBarBooksCount();
     }
+
+    /// <summary>
+    /// Устанавливает формат отображения имён авторов в панели навигации.
+    /// </summary>
+    public void CheckAuthorsNameFormat()
+    {
+        AuthorsListBox.ItemTemplate = Properties.Settings.Default.NavAuthorFullName
+            ? (DataTemplate)FindResource("AuthorFullNameDataTemplate")
+            : (DataTemplate)FindResource("AuthorShortNameDataTemplate");
+    }
+
+    /// <summary>
+    /// Обновляет количество отображаемых книг в строке статуса.
+    /// </summary>
+    private void UpdateStatusBarBooksCount() => BooksCountTextBlock.Text = BooksListBox.Items.Count.ToString();
 
     #region Обработчики событий окна.
 
