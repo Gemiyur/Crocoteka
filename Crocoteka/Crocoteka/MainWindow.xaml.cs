@@ -361,14 +361,14 @@ public partial class MainWindow : Window
 
     private void Info_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        //e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\Info.png" : @"Images\Buttons\Disabled\Info.png");
         ((Image)InfoButton.Content).Source = bitmap;
         ((Image)InfoMenuItem.Icon).Source = bitmap;
-        //((Image)InfoContextMenuItem.Icon).Source = bitmap;
+        ((Image)InfoContextMenuItem.Icon).Source = bitmap;
     }
 
     private void Info_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -378,14 +378,14 @@ public partial class MainWindow : Window
 
     private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        //e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\Edit.png" : @"Images\Buttons\Disabled\Edit.png");
         ((Image)EditButton.Content).Source = bitmap;
         ((Image)EditMenuItem.Icon).Source = bitmap;
-        //((Image)EditContextMenuItem.Icon).Source = bitmap;
+        ((Image)EditContextMenuItem.Icon).Source = bitmap;
     }
 
     private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -395,14 +395,14 @@ public partial class MainWindow : Window
 
     private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        //e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
         ((Image)DeleteButton.Content).Source = bitmap;
         ((Image)DeleteMenuItem.Icon).Source = bitmap;
-        //((Image)DeleteContextMenuItem.Icon).Source = bitmap;
+        ((Image)DeleteContextMenuItem.Icon).Source = bitmap;
     }
 
     private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
