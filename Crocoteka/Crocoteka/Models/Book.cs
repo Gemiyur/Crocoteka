@@ -143,4 +143,40 @@ public class Book : BaseModel
     /// Список файлов книги.
     /// </summary>
     public List<BookFile> Files { get; set; } = [];
+
+    /// <summary>
+    /// Возвращает количество аудио файлов книги.
+    /// </summary>
+    [BsonIgnore]
+    public int AudioCount => Files.Count > 0 ? Files.Count(x => x.IsAudio) : 0;
+
+    /// <summary>
+    /// Возвращает строку количества аудио файлов книги для отображения в списке.
+    /// </summary>
+    [BsonIgnore]
+    public string AudioCountText => $"Аудио: {AudioCount}";
+
+    /// <summary>
+    /// Возвращает количество текстовых файлов книги.
+    /// </summary>
+    [BsonIgnore]
+    public int TextCount => Files.Count > 0 ? Files.Count(x => x.IsText) : 0;
+
+    /// <summary>
+    /// Возвращает строку количества текстовых файлов книги для отображения в списке.
+    /// </summary>
+    [BsonIgnore]
+    public string TextCountText => $"Текст: {TextCount}";
+
+    /// <summary>
+    /// Возвращает есть ли аудио файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasAudio => AudioCount > 0;
+
+    /// <summary>
+    /// Возвращает есть ли текстовые файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasText => TextCount > 0;
 }
