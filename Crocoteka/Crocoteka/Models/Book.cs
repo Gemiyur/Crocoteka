@@ -128,7 +128,7 @@ public class Book : BaseModel
     public string CyclePart => CycleNumber > 0 ? CycleNumber.ToString() : "";
 
     /// <summary>
-    /// Возвращает строку номера книги серии для отображения в списке.
+    /// Возвращает строку номера книги серии для отображения.
     /// </summary>
     [BsonIgnore]
     public string CyclePartText => CycleNumber > 0 ? $"Номер в серии: {CyclePart}" : "Номер в серии не указан";
@@ -151,7 +151,7 @@ public class Book : BaseModel
     public int AudioCount => Files.Count > 0 ? Files.Count(x => x.IsAudio) : 0;
 
     /// <summary>
-    /// Возвращает строку количества аудио файлов книги для отображения в списке.
+    /// Возвращает строку количества аудио файлов книги для отображения.
     /// </summary>
     [BsonIgnore]
     public string AudioCountText => $"Аудио: {AudioCount}";
@@ -163,7 +163,7 @@ public class Book : BaseModel
     public int TextCount => Files.Count > 0 ? Files.Count(x => x.IsText) : 0;
 
     /// <summary>
-    /// Возвращает строку количества текстовых файлов книги для отображения в списке.
+    /// Возвращает строку количества текстовых файлов книги для отображения.
     /// </summary>
     [BsonIgnore]
     public string TextCountText => $"Текст: {TextCount}";
