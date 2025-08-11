@@ -319,7 +319,8 @@ public partial class MainWindow : Window
 
     private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var dialog = App.PickBookFileDialog;
+        dialog.ShowDialog();
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)

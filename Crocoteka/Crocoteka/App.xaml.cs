@@ -94,6 +94,34 @@ public partial class App : Application
     };
 
     /// <summary>
+    /// Возвращает диалог выбора файла книги.
+    /// </summary>
+    public static OpenFileDialog PickBookFileDialog => new()
+    {
+        AddToRecent = false,
+        // TODO: Нужен ли Multiselect в диалоге выбора файла/файлов книги?
+        //Multiselect = true,
+        Title = "Файл книги",
+        Filter = PickBookFileDialogFilter
+    };
+
+    /// <summary>
+    /// Возвращает фильтр для диалога выбора фала книги.
+    /// </summary>
+    private static string PickBookFileDialogFilter
+    {
+        get
+        {
+            var audioExt = ListToString(AudioExtensions, ";").Replace(".", "*.");
+            var textExt = ListToString(TextExtensions, ";").Replace(".", "*.");
+            var filterAll = $"Все книги|{audioExt};{textExt}";
+            var filterAudio = $"Аудио книги|{audioExt}";
+            var filterText = $"Текстовые книги|{textExt}";
+            return $"{filterAll}|{filterAudio}|{filterText}";
+        }
+    }
+
+    /// <summary>
     /// Возвращает диалог выбора папки с файлами книг.
     /// </summary>
     public static OpenFolderDialog PickBooksFolderDialog => new()
