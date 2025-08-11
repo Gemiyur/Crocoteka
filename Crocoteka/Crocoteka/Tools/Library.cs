@@ -16,17 +16,6 @@ public static class Library
     /// </summary>
     public static readonly List<Book> Books;
 
-    // TODO: Сделать свойство получения списка всех переводчиков.
-    ///// <summary>
-    ///// Возвращает список всех переводчиков.
-    ///// </summary>
-    ///// <remarks>Переводчики отсортированы по названию.</remarks>
-    //public static List<string> Translators =>
-    //    [.. Books.Select(x => x.Translator)
-    //         .Where(x => !string.IsNullOrWhiteSpace(x))
-    //         .Distinct()
-    //         .Order(StringComparer.CurrentCultureIgnoreCase)];
-
     /// <summary>
     /// Статический конструктор.
     /// </summary>

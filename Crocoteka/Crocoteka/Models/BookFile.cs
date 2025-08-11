@@ -29,21 +29,6 @@ public class BookFile : BaseModel
         }
     }
 
-    private string translator = string.Empty;
-
-    /// <summary>
-    /// Переводчик книги.
-    /// </summary>
-    public string Translator
-    {
-        get => translator;
-        set
-        {
-            translator = value ?? string.Empty;
-            OnPropertyChanged("Translator");
-        }
-    }
-
     private string comment = string.Empty;
 
     /// <summary>
