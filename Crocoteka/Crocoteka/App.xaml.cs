@@ -93,6 +93,17 @@ public partial class App : Application
         Filter = $"Файлы базы данных|*.db"
     };
 
+    /// <summary>
+    /// Возвращает диалог выбора папки с файлами книг.
+    /// </summary>
+    public static OpenFolderDialog PickBooksFolderDialog => new()
+    {
+        AddToRecent = false,
+        // TODO: Нужен ли Multiselect в диалоге выбора папки с файлами книг?
+        Multiselect = true,
+        Title = "Папка с файлами книг",
+    };
+
     #endregion
 
     #region Получение строковых представлений значений.
