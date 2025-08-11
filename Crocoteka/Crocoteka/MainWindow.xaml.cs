@@ -49,6 +49,8 @@ public partial class MainWindow : Window
         {
             Db.GenerateTestDb();
         }
+        App.AudioExtensions.AddRange(Properties.Settings.Default.AudioExtensions.Split(';'));
+        App.TextExtensions.AddRange(Properties.Settings.Default.TextExtensions.Split(';'));
         Authors.AddRange(Db.GetAuthors());
         AuthorsListBox.ItemsSource = Authors;
         CheckAuthorsNameFormat();

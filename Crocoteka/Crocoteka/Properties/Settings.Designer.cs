@@ -49,6 +49,30 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".m4b;.mp3")]
+        public string AudioExtensions {
+            get {
+                return ((string)(this["AudioExtensions"]));
+            }
+            set {
+                this["AudioExtensions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".fb2;.epub")]
+        public string TextExtensions {
+            get {
+                return ((string)(this["TextExtensions"]));
+            }
+            set {
+                this["TextExtensions"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool NavAuthorFullName {
             get {

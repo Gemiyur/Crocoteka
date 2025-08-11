@@ -19,12 +19,12 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов аудио книг.
     /// </summary>
-    public static readonly List<string> AudioExtensions = [".m4b", ".mp3"];
+    public static readonly List<string> AudioExtensions = [];
 
     /// <summary>
     /// Расширения файлов текстовых книг.
     /// </summary>
-    public static readonly List<string> TextExtensions = [".fb2", ".epub"];
+    public static readonly List<string> TextExtensions = [];
 
     /// <summary>
     /// Возвращает указанное имя файла, гарантируя расширение .db.
