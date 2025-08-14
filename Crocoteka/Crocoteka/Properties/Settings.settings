@@ -12,7 +12,10 @@
       <Value Profile="(Default)">.m4b;.mp3</Value>
     </Setting>
     <Setting Name="TextExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.fb2;.epub</Value>
+      <Value Profile="(Default)">.fb2;.fb3;.epub;.doc;.docx;.pdf;.rtf;.txt</Value>
+    </Setting>
+    <Setting Name="ZipExtensions" Type="System.String" Scope="User">
+      <Value Profile="(Default)">.zip</Value>
     </Setting>
     <Setting Name="NavAuthorFullName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
