@@ -112,14 +112,13 @@ public partial class App : Application
     };
 
     /// <summary>
-    /// Возвращает диалог выбора файла книги.
+    /// Возвращает диалог выбора файлов книги.
     /// </summary>
     public static OpenFileDialog PickBookFileDialog => new()
     {
         AddToRecent = false,
-        // TODO: Нужен ли Multiselect в диалоге выбора файла/файлов книги?
-        //Multiselect = true,
-        Title = "Файл книги",
+        Multiselect = true,
+        Title = "Файлы книги",
         Filter = PickBookFileDialogFilter
     };
 
