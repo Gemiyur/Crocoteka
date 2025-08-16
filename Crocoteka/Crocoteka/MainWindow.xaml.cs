@@ -326,8 +326,16 @@ public partial class MainWindow : Window
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dialog = new FindFilesWindow() { Owner = this };
-        dialog.ShowDialog();
+        var window = App.GetFindFilesWindow();
+        if (window != null)
+        {
+            App.RestoreWindow(window);
+            window.Activate();
+        }
+        else
+        {
+            new FindFilesWindow() { Owner = this }.Show();
+        }
     }
 
     private void Authors_Executed(object sender, ExecutedRoutedEventArgs e)

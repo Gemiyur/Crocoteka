@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Crocoteka.Dialogs;
+using Microsoft.Win32;
 using System.IO;
 using System.Text;
 using System.Windows;
@@ -82,6 +83,18 @@ public partial class App : Application
     /// <returns>Главное окно приложения.</returns>
     public static MainWindow GetMainWindow() => (MainWindow)Current.MainWindow;
 
+    /// <summary>
+    /// Возвращает окно поиска файлов книг или null, если окна нет.
+    /// </summary>
+    /// <returns>Окно поиска файлов книг или null, если окна нет.</returns>
+    public static FindFilesWindow? GetFindFilesWindow()
+    {
+        foreach (var window in Current.Windows)
+            if (window is FindFilesWindow findFilesWindow)
+                return findFilesWindow;
+        return null;
+    }
+
     #endregion
 
     #region Диалоги выбора файла и папки.
@@ -135,8 +148,6 @@ public partial class App : Application
     public static OpenFolderDialog PickBooksFolderDialog => new()
     {
         AddToRecent = false,
-        // TODO: Нужен ли Multiselect в диалоге выбора папки с файлами книг?
-        Multiselect = true,
         Title = "Папка с файлами книг",
     };
 
