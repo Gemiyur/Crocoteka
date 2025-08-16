@@ -326,7 +326,7 @@ public partial class MainWindow : Window
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dialog = new FoundBooksDialog() { Owner = this };
+        var dialog = new FindFilesWindow() { Owner = this };
         dialog.ShowDialog();
     }
 

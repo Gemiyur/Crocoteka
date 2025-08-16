@@ -17,9 +17,9 @@ namespace Crocoteka.Dialogs;
 /// <summary>
 /// Класс окна найденных файлов книг.
 /// </summary>
-public partial class FoundBooksDialog : Window
+public partial class FindFilesWindow : Window
 {
-    public FoundBooksDialog()
+    public FindFilesWindow()
     {
         InitializeComponent();
     }
