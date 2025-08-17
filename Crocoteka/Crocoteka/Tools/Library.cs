@@ -69,14 +69,14 @@ public static class Library
     /// <returns>Имеет ли указанная книга указанный жанр.</returns>
     public static bool BookHasGenre(Book book, int genreId) => book.Genres.Exists(x => x.GenreId == genreId);
 
-    // TODO: Сделать метод проверки есть ли книга с указанным именем файла.
-    ///// <summary>
-    ///// Возвращает есть ли книга с указанным именем файла.
-    ///// </summary>
-    ///// <param name="filename">Имя файла.</param>
-    ///// <returns>Есть ли книга с указанным именем файла.</returns>
-    //public static bool BookWithFileExists(string filename) =>
-    //    Books.Exists(x => x.FileName.Equals(filename, StringComparison.CurrentCultureIgnoreCase));
+    // TODO: Не будет ли такая конструкция LINQ выбрасывать исключение во время выполнения?
+    /// <summary>
+    /// Возвращает есть ли книга с указанным именем файла.
+    /// </summary>
+    /// <param name="filename">Имя файла.</param>
+    /// <returns>Есть ли книга с указанным именем файла.</returns>
+    public static bool BookWithFileExists(string filename) =>
+        Books.Exists(x => x.Files.Exists(f => f.Filename.Equals(filename, StringComparison.CurrentCultureIgnoreCase)));
 
     /// <summary>
     /// Возвращает книгу с указанным идентификатором.
