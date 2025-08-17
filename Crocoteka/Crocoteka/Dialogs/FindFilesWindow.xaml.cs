@@ -19,9 +19,37 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class FindFilesWindow : Window
 {
+    private readonly Dictionary<string, List<string>> masks = [];
+
     public FindFilesWindow()
     {
         InitializeComponent();
+
+        var mask = new KeyValuePair<string, List<string>>("Все файлы книг", []);
+        mask.Value.AddRange(App.AudioExtensions);
+        mask.Value.AddRange(App.TextExtensions);
+        mask.Value.AddRange(App.ZipExtensions);
+        masks.Add(mask.Key, mask.Value);
+
+        mask = new KeyValuePair<string, List<string>>("Аудио и текст", []);
+        mask.Value.AddRange(App.AudioExtensions);
+        mask.Value.AddRange(App.TextExtensions);
+        masks.Add(mask.Key, mask.Value);
+
+        mask = new KeyValuePair<string, List<string>>("Аудио", []);
+        mask.Value.AddRange(App.AudioExtensions);
+        masks.Add(mask.Key, mask.Value);
+
+        mask = new KeyValuePair<string, List<string>>("Текст", []);
+        mask.Value.AddRange(App.TextExtensions);
+        masks.Add(mask.Key, mask.Value);
+
+        mask = new KeyValuePair<string, List<string>>("Архивы", []);
+        mask.Value.AddRange(App.ZipExtensions);
+        masks.Add(mask.Key, mask.Value);
+
+        TypeComboBox.ItemsSource = masks;
+        TypeComboBox.SelectedIndex = 0;
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)

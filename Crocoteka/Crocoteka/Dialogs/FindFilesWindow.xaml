@@ -53,16 +53,16 @@
                 <ColumnDefinition Width="Auto" />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <ComboBox Grid.Column="0" x:Name="TypeComboBox"
-                      Width="125"
-                      SelectedIndex="0"
+
+            <ComboBox Grid.Column="0" x:Name="TypeComboBox" Width="130"
                       SelectionChanged="TypeComboBox_SelectionChanged">
-                <ComboBoxItem>Все файлы книг</ComboBoxItem>
-                <ComboBoxItem>Аудио и текст</ComboBoxItem>
-                <ComboBoxItem>Аудио</ComboBoxItem>
-                <ComboBoxItem>Текст</ComboBoxItem>
-                <ComboBoxItem>Архивы</ComboBoxItem>
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Key}" />
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
             </ComboBox>
+
             <CheckBox Grid.Column="1" x:Name="NotInLibraryCheckBox" Content="Нет в библиотеке"
                       VerticalAlignment="Center"
                       Margin="20,0,0,0"
