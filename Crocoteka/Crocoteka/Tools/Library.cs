@@ -43,7 +43,14 @@ public static class Library
     /// </summary>
     /// <param name="genreId">Идентификатор жанра.</param>
     /// <returns>Имеет ли указанный жанр книги.</returns>
-    public static bool GenreHasBook(int genreId) => Books.Any(x => BookHasGenre(x, genreId));
+    public static bool GenreHasBooks(int genreId) => Books.Any(x => BookHasGenre(x, genreId));
+
+    /// <summary>
+    /// Возвращает есть ли книги с указанным именем файла.
+    /// </summary>
+    /// <param name="filename">Имя файла.</param>
+    /// <returns>Есть ли книги с указанным именем файла.</returns>
+    public static bool FileHasBooks(string filename) => Books.Any(x => BookHasFile(x, filename));
 
     /// <summary>
     /// Возвращает является ли указанный автор автором указанной книги.
@@ -69,14 +76,14 @@ public static class Library
     /// <returns>Имеет ли указанная книга указанный жанр.</returns>
     public static bool BookHasGenre(Book book, int genreId) => book.Genres.Exists(x => x.GenreId == genreId);
 
-    // TODO: Не будет ли такая конструкция LINQ выбрасывать исключение во время выполнения?
     /// <summary>
-    /// Возвращает есть ли книга с указанным именем файла.
+    /// Возвращает имеет ли указанная книга указанный файл.
     /// </summary>
-    /// <param name="filename">Имя файла.</param>
-    /// <returns>Есть ли книга с указанным именем файла.</returns>
-    public static bool BookWithFileExists(string filename) =>
-        Books.Exists(x => x.Files.Exists(f => f.Filename.Equals(filename, StringComparison.CurrentCultureIgnoreCase)));
+    /// <param name="book">Книга.</param>
+    /// <param name="filename">Имя файла с полным путём.</param>
+    /// <returns>Имеет ли указанная книга указанный файл.</returns>
+    public static bool BookHasFile(Book book, string filename) =>
+        book.Files.Exists(x => x.Filename.Equals(filename, StringComparison.CurrentCultureIgnoreCase));
 
     /// <summary>
     /// Возвращает книгу с указанным идентификатором.
@@ -117,6 +124,15 @@ public static class Library
     /// <remarks>Книги отсортированы по названию.</remarks>
     public static List<Book> GetGenreBooks(int genreId) =>
         [.. Books.FindAll(x => BookHasGenre(x, genreId)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
+
+    /// <summary>
+    /// Возвращает список книг с указанным файлом.
+    /// </summary>
+    /// <param name="filename">Имя файла с полным путём.</param>
+    /// <returns>Список книг с указанным файлом.</returns>
+    /// <remarks>Книги отсортированы по названию.</remarks>
+    public static List<Book> GetFileBooks(string filename) =>
+        [.. Books.FindAll(x => BookHasFile(x, filename)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
     // TODO: Как будут реализованы эти методы пока не ясно.
 
