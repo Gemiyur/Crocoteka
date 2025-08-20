@@ -11,16 +11,35 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class FindFilesWindow : Window
 {
+    /// <summary>
+    /// Словарь расширений файлов для типов книг.
+    /// </summary>
     private readonly Dictionary<string, List<string>> masks = [];
 
+    /// <summary>
+    /// Список всех расширений файлов книг.
+    /// </summary>
     private readonly List<string> bookExtensions = [];
 
+    /// <summary>
+    /// Папка с файлами книг.
+    /// </summary>
     private string folder = string.Empty;
 
+    /// <summary>
+    /// Список имён файлов книг в папке без пути папки.
+    /// </summary>
+    /// <remarks>Файлы книг отсортированы по имени.</remarks>
     private readonly List<string> files = [];
 
+    /// <summary>
+    /// Коллекция отображаемых файлов книг.
+    /// </summary>
     private readonly ObservableCollectionEx<string> shownFiles = [];
 
+    /// <summary>
+    /// Инициализирует новый экземпляр класса.
+    /// </summary>
     public FindFilesWindow()
     {
         InitializeComponent();
@@ -56,6 +75,9 @@ public partial class FindFilesWindow : Window
         FilesListBox.ItemsSource = shownFiles;
     }
 
+    /// <summary>
+    /// Применяет фильтр к списку файлов книг.
+    /// </summary>
     private void ApplyFilter()
     {
         var extensions = ((KeyValuePair<string, List<string>>)TypeComboBox.SelectedItem).Value;
@@ -66,8 +88,16 @@ public partial class FindFilesWindow : Window
         UpdateCount();
     }
 
+    /// <summary>
+    /// Возвращает имя файла книги с полным путём.
+    /// </summary>
+    /// <param name="name">Имя файла книги без пути папки.</param>
+    /// <returns>Имя файла книги с полным путём.</returns>
     private string FullName(string name) => Path.Combine(folder, name);
 
+    /// <summary>
+    /// Загружает список файлов книг в папке.
+    /// </summary>
     private void LoadFiles()
     {
         files.Clear();
@@ -80,6 +110,9 @@ public partial class FindFilesWindow : Window
         ApplyFilter();
     }
 
+    /// <summary>
+    /// Обновляет количество файлов книг в списке файлов книг.
+    /// </summary>
     private void UpdateCount() => CountTextBlock.Text = shownFiles.Count.ToString();
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
