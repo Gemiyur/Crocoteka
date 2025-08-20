@@ -320,8 +320,12 @@ public partial class MainWindow : Window
 
     private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var dialog = App.PickBookFileDialog;
-        dialog.ShowDialog();
+        //var dialog = App.PickBookFileDialog;
+        //if (dialog.ShowDialog() != true)
+        //    return;
+        var book = new Book();
+        var editor = new BookEditor(book) { Owner = this };
+        editor.ShowDialog();
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -403,7 +407,9 @@ public partial class MainWindow : Window
 
     private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var book = (Book)BooksListBox.SelectedItem;
+        var editor = new BookEditor(book) { Owner = this };
+        editor.ShowDialog();
     }
 
     private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
