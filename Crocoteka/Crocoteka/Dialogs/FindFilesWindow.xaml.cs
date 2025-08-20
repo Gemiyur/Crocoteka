@@ -107,19 +107,18 @@ public partial class FindFilesWindow : Window
     private void FolderButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = App.PickBooksFolderDialog;
-        if (dialog.ShowDialog() != true)
-            return;
-
-        if (dialog.FolderName.Equals(folder, StringComparison.CurrentCultureIgnoreCase))
+        if (dialog.ShowDialog() != true ||
+            dialog.FolderName.Equals(folder, StringComparison.CurrentCultureIgnoreCase))
         {
-            // TODO: Что делать если папка та же? Просто обновить или спросить?
+            return;
         }
-
         folder = dialog.FolderName;
         FolderTextBox.Text = folder;
-
         LoadFiles();
+        ReloadButton.IsEnabled = true;
     }
+
+    private void ReloadButton_Click(object sender, RoutedEventArgs e) => LoadFiles();
 
     private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => ApplyFilter();
 
@@ -127,7 +126,7 @@ public partial class FindFilesWindow : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        BookButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
     }
 
     private void BookButton_Click(object sender, RoutedEventArgs e)
