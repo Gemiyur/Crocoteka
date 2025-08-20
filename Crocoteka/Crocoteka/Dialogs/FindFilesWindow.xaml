@@ -77,9 +77,8 @@
 
         <!-- Список файлов -->
         <ListBox Grid.Row="2" x:Name="FilesListBox"
-                 SelectionChanged="FilesListBox_SelectionChanged">
-            
-        </ListBox>
+                 ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                 SelectionChanged="FilesListBox_SelectionChanged" />
 
         <!-- Кнопки -->
         <Grid Grid.Row="3" Margin="0,10,0,0">
