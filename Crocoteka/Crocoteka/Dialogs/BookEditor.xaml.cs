@@ -23,5 +23,45 @@ public partial class BookEditor : Window
     public BookEditor(Book book)
     {
         InitializeComponent();
+        TitleTextBox.Text = book.Title;
+    }
+
+    #region Обработчики событий элементов названия книги.
+
+    private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        SaveButton.IsEnabled = !string.IsNullOrWhiteSpace(TitleTextBox.Text);
+    }
+
+    #endregion
+
+    #region Обработчики событий элементов вкладки "Авторы".
+
+    #endregion
+
+    #region Обработчики событий элементов вкладки "Аннотация".
+
+    #endregion
+
+    #region Обработчики событий элементов вкладки "Серия".
+
+    #endregion
+
+    #region Обработчики событий элементов вкладки "Жанры".
+
+    #endregion
+
+    #region Обработчики событий элементов вкладки "Файлы".
+
+    #endregion
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e)
+    {
+        Close();
     }
 }
