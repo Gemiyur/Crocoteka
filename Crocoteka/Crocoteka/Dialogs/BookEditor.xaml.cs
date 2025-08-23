@@ -35,7 +35,7 @@ public partial class BookEditor : Window
 
     #endregion
 
-    #region Обработчики событий элементов вкладки "Авторы".
+    #region Обработчики событий элементов вкладки "Авторы и серия".
 
     private void AuthorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
@@ -57,13 +57,34 @@ public partial class BookEditor : Window
 
     }
 
+    private void CycleTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void PickCycleButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void CyclePartTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void NewCycleButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void RemoveCycleButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики событий элементов вкладки "Аннотация".
-
-    #endregion
-
-    #region Обработчики событий элементов вкладки "Серия".
 
     #endregion
 

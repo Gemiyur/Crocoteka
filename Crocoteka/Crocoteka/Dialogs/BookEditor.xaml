@@ -97,7 +97,48 @@
                             </Grid>
                         </Grid>
                     </GroupBox>
-
+                    <GroupBox Grid.Row="1" Header="Серия" Style="{StaticResource EditorGroupBoxStyle}">
+                        <Grid Margin="0,4,0,0">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <TextBox Grid.Row="0" Grid.Column="0" x:Name="CycleTextBox"
+                                     IsReadOnly="True"
+                                     IsReadOnlyCaretVisible="True"
+                                     Background="{StaticResource TextBoxReadOnlyBackgroundBrush}"
+                                     TextChanged="CycleTextBox_TextChanged" />
+                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                                <TextBlock Text="Номер в серии" VerticalAlignment="Center" />
+                                <TextBox x:Name="CyclePartTextBox"
+                                         Width="50"
+                                         Margin="8,0,0,0"
+                                         VerticalAlignment="Center"
+                                         TextAlignment="Center"
+                                         TextChanged="CyclePartTextBox_TextChanged" />
+                            </StackPanel>
+                            <Button Grid.Row="0" Grid.Column="1" x:Name="PickCycleButton" Content="Выбрать"
+                                    Style="{StaticResource EditorButtonStyle}"
+                                    Margin="10,0,0,0"
+                                    Click="PickCycleButton_Click" />
+                            <Button Grid.Row="2" Grid.Column="2" x:Name="NewCycleButton" Content="Новая"
+                                    Style="{StaticResource EditorButtonStyle}"
+                                    Margin="10,0,0,0"
+                                    Click="NewCycleButton_Click" />
+                            <Button Grid.Row="4" Grid.Column="2" x:Name="RemoveCycleButton" Content="Удалить"
+                                    Style="{StaticResource EditorButtonStyle}"
+                                    Margin="10,0,0,0"
+                                    IsEnabled="False"
+                                    Click="RemoveCycleButton_Click" />
+                        </Grid>
+                    </GroupBox>
                 </Grid>
             </TabItem>
 
