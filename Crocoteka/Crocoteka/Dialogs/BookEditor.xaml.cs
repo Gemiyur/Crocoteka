@@ -37,6 +37,26 @@ public partial class BookEditor : Window
 
     #region Обработчики событий элементов вкладки "Авторы".
 
+    private void AuthorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void PickAuthorsButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void NewAuthorsButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void RemoveAuthorsButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики событий элементов вкладки "Аннотация".
