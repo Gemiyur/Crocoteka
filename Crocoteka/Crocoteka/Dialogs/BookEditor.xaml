@@ -54,7 +54,7 @@
 
         <!-- Вкладки редактора -->
         <TabControl Grid.Row="1" Margin="0,10,0,0">
-            <TabItem Header="Авторы">
+            <TabItem Header="Авторы и серия">
                 
             </TabItem>
 
@@ -62,10 +62,6 @@
 
             </TabItem>
  
-            <TabItem Header="Серия">
-
-            </TabItem>
-
             <TabItem Header="Жанры">
 
             </TabItem>
