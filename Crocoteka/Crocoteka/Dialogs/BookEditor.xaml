@@ -140,7 +140,11 @@
             </TabItem>
 
             <TabItem Header="Аннотация">
-
+                <TextBox x:Name="AnnotationTextBox"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         Margin="4,4,4,2" />
             </TabItem>
  
             <TabItem Header="Жанры">
