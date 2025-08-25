@@ -110,6 +110,11 @@ public partial class BookEditor : Window
 
     }
 
+    private void EditGenreButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void RemoveGenresButton_Click(object sender, RoutedEventArgs e)
     {
 

@@ -186,6 +186,12 @@
                                     VerticalAlignment="Top"
                                     Margin="0,0,4,0"
                                     Click="PickGenresButton_Click" />
+                            <Button x:Name="EditGenreButton" Content="Изменить"
+                                    Style="{StaticResource EditorButtonStyle}"
+                                    VerticalAlignment="Top"
+                                    Margin="0,10,4,0"
+                                    IsEnabled="False"
+                                    Click="EditGenreButton_Click" />
                             <Button x:Name="RemoveGenresButton" Content="Удалить"
                                     Style="{StaticResource EditorButtonStyle}"
                                     VerticalAlignment="Top"
