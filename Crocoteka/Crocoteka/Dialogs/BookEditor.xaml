@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Книга"
-        Width="500" Height="550" ResizeMode="NoResize"
+        Width="500" Height="500" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -111,6 +111,8 @@
                                 <RowDefinition Height="Auto" />
                                 <RowDefinition Height="10" />
                                 <RowDefinition Height="Auto" />
+                                <RowDefinition Height="10" />
+                                <RowDefinition Height="Auto" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition />
@@ -138,7 +140,12 @@
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"
                                     Click="NewCycleButton_Click" />
-                            <Button Grid.Row="4" Grid.Column="2" x:Name="RemoveCycleButton" Content="Удалить"
+                            <Button Grid.Row="4" Grid.Column="2" x:Name="EditCycleButton" Content="Изменить"
+                                    Style="{StaticResource EditorButtonStyle}"
+                                    Margin="10,0,0,0"
+                                    IsEnabled="False"
+                                    Click="EditCycleButton_Click" />
+                            <Button Grid.Row="6" Grid.Column="2" x:Name="RemoveCycleButton" Content="Удалить"
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"
                                     IsEnabled="False"

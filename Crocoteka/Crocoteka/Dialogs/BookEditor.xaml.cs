@@ -82,6 +82,11 @@ public partial class BookEditor : Window
 
     }
 
+    private void EditCycleButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void RemoveCycleButton_Click(object sender, RoutedEventArgs e)
     {
 
