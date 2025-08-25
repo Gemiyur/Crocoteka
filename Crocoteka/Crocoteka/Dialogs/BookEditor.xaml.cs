@@ -1,18 +1,8 @@
-﻿using Crocoteka.Models;
-using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Gemiyur.Collections;
+using Crocoteka.Models;
 
 namespace Crocoteka.Dialogs;
 
@@ -21,11 +11,69 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class BookEditor : Window
 {
+    /// <summary>
+    /// Редактируемая книга.
+    /// </summary>
+    private readonly Book book;
+
+    /// <summary>
+    /// Коллекция авторов книги.
+    /// </summary>
+    private readonly ObservableCollectionEx<Author> authors = [];
+
+    /// <summary>
+    /// Серия книги.
+    /// </summary>
+    private Cycle? cycle;
+
+    /// <summary>
+    /// Коллекция жанров книги.
+    /// </summary>
+    private readonly ObservableCollectionEx<Genre> genres = [];
+
+    /// <summary>
+    /// Коллекция файлов книги.
+    /// </summary>
+    private readonly ObservableCollectionEx<BookFile> files = [];
+
+    /// <summary>
+    /// Инициализирует новый экземпляр класса. 
+    /// </summary>
+    /// <param name="book">Книга.</param>
     public BookEditor(Book book)
     {
         InitializeComponent();
+        this.book = book;
         TitleTextBox.Text = book.Title;
+        authors.AddRange(book.Authors);
+        SortAuthors();
+        AuthorsListBox.ItemsSource = authors;
+        cycle = book.Cycle;
+        CycleTextBox.Text = cycle != null ? cycle.Title : string.Empty;
+        CyclePartTextBox.Text = book.CyclePart;
+        AnnotationTextBox.Text = book.Annotation;
+        genres.AddRange(book.Genres);
+        SortGenres();
+        GenresListBox.ItemsSource = genres;
+        files.AddRange(book.Files);
+        SortFiles();
+        FilesListBox.ItemsSource = files;
     }
+
+    /// <summary>
+    /// Сортирует коллекцию авторов книги по фамилии, имени и отчеству.
+    /// </summary>
+    private void SortAuthors() => authors.Sort(x => x.NameLastFirstMiddle, StringComparer.CurrentCultureIgnoreCase);
+
+    /// <summary>
+    /// Сортирует коллекцию жанров книги в алфавитном порядке.
+    /// </summary>
+    private void SortGenres() => genres.Sort(x => x.Title, StringComparer.CurrentCultureIgnoreCase);
+
+    /// <summary>
+    /// Сортирует коллекцию файлов книги в алфавитном порядке.
+    /// </summary>
+    private void SortFiles() => files.Sort(x => x.Filename, StringComparer.CurrentCultureIgnoreCase);
 
     #region Обработчики событий элементов названия книги.
 
