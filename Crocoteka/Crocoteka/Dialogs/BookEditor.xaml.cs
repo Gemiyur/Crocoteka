@@ -125,7 +125,7 @@ public partial class BookEditor : Window
 
     private void NewGenreTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        AddNewGenreButton.IsEnabled = !string.IsNullOrWhiteSpace(NewGenreTextBox.Text);
     }
 
     private void AddNewGenreButton_Click(object sender, RoutedEventArgs e)
