@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Crocoteka.Models;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,7 +13,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Crocoteka.Models;
 
 namespace Crocoteka.Dialogs;
 
@@ -70,12 +71,32 @@ public partial class BookEditor : Window
         RemoveCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
     }
 
-    private void PickCycleButton_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
+    private string oldCyclePartText = string.Empty;
 
     private void CyclePartTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (oldCyclePartText == CyclePartTextBox.Text)
+            return;
+        var text = CyclePartTextBox.Text;
+        if (text == string.Empty)
+        {
+            oldCyclePartText = string.Empty;
+            CyclePartTextBox.Text = oldCyclePartText;
+            return;
+        }
+        var pos = CyclePartTextBox.SelectionStart;
+        if (!int.TryParse(text, NumberStyles.None, null, out var value))
+        {
+            CyclePartTextBox.Text = oldCyclePartText;
+            CyclePartTextBox.SelectionStart = pos - 1;
+        }
+        else
+        {
+            oldCyclePartText = CyclePartTextBox.Text;
+        }
+    }
+
+    private void PickCycleButton_Click(object sender, RoutedEventArgs e)
     {
 
     }
