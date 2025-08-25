@@ -47,7 +47,12 @@ public partial class BookEditor : Window
 
     }
 
-    private void NewAuthorsButton_Click(object sender, RoutedEventArgs e)
+    private void NewAuthorButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void EditAuthorButton_Click(object sender, RoutedEventArgs e)
     {
 
     }

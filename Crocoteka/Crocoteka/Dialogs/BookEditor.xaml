@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Книга"
-        Width="500" Height="450" ResizeMode="NoResize"
+        Width="500" Height="550" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -67,7 +67,7 @@
                             <ListBox Grid.Column="0" x:Name="AuthorsListBox"
                                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                      ItemTemplate="{StaticResource AuthorFullNameDataTemplate}"
-                                     Height="85"
+                                     Height="110"
                                      Margin="0,0,10,0"
                                      SelectionMode="Extended"
                                      SelectionChanged="AuthorsListBox_SelectionChanged">
@@ -77,16 +77,25 @@
                                     <RowDefinition />
                                     <RowDefinition />
                                     <RowDefinition />
+                                    <RowDefinition />
                                 </Grid.RowDefinitions>
                                 <Button Grid.Row="0" x:Name="PickAuthorsButton" Content="Выбрать"
                                         Style="{StaticResource EditorButtonStyle}"
                                         VerticalAlignment="Top"
+                                        Margin="0,0,0,10" 
                                         Click="PickAuthorsButton_Click" />
-                                <Button Grid.Row="1" x:Name="NewAuthorsButton" Content="Новый"
+                                <Button Grid.Row="1" x:Name="NewAuthorButton" Content="Новый"
                                         Style="{StaticResource EditorButtonStyle}"
-                                        VerticalAlignment="Center"
-                                        Click="NewAuthorsButton_Click" />
-                                <Button Grid.Row="2" x:Name="RemoveAuthorsButton" Content="Удалить"
+                                        VerticalAlignment="Top"
+                                        Margin="0,0,0,10" 
+                                        Click="NewAuthorButton_Click" />
+                                <Button Grid.Row="2" x:Name="EditAuthorButton" Content="Изменить"
+                                        Style="{StaticResource EditorButtonStyle}"
+                                        IsEnabled="False"
+                                        VerticalAlignment="Top"
+                                        Margin="0,0,0,10" 
+                                        Click="EditAuthorButton_Click" />
+                                <Button Grid.Row="3" x:Name="RemoveAuthorsButton" Content="Удалить"
                                         Style="{StaticResource EditorButtonStyle}"
                                         IsEnabled="False"
                                         VerticalAlignment="Bottom"
