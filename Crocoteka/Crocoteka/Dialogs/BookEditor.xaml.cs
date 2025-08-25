@@ -129,6 +129,26 @@ public partial class BookEditor : Window
 
     #region Обработчики событий элементов вкладки "Файлы".
 
+    private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void AddFilesButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void EditFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void RemoveFilesButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)

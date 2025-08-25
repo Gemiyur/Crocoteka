@@ -212,7 +212,57 @@
             </TabItem>
 
             <TabItem Header="Файлы">
-
+                <Grid Margin="0,4,0,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <ListBox Grid.Row="0" x:Name="FilesListBox"
+                             ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                             ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                             SelectionMode="Extended"
+                             Margin="4,0,4,2"
+                             SelectionChanged="FilesListBox_SelectionChanged">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Ellipse Grid.Row="0" Grid.Column="0" Height="8" Width="8" Fill="Black"
+                                             VerticalAlignment="Top"
+                                             Margin="4,4,4,0" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Filename}"
+                                               TextWrapping="Wrap"
+                                               Margin="4,0,4,0" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Comment}"
+                                               TextWrapping="Wrap"
+                                               Margin="4,0,4,0" />
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="4,10,0,4">
+                        <Button x:Name="AddFilesButton" Content="Добавить"
+                                Style="{StaticResource EditorButtonStyle}"
+                                Click="AddFilesButton_Click" />
+                        <Button x:Name="EditFileButton" Content="Изменить"
+                                Style="{StaticResource EditorButtonStyle}"
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Click="EditFileButton_Click" />
+                        <Button x:Name="RemoveFilesButton" Content="Удалить"
+                                Style="{StaticResource EditorButtonStyle}"
+                                Margin="10,0,0,0"
+                                IsEnabled="False"
+                                Click="RemoveFilesButton_Click" />
+                    </StackPanel>
+                </Grid>
             </TabItem>
         </TabControl>
 
