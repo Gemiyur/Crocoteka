@@ -66,7 +66,8 @@ public partial class BookEditor : Window
 
     private void CycleTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        EditCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
+        RemoveCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
     }
 
     private void PickCycleButton_Click(object sender, RoutedEventArgs e)
