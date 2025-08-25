@@ -90,6 +90,31 @@ public partial class BookEditor : Window
 
     #region Обработчики событий элементов вкладки "Жанры".
 
+    private void GenresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void PickGenresButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void RemoveGenresButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void NewGenreTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void AddNewGenreButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики событий элементов вкладки "Файлы".
