@@ -39,6 +39,8 @@ public partial class BookEditor : Window
 
     private void AuthorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        EditAuthorButton.IsEnabled = AuthorsListBox.SelectedItems.Count == 1;
+        RemoveAuthorsButton.IsEnabled = AuthorsListBox.SelectedItems.Count > 0;
 
     }
 
@@ -102,7 +104,8 @@ public partial class BookEditor : Window
 
     private void GenresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        EditGenreButton.IsEnabled = GenresListBox.SelectedItems.Count == 1;
+        RemoveGenresButton.IsEnabled = GenresListBox.SelectedItems.Count > 0;
     }
 
     private void PickGenresButton_Click(object sender, RoutedEventArgs e)
@@ -136,7 +139,8 @@ public partial class BookEditor : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-
+        EditFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        RemoveFilesButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
