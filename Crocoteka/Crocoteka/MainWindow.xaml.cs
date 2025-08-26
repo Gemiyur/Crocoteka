@@ -52,14 +52,14 @@ public partial class MainWindow : Window
         App.AudioExtensions.AddRange(Properties.Settings.Default.AudioExtensions.Split(';'));
         App.TextExtensions.AddRange(Properties.Settings.Default.TextExtensions.Split(';'));
         App.ZipExtensions.AddRange(Properties.Settings.Default.ZipExtensions.Split(';'));
-        Authors.AddRange(Db.GetAuthors());
+        Authors.AddRange(Library.Authors);
         AuthorsListBox.ItemsSource = Authors;
         CheckAuthorsNameFormat();
-        Cycles.AddRange(Db.GetCycles());
+        Cycles.AddRange(Library.Cycles);
         CyclesListBox.ItemsSource = Cycles;
-        Genres.AddRange(Db.GetGenres());
+        Genres.AddRange(Library.Genres);
         GenresListBox.ItemsSource = Genres;
-        ShownBooks.AddRange(Db.GetBooks());
+        ShownBooks.AddRange(Library.Books);
         BooksListBox.ItemsSource = ShownBooks;
         UpdateStatusBarBooksCount();
     }
