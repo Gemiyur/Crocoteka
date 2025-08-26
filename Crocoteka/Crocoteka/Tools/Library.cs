@@ -17,11 +17,29 @@ public static class Library
     public static readonly List<Book> Books;
 
     /// <summary>
+    /// Список всех авторов.
+    /// </summary>
+    public static readonly List<Author> Authors;
+
+    /// <summary>
+    /// Список всех серий.
+    /// </summary>
+    public static readonly List<Cycle> Cycles;
+
+    /// <summary>
+    /// Список всех жанров.
+    /// </summary>
+    public static readonly List<Genre> Genres;
+
+    /// <summary>
     /// Статический конструктор.
     /// </summary>
     static Library()
     {
         Books = Db.GetBooks();
+        Authors = Db.GetAuthors();
+        Cycles = Db.GetCycles();
+        Genres = Db.GetGenres();
     }
 
     /// <summary>
@@ -134,97 +152,16 @@ public static class Library
     public static List<Book> GetFileBooks(string filename) =>
         [.. Books.FindAll(x => BookHasFile(x, filename)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
-    // TODO: Как будут реализованы эти методы пока не ясно.
-
-    ///// <summary>
-    ///// Закрывает открытые окна указанной книги.
-    ///// </summary>
-    ///// <param name="book">Книга.</param>
-    //public static void CloseBookWindows(Book book)
-    //{
-    //    var bookInfoWindow = App.FindBookInfoWindow();
-    //    if (bookInfoWindow != null && bookInfoWindow.Book == book)
-    //        bookInfoWindow.Close();
-    //    var bookmarksWindow = App.FindBookmarksWindow();
-    //    if (bookmarksWindow != null && bookmarksWindow.Book == book)
-    //        bookmarksWindow.Close();
-    //    var chaptersWindow = App.FindChaptersWindow();
-    //    if (chaptersWindow != null && chaptersWindow.Book == book)
-    //        chaptersWindow.Close();
-    //}
-
-    ///// <summary>
-    ///// Удаляет книгу из библиотеки и возвращает удалось ли удалить книгу.
-    ///// </summary>
-    ///// <param name="book">Книга для удаления.</param>
-    ///// <returns>Удалось ли удалить книгу.</returns>
-    //public static bool DeleteBook(Book book)
-    //{
-    //    CloseBookWindows(book);
-    //    if (!Db.DeleteBook(book.BookId))
-    //        return false;
-    //    Books.Remove(book);
-    //    return true;
-    //}
-
-    ///// <summary>
-    ///// Удаляет список книг из библиотеки и возвращает список удалённых книг.
-    ///// </summary>
-    ///// <param name="books">Список книг для удаления.</param>
-    ///// <returns>Список удалённых книг.</returns>
-    //public static List<Book> DeleteBooks(IEnumerable<Book> books)
-    //{
-    //    List<Book> result = [];
-    //    using var db = Db.GetDatabase();
-    //    var collection = Db.GetBooksCollection(db);
-    //    foreach (var book in books)
-    //    {
-    //        CloseBookWindows(book);
-    //        if (!collection.Delete(book.BookId))
-    //            continue;
-    //        result.Add(book);
-    //        Books.Remove(book);
-    //    }
-    //    return result;
-    //}
-
-    ///// <summary>
-    ///// Обновляет открытые окна указанной книги.
-    ///// </summary>
-    ///// <param name="book">Книга.</param>
-    //public static void UpdateBookWindows(Book book)
-    //{
-    //    var bookInfoWindow = App.FindBookInfoWindow();
-    //    if (bookInfoWindow != null && bookInfoWindow.Book == book)
-    //        bookInfoWindow.UpdateBook();
-    //    var bookmarksWindow = App.FindBookmarksWindow();
-    //    if (bookmarksWindow != null && bookmarksWindow.Book == book)
-    //        bookmarksWindow.UpdateBook();
-    //    var chaptersWindow = App.FindChaptersWindow();
-    //    if (chaptersWindow != null && chaptersWindow.Book == book)
-    //        chaptersWindow.UpdateBook();
-    //}
-
-    ///// <summary>
-    ///// Обновляет книги из списка в библиотеке и возвращает список обновлённых книг.
-    ///// </summary>
-    ///// <param name="books">Список книг для обновления.</param>
-    ///// <returns>Список обновлённых книг.</returns>
-    //public static List<Book> UpdateBooks(IEnumerable<Book> books)
-    //{
-    //    List<Book> result = [];
-    //    using var db = Db.GetDatabase();
-    //    var collection = Db.GetBooksCollection(db);
-    //    foreach (var book in books)
-    //    {
-    //        if (collection.Update(book))
-    //        {
-    //            var bookInfoWindow = App.FindBookInfoWindow();
-    //            if (bookInfoWindow != null && bookInfoWindow.Book == book)
-    //                bookInfoWindow.UpdateFile();
-    //            result.Add(book);
-    //        }
-    //    }
-    //    return result;
-    //}
+    /// <summary>
+    /// Удаляет книгу из библиотеки и возвращает удалось ли удалить книгу.
+    /// </summary>
+    /// <param name="book">Книга для удаления.</param>
+    /// <returns>Удалось ли удалить книгу.</returns>
+    public static bool DeleteBook(Book book)
+    {
+        if (!Db.DeleteBook(book.BookId))
+            return false;
+        Books.Remove(book);
+        return true;
+    }
 }
