@@ -152,10 +152,29 @@ public static class Library
     public static List<Book> GetFileBooks(string filename) =>
         [.. Books.FindAll(x => BookHasFile(x, filename)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
+    #region Методы добавления, обновления и удаления.
+
+    // TODO: Нужно ли сортировать списки в методах добавления и обновления? Сейчас не сортируются.
+
+    /// <summary>
+    /// Добавляет книгу в библиотеку и возвращает удалось ли добавить книгу.
+    /// </summary>
+    /// <param name="book">Книга.</param>
+    /// <returns>Удалось ли добавить книгу.</returns>
+    public static bool AddBook(Book book)
+    {
+        var id = Db.InsertBook(book);
+        if (id < 1)
+            return false;
+        book.BookId = id;
+        Books.Add(book);
+        return true;
+    }
+
     /// <summary>
     /// Удаляет книгу из библиотеки и возвращает удалось ли удалить книгу.
     /// </summary>
-    /// <param name="book">Книга для удаления.</param>
+    /// <param name="book">Книга.</param>
     /// <returns>Удалось ли удалить книгу.</returns>
     public static bool DeleteBook(Book book)
     {
@@ -164,4 +183,130 @@ public static class Library
         Books.Remove(book);
         return true;
     }
+
+    /// <summary>
+    /// Обновляет книгу в библиотеке и возвращает удалось ли обновить книгу.
+    /// </summary>
+    /// <param name="book">Книга.</param>
+    /// <returns>Удалось ли обновить книгу.</returns>
+    public static bool UpdateBook(Book book)
+    {
+        return Db.UpdateBook(book);
+    }
+
+    /// <summary>
+    /// Добавляет автора в библиотеку и возвращает удалось ли добавить автора.
+    /// </summary>
+    /// <param name="author">Автор.</param>
+    /// <returns>Удалось ли добавить автора.</returns>
+    public static bool AddAuthor(Author author)
+    {
+        var id = Db.InsertAuthor(author);
+        if (id < 1)
+            return false;
+        author.AuthorId = id;
+        Authors.Add(author);
+        return true;
+    }
+
+    /// <summary>
+    /// Удаляет автора из библиотеки и возвращает удалось ли удалить автора.
+    /// </summary>
+    /// <param name="author">Автор.</param>
+    /// <returns>Удалось ли удалить автора.</returns>
+    public static bool DeleteAuthor(Author author)
+    {
+        if (!Db.DeleteAuthor(author.AuthorId))
+            return false;
+        Authors.Remove(author);
+        return true;
+    }
+
+    /// <summary>
+    /// Обновляет автора в библиотеке и возвращает удалось ли обновить автора.
+    /// </summary>
+    /// <param name="author">Автор.</param>
+    /// <returns>Удалось ли обновить автора.</returns>
+    public static bool UpdateAuthor(Author author)
+    {
+        return Db.UpdateAuthor(author);
+    }
+
+    /// <summary>
+    /// Добавляет серию в библиотеку и возвращает удалось ли добавить серию.
+    /// </summary>
+    /// <param name="cycle">Серия.</param>
+    /// <returns>Удалось ли добавить серию.</returns>
+    public static bool AddCycle(Cycle cycle)
+    {
+        var id = Db.InsertCycle(cycle);
+        if (id < 1)
+            return false;
+        cycle.CycleId = id;
+        Cycles.Add(cycle);
+        return true;
+    }
+
+    /// <summary>
+    /// Удаляет серию из библиотеки и возвращает удалось ли удалить серию.
+    /// </summary>
+    /// <param name="cycle">Серия.</param>
+    /// <returns>Удалось ли удалить серию.</returns>
+    public static bool DeleteCycle(Cycle cycle)
+    {
+        if (!Db.DeleteCycle(cycle.CycleId))
+            return false;
+        Cycles.Remove(cycle);
+        return true;
+    }
+
+    /// <summary>
+    /// Обновляет серию в библиотеке и возвращает удалось ли обновить серию.
+    /// </summary>
+    /// <param name="cycle">Серия.</param>
+    /// <returns>Удалось ли обновить серию.</returns>
+    public static bool UpdateCycle(Cycle cycle)
+    {
+        return Db.UpdateCycle(cycle);
+    }
+
+    /// <summary>
+    /// Добавляет жанр в библиотеку и возвращает удалось ли добавить жанр.
+    /// </summary>
+    /// <param name="genre">Жанр.</param>
+    /// <returns>Удалось ли добавить жанр.</returns>
+    public static bool AddGenre(Genre genre)
+    {
+        var id = Db.InsertGenre(genre);
+        if (id < 1)
+            return false;
+        genre.GenreId = id;
+        Genres.Add(genre);
+        return true;
+    }
+
+    /// <summary>
+    /// Удаляет жанр из библиотеки и возвращает удалось ли удалить жанр.
+    /// </summary>
+    /// <param name="genre">Жанр.</param>
+    /// <returns>Удалось ли удалить жанр.</returns>
+    public static bool DeleteGenre(Genre genre)
+    {
+        if (!Db.DeleteGenre(genre.GenreId))
+            return false;
+        Genres.Remove(genre);
+        return true;
+    }
+
+    /// <summary>
+    /// Обновляет жанр в библиотеке и возвращает удалось ли обновить жанр.
+    /// </summary>
+    /// <param name="genre">Жанр.</param>
+    /// <returns>Удалось ли обновить жанр.</returns>
+    public static bool UpdateGenre(Genre genre)
+    {
+        return Db.UpdateGenre(genre);
+    }
+
+    #endregion
 }
