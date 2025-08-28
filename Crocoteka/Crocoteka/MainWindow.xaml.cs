@@ -344,7 +344,8 @@ public partial class MainWindow : Window
 
     private void Authors_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var editor = new AuthorsEditor() { Owner = this };
+        editor.ShowDialog();
     }
 
     private void Cycles_Executed(object sender, ExecutedRoutedEventArgs e)
