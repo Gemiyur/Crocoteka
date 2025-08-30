@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Crocoteka.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -31,7 +32,8 @@ public partial class AuthorsEditor : Window
 
     private void AddButton_Click(object sender, RoutedEventArgs e)
     {
-        var editor = new AuthorEditor() { Owner = this };
+        var author = new Author();
+        var editor = new AuthorEditor(author) { Owner = this };
         editor.ShowDialog();
     }
 

@@ -8,7 +8,8 @@
         Title="Автор"
         Width="400" Height="350" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False"
+        Closed="Window_Closed">
 
     <Window.Resources>
         <ResourceDictionary>
@@ -76,7 +77,6 @@
                     Click="SaveButton_Click" />
             <Button x:Name="CancelButton" Content="Отмена"
                     Style="{StaticResource ButtonStyle}"
-                    IsCancel="True"
                     Click="CancelButton_Click" />
         </StackPanel>
     </Grid>
