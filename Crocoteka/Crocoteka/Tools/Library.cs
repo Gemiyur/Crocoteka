@@ -152,6 +152,30 @@ public static class Library
     public static List<Book> GetFileBooks(string filename) =>
         [.. Books.FindAll(x => BookHasFile(x, filename)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
+    #region Методы сортировки списков.
+
+    /// <summary>
+    /// Сортирует список книг по названию.
+    /// </summary>
+    public static void SortBooks() => Books.Sort(new StringKeyComparer(x => ((Book)x).Title));
+
+    /// <summary>
+    /// Сортирует список авторов по фамилии-имени-отчеству.
+    /// </summary>
+    public static void SortAuthors() => Authors.Sort(new StringKeyComparer(x => ((Author)x).NameLastFirstMiddle));
+
+    /// <summary>
+    /// Сортирует список серий по названию.
+    /// </summary>
+    public static void SortCycles() => Cycles.Sort(new StringKeyComparer(x => ((Cycle)x).Title));
+
+    /// <summary>
+    /// Сортирует список жанров по названию.
+    /// </summary>
+    public static void SortGenres() => Genres.Sort(new StringKeyComparer(x => ((Genre)x).Title));
+
+    #endregion
+
     #region Методы добавления, обновления и удаления.
 
     // TODO: Нужно ли сортировать списки в методах добавления и обновления? Сейчас не сортируются.
