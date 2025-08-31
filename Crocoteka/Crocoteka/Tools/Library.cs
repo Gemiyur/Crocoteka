@@ -182,8 +182,6 @@ public static class Library
 
     #region Методы добавления, обновления и удаления.
 
-    // TODO: Нужно ли сортировать списки в методах добавления и обновления? Сейчас не сортируются.
-
     /// <summary>
     /// Добавляет книгу в библиотеку и возвращает удалось ли добавить книгу.
     /// </summary>
@@ -196,6 +194,7 @@ public static class Library
             return false;
         book.BookId = id;
         Books.Add(book);
+        SortBooks();
         return true;
     }
 
@@ -219,7 +218,12 @@ public static class Library
     /// <returns>Удалось ли обновить книгу.</returns>
     public static bool UpdateBook(Book book)
     {
-        return Db.UpdateBook(book);
+        if (Db.UpdateBook(book))
+        {
+            SortBooks();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -234,6 +238,7 @@ public static class Library
             return false;
         author.AuthorId = id;
         Authors.Add(author);
+        SortAuthors();
         return true;
     }
 
@@ -257,7 +262,12 @@ public static class Library
     /// <returns>Удалось ли обновить автора.</returns>
     public static bool UpdateAuthor(Author author)
     {
-        return Db.UpdateAuthor(author);
+        if (Db.UpdateAuthor(author))
+        {
+            SortAuthors();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -272,6 +282,7 @@ public static class Library
             return false;
         cycle.CycleId = id;
         Cycles.Add(cycle);
+        SortCycles();
         return true;
     }
 
@@ -295,7 +306,12 @@ public static class Library
     /// <returns>Удалось ли обновить серию.</returns>
     public static bool UpdateCycle(Cycle cycle)
     {
-        return Db.UpdateCycle(cycle);
+        if (Db.UpdateCycle(cycle))
+        {
+            SortCycles();
+            return true;
+        }
+        return false;
     }
 
     /// <summary>
@@ -310,6 +326,7 @@ public static class Library
             return false;
         genre.GenreId = id;
         Genres.Add(genre);
+        SortGenres();
         return true;
     }
 
@@ -333,7 +350,12 @@ public static class Library
     /// <returns>Удалось ли обновить жанр.</returns>
     public static bool UpdateGenre(Genre genre)
     {
-        return Db.UpdateGenre(genre);
+        if (Db.UpdateGenre(genre))
+        {
+            SortGenres();
+            return true;
+        }
+        return false;
     }
 
     #endregion

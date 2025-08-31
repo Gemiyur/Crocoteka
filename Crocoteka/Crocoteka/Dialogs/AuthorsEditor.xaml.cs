@@ -28,9 +28,7 @@ public partial class AuthorsEditor : Window
     {
         InitializeComponent();
         authors.AddRange(Library.Authors);
-        SortAuthors();
         AuthorsListBox.ItemsSource = authors;
-
     }
 
     /// <summary>
