@@ -110,6 +110,8 @@ public static class Library
     /// <returns>Книга с указанным идентификатором.</returns>
     public static Book? GetBook(int bookId) => Books.Find(x => x.BookId == bookId);
 
+    #region Методы получения списков книг.
+
     /// <summary>
     /// Возвращает список книг указанного автора.
     /// </summary>
@@ -151,6 +153,8 @@ public static class Library
     /// <remarks>Книги отсортированы по названию.</remarks>
     public static List<Book> GetFileBooks(string filename) =>
         [.. Books.FindAll(x => BookHasFile(x, filename)).OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
+
+    #endregion
 
     #region Методы сортировки списков.
 
