@@ -346,6 +346,19 @@ public partial class MainWindow : Window
     {
         var editor = new AuthorsEditor() { Owner = this };
         editor.ShowDialog();
+        if (!editor.HasChanges)
+            return;
+        var selectedItem = AuthorsListBox.SelectedItem;
+        UpdateNavPanel(true, false, false);
+        if (selectedItem != null && AuthorsListBox.SelectedItem == null)
+            UpdateShownBooks();
+        foreach (var book in ShownBooks)
+        {
+            book.OnPropertyChanged("AuthorNamesFirstLast");
+            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
+            book.OnPropertyChanged("AuthorNamesLastFirst");
+            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        }
     }
 
     private void Cycles_Executed(object sender, ExecutedRoutedEventArgs e)

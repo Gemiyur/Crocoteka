@@ -132,7 +132,7 @@ public partial class AuthorEditor : Window
         author.MiddleName = middleName;
         author.About = about;
 
-        wasSaveError = author.AuthorId > 0 ? Library.UpdateAuthor(author) : Library.AddAuthor(author);
+        wasSaveError = author.AuthorId > 0 ? !Library.UpdateAuthor(author) : !Library.AddAuthor(author);
         if (wasSaveError)
         {
             MessageBox.Show("Не удалось сохранить автора.", Title);
