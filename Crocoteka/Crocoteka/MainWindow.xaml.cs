@@ -166,7 +166,9 @@ public partial class MainWindow : Window
     {
         if (AllBooksToggleButton.IsChecked == true)
         {
-            ShownBooks.ReplaceRange(Library.Books.OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase));
+            //ShownBooks.ReplaceRange(Library.Books.OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase));
+            // TODO: Проверить как работает после реализации редактора книги.
+            ShownBooks.ReplaceRange(Library.Books);
             BooksListBox.ItemTemplate = (DataTemplate)FindResource("BookDataTemplate");
         }
         else if (AuthorsListBox.SelectedItem != null)
