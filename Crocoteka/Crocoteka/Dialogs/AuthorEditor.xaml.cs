@@ -21,45 +21,13 @@ public partial class AuthorEditor : Window
     private readonly Author author;
 
     /// <summary>
-    /// Фамилия автора при загрузке в редактор.
-    /// </summary>
-    private readonly string origLastName;
-
-    /// <summary>
-    /// Имя автора при загрузке в редактор.
-    /// </summary>
-    private readonly string origFirstName;
-
-    /// <summary>
-    /// Отчество автора при загрузке в редактор.
-    /// </summary>
-    private readonly string origMiddleName;
-
-    /// <summary>
-    /// Об авторе при загрузке в редактор.
-    /// </summary>
-    private readonly string origAbout;
-
-    /// <summary>
-    /// Была ли ошибка сохранения.
-    /// </summary>
-    private bool wasSaveError;
-
-    /// <summary>
     /// Инициализирует новый экземпляр класса.
     /// </summary>
     /// <param name="author">Автор.</param>
     public AuthorEditor(Author author)
     {
         InitializeComponent();
-
         this.author = author;
-
-        origLastName = author.LastName;
-        origFirstName = author.FirstName;
-        origMiddleName = author.MiddleName;
-        origAbout = author.About;
-
         LastNameTextBox.Text = author.LastName;
         FirstNameTextBox.Text = author.FirstName;
         MiddleNameTextBox.Text = author.MiddleName;
@@ -82,23 +50,6 @@ public partial class AuthorEditor : Window
             MiddleNameTextBox.Text.Trim() != author.MiddleName;
 
         SaveButton.IsEnabled = !nameEmpty && (NameChanged || AboutTextBox.Text.Trim() != author.About);
-    }
-
-    /// <summary>
-    /// Восстанавливает свойства автора, которые были до редактирования.
-    /// </summary>
-    private void RestoreOriginal()
-    {
-        author.LastName = origLastName;
-        author.FirstName = origFirstName;
-        author.MiddleName = origMiddleName;
-        author.About = origAbout;
-    }
-
-    private void Window_Closed(object sender, EventArgs e)
-    {
-        if (wasSaveError)
-            RestoreOriginal();
     }
 
     private void LastNameTextBox_TextChanged(object sender, TextChangedEventArgs e) => CheckSaveButton();
@@ -132,12 +83,9 @@ public partial class AuthorEditor : Window
         author.MiddleName = middleName;
         author.About = about;
 
-        wasSaveError = author.AuthorId > 0 ? !Library.UpdateAuthor(author) : !Library.AddAuthor(author);
-        if (wasSaveError)
-        {
-            MessageBox.Show("Не удалось сохранить автора.", Title);
-            return;
-        }
+        var saved = author.AuthorId > 0 ? Library.UpdateAuthor(author) : Library.AddAuthor(author);
+        if (!saved)
+            MessageBox.Show("Не удалось сохранить автора в базе данных.", Title);
 
         DialogResult = true;
     }
