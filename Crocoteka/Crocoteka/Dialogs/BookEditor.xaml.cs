@@ -1,9 +1,9 @@
-﻿using Crocoteka.Models;
-using Crocoteka.Tools;
-using Gemiyur.Collections;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
+using Gemiyur.Collections;
+using Crocoteka.Models;
+using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
 
@@ -125,17 +125,6 @@ public partial class BookEditor : Window
     /// Сортирует коллекцию файлов книги в алфавитном порядке.
     /// </summary>
     private void SortFiles() => files.Sort(x => x.Filename, StringComparer.CurrentCultureIgnoreCase);
-
-    #region Обработчики событий окна.
-
-    private void Window_Closed(object sender, EventArgs e)
-    {
-        // TODO: Сделать восстановление данных книги до изменений в редакторе.
-        //if (wasSaveError)
-        //    RestoreOriginal();
-    }
-
-    #endregion
 
     #region Обработчики событий элементов названия книги.
 
@@ -301,12 +290,9 @@ public partial class BookEditor : Window
             DialogResult = false;
             return;
         }
-        wasSaveError = book.BookId > 0 ? !Library.UpdateBook(book) : !Library.AddBook(book);
-        if (wasSaveError)
-        {
-            MessageBox.Show("Не удалось сохранить книгу.", Title);
-            return;
-        }
+        var saved = book.BookId > 0 ? Library.UpdateBook(book) : Library.AddBook(book);
+        if (!saved)
+            MessageBox.Show("Не удалось сохранить книгу в базе данных.", Title);
         DialogResult = true;
     }
 
