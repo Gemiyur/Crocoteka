@@ -23,11 +23,6 @@ public partial class BookEditor : Window
     public bool AuthorsChanged;
 
     /// <summary>
-    /// Была ли ошибка сохранения.
-    /// </summary>
-    private bool wasSaveError;
-
-    /// <summary>
     /// Редактируемая книга.
     /// </summary>
     private readonly Book book;
