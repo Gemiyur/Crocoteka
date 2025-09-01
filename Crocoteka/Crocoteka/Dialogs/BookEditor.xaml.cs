@@ -1,8 +1,9 @@
-﻿using System.Globalization;
+﻿using Crocoteka.Models;
+using Crocoteka.Tools;
+using Gemiyur.Collections;
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
-using Gemiyur.Collections;
-using Crocoteka.Models;
 
 namespace Crocoteka.Dialogs;
 
@@ -11,6 +12,21 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class BookEditor : Window
 {
+    /// <summary>
+    /// Было ли изменено название книги.
+    /// </summary>
+    public bool TitleChanged;
+
+    /// <summary>
+    /// Были ли изменения в авторах книги.
+    /// </summary>
+    public bool AuthorsChanged;
+
+    /// <summary>
+    /// Была ли ошибка сохранения.
+    /// </summary>
+    private bool wasSaveError;
+
     /// <summary>
     /// Редактируемая книга.
     /// </summary>
@@ -61,6 +77,41 @@ public partial class BookEditor : Window
     }
 
     /// <summary>
+    /// Сохраняет данные из редактора в редактируемую книгу.
+    /// </summary>
+    /// <returns>Были ли внесены изменения в книгу.</returns>
+    private bool SaveBook()
+    {
+        // В книге есть изменения?
+        var changed = false;
+
+        // Новая книга.
+        changed = book.BookId < 1;
+
+        // Название.
+        if (book.Title != TitleTextBox.Text)
+        {
+            book.Title = TitleTextBox.Text;
+            changed = true;
+            TitleChanged = true;
+        }
+
+        // Авторы.
+        if (authors.Count != book.Authors.Count ||
+            authors.Any(x => !book.Authors.Exists(a => a.AuthorId == x.AuthorId)) ||
+            book.Authors.Any(x => !authors.Any(a => a.AuthorId == x.AuthorId)))
+        {
+            book.Authors.Clear();
+            book.Authors.AddRange(authors);
+            changed = true;
+            AuthorsChanged = true;
+        }
+
+        // Возврат результата: были ли внесены изменения в книгу.
+        return changed;
+    }
+
+    /// <summary>
     /// Сортирует коллекцию авторов книги по фамилии, имени и отчеству.
     /// </summary>
     private void SortAuthors() => authors.Sort(x => x.NameLastFirstMiddle, StringComparer.CurrentCultureIgnoreCase);
@@ -74,6 +125,17 @@ public partial class BookEditor : Window
     /// Сортирует коллекцию файлов книги в алфавитном порядке.
     /// </summary>
     private void SortFiles() => files.Sort(x => x.Filename, StringComparer.CurrentCultureIgnoreCase);
+
+    #region Обработчики событий окна.
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+        // TODO: Сделать восстановление данных книги до изменений в редакторе.
+        //if (wasSaveError)
+        //    RestoreOriginal();
+    }
+
+    #endregion
 
     #region Обработчики событий элементов названия книги.
 
@@ -234,11 +296,19 @@ public partial class BookEditor : Window
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
-
+        if (!SaveBook())
+        {
+            DialogResult = false;
+            return;
+        }
+        wasSaveError = book.BookId > 0 ? !Library.UpdateBook(book) : !Library.AddBook(book);
+        if (wasSaveError)
+        {
+            MessageBox.Show("Не удалось сохранить книгу.", Title);
+            return;
+        }
+        DialogResult = true;
     }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
-        Close();
-    }
+    private void CancelButton_Click(object sender, RoutedEventArgs e) => Close();
 }

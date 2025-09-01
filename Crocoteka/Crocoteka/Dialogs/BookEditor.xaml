@@ -8,7 +8,8 @@
         Title="Книга"
         Width="500" Height="500" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
-        ShowInTaskbar="False">
+        ShowInTaskbar="False"
+        Closed="Window_Closed">
 
     <Window.Resources>
         <ResourceDictionary>
