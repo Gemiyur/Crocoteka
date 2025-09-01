@@ -95,7 +95,9 @@ public partial class BookEditor : Window
 
     private void PickAuthorsButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var picker = new AuthorsPicker() { Owner = this };
+        if (picker.ShowDialog() != true)
+            return;
     }
 
     private void NewAuthorButton_Click(object sender, RoutedEventArgs e)
