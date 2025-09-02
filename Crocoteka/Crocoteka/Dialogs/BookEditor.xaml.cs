@@ -144,6 +144,8 @@ public partial class BookEditor : Window
         var picker = new AuthorsPicker() { Owner = this };
         if (picker.ShowDialog() != true)
             return;
+        authors.AddRange(picker.PickedAuthors.Where(x => !authors.Any(a => a.AuthorId == x.AuthorId)));
+        SortAuthors();
     }
 
     private void NewAuthorButton_Click(object sender, RoutedEventArgs e)
