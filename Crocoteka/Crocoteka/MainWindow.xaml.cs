@@ -330,6 +330,9 @@ public partial class MainWindow : Window
         var editor = new BookEditor(book) { Owner = this };
         if (editor.ShowDialog() != true)
             return;
+        UpdateNavPanel(editor.AuthorsChanged, editor.CycleChanged, editor.GenresChanged);
+        UpdateShownBooks();
+        SelectBookInShownBooks(book);
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
