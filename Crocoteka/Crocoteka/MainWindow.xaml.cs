@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using Crocoteka.Dialogs;
+using Crocoteka.Models;
+using Crocoteka.Tools;
+using Gemiyur.Collections;
+using System.IO;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Gemiyur.Collections;
-using Crocoteka.Dialogs;
-using Crocoteka.Models;
-using Crocoteka.Tools;
 
 namespace Crocoteka;
 
@@ -327,7 +328,8 @@ public partial class MainWindow : Window
         //    return;
         var book = new Book();
         var editor = new BookEditor(book) { Owner = this };
-        editor.ShowDialog();
+        if (editor.ShowDialog() != true)
+            return;
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -425,7 +427,19 @@ public partial class MainWindow : Window
     {
         var book = (Book)BooksListBox.SelectedItem;
         var editor = new BookEditor(book) { Owner = this };
-        editor.ShowDialog();
+        if (editor.ShowDialog() != true)
+            return;
+        UpdateNavPanel(editor.AuthorsChanged, editor.CycleChanged, editor.GenresChanged);
+        if (editor.TitleChanged || editor.AuthorsChanged ||
+            editor.CycleChanged || editor.CycleNumberChanged || editor.GenresChanged)
+        {
+            UpdateShownBooks();
+            SelectBookInShownBooks(book);
+        }
+        book.OnPropertyChanged("AuthorNamesFirstLast");
+        book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
+        book.OnPropertyChanged("AuthorNamesLastFirst");
+        book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
     }
 
     private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)

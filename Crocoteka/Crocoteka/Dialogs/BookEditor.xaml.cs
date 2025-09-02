@@ -23,6 +23,21 @@ public partial class BookEditor : Window
     public bool AuthorsChanged;
 
     /// <summary>
+    /// Была ли изменена серия книги.
+    /// </summary>
+    public bool CycleChanged;
+
+    /// <summary>
+    /// Был ли изменён номер книги в серии.
+    /// </summary>
+    public bool CycleNumberChanged;
+
+    /// <summary>
+    /// Были ли изменения в жанрах книги.
+    /// </summary>
+    public bool GenresChanged;
+
+    /// <summary>
     /// Редактируемая книга.
     /// </summary>
     private readonly Book book;
@@ -160,7 +175,7 @@ public partial class BookEditor : Window
 
     private void RemoveAuthorsButton_Click(object sender, RoutedEventArgs e)
     {
-
+        authors.RemoveRange(AuthorsListBox.SelectedItems.Cast<Author>());
     }
 
     private void CycleTextBox_TextChanged(object sender, TextChangedEventArgs e)
