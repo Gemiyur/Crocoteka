@@ -23,7 +23,7 @@ public partial class AuthorsPicker : Window
 
     private void AuthorsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        PickButton.IsEnabled = AuthorsListBox.SelectedIndex >= 0;
+        PickButton.IsEnabled = AuthorsListBox.SelectedItems.Count > 0;
     }
 
     private void PickButton_Click(object sender, RoutedEventArgs e)
