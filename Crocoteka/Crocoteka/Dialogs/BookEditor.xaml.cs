@@ -117,6 +117,13 @@ public partial class BookEditor : Window
             AuthorsChanged = true;
         }
 
+        // Аннотация.
+        if (book.Annotation != AnnotationTextBox.Text)
+        {
+            book.Annotation = AnnotationTextBox.Text;
+            changed = true;
+        }
+
         // Возврат результата: были ли внесены изменения в книгу.
         return changed;
     }
