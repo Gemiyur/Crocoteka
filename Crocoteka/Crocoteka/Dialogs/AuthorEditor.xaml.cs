@@ -85,7 +85,10 @@ public partial class AuthorEditor : Window
 
         var saved = author.AuthorId > 0 ? Library.UpdateAuthor(author) : Library.AddAuthor(author);
         if (!saved)
+        {
             MessageBox.Show("Не удалось сохранить автора в базе данных.", Title);
+            DialogResult = false;
+        }
 
         DialogResult = true;
     }
