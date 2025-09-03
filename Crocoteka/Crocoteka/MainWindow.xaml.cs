@@ -1,12 +1,11 @@
-﻿using Crocoteka.Dialogs;
-using Crocoteka.Models;
-using Crocoteka.Tools;
-using Gemiyur.Collections;
-using System.IO;
-using System.Numerics;
+﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using Gemiyur.Collections;
+using Crocoteka.Dialogs;
+using Crocoteka.Models;
+using Crocoteka.Tools;
 
 namespace Crocoteka;
 
@@ -328,9 +327,10 @@ public partial class MainWindow : Window
         //    return;
         var book = new Book();
         var editor = new BookEditor(book) { Owner = this };
-        if (editor.ShowDialog() != true)
+        var result = editor.ShowDialog() == true;
+        UpdateNavPanel(true, true, true);
+        if (!result)
             return;
-        UpdateNavPanel(editor.AuthorsChanged, editor.CycleChanged, editor.GenresChanged);
         UpdateShownBooks();
         SelectBookInShownBooks(book);
     }
@@ -430,9 +430,10 @@ public partial class MainWindow : Window
     {
         var book = (Book)BooksListBox.SelectedItem;
         var editor = new BookEditor(book) { Owner = this };
-        if (editor.ShowDialog() != true)
+        var result = editor.ShowDialog() == true;
+        UpdateNavPanel(true, true, true);
+        if (!result)
             return;
-        UpdateNavPanel(editor.AuthorsChanged, editor.CycleChanged, editor.GenresChanged);
         if (editor.TitleChanged || editor.AuthorsChanged ||
             editor.CycleChanged || editor.CycleNumberChanged || editor.GenresChanged)
         {
