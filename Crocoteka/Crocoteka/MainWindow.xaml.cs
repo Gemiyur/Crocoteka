@@ -375,7 +375,10 @@ public partial class MainWindow : Window
 
     private void Genres_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var editor = new GenresEditor() { Owner = this };
+        editor.ShowDialog();
+        if (!editor.HasChanges)
+            return;
     }
 
     private void CheckLibrary_Executed(object sender, ExecutedRoutedEventArgs e)
