@@ -78,6 +78,11 @@ public partial class AuthorEditor : Window
             }
         }
 
+        var origLastName = author.LastName;
+        var origFirstName = author.FirstName;
+        var origMiddleName = author.MiddleName;
+        var origAbout = author.About;
+
         author.LastName = lastName;
         author.FirstName = firstName;
         author.MiddleName = middleName;
@@ -87,6 +92,10 @@ public partial class AuthorEditor : Window
         if (!saved)
         {
             MessageBox.Show("Не удалось сохранить автора в базе данных.", Title);
+            author.LastName = origLastName;
+            author.FirstName = origFirstName;
+            author.MiddleName = origMiddleName;
+            author.About = origAbout;
             DialogResult = false;
         }
 
