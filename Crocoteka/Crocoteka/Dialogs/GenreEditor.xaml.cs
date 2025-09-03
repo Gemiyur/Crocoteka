@@ -1,16 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Crocoteka.Models;
+using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
 
@@ -19,23 +10,44 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class GenreEditor : Window
 {
-    public GenreEditor()
+    /// <summary>
+    /// Редактируемый жанр.
+    /// </summary>
+    private readonly Genre genre;
+
+    /// <summary>
+    /// Инициализирует новый экземпляр класса.
+    /// </summary>
+    /// <param name="genre">Жанр.</param>
+    public GenreEditor(Genre genre)
     {
         InitializeComponent();
+        this.genre = genre;
+        TitleTextBox.Text = genre.Title;
     }
 
-    private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-
-    }
+    private void TitleTextBox_TextChanged(object sender, TextChangedEventArgs e) =>
+        SaveButton.IsEnabled = !string.IsNullOrWhiteSpace(TitleTextBox.Text) && TitleTextBox.Text.Trim() != genre.Title;
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var title = TitleTextBox.Text.Trim();
+        if (Library.Genres.Exists(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
+        {
+            MessageBox.Show("Жанр с таким названием уже существует.", Title);
+            return;
+        }
+        var origTitle = genre.Title;
+        genre.Title = title;
+        var saved = genre.GenreId > 0 ? Library.UpdateGenre(genre) : Library.AddGenre(genre);
+        if (!saved)
+        {
+            MessageBox.Show("Не удалось сохранить жанр.", Title);
+            genre.Title = origTitle;
+            DialogResult = false;
+        }
+        DialogResult = true;
     }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
+    private void CancelButton_Click(object sender, RoutedEventArgs e) => Close();
 }
