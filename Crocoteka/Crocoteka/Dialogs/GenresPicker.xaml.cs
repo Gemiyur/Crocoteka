@@ -23,7 +23,7 @@ public partial class GenresPicker : Window
 
     private void GenresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        PickButton.IsEnabled = GenresListBox.SelectedIndex >= 0;
+        PickButton.IsEnabled = GenresListBox.SelectedItems.Count > 0;
     }
 
     private void PickButton_Click(object sender, RoutedEventArgs e)
