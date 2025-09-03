@@ -117,12 +117,18 @@ public partial class BookEditor : Window
             AuthorsChanged = true;
         }
 
+        // Серия.
+
         // Аннотация.
         if (book.Annotation != AnnotationTextBox.Text)
         {
             book.Annotation = AnnotationTextBox.Text;
             changed = true;
         }
+
+        // Жанры.
+
+        // Файлы.
 
         // Возврат результата: были ли внесены изменения в книгу.
         return changed;
