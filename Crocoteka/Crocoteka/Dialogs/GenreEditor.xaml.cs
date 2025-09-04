@@ -32,11 +32,14 @@ public partial class GenreEditor : Window
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         var title = TitleTextBox.Text.Trim();
-        if (Library.Genres.Exists(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
+
+        var foundGenre = Library.Genres.Find(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase));
+        if (foundGenre != null && foundGenre.GenreId != genre.GenreId)
         {
             MessageBox.Show("Жанр с таким названием уже существует.", Title);
             return;
         }
+
         var origTitle = genre.Title;
         genre.Title = title;
         var saved = genre.GenreId > 0 ? Library.UpdateGenre(genre) : Library.AddGenre(genre);
