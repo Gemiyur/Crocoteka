@@ -253,10 +253,6 @@ public partial class BookEditor : Window
 
     #endregion
 
-    #region Обработчики событий элементов вкладки "Аннотация".
-
-    #endregion
-
     #region Обработчики событий элементов вкладки "Жанры".
 
     private void GenresListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -267,17 +263,25 @@ public partial class BookEditor : Window
 
     private void PickGenresButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var picker = new GenresPicker() { Owner = this };
+        if (picker.ShowDialog() != true)
+            return;
+        genres.AddRange(picker.PickedGenres.Where(x => !genres.Any(g => g.GenreId == x.GenreId)));
+        SortGenres();
     }
 
     private void EditGenreButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var genre = (Genre)GenresListBox.SelectedItem;
+        var editor = new GenreEditor(genre) { Owner = this };
+        if (editor.ShowDialog() != true)
+            return;
+        SortGenres();
     }
 
     private void RemoveGenresButton_Click(object sender, RoutedEventArgs e)
     {
-
+        genres.RemoveRange(GenresListBox.SelectedItems.Cast<Genre>());
     }
 
     private void NewGenreTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -287,7 +291,41 @@ public partial class BookEditor : Window
 
     private void AddNewGenreButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var title = NewGenreTextBox.Text.Trim();
+        var genre = Library.Genres.Find(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase));
+        if (genre != null)
+        {
+            if (genres.Any(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                NewGenreTextBox.Text = string.Empty;
+                return;
+            }
+            else
+            {
+                genres.Add(genre);
+            }
+        }
+        else
+        {
+            if (genres.Any(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
+            {
+                NewGenreTextBox.Text = string.Empty;
+                return;
+            }
+            else
+            {
+                genre = new Genre() { Title = title };
+                if (!Library.AddGenre(genre))
+                {
+                    MessageBox.Show("Не удалось сохранить жанр.", Title);
+                    NewGenreTextBox.Text = string.Empty;
+                    return;
+                }
+                genres.Add(genre);
+            }
+        }
+        SortGenres();
+        NewGenreTextBox.Text = string.Empty;
     }
 
     #endregion
