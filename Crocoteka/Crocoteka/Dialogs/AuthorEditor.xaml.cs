@@ -68,14 +68,11 @@ public partial class AuthorEditor : Window
         var about = AboutTextBox.Text.Trim();
 
         var fio = Author.ConcatNames(lastName, firstName, middleName);
-
-        if (Library.Authors.Exists(x => x.NameLastFirstMiddle.Equals(fio, StringComparison.CurrentCultureIgnoreCase)))
+        var foundAuthor = Library.Authors.Find(x => x.NameLastFirstMiddle.Equals(fio, StringComparison.CurrentCultureIgnoreCase));
+        if (foundAuthor != null && foundAuthor.AuthorId != author.AuthorId)
         {
-            if ((author.AuthorId > 0 && NameChanged) || author.AuthorId < 1)
-            {
-                MessageBox.Show("Автор с таким именем уже существует.", Title);
-                return;
-            }
+            MessageBox.Show("Автор с таким именем уже существует.", Title);
+            return;
         }
 
         var origLastName = author.LastName;
