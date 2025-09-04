@@ -127,6 +127,15 @@ public partial class BookEditor : Window
         }
 
         // Жанры.
+        if (genres.Count != book.Genres.Count ||
+            genres.Any(x => !book.Genres.Exists(g => g.GenreId == x.GenreId)) ||
+            book.Genres.Any(x => !genres.Any(g => g.GenreId == x.GenreId)))
+        {
+            book.Genres.Clear();
+            book.Genres.AddRange(genres);
+            changed = true;
+            GenresChanged = true;
+        }
 
         // Файлы.
 
