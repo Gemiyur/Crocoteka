@@ -247,7 +247,9 @@ public partial class BookEditor : Window
 
     private void NewCycleButton_Click(object sender, RoutedEventArgs e)
     {
-        new CycleEditor() { Owner = this }.ShowDialog();
+        var cycle = new Cycle();
+        var editor = new CycleEditor(cycle) { Owner = this };
+        editor.ShowDialog();
     }
 
     private void EditCycleButton_Click(object sender, RoutedEventArgs e)
