@@ -242,7 +242,8 @@ public partial class BookEditor : Window
 
     private void PickCycleButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var dialog = new CyclePicker() { Owner = this };
+        dialog.ShowDialog();
     }
 
     private void NewCycleButton_Click(object sender, RoutedEventArgs e)
