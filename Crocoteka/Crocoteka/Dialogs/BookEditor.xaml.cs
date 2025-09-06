@@ -242,25 +242,42 @@ public partial class BookEditor : Window
 
     private void PickCycleButton_Click(object sender, RoutedEventArgs e)
     {
-        var dialog = new CyclePicker() { Owner = this };
-        dialog.ShowDialog();
+        var picker = new CyclePicker() { Owner = this };
+        if (picker.ShowDialog() != true || picker.PickedCycle == null)
+            return;
+        if (cycle != null && picker.PickedCycle.CycleId == cycle.CycleId)
+            return;
+        cycle = picker.PickedCycle;
+        CycleTextBox.Text = cycle.Title;
+        CyclePartTextBox.Text = string.Empty;
     }
 
     private void NewCycleButton_Click(object sender, RoutedEventArgs e)
     {
-        var cycle = new Cycle();
-        var editor = new CycleEditor(cycle) { Owner = this };
-        editor.ShowDialog();
+        var newCycle = new Cycle();
+        var editor = new CycleEditor(newCycle) { Owner = this };
+        if (editor.ShowDialog() != true)
+            return;
+        cycle = newCycle;
+        CycleTextBox.Text = cycle.Title;
+        CyclePartTextBox.Text = string.Empty;
     }
 
     private void EditCycleButton_Click(object sender, RoutedEventArgs e)
     {
-
+        if (cycle == null)
+            return;
+        var editor = new CycleEditor(cycle) { Owner = this };
+        if (editor.ShowDialog() != true || !editor.TitleChanged)
+            return;
+        CycleTextBox.Text = cycle.Title;
     }
 
     private void RemoveCycleButton_Click(object sender, RoutedEventArgs e)
     {
-
+        cycle = null;
+        CycleTextBox.Text = string.Empty;
+        CyclePartTextBox.Text = string.Empty;
     }
 
     #endregion
