@@ -322,17 +322,28 @@ public partial class MainWindow : Window
 
     private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        //var dialog = App.PickBookFileDialog;
-        //if (dialog.ShowDialog() != true)
-        //    return;
         var book = new Book();
+        var dialog = App.PickBookFileDialog;
+        if (dialog.ShowDialog() == true)
+        {
+            foreach (var file in dialog.FileNames)
+            {
+                var bookFile = new BookFile() { Filename = file };
+                book.Files.Add(bookFile);
+            }
+        }
+        if (book.Files.Count > 0)
+        {
+            book.Title = book.Files[0].NameOnly;
+        }
         var editor = new BookEditor(book) { Owner = this };
-        var result = editor.ShowDialog() == true;
+        var saved = editor.ShowDialog() == true;
         UpdateNavPanel(true, true, true);
-        if (!result)
-            return;
-        UpdateShownBooks();
-        SelectBookInShownBooks(book);
+        if (saved)
+        {
+            UpdateShownBooks();
+            SelectBookInShownBooks(book);
+        }
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
