@@ -118,6 +118,32 @@ public partial class BookEditor : Window
         }
 
         // Серия.
+        if ((cycle == null && book.Cycle != null) ||
+            (cycle != null && book.Cycle == null))
+        {
+            book.Cycle = cycle;
+            changed = true;
+            CycleChanged = true;
+        }
+        else
+        {
+            if (cycle != null && book.Cycle != null &&
+                cycle.CycleId != book.Cycle.CycleId)
+            {
+                book.Cycle = cycle;
+                changed = true;
+                CycleChanged = true;
+            }
+        }
+
+        // Номер в серии.
+        int.TryParse(CyclePartTextBox.Text, NumberStyles.None, null, out var cycleNumber);
+        if (book.CycleNumber != cycleNumber)
+        {
+            book.CycleNumber = cycleNumber;
+            changed = true;
+            CycleNumberChanged = true;
+        }
 
         // Аннотация.
         if (book.Annotation != AnnotationTextBox.Text)
