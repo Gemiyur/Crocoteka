@@ -1,11 +1,12 @@
-﻿using System.IO;
+﻿using Crocoteka.Dialogs;
+using Crocoteka.Models;
+using Crocoteka.Tools;
+using Gemiyur.Collections;
+using System.IO;
+using System.Numerics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using Gemiyur.Collections;
-using Crocoteka.Dialogs;
-using Crocoteka.Models;
-using Crocoteka.Tools;
 
 namespace Crocoteka;
 
@@ -485,7 +486,18 @@ public partial class MainWindow : Window
 
     private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var book = (Book)BooksListBox.SelectedItem;
+        if (MessageBox.Show($"Удалить книгу \"{book.Title}\" из библиотеки?", Title,
+                            MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+        {
+            return;
+        }
+        if (!Library.DeleteBook(book))
+        {
+            MessageBox.Show($"Не удалось удалить книгу \"{book.Title}\" из библиотеки.", Title);
+            return;
+        }
+        UpdateShownBooks();
     }
 
     #endregion
