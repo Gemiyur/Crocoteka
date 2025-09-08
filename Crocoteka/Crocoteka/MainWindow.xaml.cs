@@ -153,7 +153,8 @@ public partial class MainWindow : Window
         }
         if (AuthorsListBox.SelectedItem == null &&
             CyclesListBox.SelectedItem == null &&
-            GenresListBox.SelectedItem == null)
+            GenresListBox.SelectedItem == null &&
+            AllBooksToggleButton.IsChecked != true)
         {
             AllBooksToggleButton.IsChecked = true;
         }
