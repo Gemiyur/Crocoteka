@@ -32,7 +32,7 @@ public class BookFile : BaseModel
     private string comment = string.Empty;
 
     /// <summary>
-    /// Комментарий к книге.
+    /// Комментарий к файлу книги.
     /// </summary>
     public string Comment
     {
@@ -43,6 +43,12 @@ public class BookFile : BaseModel
             OnPropertyChanged("Comment");
         }
     }
+
+    /// <summary>
+    /// Возвращает текст комментария для отображения в списке файлов.
+    /// </summary>
+    [BsonIgnore]
+    public string ListItemComment => string.IsNullOrWhiteSpace(Comment) ? TypeText : $"{TypeText}. {Comment}";
 
     /// <summary>
     /// Возвращает папку файла книги.
@@ -69,6 +75,12 @@ public class BookFile : BaseModel
     public string Extension => Path.GetExtension(filename);
 
     /// <summary>
+    /// Возвращает существует ли файл книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool Exists => File.Exists(filename);
+
+    /// <summary>
     /// Возвращает является ли файл аудио книгой.
     /// </summary>
     [BsonIgnore]
@@ -87,8 +99,21 @@ public class BookFile : BaseModel
     public bool IsZip => App.ZipExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
 
     /// <summary>
-    /// Существует ли файл книги.
+    /// Возвращает тест типа файла книги (аудио, текст, архив).
     /// </summary>
     [BsonIgnore]
-    public bool Exists => File.Exists(filename);
+    public string TypeText
+    {
+        get
+        {
+            if (IsAudio)
+                return "Аудио";
+            else if (IsText)
+                return "Текст";
+            else if (IsZip)
+                return "Архив";
+            else
+                return "";
+        }
+    }
 }

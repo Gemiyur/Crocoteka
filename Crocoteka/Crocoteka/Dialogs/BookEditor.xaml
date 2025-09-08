@@ -246,7 +246,8 @@
                                     <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Filename}"
                                                TextWrapping="Wrap"
                                                Margin="4,0,4,0" />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Comment}"
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ListItemComment}"
+                                               FontStyle="Italic"
                                                TextWrapping="Wrap"
                                                Margin="4,0,4,0" />
                                 </Grid>
