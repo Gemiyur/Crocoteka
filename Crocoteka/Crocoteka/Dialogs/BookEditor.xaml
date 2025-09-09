@@ -12,25 +12,23 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <Color x:Key="FileNotFoundColor">Red</Color>
+            <SolidColorBrush x:Key="FileNotFoundBrush" Color="{StaticResource FileNotFoundColor}" />
+
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="85" />
                 <Setter Property="Height" Value="25" />
             </Style>
+            
             <Style x:Key="EditorButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="75" />
                 <Setter Property="Height" Value="20" />
             </Style>
-            <Style x:Key="NewAuthorButtonStyle" BasedOn="{StaticResource EditorButtonStyle}" TargetType="Button">
-                <Setter Property="Margin" Value="10,10,0,0" />
+            
+            <Style x:Key="FilesButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="95" />
+                <Setter Property="Height" Value="20" />
             </Style>
-            <Style x:Key="NewAuthorNameLabelStyle" TargetType="TextBlock">
-                <Setter Property="Margin" Value="0,10,10,0" />
-                <Setter Property="VerticalAlignment" Value="Center" />
-            </Style>
-            <Style x:Key="NewAuthorNameTextBoxStyle" TargetType="TextBox">
-                <Setter Property="Margin" Value="0,10,0,0" />
-            </Style>
-
         </ResourceDictionary>
     </Window.Resources>
 
@@ -243,7 +241,7 @@
                                     <Ellipse Grid.Row="0" Grid.Column="0" Height="8" Width="8" Fill="Black"
                                              VerticalAlignment="Top"
                                              Margin="4,4,4,0" />
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Filename}"
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Filename}" x:Name="Filename"
                                                TextWrapping="Wrap"
                                                Margin="4,0,4,0" />
                                     <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ListItemComment}"
@@ -251,24 +249,44 @@
                                                TextWrapping="Wrap"
                                                Margin="4,0,4,0" />
                                 </Grid>
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding Path=Exists}" Value="False">
+                                        <Setter TargetName="Filename" Property="Foreground">
+                                            <Setter.Value>
+                                                <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                            </Setter.Value>
+                                        </Setter>
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Left" Margin="4,10,0,4">
-                        <Button x:Name="AddFilesButton" Content="Добавить"
-                                Style="{StaticResource EditorButtonStyle}"
-                                Click="AddFilesButton_Click" />
-                        <Button x:Name="EditFileButton" Content="Изменить"
-                                Style="{StaticResource EditorButtonStyle}"
-                                Margin="10,0,0,0"
+                    <Grid Grid.Row="1" Margin="4,10,4,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Button Grid.Column="0" x:Name="CommentFileButton" Content="Комментарий"
+                                Style="{StaticResource FilesButtonStyle}"
                                 IsEnabled="False"
-                                Click="EditFileButton_Click" />
-                        <Button x:Name="RemoveFilesButton" Content="Удалить"
-                                Style="{StaticResource EditorButtonStyle}"
+                                Click="CommentFileButton_Click" />
+                        <TextBlock Grid.Column="1" x:Name="FileNotFoundTextBlock" Text="*Файл не найден"
+                                   Foreground="{StaticResource FileNotFoundBrush}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"
+                                   Visibility="Collapsed" />
+                        <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
+                            <Button x:Name="AddFilesButton" Content="Добавить"
+                                Style="{StaticResource FilesButtonStyle}"
+                                Click="AddFilesButton_Click" />
+                            <Button x:Name="RemoveFilesButton" Content="Удалить"
+                                Style="{StaticResource FilesButtonStyle}"
                                 Margin="10,0,0,0"
                                 IsEnabled="False"
                                 Click="RemoveFilesButton_Click" />
-                    </StackPanel>
+                        </StackPanel>
+                    </Grid>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -84,7 +84,11 @@ public partial class BookEditor : Window
         files.AddRange(book.Files);
         SortFiles();
         FilesListBox.ItemsSource = files;
+        CheckFileNotFoundVisibility();
     }
+
+    private void CheckFileNotFoundVisibility() =>
+        FileNotFoundTextBlock.Visibility = files.Any(x => !x.Exists) ? Visibility.Visible : Visibility.Collapsed;
 
     /// <summary>
     /// Сохраняет данные из редактора в редактируемую книгу.
@@ -389,8 +393,13 @@ public partial class BookEditor : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        EditFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        CommentFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         RemoveFilesButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
+    }
+
+    private void CommentFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
@@ -398,14 +407,9 @@ public partial class BookEditor : Window
 
     }
 
-    private void EditFileButton_Click(object sender, RoutedEventArgs e)
-    {
-
-    }
-
     private void RemoveFilesButton_Click(object sender, RoutedEventArgs e)
     {
-
+        CheckFileNotFoundVisibility();
     }
 
     #endregion
