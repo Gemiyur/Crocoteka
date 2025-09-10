@@ -404,11 +404,28 @@ public partial class BookEditor : Window
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var dialog = App.PickBookFileDialog;
+        if (dialog.ShowDialog() != true)
+            return;
+        List<string> filenames = [];
+        foreach (var filename in dialog.FileNames)
+        {
+            if (!files.Any(x => x.Filename.Equals(filename, StringComparison.CurrentCultureIgnoreCase)))
+                filenames.Add(filename);
+        }
+        if (filenames.Count == 0)
+            return;
+        foreach (var filename in filenames)
+        {
+            var file = new BookFile() { Filename = filename };
+            files.Add(file);
+        }
+        SortFiles();
     }
 
     private void RemoveFilesButton_Click(object sender, RoutedEventArgs e)
     {
+        files.RemoveRange(FilesListBox.SelectedItems.Cast<BookFile>());
         CheckFileNotFoundVisibility();
     }
 
