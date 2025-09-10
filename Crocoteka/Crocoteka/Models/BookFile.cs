@@ -24,8 +24,11 @@ public class BookFile : BaseModel
             OnPropertyChanged("Name");
             OnPropertyChanged("NameOnly");
             OnPropertyChanged("Extension");
+            //OnPropertyChanged("Exists");
             OnPropertyChanged("IsAudio");
             OnPropertyChanged("IsText");
+            OnPropertyChanged("IsZip");
+            OnPropertyChanged("TypeText");
         }
     }
 
@@ -41,6 +44,7 @@ public class BookFile : BaseModel
         {
             comment = value ?? string.Empty;
             OnPropertyChanged("Comment");
+            OnPropertyChanged("ListItemComment");
         }
     }
 

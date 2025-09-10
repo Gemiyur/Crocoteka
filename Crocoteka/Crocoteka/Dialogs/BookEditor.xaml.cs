@@ -399,7 +399,10 @@ public partial class BookEditor : Window
 
     private void CommentFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var file = (BookFile)FilesListBox.SelectedItem;
+        var editor = new FileCommentEditor(file.Comment) { Owner = this };
+        if (editor.ShowDialog() == true)
+            file.Comment = editor.Comment;
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
