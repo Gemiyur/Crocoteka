@@ -13,29 +13,34 @@ namespace Crocoteka.Dialogs;
 public partial class BookEditor : Window
 {
     /// <summary>
-    /// Было ли изменено название книги.
+    /// Возвращает было ли изменено название книги.
     /// </summary>
-    public bool TitleChanged;
+    public bool TitleChanged {get; private set;}
 
     /// <summary>
-    /// Были ли изменения в авторах книги.
+    /// Возвращает были ли изменения в авторах книги.
     /// </summary>
-    public bool AuthorsChanged;
+    public bool AuthorsChanged { get; private set; }
 
     /// <summary>
-    /// Была ли изменена серия книги.
+    /// Возвращает была ли изменена серия книги.
     /// </summary>
-    public bool CycleChanged;
+    public bool CycleChanged { get; private set; }
 
     /// <summary>
-    /// Был ли изменён номер книги в серии.
+    /// Возвращает был ли изменён номер книги в серии.
     /// </summary>
-    public bool CycleNumberChanged;
+    public bool CycleNumberChanged { get; private set; }
 
     /// <summary>
-    /// Были ли изменения в жанрах книги.
+    /// Возвращает были ли изменения в жанрах книги.
     /// </summary>
-    public bool GenresChanged;
+    public bool GenresChanged { get; private set; }
+
+    /// <summary>
+    /// Возвращает были ли изменения в фалах книги.
+    /// </summary>
+    public bool FilesChanged { get; private set; }
 
     /// <summary>
     /// Редактируемая книга.
@@ -63,6 +68,11 @@ public partial class BookEditor : Window
     private readonly ObservableCollectionEx<BookFile> files = [];
 
     /// <summary>
+    /// Были ли изменения в комментариях к фалах книги.
+    /// </summary>
+    private bool fileCommentsChanged;
+
+    /// <summary>
     /// Инициализирует новый экземпляр класса. 
     /// </summary>
     /// <param name="book">Книга.</param>
@@ -87,6 +97,9 @@ public partial class BookEditor : Window
         CheckFileNotFoundVisibility();
     }
 
+    /// <summary>
+    /// Проверяет и устанавливает видимость текста "Файл не найден".
+    /// </summary>
     private void CheckFileNotFoundVisibility() =>
         FileNotFoundTextBlock.Visibility = files.Any(x => !x.Exists) ? Visibility.Visible : Visibility.Collapsed;
 
@@ -168,7 +181,24 @@ public partial class BookEditor : Window
         }
 
         // Файлы.
-
+        if (files.Count != book.Files.Count ||
+            files.Any(x => !book.Files.Exists(f => f.Filename == x.Filename)) ||
+            book.Files.Any(x => !files.Any(f => f.Filename == x.Filename)))
+        {
+            book.Files.Clear();
+            book.Files.AddRange(files);
+            changed = true;
+            FilesChanged = true;
+        }
+        else
+        {
+            if (fileCommentsChanged)
+            {
+                changed = true;
+                FilesChanged = true;
+            }
+        }
+            
         // Возврат результата: были ли внесены изменения в книгу.
         return changed;
     }
@@ -402,7 +432,10 @@ public partial class BookEditor : Window
         var file = (BookFile)FilesListBox.SelectedItem;
         var editor = new FileCommentEditor(file.Comment) { Owner = this };
         if (editor.ShowDialog() == true)
+        {
             file.Comment = editor.Comment;
+            fileCommentsChanged = true;
+        }
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
