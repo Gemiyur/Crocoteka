@@ -279,14 +279,18 @@
                         <GridViewColumn Header="Аудио" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding AudioCount}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding AudioCount}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
                         <GridViewColumn Header="Текст" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TextCount}" HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding TextCount}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

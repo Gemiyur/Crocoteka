@@ -1,6 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
+    <SolidColorBrush x:Key="BooksListViewForegroundBrush" Color="Black" />
+    
     <Style x:Key="ToolBarIconStyle" TargetType="Image">
         <Setter Property="Control.Height" Value="24" />
         <Setter Property="Control.Width" Value="24" />
@@ -54,16 +56,29 @@
 
     <DataTemplate x:Key="BookDataTemplate">
         <StackPanel>
-            <TextBlock Text="{Binding Title}" Foreground="Black" FontWeight="Bold" Padding="5,0,0,0" />
-            <TextBlock Text="{Binding AuthorNamesFirstLast}" Padding="25,0,0,0" FontStyle="Italic" />
+            <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding AuthorNamesFirstLast}" Padding="25,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
         </StackPanel>
     </DataTemplate>
 
     <DataTemplate x:Key="BookCycleDataTemplate">
         <StackPanel>
-            <TextBlock Text="{Binding Title}" FontWeight="Bold" Padding="5,0,0,0" />
-            <TextBlock Text="{Binding AuthorNamesFirstLast}" Padding="25,0,0,0" FontStyle="Italic" />
-            <TextBlock Text="{Binding CyclePartText}" Padding="25,0,0,0" />
+            <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding AuthorNamesFirstLast}" Padding="25,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding CyclePartText}" Padding="25,0,0,0"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"/>
         </StackPanel>
     </DataTemplate>
 
