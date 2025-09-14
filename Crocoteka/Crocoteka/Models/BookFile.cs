@@ -97,12 +97,6 @@ public class BookFile : BaseModel
     public bool IsText => App.TextExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
 
     /// <summary>
-    /// Возвращает является ли файл архивным файлом.
-    /// </summary>
-    [BsonIgnore]
-    public bool IsZip => App.ZipExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
-
-    /// <summary>
     /// Возвращает тест типа файла книги (аудио, текст, архив).
     /// </summary>
     [BsonIgnore]
@@ -114,10 +108,8 @@ public class BookFile : BaseModel
                 return "Аудио";
             else if (IsText)
                 return "Текст";
-            else if (IsZip)
-                return "Архив";
             else
-                return "";
+                return "Неизвестный";
         }
     }
 }

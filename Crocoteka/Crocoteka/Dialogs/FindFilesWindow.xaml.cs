@@ -46,15 +46,9 @@ public partial class FindFilesWindow : Window
 
         bookExtensions.AddRange(App.AudioExtensions);
         bookExtensions.AddRange(App.TextExtensions);
-        bookExtensions.AddRange(App.ZipExtensions);
 
         var mask = new KeyValuePair<string, List<string>>("Все файлы книг", []);
         mask.Value.AddRange(bookExtensions);
-        masks.Add(mask.Key, mask.Value);
-
-        mask = new KeyValuePair<string, List<string>>("Аудио и текст", []);
-        mask.Value.AddRange(App.AudioExtensions);
-        mask.Value.AddRange(App.TextExtensions);
         masks.Add(mask.Key, mask.Value);
 
         mask = new KeyValuePair<string, List<string>>("Аудио", []);
@@ -63,10 +57,6 @@ public partial class FindFilesWindow : Window
 
         mask = new KeyValuePair<string, List<string>>("Текст", []);
         mask.Value.AddRange(App.TextExtensions);
-        masks.Add(mask.Key, mask.Value);
-
-        mask = new KeyValuePair<string, List<string>>("Архивы", []);
-        mask.Value.AddRange(App.ZipExtensions);
         masks.Add(mask.Key, mask.Value);
 
         TypeComboBox.ItemsSource = masks;

@@ -28,11 +28,6 @@ public partial class App : Application
     public static readonly List<string> TextExtensions = [];
 
     /// <summary>
-    /// Расширения архивных файлов книг.
-    /// </summary>
-    public static readonly List<string> ZipExtensions = [];
-
-    /// <summary>
     /// Возвращает указанное имя файла, гарантируя расширение .db.
     /// </summary>
     /// <param name="filename">Имя файла.</param>
@@ -131,13 +126,10 @@ public partial class App : Application
         {
             var audioExt = ListToString(AudioExtensions, ";").Replace(".", "*.");
             var textExt = ListToString(TextExtensions, ";").Replace(".", "*.");
-            var zipExt = ListToString(ZipExtensions, ";").Replace(".", "*.");
-            var filterAll = $"Все книги|{audioExt};{textExt};{zipExt}";
-            var filterAudioText = $"Аудио и текст|{audioExt};{textExt}";
+            var filterAll = $"Все книги|{audioExt};{textExt}";
             var filterAudio = $"Аудио|{audioExt}";
             var filterText = $"Текст|{textExt}";
-            var filterZip = $"Архивы|{zipExt}";
-            return $"{filterAll}|{filterAudioText}|{filterAudio}|{filterText}|{filterZip}";
+            return $"{filterAll}|{filterAudio}|{filterText}";
         }
     }
 
