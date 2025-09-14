@@ -60,7 +60,7 @@ public partial class MainWindow : Window
         Genres.AddRange(Library.Genres);
         GenresListBox.ItemsSource = Genres;
         ShownBooks.AddRange(Library.Books);
-        BooksListBox.ItemsSource = ShownBooks;
+        BooksListView.ItemsSource = ShownBooks;
         UpdateStatusBarBooksCount();
     }
 
@@ -83,8 +83,8 @@ public partial class MainWindow : Window
     {
         if (ShownBooks.Contains(book))
         {
-            BooksListBox.SelectedItem = book;
-            BooksListBox.ScrollIntoView(BooksListBox.SelectedItem);
+            BooksListView.SelectedItem = book;
+            BooksListView.ScrollIntoView(BooksListView.SelectedItem);
         }
     }
 
@@ -168,28 +168,28 @@ public partial class MainWindow : Window
         if (AllBooksToggleButton.IsChecked == true)
         {
             ShownBooks.ReplaceRange(Library.Books);
-            BooksListBox.ItemTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
         }
         else if (AuthorsListBox.SelectedItem != null)
         {
             var author = (Author)AuthorsListBox.SelectedItem;
             var books = Library.GetAuthorBooks(author.AuthorId);
             ShownBooks.ReplaceRange(books);
-            BooksListBox.ItemTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
         }
         else if (CyclesListBox.SelectedItem != null)
         {
             var cycle = (Cycle)CyclesListBox.SelectedItem;
             var books = Library.GetCycleBooks(cycle.CycleId);
             ShownBooks.ReplaceRange(books);
-            BooksListBox.ItemTemplate = (DataTemplate)FindResource("BookCycleDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookCycleDataTemplate");
         }
         else if (GenresListBox.SelectedItem != null)
         {
             var tag = (Genre)GenresListBox.SelectedItem;
             var books = Library.GetGenreBooks(tag.GenreId);
             ShownBooks.ReplaceRange(books);
-            BooksListBox.ItemTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
         }
         UpdateStatusBarBooksCount();
     }
@@ -197,7 +197,7 @@ public partial class MainWindow : Window
     /// <summary>
     /// Обновляет количество отображаемых книг в строке статуса.
     /// </summary>
-    private void UpdateStatusBarBooksCount() => BooksCountTextBlock.Text = BooksListBox.Items.Count.ToString();
+    private void UpdateStatusBarBooksCount() => BooksCountTextBlock.Text = BooksListView.Items.Count.ToString();
 
     #region Блокировка и разблокировка обработчиков событий элементов панели навигации.
 
@@ -301,7 +301,7 @@ public partial class MainWindow : Window
 
     #region Обработчики событий элемента списка книг.
 
-    private void BooksListBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
+    private void BooksListView_ContextMenuOpening(object sender, ContextMenuEventArgs e)
     {
         if (e.OriginalSource is not TextBlock)
         {
@@ -309,10 +309,23 @@ public partial class MainWindow : Window
         }
     }
 
-    private void BooksListBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+    private void BooksListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
     {
-        if (BooksListBox.SelectedItem != null && (e.OriginalSource is TextBlock || e.OriginalSource is Border))
-            ShowBookInfo((Book)BooksListBox.SelectedItem);
+        if (BooksListView.SelectedItem != null && (e.OriginalSource is TextBlock || e.OriginalSource is Border))
+            ShowBookInfo((Book)BooksListView.SelectedItem);
+    }
+
+    private void BooksListView_SizeChanged(object sender, SizeChangedEventArgs e)
+    {
+        var listView = (ListView)sender;
+        var gridView = (GridView)listView.View;
+        var totalWidth = listView.ActualWidth - (SystemParameters.VerticalScrollBarWidth + 10);
+        var usedWidth = 0.0;
+        for (var i = 1; i < gridView.Columns.Count; i++)
+        {
+            usedWidth += gridView.Columns[i].Width;
+        }
+        gridView.Columns[0].Width = totalWidth - usedWidth;
     }
 
     #endregion
@@ -423,7 +436,7 @@ public partial class MainWindow : Window
 
     private void Info_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
@@ -440,7 +453,7 @@ public partial class MainWindow : Window
 
     private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
@@ -452,7 +465,7 @@ public partial class MainWindow : Window
 
     private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var book = (Book)BooksListBox.SelectedItem;
+        var book = (Book)BooksListView.SelectedItem;
         var editor = new BookEditor(book) { Owner = this };
         var result = editor.ShowDialog() == true;
         UpdateNavPanel(true, true, true);
@@ -472,7 +485,7 @@ public partial class MainWindow : Window
 
     private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = BooksListBox != null && BooksListBox.SelectedItem != null;
+        e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
@@ -484,7 +497,7 @@ public partial class MainWindow : Window
 
     private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-        var book = (Book)BooksListBox.SelectedItem;
+        var book = (Book)BooksListView.SelectedItem;
         if (MessageBox.Show($"Удалить книгу \"{book.Title}\" из библиотеки?", Title,
                             MessageBoxButton.YesNo) != MessageBoxResult.Yes)
         {

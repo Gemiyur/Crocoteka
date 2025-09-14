@@ -256,12 +256,43 @@
             <GridSplitter Grid.Row="1" Grid.Column="1" Width="5"
                           HorizontalAlignment="Center" VerticalAlignment="Stretch" />
             <!-- Список книг -->
-            <ListBox Grid.Row="1" Grid.Column="2" x:Name="BooksListBox"
-                     ItemContainerStyle="{StaticResource ListBoxItemStyle}"
-                     ItemTemplate="{StaticResource BookDataTemplate}"
-                     MouseDoubleClick="BooksListBox_MouseDoubleClick"
-                     ContextMenuOpening="BooksListBox_ContextMenuOpening">
-                <ListBox.ContextMenu>
+            <ListView Grid.Row="1" Grid.Column="2" x:Name="BooksListView"
+                      ItemContainerStyle="{StaticResource ListViewItemStyle}"
+                      SelectionMode="Single"
+                      ContextMenuOpening="BooksListView_ContextMenuOpening"
+                      MouseDoubleClick="BooksListView_MouseDoubleClick"
+                      SizeChanged="BooksListView_SizeChanged">
+                <ListView.View>
+                    <GridView>
+                        <GridView.ColumnHeaderContainerStyle>
+                            <Style TargetType="GridViewColumnHeader">
+                                <Setter Property="IsEnabled" Value="False"/>
+                                <Style.Triggers>
+                                    <Trigger Property="IsEnabled" Value="False">
+                                        <Setter Property="TextElement.Foreground" Value="Black" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </GridView.ColumnHeaderContainerStyle>
+                        <GridViewColumn x:Name="BooksListViewTitleColumn" Header="Название"
+                                        CellTemplate="{StaticResource BookDataTemplate}" />
+                        <GridViewColumn Header="Аудио" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding AudioCount}" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Текст" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding TextCount}" HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                    </GridView>
+                </ListView.View>
+                <ListView.ContextMenu>
                     <ContextMenu x:Name="BookContextMenu">
                         <MenuItem x:Name="InfoContextMenuItem" Style="{StaticResource MenuItemStyle}" FontWeight="Bold"
                                   Command="local:AppCommands.Info">
@@ -284,8 +315,8 @@
                             </MenuItem.Icon>
                         </MenuItem>
                     </ContextMenu>
-                </ListBox.ContextMenu>
-            </ListBox>
+                </ListView.ContextMenu>
+            </ListView>
         </Grid>
 
         <StatusBar Grid.Row="3">
