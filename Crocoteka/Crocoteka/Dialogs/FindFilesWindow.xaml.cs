@@ -1,8 +1,8 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using Crocoteka.Tools;
 using Gemiyur.Collections;
+using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
 
@@ -154,7 +154,7 @@ public partial class FindFilesWindow : Window
 
     private void BookButton_Click(object sender, RoutedEventArgs e)
     {
-
+        App.GetMainWindow().AddBook(FilesListBox.SelectedItems.Cast<string>().Select(FullName));
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
