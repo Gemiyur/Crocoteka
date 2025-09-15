@@ -331,17 +331,13 @@ public partial class MainWindow : Window
 
     #region Обработчики команд группы "Библиотека".
 
-    private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
+    public void AddBook(IEnumerable<string> files)
     {
         var book = new Book();
-        var dialog = App.PickBookFileDialog;
-        if (dialog.ShowDialog() == true)
+        foreach (var file in files)
         {
-            foreach (var file in dialog.FileNames)
-            {
-                var bookFile = new BookFile() { Filename = file };
-                book.Files.Add(bookFile);
-            }
+            var bookFile = new BookFile() { Filename = file };
+            book.Files.Add(bookFile);
         }
         if (book.Files.Count > 0)
         {
@@ -355,6 +351,15 @@ public partial class MainWindow : Window
             UpdateShownBooks();
             SelectBookInShownBooks(book);
         }
+    }
+
+    private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        var files = new List<string>();
+        var dialog = App.PickBookFileDialog;
+        if (dialog.ShowDialog() == true)
+            files.AddRange(dialog.FileNames);
+        AddBook(files);
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
