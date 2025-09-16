@@ -49,10 +49,22 @@ public partial class App : Application
     public static BitmapImage GetBitmapImage(string path) => new(new Uri(path, UriKind.Relative));
 
     /// <summary>
+    /// Восстанавливает состояние указанного окна из свёрнутого.
+    /// </summary>
+    /// <param name="window">Окно.</param>
+    public static void RestoreWindow(Window window)
+    {
+        if (window.WindowState == WindowState.Minimized)
+        {
+            window.WindowState = WindowState.Normal;
+        }
+    }
+
+    /// <summary>
     /// Восстанавливает состояние указанного окна в нормальное.
     /// </summary>
-    /// <param name="window"></param>
-    public static void RestoreWindow(Window window)
+    /// <param name="window">Окно.</param>
+    public static void RestoreWindowNormal(Window window)
     {
         if (window.WindowState != WindowState.Normal)
         {

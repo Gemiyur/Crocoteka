@@ -379,7 +379,7 @@ public partial class MainWindow : Window
         }
         else
         {
-            new FindFilesWindow() { Owner = this }.Show();
+            new FindFilesWindow().Show();
         }
     }
 

@@ -124,7 +124,14 @@ public partial class FindFilesWindow : Window
         //    Properties.Settings.Default.BookInfoPos = new System.Drawing.Point((int)Left, (int)Top);
         //    Properties.Settings.Default.BookInfoSize = new System.Drawing.Size((int)Width, (int)Height);
         //}
-        App.GetMainWindow().Activate();
+
+        // TODO: Надо ли восстанавливать и активировать главное окно при закрытии окна поиска файлов?
+        var window = App.GetMainWindow();
+        if (window != null)
+        {
+            App.RestoreWindow(window);
+            window.Activate();
+        }
     }
 
     private void FolderButton_Click(object sender, RoutedEventArgs e)
