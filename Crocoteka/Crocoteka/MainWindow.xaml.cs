@@ -64,6 +64,34 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
+    /// Создаёт и добавляет новую книгу в библиотеку.
+    /// </summary>
+    /// <param name="files">Список файлов книги.</param>
+    /// <returns>Была ли добавлена книга.</returns>
+    public bool AddBook(IEnumerable<string> files)
+    {
+        var book = new Book();
+        foreach (var file in files)
+        {
+            var bookFile = new BookFile() { Filename = file };
+            book.Files.Add(bookFile);
+        }
+        if (book.Files.Count > 0)
+        {
+            book.Title = book.Files[0].NameOnly;
+        }
+        var editor = new BookEditor(book) { Owner = this };
+        var saved = editor.ShowDialog() == true;
+        UpdateNavPanel(true, true, true);
+        if (saved)
+        {
+            UpdateShownBooks();
+            SelectBookInShownBooks(book);
+        }
+        return saved;
+    }
+
+    /// <summary>
     /// Устанавливает формат отображения имён авторов в панели навигации.
     /// </summary>
     public void CheckAuthorsNameFormat()
@@ -331,35 +359,14 @@ public partial class MainWindow : Window
 
     #region Обработчики команд группы "Библиотека".
 
-    public void AddBook(IEnumerable<string> files)
-    {
-        var book = new Book();
-        foreach (var file in files)
-        {
-            var bookFile = new BookFile() { Filename = file };
-            book.Files.Add(bookFile);
-        }
-        if (book.Files.Count > 0)
-        {
-            book.Title = book.Files[0].NameOnly;
-        }
-        var editor = new BookEditor(book) { Owner = this };
-        var saved = editor.ShowDialog() == true;
-        UpdateNavPanel(true, true, true);
-        if (saved)
-        {
-            UpdateShownBooks();
-            SelectBookInShownBooks(book);
-        }
-    }
-
     private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var files = new List<string>();
         var dialog = App.PickBookFileDialog;
         if (dialog.ShowDialog() == true)
             files.AddRange(dialog.FileNames);
-        AddBook(files);
+        if (AddBook(files))
+            App.UpdateFindFilesWindow();
     }
 
     private void FindBooks_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -481,6 +488,8 @@ public partial class MainWindow : Window
             UpdateShownBooks();
             SelectBookInShownBooks(book);
         }
+        if (editor.FilesChanged)
+            App.UpdateFindFilesWindow();
         book.OnPropertyChanged("AuthorNamesFirstLast");
         book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
         book.OnPropertyChanged("AuthorNamesLastFirst");
@@ -515,6 +524,7 @@ public partial class MainWindow : Window
             return;
         }
         UpdateShownBooks();
+        App.UpdateFindFilesWindow();
     }
 
     #endregion

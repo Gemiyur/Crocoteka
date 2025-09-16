@@ -68,7 +68,7 @@ public partial class FindFilesWindow : Window
     /// <summary>
     /// Применяет фильтр к списку файлов книг.
     /// </summary>
-    private void ApplyFilter()
+    public void ApplyFilter()
     {
         var extensions = ((KeyValuePair<string, List<string>>)TypeComboBox.SelectedItem).Value;
         var list = files.FindAll(x => extensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase));
@@ -154,7 +154,8 @@ public partial class FindFilesWindow : Window
 
     private void BookButton_Click(object sender, RoutedEventArgs e)
     {
-        App.GetMainWindow().AddBook(FilesListBox.SelectedItems.Cast<string>().Select(FullName));
+        if (App.GetMainWindow().AddBook(FilesListBox.SelectedItems.Cast<string>().Select(FullName)))
+            ApplyFilter();
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();

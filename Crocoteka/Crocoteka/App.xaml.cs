@@ -1,9 +1,9 @@
-﻿using Crocoteka.Dialogs;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.IO;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
+using Crocoteka.Dialogs;
 
 namespace Crocoteka;
 
@@ -69,6 +69,14 @@ public partial class App : Application
     /// <param name="size">Размер.</param>
     /// <returns>Задан ли указанный размер.</returns>
     public static bool SizeDefined(System.Drawing.Size size) => size.Width > 0 && size.Height > 0;
+
+    /// <summary>
+    /// Обновляет список файлов книг в окне поиска файлов книг.
+    /// </summary>
+    public static void UpdateFindFilesWindow()
+    {
+        GetFindFilesWindow()?.ApplyFilter();
+    }
 
     #region Получение окон приложения.
 
