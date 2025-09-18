@@ -494,8 +494,9 @@ public partial class MainWindow : Window
         book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
         book.OnPropertyChanged("AuthorNamesLastFirst");
         book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
-        book.OnPropertyChanged("AudioCount");
-        book.OnPropertyChanged("TextCount");
+        book.OnPropertyChanged("AudioCountText");
+        book.OnPropertyChanged("TextCountText");
+        book.OnPropertyChanged("NotFoundCountText");
     }
 
     private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
