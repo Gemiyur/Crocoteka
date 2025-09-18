@@ -154,7 +154,13 @@ public class Book : BaseModel
     /// Возвращает строку количества аудио файлов книги для отображения.
     /// </summary>
     [BsonIgnore]
-    public string AudioCountText => $"Аудио: {AudioCount}";
+    public string AudioCountText => AudioCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли аудио файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasAudio => AudioCount > 0;
 
     /// <summary>
     /// Возвращает количество текстовых файлов книги.
@@ -166,17 +172,29 @@ public class Book : BaseModel
     /// Возвращает строку количества текстовых файлов книги для отображения.
     /// </summary>
     [BsonIgnore]
-    public string TextCountText => $"Текст: {TextCount}";
-
-    /// <summary>
-    /// Возвращает есть ли аудио файлы книги.
-    /// </summary>
-    [BsonIgnore]
-    public bool HasAudio => AudioCount > 0;
+    public string TextCountText => TextCount.ToString();
 
     /// <summary>
     /// Возвращает есть ли текстовые файлы книги.
     /// </summary>
     [BsonIgnore]
     public bool HasText => TextCount > 0;
+
+    /// <summary>
+    /// Возвращает количество ненайденных файлов книги.
+    /// </summary>
+    [BsonIgnore]
+    public int NotFoundCount => Files.Count > 0 ? Files.Count(x => !x.Exists) : 0;
+
+    /// <summary>
+    /// Возвращает строку количества ненайденных файлов книги для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string NotFoundCountText => NotFoundCount > 0 ? NotFoundCount.ToString() : string.Empty;
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasNotFound => NotFoundCount > 0;
 }

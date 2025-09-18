@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka"
         mc:Ignorable="d"
         Title="Крокотека"
-        Width="800" Height="500" ResizeMode="CanResizeWithGrip"
+        Width="900" Height="600" ResizeMode="CanResizeWithGrip"
         MinWidth="700" MinHeight="350"
         d:Width="700" d:Height="350"
         WindowStartupLocation="CenterScreen"
@@ -276,20 +276,29 @@
                         </GridView.ColumnHeaderContainerStyle>
                         <GridViewColumn x:Name="BooksListViewTitleColumn" Header="Название"
                                         CellTemplate="{StaticResource BookDataTemplate}" />
-                        <GridViewColumn Header="Аудио" Width="50">
+                        <GridViewColumn Header="Аудио" Width="65">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding AudioCount}"
+                                    <TextBlock Text="{Binding AudioCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Текст" Width="50">
+                        <GridViewColumn Header="Текст" Width="65">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TextCount}"
+                                    <TextBlock Text="{Binding TextCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="Нет файла" Width="65">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding NotFoundCountText}"
+                                               Foreground="Red"
                                                HorizontalAlignment="Center" />
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
