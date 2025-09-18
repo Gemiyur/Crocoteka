@@ -35,11 +35,6 @@ public static class AppCommands
     public static RoutedUICommand Genres { get; private set; }
 
     /// <summary>
-    /// Команда проверки библиотеки на наличие файлов книг.
-    /// </summary>
-    public static RoutedUICommand CheckLibrary { get; private set; }
-
-    /// <summary>
     /// Команда настроек приложения.
     /// </summary>
     public static RoutedUICommand Settings { get; private set; }
@@ -90,7 +85,6 @@ public static class AppCommands
         Authors = new RoutedUICommand("Авторы...", "Authors", typeof(AppCommands));
         Cycles = new RoutedUICommand("Серии...", "Cycles", typeof(AppCommands));
         Genres = new RoutedUICommand("Жанры...", "Genres", typeof(AppCommands));
-        CheckLibrary = new RoutedUICommand("Проверить библиотеку...", "CheckLibrary", typeof(AppCommands));
         Settings = new RoutedUICommand("Настройки...", "Settings", typeof(AppCommands));
         Exit = new RoutedUICommand("Выход", "Exit", typeof(AppCommands));
 

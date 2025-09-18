@@ -426,11 +426,6 @@ public partial class MainWindow : Window
             UpdateShownBooks();
     }
 
-    private void CheckLibrary_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-
-    }
-
     private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
