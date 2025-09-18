@@ -494,6 +494,7 @@ public partial class MainWindow : Window
         book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
         book.OnPropertyChanged("AuthorNamesLastFirst");
         book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        book.OnPropertyChanged("FilesCountText");
         book.OnPropertyChanged("AudioCountText");
         book.OnPropertyChanged("TextCountText");
         book.OnPropertyChanged("NotFoundCountText");

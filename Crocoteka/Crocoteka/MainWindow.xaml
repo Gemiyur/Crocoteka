@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Crocoteka"
         mc:Ignorable="d"
         Title="Крокотека"
-        Width="900" Height="600" ResizeMode="CanResizeWithGrip"
-        MinWidth="700" MinHeight="350"
-        d:Width="700" d:Height="350"
+        Width="950" Height="650" ResizeMode="CanResizeWithGrip"
+        MinWidth="800" MinHeight="450"
+        d:Width="800" d:Height="450"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
@@ -276,6 +276,15 @@
                         </GridView.ColumnHeaderContainerStyle>
                         <GridViewColumn x:Name="BooksListViewTitleColumn" Header="Название"
                                         CellTemplate="{StaticResource BookDataTemplate}" />
+                        <GridViewColumn Header="Файлов" Width="65">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding FilesCountText}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                         <GridViewColumn Header="Аудио" Width="65">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

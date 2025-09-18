@@ -145,6 +145,12 @@ public class Book : BaseModel
     public List<BookFile> Files { get; set; } = [];
 
     /// <summary>
+    /// Возвращает строку количества файлов книги для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string FilesCountText => Files.Count.ToString();
+
+    /// <summary>
     /// Возвращает количество аудио файлов книги.
     /// </summary>
     [BsonIgnore]
