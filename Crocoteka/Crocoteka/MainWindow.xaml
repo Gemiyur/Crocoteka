@@ -38,15 +38,15 @@
         <CommandBinding Command="local:AppCommands.Exit"
                         Executed="Exit_Executed" />
         <!-- Команды группы "Книга" -->
-        <CommandBinding Command="local:AppCommands.Info"
-                        CanExecute="Info_CanExecute"
-                        Executed="Info_Executed" />
+        <CommandBinding Command="local:AppCommands.BookInfo"
+                        CanExecute="BookInfo_CanExecute"
+                        Executed="BookInfo_Executed" />
         <CommandBinding Command="local:AppCommands.BookEdit"
                         CanExecute="BookEdit_CanExecute"
                         Executed="BookEdit_Executed" />
-        <CommandBinding Command="local:AppCommands.Delete"
-                        CanExecute="Delete_CanExecute"
-                        Executed="Delete_Executed" />
+        <CommandBinding Command="local:AppCommands.BookDelete"
+                        CanExecute="BookDelete_CanExecute"
+                        Executed="BookDelete_Executed" />
         <!-- Команды группы "Справка" -->
         <CommandBinding Command="local:AppCommands.About"
                         Executed="About_Executed" />
@@ -105,21 +105,21 @@
                           Command="local:AppCommands.Exit" />
             </MenuItem>
             <MenuItem Header="Книга">
-                <MenuItem x:Name="InfoMenuItem" Style="{StaticResource MenuItemStyle}"
-                          Command="local:AppCommands.Info">
+                <MenuItem x:Name="BookInfoMenuItem" Style="{StaticResource MenuItemStyle}"
+                          Command="local:AppCommands.BookInfo">
                     <MenuItem.Icon>
                         <Image Source="Images\Buttons\Enabled\BookInfo.png" />
                     </MenuItem.Icon>
                 </MenuItem>
-                <MenuItem x:Name="EditMenuItem" Style="{StaticResource MenuItemStyle}"
+                <MenuItem x:Name="BookEditMenuItem" Style="{StaticResource MenuItemStyle}"
                           Command="local:AppCommands.BookEdit">
                     <MenuItem.Icon>
                         <Image Source="Images\Buttons\Enabled\Edit.png" />
                     </MenuItem.Icon>
                 </MenuItem>
                 <Separator />
-                <MenuItem x:Name="DeleteMenuItem" Style="{StaticResource MenuItemStyle}"
-                          Command="local:AppCommands.Delete">
+                <MenuItem x:Name="BookDeleteMenuItem" Style="{StaticResource MenuItemStyle}"
+                          Command="local:AppCommands.BookDelete">
                     <MenuItem.Icon>
                         <Image Source="Images\Buttons\Enabled\Delete.png" />
                     </MenuItem.Icon>
@@ -165,17 +165,18 @@
                 </Button>
             </ToolBar>
             <ToolBar x:Name="BookToolBar">
-                <Button x:Name="InfoButton" Style="{StaticResource ToolBarButtonStyle}"
-                        Command="local:AppCommands.Info">
+                <Button x:Name="BookInfoButton" Style="{StaticResource ToolBarButtonStyle}"
+                        Command="local:AppCommands.BookInfo">
                     <Image Source="Images\Buttons\Enabled\BookInfo.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
-                <Button x:Name="EditButton" Style="{StaticResource ToolBarButtonStyle}"
+                <Separator />
+                <Button x:Name="BookEditButton" Style="{StaticResource ToolBarButtonStyle}"
                         Command="local:AppCommands.BookEdit">
                     <Image Source="Images\Buttons\Enabled\Edit.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
                 <Separator />
-                <Button x:Name="DeleteButton" Style="{StaticResource ToolBarButtonStyle}"
-                        Command="local:AppCommands.Delete">
+                <Button x:Name="BookDeleteButton" Style="{StaticResource ToolBarButtonStyle}"
+                        Command="local:AppCommands.BookDelete">
                     <Image Source="Images\Buttons\Enabled\Delete.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
             </ToolBar>
@@ -302,22 +303,22 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu x:Name="BookContextMenu">
-                        <MenuItem x:Name="InfoContextMenuItem" Style="{StaticResource MenuItemStyle}" FontWeight="Bold"
-                                  Command="local:AppCommands.Info">
+                        <MenuItem x:Name="BookInfoContextMenuItem" Style="{StaticResource MenuItemStyle}" FontWeight="Bold"
+                                  Command="local:AppCommands.BookInfo">
                             <MenuItem.Icon>
-                                <Image Source="Images\Buttons\Enabled\Info.png" />
+                                <Image Source="Images\Buttons\Enabled\BookInfo.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem x:Name="EditContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                        <MenuItem x:Name="BookEditContextMenuItem" Style="{StaticResource MenuItemStyle}"
                                   Command="local:AppCommands.BookEdit">
                             <MenuItem.Icon>
                                 <Image Source="Images\Buttons\Enabled\Edit.png" />
                             </MenuItem.Icon>
                         </MenuItem>
                         <Separator />
-                        <MenuItem x:Name="DeleteContextMenuItem" Style="{StaticResource MenuItemStyle}"
-                                  Command="local:AppCommands.Delete">
+                        <MenuItem x:Name="BookDeleteContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                                  Command="local:AppCommands.BookDelete">
                             <MenuItem.Icon>
                                 <Image Source="Images\Buttons\Enabled\Delete.png" />
                             </MenuItem.Icon>

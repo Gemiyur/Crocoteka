@@ -51,7 +51,7 @@ public static class AppCommands
     /// <summary>
     /// Команда информации о книге.
     /// </summary>
-    public static RoutedUICommand Info { get; private set; }
+    public static RoutedUICommand BookInfo { get; private set; }
 
     /// <summary>
     /// Команда редактирования данных книги.
@@ -61,7 +61,7 @@ public static class AppCommands
     /// <summary>
     /// Команда удаления книги.
     /// </summary>
-    public static RoutedUICommand Delete { get; private set; }
+    public static RoutedUICommand BookDelete { get; private set; }
 
     #endregion
 
@@ -89,9 +89,9 @@ public static class AppCommands
         Exit = new RoutedUICommand("Выход", "Exit", typeof(AppCommands));
 
         // Команды группы "Книга".
-        Info = new RoutedUICommand("О книге...", "Info", typeof(AppCommands));
+        BookInfo = new RoutedUICommand("О книге...", "BookInfo", typeof(AppCommands));
         BookEdit = new RoutedUICommand("Изменить книгу...", "BookEdit", typeof(AppCommands));
-        Delete = new RoutedUICommand("Удалить книгу...", "Delete", typeof(AppCommands));
+        BookDelete = new RoutedUICommand("Удалить книгу...", "BookDelete", typeof(AppCommands));
 
         // Команды группы "Справка"
         About = new RoutedUICommand("О программе...", "About", typeof(AppCommands));

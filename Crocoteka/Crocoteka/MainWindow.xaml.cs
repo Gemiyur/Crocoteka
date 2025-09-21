@@ -440,19 +440,19 @@ public partial class MainWindow : Window
 
     #region Обработчики команд группы "Книга".
 
-    private void Info_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    private void BookInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
         e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\BookInfo.png" : @"Images\Buttons\Disabled\BookInfo.png");
-        ((Image)InfoButton.Content).Source = bitmap;
-        ((Image)InfoMenuItem.Icon).Source = bitmap;
-        ((Image)InfoContextMenuItem.Icon).Source = bitmap;
+        ((Image)BookInfoButton.Content).Source = bitmap;
+        ((Image)BookInfoMenuItem.Icon).Source = bitmap;
+        ((Image)BookInfoContextMenuItem.Icon).Source = bitmap;
     }
 
-    private void Info_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void BookInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
     }
@@ -464,9 +464,9 @@ public partial class MainWindow : Window
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\Edit.png" : @"Images\Buttons\Disabled\Edit.png");
-        ((Image)EditButton.Content).Source = bitmap;
-        ((Image)EditMenuItem.Icon).Source = bitmap;
-        ((Image)EditContextMenuItem.Icon).Source = bitmap;
+        ((Image)BookEditButton.Content).Source = bitmap;
+        ((Image)BookEditMenuItem.Icon).Source = bitmap;
+        ((Image)BookEditContextMenuItem.Icon).Source = bitmap;
     }
 
     private void BookEdit_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -495,19 +495,19 @@ public partial class MainWindow : Window
         book.OnPropertyChanged("NotFoundCountText");
     }
 
-    private void Delete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    private void BookDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
         e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
             e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
-        ((Image)DeleteButton.Content).Source = bitmap;
-        ((Image)DeleteMenuItem.Icon).Source = bitmap;
-        ((Image)DeleteContextMenuItem.Icon).Source = bitmap;
+        ((Image)BookDeleteButton.Content).Source = bitmap;
+        ((Image)BookDeleteMenuItem.Icon).Source = bitmap;
+        ((Image)BookDeleteContextMenuItem.Icon).Source = bitmap;
     }
 
-    private void Delete_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void BookDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var book = (Book)BooksListView.SelectedItem;
         if (MessageBox.Show($"Удалить книгу \"{book.Title}\" из библиотеки?", Title,
