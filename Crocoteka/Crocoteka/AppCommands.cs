@@ -39,7 +39,7 @@ public static class AppCommands
     public static RoutedUICommand BookInfo { get; private set; }
 
     /// <summary>
-    /// Команда редактирования данных книги.
+    /// Команда редактирования книги.
     /// </summary>
     public static RoutedUICommand BookEdit { get; private set; }
 
@@ -63,7 +63,7 @@ public static class AppCommands
     public static RoutedUICommand AuthorInfo { get; private set; }
 
     /// <summary>
-    /// Команда редактирования данных автора.
+    /// Команда редактирования автора.
     /// </summary>
     public static RoutedUICommand AuthorEdit { get; private set; }
 
@@ -87,7 +87,7 @@ public static class AppCommands
     public static RoutedUICommand CycleInfo { get; private set; }
 
     /// <summary>
-    /// Команда редактирования данных серии.
+    /// Команда редактирования серии.
     /// </summary>
     public static RoutedUICommand CycleEdit { get; private set; }
 
@@ -104,6 +104,16 @@ public static class AppCommands
     /// Команда редактора жанров.
     /// </summary>
     public static RoutedUICommand Genres { get; private set; }
+
+    /// <summary>
+    /// Команда редактирования жанра.
+    /// </summary>
+    public static RoutedUICommand GenreEdit { get; private set; }
+
+    /// <summary>
+    /// Команда удаления жанра.
+    /// </summary>
+    public static RoutedUICommand GenreDelete { get; private set; }
 
     #endregion
 
@@ -146,6 +156,8 @@ public static class AppCommands
 
         // Команды жанров.
         Genres = new RoutedUICommand("Жанры...", "Genres", typeof(AppCommands));
+        GenreEdit = new RoutedUICommand("Изменить жанр...", "GenreEdit", typeof(AppCommands));
+        GenreDelete = new RoutedUICommand("Удалить жанр...", "GenreDelete", typeof(AppCommands));
 
         // Команды справки.
         About = new RoutedUICommand("О программе...", "About", typeof(AppCommands));

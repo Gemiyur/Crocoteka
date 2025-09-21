@@ -596,6 +596,26 @@ public partial class MainWindow : Window
             UpdateShownBooks();
     }
 
+    private void GenreEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void GenreEdit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void GenreDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void GenreDelete_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики команд справки.
