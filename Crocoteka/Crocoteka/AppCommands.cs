@@ -89,9 +89,9 @@ public static class AppCommands
         Exit = new RoutedUICommand("Выход", "Exit", typeof(AppCommands));
 
         // Команды группы "Книга".
-        Info = new RoutedUICommand("О книге", "Info", typeof(AppCommands));
-        BookEdit = new RoutedUICommand("Изменить...", "BookEdit", typeof(AppCommands));
-        Delete = new RoutedUICommand("Удалить...", "Delete", typeof(AppCommands));
+        Info = new RoutedUICommand("О книге...", "Info", typeof(AppCommands));
+        BookEdit = new RoutedUICommand("Изменить книгу...", "BookEdit", typeof(AppCommands));
+        Delete = new RoutedUICommand("Удалить книгу...", "Delete", typeof(AppCommands));
 
         // Команды группы "Справка"
         About = new RoutedUICommand("О программе...", "About", typeof(AppCommands));
