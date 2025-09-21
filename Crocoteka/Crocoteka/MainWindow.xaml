@@ -44,6 +44,15 @@
         <!-- Команды авторов -->
         <CommandBinding Command="local:AppCommands.Authors"
                         Executed="Authors_Executed" />
+        <CommandBinding Command="local:AppCommands.AuthorInfo"
+                        CanExecute="AuthorInfo_CanExecute"
+                        Executed="AuthorInfo_Executed" />
+        <CommandBinding Command="local:AppCommands.AuthorEdit"
+                        CanExecute="AuthorEdit_CanExecute"
+                        Executed="AuthorEdit_Executed" />
+        <CommandBinding Command="local:AppCommands.AuthorDelete"
+                        CanExecute="AuthorDelete_CanExecute"
+                        Executed="AuthorDelete_Executed" />
         <!-- Команды серий -->
         <CommandBinding Command="local:AppCommands.Cycles"
                         Executed="Cycles_Executed" />

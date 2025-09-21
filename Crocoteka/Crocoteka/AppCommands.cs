@@ -57,6 +57,21 @@ public static class AppCommands
     /// </summary>
     public static RoutedUICommand Authors { get; private set; }
 
+    /// <summary>
+    /// Команда информации об авторе.
+    /// </summary>
+    public static RoutedUICommand AuthorInfo { get; private set; }
+
+    /// <summary>
+    /// Команда редактирования данных автора.
+    /// </summary>
+    public static RoutedUICommand AuthorEdit { get; private set; }
+
+    /// <summary>
+    /// Команда удаления автора.
+    /// </summary>
+    public static RoutedUICommand AuthorDelete { get; private set; }
+
     #endregion
 
     #region Команды серий.
@@ -104,6 +119,9 @@ public static class AppCommands
 
         // Команды авторов.
         Authors = new RoutedUICommand("Авторы...", "Authors", typeof(AppCommands));
+        AuthorInfo = new RoutedUICommand("Об авторе...", "AuthorInfo", typeof(AppCommands));
+        AuthorEdit = new RoutedUICommand("Изменить автора...", "AuthorEdit", typeof(AppCommands));
+        AuthorDelete = new RoutedUICommand("Удалить автора...", "AuthorDelete", typeof(AppCommands));
 
         // Команды серий.
         Cycles = new RoutedUICommand("Серии...", "Cycles", typeof(AppCommands));

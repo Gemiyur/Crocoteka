@@ -504,6 +504,36 @@ public partial class MainWindow : Window
         }
     }
 
+    private void AuthorInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorInfo_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorEdit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики команд серий.
