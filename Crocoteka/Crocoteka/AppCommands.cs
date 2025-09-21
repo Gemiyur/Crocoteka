@@ -81,6 +81,21 @@ public static class AppCommands
     /// </summary>
     public static RoutedUICommand Cycles { get; private set; }
 
+    /// <summary>
+    /// Команда информации о серии.
+    /// </summary>
+    public static RoutedUICommand CycleInfo { get; private set; }
+
+    /// <summary>
+    /// Команда редактирования данных серии.
+    /// </summary>
+    public static RoutedUICommand CycleEdit { get; private set; }
+
+    /// <summary>
+    /// Команда удаления серии.
+    /// </summary>
+    public static RoutedUICommand CycleDelete { get; private set; }
+
     #endregion
 
     #region Команды жанров.
@@ -125,6 +140,9 @@ public static class AppCommands
 
         // Команды серий.
         Cycles = new RoutedUICommand("Серии...", "Cycles", typeof(AppCommands));
+        CycleInfo = new RoutedUICommand("О серии...", "CycleInfo", typeof(AppCommands));
+        CycleEdit = new RoutedUICommand("Изменить серию...", "CycleEdit", typeof(AppCommands));
+        CycleDelete = new RoutedUICommand("Удалить серию...", "CycleDelete", typeof(AppCommands));
 
         // Команды жанров.
         Genres = new RoutedUICommand("Жанры...", "Genres", typeof(AppCommands));

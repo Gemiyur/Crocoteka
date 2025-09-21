@@ -56,6 +56,15 @@
         <!-- Команды серий -->
         <CommandBinding Command="local:AppCommands.Cycles"
                         Executed="Cycles_Executed" />
+        <CommandBinding Command="local:AppCommands.CycleInfo"
+                        CanExecute="CycleInfo_CanExecute"
+                        Executed="CycleInfo_Executed" />
+        <CommandBinding Command="local:AppCommands.CycleEdit"
+                        CanExecute="CycleEdit_CanExecute"
+                        Executed="CycleEdit_Executed" />
+        <CommandBinding Command="local:AppCommands.CycleDelete"
+                        CanExecute="CycleDelete_CanExecute"
+                        Executed="CycleDelete_Executed" />
         <!-- Команды жанров -->
         <CommandBinding Command="local:AppCommands.Genres"
                         Executed="Genres_Executed" />

@@ -550,6 +550,36 @@ public partial class MainWindow : Window
             UpdateShownBooks();
     }
 
+    private void CycleInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleInfo_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleEdit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleDelete_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
     #endregion
 
     #region Обработчики команд жанров.
