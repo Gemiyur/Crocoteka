@@ -22,22 +22,16 @@
     </Window.Resources>
 
     <Window.CommandBindings>
-        <!-- Команды группы "Библиотека" -->
-        <CommandBinding Command="local:AppCommands.AddBook"
-                        Executed="AddBook_Executed" />
-        <CommandBinding Command="local:AppCommands.FindBooks"
-                        Executed="FindBooks_Executed" />
-        <CommandBinding Command="local:AppCommands.Authors"
-                        Executed="Authors_Executed" />
-        <CommandBinding Command="local:AppCommands.Cycles"
-                        Executed="Cycles_Executed" />
-        <CommandBinding Command="local:AppCommands.Genres"
-                        Executed="Genres_Executed" />
+        <!-- Команды библиотеки -->
         <CommandBinding Command="local:AppCommands.Settings"
                         Executed="Settings_Executed" />
         <CommandBinding Command="local:AppCommands.Exit"
                         Executed="Exit_Executed" />
-        <!-- Команды группы "Книга" -->
+        <!-- Команды книг -->
+        <CommandBinding Command="local:AppCommands.AddBook"
+                        Executed="AddBook_Executed" />
+        <CommandBinding Command="local:AppCommands.FindBooks"
+                        Executed="FindBooks_Executed" />
         <CommandBinding Command="local:AppCommands.BookInfo"
                         CanExecute="BookInfo_CanExecute"
                         Executed="BookInfo_Executed" />
@@ -47,7 +41,16 @@
         <CommandBinding Command="local:AppCommands.BookDelete"
                         CanExecute="BookDelete_CanExecute"
                         Executed="BookDelete_Executed" />
-        <!-- Команды группы "Справка" -->
+        <!-- Команды авторов -->
+        <CommandBinding Command="local:AppCommands.Authors"
+                        Executed="Authors_Executed" />
+        <!-- Команды серий -->
+        <CommandBinding Command="local:AppCommands.Cycles"
+                        Executed="Cycles_Executed" />
+        <!-- Команды жанров -->
+        <CommandBinding Command="local:AppCommands.Genres"
+                        Executed="Genres_Executed" />
+        <!-- Команды справки -->
         <CommandBinding Command="local:AppCommands.About"
                         Executed="About_Executed" />
     </Window.CommandBindings>

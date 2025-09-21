@@ -357,7 +357,21 @@ public partial class MainWindow : Window
 
     #endregion
 
-    #region Обработчики команд группы "Библиотека".
+    #region Обработчики команд библиотеки.
+
+    private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
+    private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        Close();
+    }
+
+    #endregion
+
+    #region Обработчики команд книг.
 
     private void AddBook_Executed(object sender, ExecutedRoutedEventArgs e)
     {
@@ -382,63 +396,6 @@ public partial class MainWindow : Window
             new FindFilesWindow().Show();
         }
     }
-
-    private void Authors_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-        var editor = new AuthorsEditor() { Owner = this };
-        editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = AuthorsListBox.SelectedItem;
-        UpdateNavPanel(true, false, false);
-        if (selectedItem != null && AuthorsListBox.SelectedItem == null)
-            UpdateShownBooks();
-        foreach (var book in ShownBooks)
-        {
-            book.OnPropertyChanged("AuthorNamesFirstLast");
-            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
-            book.OnPropertyChanged("AuthorNamesLastFirst");
-            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
-        }
-    }
-
-    private void Cycles_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-        var editor = new CyclesEditor() { Owner = this };
-        editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = CyclesListBox.SelectedItem;
-        UpdateNavPanel(false, true, false);
-        if (selectedItem != null && CyclesListBox.SelectedItem == null)
-            UpdateShownBooks();
-    }
-
-    private void Genres_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-        var editor = new GenresEditor() { Owner = this };
-        editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = GenresListBox.SelectedItem;
-        UpdateNavPanel(false, false, true);
-        if (selectedItem != null && GenresListBox.SelectedItem == null)
-            UpdateShownBooks();
-    }
-
-    private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-
-    }
-
-    private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-        Close();
-    }
-
-    #endregion
-
-    #region Обработчики команд группы "Книга".
 
     private void BookInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
@@ -526,7 +483,62 @@ public partial class MainWindow : Window
 
     #endregion
 
-    #region Обработчики команд группы "Справка".
+    #region Обработчики команд авторов.
+
+    private void Authors_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        var editor = new AuthorsEditor() { Owner = this };
+        editor.ShowDialog();
+        if (!editor.HasChanges)
+            return;
+        var selectedItem = AuthorsListBox.SelectedItem;
+        UpdateNavPanel(true, false, false);
+        if (selectedItem != null && AuthorsListBox.SelectedItem == null)
+            UpdateShownBooks();
+        foreach (var book in ShownBooks)
+        {
+            book.OnPropertyChanged("AuthorNamesFirstLast");
+            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
+            book.OnPropertyChanged("AuthorNamesLastFirst");
+            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        }
+    }
+
+    #endregion
+
+    #region Обработчики команд серий.
+
+    private void Cycles_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        var editor = new CyclesEditor() { Owner = this };
+        editor.ShowDialog();
+        if (!editor.HasChanges)
+            return;
+        var selectedItem = CyclesListBox.SelectedItem;
+        UpdateNavPanel(false, true, false);
+        if (selectedItem != null && CyclesListBox.SelectedItem == null)
+            UpdateShownBooks();
+    }
+
+    #endregion
+
+    #region Обработчики команд жанров.
+
+    private void Genres_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        var editor = new GenresEditor() { Owner = this };
+        editor.ShowDialog();
+        if (!editor.HasChanges)
+            return;
+        var selectedItem = GenresListBox.SelectedItem;
+        UpdateNavPanel(false, false, true);
+        if (selectedItem != null && GenresListBox.SelectedItem == null)
+            UpdateShownBooks();
+    }
+
+    #endregion
+
+    #region Обработчики команд справки.
 
     private void About_Executed(object sender, ExecutedRoutedEventArgs e)
     {
