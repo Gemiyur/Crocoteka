@@ -457,7 +457,7 @@ public partial class MainWindow : Window
 
     }
 
-    private void Edit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    private void BookEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
         e.CanExecute = BooksListView != null && BooksListView.SelectedItem != null;
         if (!IsVisible)
@@ -469,7 +469,7 @@ public partial class MainWindow : Window
         ((Image)EditContextMenuItem.Icon).Source = bitmap;
     }
 
-    private void Edit_Executed(object sender, ExecutedRoutedEventArgs e)
+    private void BookEdit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var book = (Book)BooksListView.SelectedItem;
         var editor = new BookEditor(book) { Owner = this };

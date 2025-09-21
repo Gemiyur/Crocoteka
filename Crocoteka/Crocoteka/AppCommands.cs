@@ -56,7 +56,7 @@ public static class AppCommands
     /// <summary>
     /// Команда редактирования данных книги.
     /// </summary>
-    public static RoutedUICommand Edit { get; private set; }
+    public static RoutedUICommand BookEdit { get; private set; }
 
     /// <summary>
     /// Команда удаления книги.
@@ -90,7 +90,7 @@ public static class AppCommands
 
         // Команды группы "Книга".
         Info = new RoutedUICommand("О книге", "Info", typeof(AppCommands));
-        Edit = new RoutedUICommand("Изменить...", "Edit", typeof(AppCommands));
+        BookEdit = new RoutedUICommand("Изменить...", "BookEdit", typeof(AppCommands));
         Delete = new RoutedUICommand("Удалить...", "Delete", typeof(AppCommands));
 
         // Команды группы "Справка"
