@@ -6,6 +6,7 @@ using Gemiyur.Collections;
 using Crocoteka.Dialogs;
 using Crocoteka.Models;
 using Crocoteka.Tools;
+using System.Globalization;
 
 namespace Crocoteka;
 
@@ -147,7 +148,7 @@ public partial class MainWindow : Window
         if (authors)
         {
             var selectedAuthor = (Author)AuthorsListBox.SelectedItem;
-            Authors.ReplaceRange(Db.GetAuthors());
+            Authors.ReplaceRange(Library.Authors);
             if (selectedAuthor != null)
             {
                 AuthorsListBox.SelectedItem = Authors.FirstOrDefault(x => x.AuthorId == selectedAuthor.AuthorId);
@@ -508,7 +509,18 @@ public partial class MainWindow : Window
 
     private void AuthorEdit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var author = (Author)AuthorsListBox.SelectedItem;
+        var editor = new AuthorEditor(author) { Owner = this };
+        if (editor.ShowDialog() != true || !editor.NameChanged)
+            return;
+        UpdateNavPanel(true, false, false);
+        foreach (var book in ShownBooks)
+        {
+            book.OnPropertyChanged("AuthorNamesFirstLast");
+            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
+            book.OnPropertyChanged("AuthorNamesLastFirst");
+            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        }
     }
 
     private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
