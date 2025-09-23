@@ -406,7 +406,6 @@ public partial class MainWindow : Window
             e.CanExecute ? @"Images\Buttons\Enabled\BookInfo.png" : @"Images\Buttons\Disabled\BookInfo.png");
         ((Image)BookInfoButton.Content).Source = bitmap;
         ((Image)BookInfoMenuItem.Icon).Source = bitmap;
-        ((Image)BookInfoContextMenuItem.Icon).Source = bitmap;
     }
 
     private void BookInfo_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -423,7 +422,6 @@ public partial class MainWindow : Window
             e.CanExecute ? @"Images\Buttons\Enabled\Edit.png" : @"Images\Buttons\Disabled\Edit.png");
         ((Image)BookEditButton.Content).Source = bitmap;
         ((Image)BookEditMenuItem.Icon).Source = bitmap;
-        ((Image)BookEditContextMenuItem.Icon).Source = bitmap;
     }
 
     private void BookEdit_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -461,7 +459,6 @@ public partial class MainWindow : Window
             e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
         ((Image)BookDeleteButton.Content).Source = bitmap;
         ((Image)BookDeleteMenuItem.Icon).Source = bitmap;
-        ((Image)BookDeleteContextMenuItem.Icon).Source = bitmap;
     }
 
     private void BookDelete_Executed(object sender, ExecutedRoutedEventArgs e)
