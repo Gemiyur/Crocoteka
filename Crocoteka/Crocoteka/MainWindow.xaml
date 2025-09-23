@@ -313,7 +313,26 @@
                                      Style="{StaticResource NavListBoxStyle}"
                                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                      ItemTemplate="{StaticResource GenreDataTemplate}"
-                                     SelectionChanged="GenresListBox_SelectionChanged" />
+                                     SelectionChanged="GenresListBox_SelectionChanged">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu>
+                                        <MenuItem x:Name="GenreEditContextMenuItem"
+                                                  Style="{StaticResource MenuItemStyle}"
+                                                  Command="local:AppCommands.GenreEdit">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images\Buttons\Enabled\Edit.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="GenreDeleteContextMenuItem"
+                                                  Style="{StaticResource MenuItemStyle}"
+                                                  Command="local:AppCommands.GenreDelete">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images\Buttons\Enabled\Delete.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
                         </Expander>
                     </Grid>
                 </ScrollViewer>
