@@ -245,7 +245,33 @@
                                      Style="{StaticResource NavListBoxStyle}"
                                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                      ItemTemplate="{StaticResource AuthorFullNameDataTemplate}"
-                                     SelectionChanged="AuthorsListBox_SelectionChanged" />
+                                     SelectionChanged="AuthorsListBox_SelectionChanged">
+                                <ListBox.ContextMenu>
+                                    <ContextMenu x:Name="AuthorContextMenu">
+                                        <MenuItem x:Name="AuthorInfoContextMenuItem"
+                                                  Style="{StaticResource MenuItemStyle}"
+                                                  Command="local:AppCommands.AuthorInfo">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images\Buttons\Enabled\Info.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="AuthorEditContextMenuItem"
+                                                  Style="{StaticResource MenuItemStyle}"
+                                                  Command="local:AppCommands.AuthorEdit">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images\Buttons\Enabled\Edit.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                        <MenuItem x:Name="AuthorDeleteContextMenuItem"
+                                                  Style="{StaticResource MenuItemStyle}"
+                                                  Command="local:AppCommands.AuthorDelete">
+                                            <MenuItem.Icon>
+                                                <Image Source="Images\Buttons\Enabled\Delete.png" />
+                                            </MenuItem.Icon>
+                                        </MenuItem>
+                                    </ContextMenu>
+                                </ListBox.ContextMenu>
+                            </ListBox>
                         </Expander>
                         <Expander Grid.Row="3" x:Name="CyclesExpander" Header="Серии"
                                   Style="{StaticResource NavExpanderStyle}">
@@ -330,21 +356,22 @@
                 </ListView.View>
                 <ListView.ContextMenu>
                     <ContextMenu x:Name="BookContextMenu">
-                        <MenuItem x:Name="BookInfoContextMenuItem" Style="{StaticResource MenuItemStyle}" FontWeight="Bold"
+                        <MenuItem x:Name="BookInfoContextMenuItem"
+                                  Style="{StaticResource MenuItemStyle}"
                                   Command="local:AppCommands.BookInfo">
                             <MenuItem.Icon>
                                 <Image Source="Images\Buttons\Enabled\BookInfo.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <Separator />
-                        <MenuItem x:Name="BookEditContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                        <MenuItem x:Name="BookEditContextMenuItem"
+                                  Style="{StaticResource MenuItemStyle}"
                                   Command="local:AppCommands.BookEdit">
                             <MenuItem.Icon>
                                 <Image Source="Images\Buttons\Enabled\Edit.png" />
                             </MenuItem.Icon>
                         </MenuItem>
-                        <Separator />
-                        <MenuItem x:Name="BookDeleteContextMenuItem" Style="{StaticResource MenuItemStyle}"
+                        <MenuItem x:Name="BookDeleteContextMenuItem"
+                                  Style="{StaticResource MenuItemStyle}"
                                   Command="local:AppCommands.BookDelete">
                             <MenuItem.Icon>
                                 <Image Source="Images\Buttons\Enabled\Delete.png" />
