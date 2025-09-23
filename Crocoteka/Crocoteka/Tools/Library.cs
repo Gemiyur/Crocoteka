@@ -19,17 +19,17 @@ public static class Library
     /// <summary>
     /// Список всех авторов.
     /// </summary>
-    public static readonly List<Author> Authors;
+    public static readonly List<Author> Authors = [];
 
     /// <summary>
     /// Список всех серий.
     /// </summary>
-    public static readonly List<Cycle> Cycles;
+    public static readonly List<Cycle> Cycles = [];
 
     /// <summary>
     /// Список всех жанров.
     /// </summary>
-    public static readonly List<Genre> Genres;
+    public static readonly List<Genre> Genres = [];
 
     /// <summary>
     /// Статический конструктор.
@@ -37,9 +37,21 @@ public static class Library
     static Library()
     {
         Books = Db.GetBooks();
-        Authors = Db.GetAuthors();
-        Cycles = Db.GetCycles();
-        Genres = Db.GetGenres();
+
+        var authors = Books.SelectMany(x => x.Authors).Cast<Author>();
+        Authors.AddRange(authors.Where(x => !Authors.Exists(a => a.AuthorId == x.AuthorId)));
+        Authors.AddRange(Db.GetAuthors().Where(x => !Authors.Exists(a => a.AuthorId == x.AuthorId)));
+        SortAuthors();
+
+        var cycles = Books.Select(x => x.Cycle).Cast<Cycle>().Where(x => x != null);
+        Cycles.AddRange(cycles.Where(x => !Cycles.Exists(c => c.CycleId == x.CycleId)));
+        Cycles.AddRange(Db.GetCycles().Where(x => !Cycles.Exists(c => c.CycleId == x.CycleId)));
+        SortCycles();
+
+        var genres = Books.SelectMany(x => x.Genres).Cast<Genre>();
+        Genres.AddRange(genres.Where(x => !Genres.Exists(g => g.GenreId == x.GenreId)));
+        Genres.AddRange(Db.GetGenres().Where(x => !Genres.Exists(g => g.GenreId == x.GenreId)));
+        SortGenres();
     }
 
     /// <summary>
