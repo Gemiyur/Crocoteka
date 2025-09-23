@@ -223,6 +223,20 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
+    /// Обновляет имена авторов в списке отображаемых книг.
+    /// </summary>
+    private void UpdateShownBooksAuthors()
+    {
+        foreach (var book in ShownBooks)
+        {
+            book.OnPropertyChanged("AuthorNamesFirstLast");
+            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
+            book.OnPropertyChanged("AuthorNamesLastFirst");
+            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        }
+    }
+
+    /// <summary>
     /// Обновляет количество отображаемых книг в строке статуса.
     /// </summary>
     private void UpdateStatusBarBooksCount() => BooksCountTextBlock.Text = BooksListView.Items.Count.ToString();
@@ -493,13 +507,7 @@ public partial class MainWindow : Window
         UpdateNavPanel(true, false, false);
         if (selectedItem != null && AuthorsListBox.SelectedItem == null)
             UpdateShownBooks();
-        foreach (var book in ShownBooks)
-        {
-            book.OnPropertyChanged("AuthorNamesFirstLast");
-            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
-            book.OnPropertyChanged("AuthorNamesLastFirst");
-            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
-        }
+        UpdateShownBooksAuthors();
     }
 
     private void AuthorInfo_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -514,13 +522,7 @@ public partial class MainWindow : Window
         if (editor.ShowDialog() != true || !editor.NameChanged)
             return;
         UpdateNavPanel(true, false, false);
-        foreach (var book in ShownBooks)
-        {
-            book.OnPropertyChanged("AuthorNamesFirstLast");
-            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
-            book.OnPropertyChanged("AuthorNamesLastFirst");
-            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
-        }
+        UpdateShownBooksAuthors();
     }
 
     private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
