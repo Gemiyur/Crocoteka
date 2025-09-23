@@ -504,27 +504,12 @@ public partial class MainWindow : Window
         }
     }
 
-    private void AuthorInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-
-    }
-
     private void AuthorInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
     }
 
-    private void AuthorEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-
-    }
-
     private void AuthorEdit_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-
-    }
-
-    private void AuthorDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
 
     }
@@ -550,27 +535,12 @@ public partial class MainWindow : Window
             UpdateShownBooks();
     }
 
-    private void CycleInfo_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-
-    }
-
     private void CycleInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
     }
 
-    private void CycleEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-
-    }
-
     private void CycleEdit_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-
-    }
-
-    private void CycleDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
 
     }
@@ -596,17 +566,7 @@ public partial class MainWindow : Window
             UpdateShownBooks();
     }
 
-    private void GenreEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
-    {
-
-    }
-
     private void GenreEdit_Executed(object sender, ExecutedRoutedEventArgs e)
-    {
-
-    }
-
-    private void GenreDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
 
     }
