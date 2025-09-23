@@ -525,6 +525,16 @@ public partial class MainWindow : Window
         UpdateShownBooksAuthors();
     }
 
+    private void AuthorDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = !Library.AuthorHasBooks(((Author)AuthorsListBox.SelectedItem).AuthorId);
+        if (!IsVisible)
+            return;
+        var bitmap = App.GetBitmapImage(
+            e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
+        ((Image)AuthorDeleteContextMenuItem.Icon).Source = bitmap;
+    }
+
     private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
@@ -556,6 +566,16 @@ public partial class MainWindow : Window
 
     }
 
+    private void CycleDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = !Library.CycleHasBooks(((Cycle)CyclesListBox.SelectedItem).CycleId);
+        if (!IsVisible)
+            return;
+        var bitmap = App.GetBitmapImage(
+            e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
+        ((Image)CycleDeleteContextMenuItem.Icon).Source = bitmap;
+    }
+
     private void CycleDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
@@ -580,6 +600,16 @@ public partial class MainWindow : Window
     private void GenreEdit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
 
+    }
+
+    private void GenreDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+    {
+        e.CanExecute = !Library.GenreHasBooks(((Genre)GenresListBox.SelectedItem).GenreId);
+        if (!IsVisible)
+            return;
+        var bitmap = App.GetBitmapImage(
+            e.CanExecute ? @"Images\Buttons\Enabled\Delete.png" : @"Images\Buttons\Disabled\Delete.png");
+        ((Image)GenreDeleteContextMenuItem.Icon).Source = bitmap;
     }
 
     private void GenreDelete_Executed(object sender, ExecutedRoutedEventArgs e)
