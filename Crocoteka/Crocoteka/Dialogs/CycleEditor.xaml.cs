@@ -49,21 +49,30 @@ public partial class CycleEditor : Window
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
         var title = TitleTextBox.Text.Trim();
+        var annotation = AnnotationTextBox.Text.Trim();
+
         var foundCycle = Library.Cycles.Find(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase));
         if (foundCycle != null && foundCycle.CycleId != cycle.CycleId)
         {
             MessageBox.Show("Серия с таким названием уже существует.", Title);
             return;
         }
+
         var origTitle = cycle.Title;
+        var origAnnotation = cycle.Annotation;
+
         cycle.Title = title;
+        cycle.Annotation = annotation;
+
         var saved = cycle.CycleId > 0 ? Library.UpdateCycle(cycle) : Library.AddCycle(cycle);
         if (!saved)
         {
             MessageBox.Show("Не удалось сохранить серию.", Title);
             cycle.Title = origTitle;
+            cycle.Annotation = origAnnotation;
             DialogResult = false;
         }
+
         DialogResult = true;
     }
 
