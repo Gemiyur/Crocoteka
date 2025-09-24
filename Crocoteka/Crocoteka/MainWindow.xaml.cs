@@ -589,7 +589,14 @@ public partial class MainWindow : Window
 
     private void CycleDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var cycle = (Cycle)CyclesListBox.SelectedItem;
+        if (!Library.DeleteCycle(cycle))
+        {
+            MessageBox.Show("Не удалось удалить серию.", Title);
+            return;
+        }
+        Cycles.Remove(cycle);
+        UpdateNavPanel(false, true, false);
     }
 
     #endregion
