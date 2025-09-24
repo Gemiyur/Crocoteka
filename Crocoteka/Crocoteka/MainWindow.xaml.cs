@@ -6,7 +6,6 @@ using Gemiyur.Collections;
 using Crocoteka.Dialogs;
 using Crocoteka.Models;
 using Crocoteka.Tools;
-using System.Globalization;
 
 namespace Crocoteka;
 
@@ -636,7 +635,14 @@ public partial class MainWindow : Window
 
     private void GenreDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var genre = (Genre)GenresListBox.SelectedItem;
+        if (!Library.DeleteGenre(genre))
+        {
+            MessageBox.Show("Не удалось удалить жанр.", Title);
+            return;
+        }
+        Genres.Remove(genre);
+        UpdateNavPanel(false, false, true);
     }
 
     #endregion
