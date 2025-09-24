@@ -537,7 +537,14 @@ public partial class MainWindow : Window
 
     private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var author = (Author)AuthorsListBox.SelectedItem;
+        if (!Library.DeleteAuthor(author))
+        {
+            MessageBox.Show("Не удалось удалить автора.", Title);
+            return;
+        }
+        Authors.Remove(author);
+        UpdateNavPanel(true, false, false);
     }
 
     #endregion
