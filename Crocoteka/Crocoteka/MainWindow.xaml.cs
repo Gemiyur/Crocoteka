@@ -526,7 +526,8 @@ public partial class MainWindow : Window
 
     private void AuthorDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = !Library.AuthorHasBooks(((Author)AuthorsListBox.SelectedItem).AuthorId);
+        e.CanExecute = AuthorsListBox != null && AuthorsListBox.SelectedItem != null &&
+                       !Library.AuthorHasBooks(((Author)AuthorsListBox.SelectedItem).AuthorId);
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
@@ -578,7 +579,8 @@ public partial class MainWindow : Window
 
     private void CycleDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = !Library.CycleHasBooks(((Cycle)CyclesListBox.SelectedItem).CycleId);
+        e.CanExecute = CyclesListBox != null && CyclesListBox.SelectedItem != null &&
+                       !Library.CycleHasBooks(((Cycle)CyclesListBox.SelectedItem).CycleId);
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
@@ -625,7 +627,8 @@ public partial class MainWindow : Window
 
     private void GenreDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
     {
-        e.CanExecute = !Library.GenreHasBooks(((Genre)GenresListBox.SelectedItem).GenreId);
+        e.CanExecute = GenresListBox != null && GenresListBox.SelectedItem != null &&
+                       !Library.GenreHasBooks(((Genre)GenresListBox.SelectedItem).GenreId);
         if (!IsVisible)
             return;
         var bitmap = App.GetBitmapImage(
