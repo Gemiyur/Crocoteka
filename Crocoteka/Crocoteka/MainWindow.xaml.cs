@@ -159,7 +159,7 @@ public partial class MainWindow : Window
         if (cycles)
         {
             var selectedCycle = (Cycle)CyclesListBox.SelectedItem;
-            Cycles.ReplaceRange(Db.GetCycles());
+            Cycles.ReplaceRange(Library.Cycles);
             if (selectedCycle != null)
             {
                 CyclesListBox.SelectedItem = Cycles.FirstOrDefault(x => x.CycleId == selectedCycle.CycleId);
@@ -169,11 +169,11 @@ public partial class MainWindow : Window
         }
         if (genres)
         {
-            var selectedTag = (Genre)GenresListBox.SelectedItem;
-            Genres.ReplaceRange(Db.GetGenres());
-            if (selectedTag != null)
+            var selectedGenre = (Genre)GenresListBox.SelectedItem;
+            Genres.ReplaceRange(Library.Genres);
+            if (selectedGenre != null)
             {
-                GenresListBox.SelectedItem = Genres.FirstOrDefault(x => x.Equals(selectedTag));
+                GenresListBox.SelectedItem = Genres.FirstOrDefault(x => x.Equals(selectedGenre));
                 if (GenresListBox.SelectedItem != null)
                     GenresListBox.ScrollIntoView(GenresListBox.SelectedItem);
             }
