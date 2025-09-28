@@ -511,7 +511,8 @@ public partial class MainWindow : Window
 
     private void AuthorInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var author = (Author)AuthorsListBox.SelectedItem;
+        new AuthorInfoDialog(author) { Owner = this }.ShowDialog();
     }
 
     private void AuthorEdit_Executed(object sender, ExecutedRoutedEventArgs e)
