@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Серия"
-        Width="400" Height="300" ResizeMode="NoResize"
+        Width="400" Height="350" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 

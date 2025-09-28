@@ -566,7 +566,8 @@ public partial class MainWindow : Window
 
     private void CycleInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        var cycle = (Cycle)CyclesListBox.SelectedItem;
+        new CycleInfoDialog(cycle) { Owner = this }.ShowDialog();
     }
 
     private void CycleEdit_Executed(object sender, ExecutedRoutedEventArgs e)
