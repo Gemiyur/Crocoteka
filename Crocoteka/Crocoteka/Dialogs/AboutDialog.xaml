@@ -37,7 +37,7 @@
                    Margin="0,10,0,0" />
         <TextBlock Grid.Row="2" Grid.Column="2" x:Name="CopyrightTextBlock"
                    HorizontalAlignment="Center"
-                   Margin="0,10,0,0" />
+                   Margin="0,20,0,0" />
         <TextBlock Grid.Row="3" Grid.Column="2" x:Name="VersionTextBlock"
                    HorizontalAlignment="Center"
                    Margin="0,10,0,0" />
