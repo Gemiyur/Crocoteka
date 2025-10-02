@@ -187,6 +187,24 @@ public class Book : BaseModel
     public bool HasText => TextCount > 0;
 
     /// <summary>
+    /// Возвращает количество неизвестных файлов книги.
+    /// </summary>
+    [BsonIgnore]
+    public int UnknownCount => Files.Count > 0 ? Files.Count(x => !x.IsAudio && !x.IsText) : 0;
+
+    /// <summary>
+    /// Возвращает строку количества неизвестных файлов книги для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string UnknownCountText => UnknownCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли неизвестные файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasUnknown => UnknownCount > 0;
+
+    /// <summary>
     /// Возвращает количество ненайденных файлов книги.
     /// </summary>
     [BsonIgnore]
