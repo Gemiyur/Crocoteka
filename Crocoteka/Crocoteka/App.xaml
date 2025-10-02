@@ -13,6 +13,10 @@
 
             <SolidColorBrush x:Key="MouseOverListItemBackgroundBrush" Color="AliceBlue" />
 
+            <Color x:Key="FileNotFoundColor">Red</Color>
+            
+            <SolidColorBrush x:Key="FileNotFoundBrush" Color="{StaticResource FileNotFoundColor}" />
+            
             <Style x:Key="ListBoxItemStyle" TargetType="ListBoxItem">
                 <Setter Property="Template">
                     <Setter.Value>
@@ -74,6 +78,40 @@
 
             <DataTemplate x:Key="GenreDataTemplate">
                 <TextBlock Text="{Binding Title}" />
+            </DataTemplate>
+
+            <DataTemplate x:Key="FileDataTemplate">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Ellipse Grid.Row="0" Grid.Column="0" Height="8" Width="8" Fill="Black"
+                             VerticalAlignment="Top"
+                             Margin="4,4,4,0" />
+                    <TextBlock Grid.Row="0" Grid.Column="1" x:Name="FilenameTextBlock"
+                               Text="{Binding Filename}"
+                               TextWrapping="Wrap"
+                               Margin="4,0,4,0" />
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                               Text="{Binding ListItemComment}"
+                               FontStyle="Italic"
+                               TextWrapping="Wrap"
+                               Margin="4,0,4,0" />
+                </Grid>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Path=Exists}" Value="False">
+                        <Setter TargetName="FilenameTextBlock" Property="Foreground">
+                            <Setter.Value>
+                                <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </DataTemplate.Triggers>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

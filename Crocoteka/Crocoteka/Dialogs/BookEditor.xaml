@@ -12,9 +12,6 @@
 
     <Window.Resources>
         <ResourceDictionary>
-            <Color x:Key="FileNotFoundColor">Red</Color>
-            <SolidColorBrush x:Key="FileNotFoundBrush" Color="{StaticResource FileNotFoundColor}" />
-
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="85" />
                 <Setter Property="Height" Value="25" />
@@ -223,44 +220,11 @@
                     </Grid.RowDefinitions>
                     <ListBox Grid.Row="0" x:Name="FilesListBox"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                             ItemTemplate="{StaticResource FileDataTemplate}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectionMode="Extended"
                              Margin="4,0,4,2"
-                             SelectionChanged="FilesListBox_SelectionChanged">
-                        <ListBox.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto" />
-                                        <RowDefinition Height="Auto" />
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto" />
-                                        <ColumnDefinition />
-                                    </Grid.ColumnDefinitions>
-                                    <Ellipse Grid.Row="0" Grid.Column="0" Height="8" Width="8" Fill="Black"
-                                             VerticalAlignment="Top"
-                                             Margin="4,4,4,0" />
-                                    <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Filename}" x:Name="Filename"
-                                               TextWrapping="Wrap"
-                                               Margin="4,0,4,0" />
-                                    <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding ListItemComment}"
-                                               FontStyle="Italic"
-                                               TextWrapping="Wrap"
-                                               Margin="4,0,4,0" />
-                                </Grid>
-                                <DataTemplate.Triggers>
-                                    <DataTrigger Binding="{Binding Path=Exists}" Value="False">
-                                        <Setter TargetName="Filename" Property="Foreground">
-                                            <Setter.Value>
-                                                <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
-                                            </Setter.Value>
-                                        </Setter>
-                                    </DataTrigger>
-                                </DataTemplate.Triggers>
-                            </DataTemplate>
-                        </ListBox.ItemTemplate>
-                    </ListBox>
+                             SelectionChanged="FilesListBox_SelectionChanged" />
                     <Grid Grid.Row="1" Margin="4,10,4,4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />

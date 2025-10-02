@@ -121,18 +121,7 @@ public partial class MainWindow : Window
     /// <param name="book">Книга.</param>
     public void ShowBookInfo(Book book)
     {
-        //var window = App.FindBookInfoWindow();
-        //if (window != null)
-        //{
-        //    if (window.Book != book)
-        //        window.Book = book;
-        //    App.RestoreWindow(window);
-        //    window.Activate();
-        //}
-        //else
-        //{
-        //    new BookInfoDialog(book) { Owner = this }.Show();
-        //}
+        new BookInfoDialog(book) { Owner = this }.ShowDialog();
     }
 
     /// <summary>
@@ -424,7 +413,7 @@ public partial class MainWindow : Window
 
     private void BookInfo_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        ShowBookInfo((Book)BooksListView.SelectedItem);
     }
 
     private void BookEdit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
