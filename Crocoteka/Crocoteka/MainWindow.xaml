@@ -356,7 +356,7 @@
                         </GridView.ColumnHeaderContainerStyle>
                         <GridViewColumn x:Name="BooksListViewTitleColumn" Header="Название"
                                         CellTemplate="{StaticResource BookDataTemplate}" />
-                        <GridViewColumn Header="Файлов" Width="65">
+                        <GridViewColumn Header="Файлов" Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding FilesCountText}"
@@ -365,7 +365,7 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Аудио" Width="65">
+                        <GridViewColumn Header="Аудио" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding AudioCountText}"
@@ -374,10 +374,19 @@
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Текст" Width="65">
+                        <GridViewColumn Header="Текст" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
                                     <TextBlock Text="{Binding TextCountText}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="?" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding UnknownCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
                                 </DataTemplate>
