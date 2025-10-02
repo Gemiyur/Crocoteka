@@ -90,10 +90,14 @@ public partial class BookInfoDialog : Window
 
     private void InitializeFiles()
     {
+        TotalFilesTextBlock.Text += book.FilesCountText;
+        AudioFilesTextBlock.Text += book.AudioCountText;
+        TextFilesTextBlock.Text += book.TextCountText;
+        UnknownFilesTextBlock.Text += book.UnknownCountText;
+        NotFoundFilesTextBlock.Text += book.NotFoundCountText;
         List<BookFile> files = [];
         files.AddRange(book.Files.OrderBy(x => x.Filename, StringComparer.CurrentCultureIgnoreCase));
         FilesListBox.ItemsSource = files;
-        FileNotFoundTextBlock.Visibility = files.Any(x => !x.Exists) ? Visibility.Visible : Visibility.Collapsed;
     }
 
     private void AuthorLink_Click(object sender, RoutedEventArgs e)

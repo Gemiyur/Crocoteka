@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="О книге"
-        Width="500" Height="500" ResizeMode="CanResize"
+        Width="500" Height="500" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -19,6 +19,10 @@
                         <Setter Property="TextDecorations" Value="Underline" />
                     </Trigger>
                 </Style.Triggers>
+            </Style>
+
+            <Style x:Key="DividerColumnStyle" TargetType="ColumnDefinition">
+                <Setter Property="Width" Value="16" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -100,20 +104,38 @@
             <TabItem Header="Файлы">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition />
+                        <!--<RowDefinition />-->
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" x:Name="FilesListBox"
+                    <Grid Grid.Row="0" Margin="8,4,8,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" x:Name="TotalFilesTextBlock" Text="Всего: " />
+                        <TextBlock Grid.Column="2" x:Name="AudioFilesTextBlock"  Text="Аудио: " />
+                        <TextBlock Grid.Column="4" x:Name="TextFilesTextBlock" Text="Текст: " />
+                        <TextBlock Grid.Column="6" x:Name="UnknownFilesTextBlock" Text="Неизвестных: " />
+                        <TextBlock Grid.Column="7" x:Name="NotFoundFilesTextBlock" Text="Не найдено: "
+                                   HorizontalAlignment="Right" Foreground="Red" />
+                    </Grid>
+
+                    <Separator Grid.Row="1" />
+
+                    <ListBox Grid.Row="2" x:Name="FilesListBox"
                              BorderThickness="0"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                              ItemTemplate="{StaticResource FileDataTemplate}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectionChanged="FilesListBox_SelectionChanged" />
-                    <TextBlock Grid.Row="1" x:Name="FileNotFoundTextBlock" Text="*Файл не найден"
-                               Foreground="{StaticResource FileNotFoundBrush}"
-                               Margin="10,10,0,0" 
-                               TextDecorations="OverLine"
-                               Visibility="Collapsed" />
                 </Grid>
             </TabItem>
         </TabControl>
