@@ -73,18 +73,6 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".zip")]
-        public string ZipExtensions {
-            get {
-                return ((string)(this["ZipExtensions"]));
-            }
-            set {
-                this["ZipExtensions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool NavAuthorFullName {
             get {
