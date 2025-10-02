@@ -93,8 +93,14 @@ public partial class BookInfoDialog : Window
         TotalFilesTextBlock.Text += book.FilesCountText;
         AudioFilesTextBlock.Text += book.AudioCountText;
         TextFilesTextBlock.Text += book.TextCountText;
-        UnknownFilesTextBlock.Text += book.UnknownCountText;
-        NotFoundFilesTextBlock.Text += book.NotFoundCountText;
+        if (book.UnknownCount > 0)
+            UnknownFilesTextBlock.Text += book.UnknownCountText;
+        else
+            UnknownFilesTextBlock.Visibility = Visibility.Collapsed;
+        if (book.NotFoundCount > 0)
+            NotFoundFilesTextBlock.Text += book.NotFoundCountText;
+        else
+            NotFoundFilesTextBlock.Visibility = Visibility.Collapsed;
         List<BookFile> files = [];
         files.AddRange(book.Files.OrderBy(x => x.Filename, StringComparer.CurrentCultureIgnoreCase));
         FilesListBox.ItemsSource = files;
