@@ -275,14 +275,61 @@ public partial class BookEditor : Window
         RemoveCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
     }
 
+    private string oldCycleNumbers = string.Empty;
+
+    private bool CheckCycleNumbers()
+    {
+        var array = CycleNumbersTextBox.Text.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+        foreach (var item in array)
+        {
+            if (!int.TryParse(item.Trim(), NumberStyles.None, null, out _))
+                return false;
+        }
+        return true;
+    }
+
+    private void SortCycleNumbers()
+    {
+        var array = CycleNumbersTextBox.Text.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
+        List<int> list = [.. array.Select(int.Parse)];
+        list.Sort();
+        var result = string.Empty;
+        for (int i = 0; i < list.Count; i++)
+        {
+            if (i < list.Count - 1)
+                result += $"{list[i]}, ";
+            else
+                result += list[i].ToString();
+        }
+        CycleNumbersTextBox.Text = result;
+    }
+
     private void CycleNumbersTextBox_LostFocus(object sender, RoutedEventArgs e)
     {
-
+        SortCycleNumbers();
     }
 
     private void CycleNumbersTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        if (oldCycleNumbers == CycleNumbersTextBox.Text)
+            return;
+        var text = CycleNumbersTextBox.Text;
+        if (text == string.Empty)
+        {
+            oldCycleNumbers = string.Empty;
+            CycleNumbersTextBox.Text = oldCycleNumbers;
+            return;
+        }
+        var pos = CycleNumbersTextBox.SelectionStart;
+        if (!CheckCycleNumbers())
+        {
+            CycleNumbersTextBox.Text = oldCycleNumbers;
+            CycleNumbersTextBox.SelectionStart = pos - 1;
+        }
+        else
+        {
+            oldCycleNumbers = CycleNumbersTextBox.Text;
+        }
     }
 
     #region Номер книги в серии - старое.
