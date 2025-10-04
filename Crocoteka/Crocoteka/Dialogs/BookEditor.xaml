@@ -118,7 +118,22 @@
                                      IsReadOnlyCaretVisible="True"
                                      Background="{StaticResource TextBoxReadOnlyBackgroundBrush}"
                                      TextChanged="CycleTextBox_TextChanged" />
-                            <StackPanel Grid.Row="2" Grid.Column="0" Orientation="Horizontal">
+                            <Grid Grid.Row="2" Grid.Column="0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="Номера в серии" VerticalAlignment="Center" />
+                                <TextBox Grid.Column="1" x:Name="CycleNumbersTextBox"
+                                         Margin="10,0,0,0"
+                                         Padding="2,0,2,0"
+                                         VerticalAlignment="Center"
+                                         LostFocus="CycleNumbersTextBox_LostFocus"
+                                         TextChanged="CycleNumbersTextBox_TextChanged" />
+                            </Grid>
+
+                            <!-- StackPanel - Номер книги в серии - старое -->
+                            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
                                 <TextBlock Text="Номер в серии" VerticalAlignment="Center" />
                                 <TextBox x:Name="CyclePartTextBox"
                                          Width="50"
@@ -127,6 +142,7 @@
                                          TextAlignment="Center"
                                          TextChanged="CyclePartTextBox_TextChanged" />
                             </StackPanel>
+                            
                             <Button Grid.Row="0" Grid.Column="1" x:Name="PickCycleButton" Content="Выбрать"
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"

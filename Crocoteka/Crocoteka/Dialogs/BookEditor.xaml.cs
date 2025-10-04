@@ -275,6 +275,18 @@ public partial class BookEditor : Window
         RemoveCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
     }
 
+    private void CycleNumbersTextBox_LostFocus(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void CycleNumbersTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    #region Номер книги в серии - старое.
+
     private string oldCyclePartText = string.Empty;
 
     private void CyclePartTextBox_TextChanged(object sender, TextChangedEventArgs e)
@@ -299,6 +311,8 @@ public partial class BookEditor : Window
             oldCyclePartText = CyclePartTextBox.Text;
         }
     }
+
+    #endregion
 
     private void PickCycleButton_Click(object sender, RoutedEventArgs e)
     {
