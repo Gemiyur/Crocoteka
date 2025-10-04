@@ -86,7 +86,7 @@ public partial class BookEditor : Window
         AuthorsListBox.ItemsSource = authors;
         cycle = book.Cycle;
         CycleTextBox.Text = cycle != null ? cycle.Title : string.Empty;
-        CyclePartTextBox.Text = book.CyclePart;
+        CycleNumbersTextBox.Text = book.CycleNumbers;
         AnnotationTextBox.Text = book.Annotation;
         genres.AddRange(book.Genres);
         SortGenres();
@@ -153,13 +153,11 @@ public partial class BookEditor : Window
             }
         }
 
-        // Номер в серии.
-        int.TryParse(CyclePartTextBox.Text, NumberStyles.None, null, out var cycleNumber);
-        if (book.CycleNumber != cycleNumber)
+        // Номера в серии.
+        if (book.CycleNumbers != CycleNumbersTextBox.Text)
         {
-            book.CycleNumber = cycleNumber;
+            book.CycleNumbers = CycleNumbersTextBox.Text;
             changed = true;
-            CycleNumberChanged = true;
         }
 
         // Аннотация.
@@ -332,35 +330,6 @@ public partial class BookEditor : Window
         }
     }
 
-    #region Номер книги в серии - старое.
-
-    private string oldCyclePartText = string.Empty;
-
-    private void CyclePartTextBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        if (oldCyclePartText == CyclePartTextBox.Text)
-            return;
-        var text = CyclePartTextBox.Text;
-        if (text == string.Empty)
-        {
-            oldCyclePartText = string.Empty;
-            CyclePartTextBox.Text = oldCyclePartText;
-            return;
-        }
-        var pos = CyclePartTextBox.SelectionStart;
-        if (!int.TryParse(text, NumberStyles.None, null, out var value))
-        {
-            CyclePartTextBox.Text = oldCyclePartText;
-            CyclePartTextBox.SelectionStart = pos - 1;
-        }
-        else
-        {
-            oldCyclePartText = CyclePartTextBox.Text;
-        }
-    }
-
-    #endregion
-
     private void PickCycleButton_Click(object sender, RoutedEventArgs e)
     {
         var picker = new CyclePicker() { Owner = this };
@@ -370,7 +339,7 @@ public partial class BookEditor : Window
             return;
         cycle = picker.PickedCycle;
         CycleTextBox.Text = cycle.Title;
-        CyclePartTextBox.Text = string.Empty;
+        CycleNumbersTextBox.Text = string.Empty;
     }
 
     private void NewCycleButton_Click(object sender, RoutedEventArgs e)
@@ -381,7 +350,7 @@ public partial class BookEditor : Window
             return;
         cycle = newCycle;
         CycleTextBox.Text = cycle.Title;
-        CyclePartTextBox.Text = string.Empty;
+        CycleNumbersTextBox.Text = string.Empty;
     }
 
     private void EditCycleButton_Click(object sender, RoutedEventArgs e)
@@ -398,7 +367,7 @@ public partial class BookEditor : Window
     {
         cycle = null;
         CycleTextBox.Text = string.Empty;
-        CyclePartTextBox.Text = string.Empty;
+        CycleNumbersTextBox.Text = string.Empty;
     }
 
     #endregion

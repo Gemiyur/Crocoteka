@@ -131,18 +131,6 @@
                                          LostFocus="CycleNumbersTextBox_LostFocus"
                                          TextChanged="CycleNumbersTextBox_TextChanged" />
                             </Grid>
-
-                            <!-- StackPanel - Номер книги в серии - старое -->
-                            <StackPanel Grid.Row="4" Grid.Column="0" Orientation="Horizontal">
-                                <TextBlock Text="Номер в серии" VerticalAlignment="Center" />
-                                <TextBox x:Name="CyclePartTextBox"
-                                         Width="50"
-                                         Margin="8,0,0,0"
-                                         VerticalAlignment="Center"
-                                         TextAlignment="Center"
-                                         TextChanged="CyclePartTextBox_TextChanged" />
-                            </StackPanel>
-                            
                             <Button Grid.Row="0" Grid.Column="1" x:Name="PickCycleButton" Content="Выбрать"
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"
