@@ -440,7 +440,7 @@ public partial class MainWindow : Window
         if (!result)
             return;
         if (editor.TitleChanged || editor.AuthorsChanged ||
-            editor.CycleChanged || editor.CycleNumberChanged || editor.GenresChanged)
+            editor.CycleChanged || editor.CycleNumbersChanged || editor.GenresChanged)
         {
             UpdateShownBooks();
             SelectBookInShownBooks(book);

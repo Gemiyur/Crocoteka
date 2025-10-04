@@ -30,7 +30,7 @@ public partial class BookEditor : Window
     /// <summary>
     /// Возвращает был ли изменён номер книги в серии.
     /// </summary>
-    public bool CycleNumberChanged { get; private set; }
+    public bool CycleNumbersChanged { get; private set; }
 
     /// <summary>
     /// Возвращает были ли изменения в жанрах книги.
@@ -158,6 +158,7 @@ public partial class BookEditor : Window
         {
             book.CycleNumbers = CycleNumbersTextBox.Text;
             changed = true;
+            CycleNumbersChanged = true;
         }
 
         // Аннотация.
