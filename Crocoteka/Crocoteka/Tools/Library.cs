@@ -141,10 +141,10 @@ public static class Library
     /// <remarks>Книги отсортированы по номеру в серии и названию при одинаковых номерах.</remarks>
     public static List<Book> GetCycleBooks(int cycleId)
     {
-        var comparer = new MultiKeyComparer(
-            [new IntKeyComparer(x => ((Book)x).CycleNumber), new StringKeyComparer(x => ((Book)x).Title)]);
+        //var comparer = new MultiKeyComparer(
+        //    [new IntKeyComparer(x => ((Book)x).CycleNumber), new StringKeyComparer(x => ((Book)x).Title)]);
         var books = Books.FindAll(x => BookInCycle(x, cycleId));
-        books.Sort(comparer);
+        //books.Sort(comparer);
         return books;
     }
 

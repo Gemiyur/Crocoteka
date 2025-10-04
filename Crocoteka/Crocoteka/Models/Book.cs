@@ -126,40 +126,6 @@ public class Book : BaseModel
     public string CycleNumbersText =>
         CycleNumbers.Length > 0 ? $"Номера в серии: {CycleNumbers}" : "Номера в серии не указаны";
 
-    #region Номер книги в серии - старое.
-
-    private int cycleNumber;
-
-    /// <summary>
-    /// Номер книги в серии книг.
-    /// </summary>
-    public int CycleNumber
-    {
-        get => cycleNumber;
-        set
-        {
-            cycleNumber = value;
-            OnPropertyChanged("CycleNumber");
-            OnPropertyChanged("CyclePart");
-            OnPropertyChanged("CyclePartText");
-        }
-    }
-
-    /// <summary>
-    /// Возвращает номер книги в серии книг в виде строки.
-    /// </summary>
-    /// <remarks>Для нуля возвращает пустую строку.</remarks>
-    [BsonIgnore]
-    public string CyclePart => CycleNumber > 0 ? CycleNumber.ToString() : "";
-
-    /// <summary>
-    /// Возвращает строку номера книги серии для отображения.
-    /// </summary>
-    [BsonIgnore]
-    public string CyclePartText => CycleNumber > 0 ? $"Номер в серии: {CyclePart}" : "Номер в серии не указан";
-
-    #endregion
-
     /// <summary>
     /// Список жанров книги.
     /// </summary>

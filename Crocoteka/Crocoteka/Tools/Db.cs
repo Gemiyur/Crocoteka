@@ -36,21 +36,21 @@ public static class Db
         var genre2 = new Genre() { Title = "Юмор" };
         genre2.GenreId = InsertGenre(genre2, db);
 
-        var book = new Book() { Title = "Понедельник начинается в субботу", Cycle = cycle1, CycleNumber = 1 };
+        var book = new Book() { Title = "Понедельник начинается в субботу", Cycle = cycle1, CycleNumbers = "1" };
         book.Authors.Add(author1);
         book.Authors.Add(author2);
         book.Genres.Add(genre1);
         book.Genres.Add(genre2);
         InsertBook(book, db);
 
-        book = new Book() { Title = "Сказка о Тройке", Cycle = cycle1, CycleNumber = 2 };
+        book = new Book() { Title = "Сказка о Тройке", Cycle = cycle1, CycleNumbers = "2" };
         book.Authors.Add(author1);
         book.Authors.Add(author2);
         book.Genres.Add(genre1);
         book.Genres.Add(genre2);
         InsertBook(book, db);
 
-        book = new Book() { Title = "Полдень. 22-й век", Cycle = cycle2, CycleNumber = 1 };
+        book = new Book() { Title = "Полдень. 22-й век", Cycle = cycle2, CycleNumbers = "1" };
         book.Authors.Add(author1);
         book.Authors.Add(author2);
         book.Genres.Add(genre1);
