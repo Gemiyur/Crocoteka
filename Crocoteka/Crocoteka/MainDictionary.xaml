@@ -77,7 +77,7 @@
                        FontStyle="Italic"
                        Foreground="{StaticResource BooksListViewForegroundBrush}"
                        TextWrapping="Wrap" />
-            <TextBlock Text="{Binding CyclePartText}" Padding="25,0,0,0"
+            <TextBlock Text="{Binding CycleNumbersText}" Padding="25,0,0,0"
                        Foreground="{StaticResource BooksListViewForegroundBrush}"/>
         </StackPanel>
     </DataTemplate>
