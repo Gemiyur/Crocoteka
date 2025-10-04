@@ -55,13 +55,13 @@ public partial class BookInfoDialog : Window
             link.Style = (Style)FindResource("HyperlinkStyle");
             link.Click += CycleLink_Click;
             CycleTitleTextBlock.Inlines.Add(link);
-            if (book.CyclePart.Length > 0)
+            if (book.CycleNumbers.Length > 0)
             {
-                CycleNumberStackPanel.Visibility = Visibility.Visible;
-                CycleNumberTextBlock.Text = book.CyclePart;
+                CycleNumbersStackPanel.Visibility = Visibility.Visible;
+                CycleNumbersTextBlock.Text = book.CycleNumbers;
             }
             else
-                CycleNumberStackPanel.Visibility = Visibility.Collapsed;
+                CycleNumbersStackPanel.Visibility = Visibility.Collapsed;
         }
         else
         {
