@@ -103,6 +103,31 @@ public class Book : BaseModel
     [BsonIgnore]
     public string CycleTitle => Cycle != null ? Cycle.Title : string.Empty;
 
+    private string cycleNumbers = string.Empty;
+
+    /// <summary>
+    /// Номера книг в серии книг.
+    /// </summary>
+    public string CycleNumbers
+    {
+        get => cycleNumbers;
+        set
+        {
+            cycleNumbers = value ?? string.Empty;
+            OnPropertyChanged("CycleNumbers");
+            OnPropertyChanged("CycleNumbersText");
+        }
+    }
+
+    /// <summary>
+    /// Возвращает строку номеров книг в серии для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string CycleNumbersText =>
+        CycleNumbers.Length > 0 ? $"Номера в серии: {CycleNumbers}" : "Номера в серии не указаны";
+
+    #region Номер книги в серии - старое.
+
     private int cycleNumber;
 
     /// <summary>
@@ -132,6 +157,8 @@ public class Book : BaseModel
     /// </summary>
     [BsonIgnore]
     public string CyclePartText => CycleNumber > 0 ? $"Номер в серии: {CyclePart}" : "Номер в серии не указан";
+
+    #endregion
 
     /// <summary>
     /// Список жанров книги.
