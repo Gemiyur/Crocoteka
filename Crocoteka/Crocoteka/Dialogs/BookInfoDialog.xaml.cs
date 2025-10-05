@@ -106,6 +106,16 @@ public partial class BookInfoDialog : Window
         FilesListBox.ItemsSource = files;
     }
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+
+    }
+
     private void AuthorLink_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not Hyperlink)
