@@ -240,6 +240,7 @@
                                      Style="{StaticResource NavListBoxStyle}"
                                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                      ItemTemplate="{StaticResource AuthorFullNameDataTemplate}"
+                                     MouseDoubleClick="AuthorsListBox_MouseDoubleClick" 
                                      SelectionChanged="AuthorsListBox_SelectionChanged">
                                 <ListBox.ContextMenu>
                                     <ContextMenu>
@@ -274,6 +275,7 @@
                                      Style="{StaticResource NavListBoxStyle}"
                                      ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                                      ItemTemplate="{StaticResource CycleDataTemplate}"
+                                     MouseDoubleClick="CyclesListBox_MouseDoubleClick" 
                                      SelectionChanged="CyclesListBox_SelectionChanged">
                                 <ListBox.ContextMenu>
                                     <ContextMenu>
