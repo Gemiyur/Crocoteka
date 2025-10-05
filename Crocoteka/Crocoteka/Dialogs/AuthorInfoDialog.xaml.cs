@@ -16,5 +16,15 @@ public partial class AuthorInfoDialog : Window
         AboutTextBox.Text = author.About;
     }
 
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+
+    }
+
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
 }
