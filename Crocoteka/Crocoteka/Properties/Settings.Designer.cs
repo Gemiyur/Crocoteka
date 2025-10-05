@@ -82,5 +82,185 @@ namespace Crocoteka.Properties {
                 this["NavPanelAuthorFullName"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BookListAuthorFullName {
+            get {
+                return ((bool)(this["BookListAuthorFullName"]));
+            }
+            set {
+                this["BookListAuthorFullName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool BookInfoAuthorFullName {
+            get {
+                return ((bool)(this["BookInfoAuthorFullName"]));
+            }
+            set {
+                this["BookInfoAuthorFullName"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveMainWindowLocation {
+            get {
+                return ((bool)(this["SaveMainWindowLocation"]));
+            }
+            set {
+                this["SaveMainWindowLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point MainWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["MainWindowPos"]));
+            }
+            set {
+                this["MainWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size MainWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["MainWindowSize"]));
+            }
+            set {
+                this["MainWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveFindFilesWindowLocation {
+            get {
+                return ((bool)(this["SaveFindFilesWindowLocation"]));
+            }
+            set {
+                this["SaveFindFilesWindowLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point FindFilesWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["FindFilesWindowPos"]));
+            }
+            set {
+                this["FindFilesWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size FindFilesWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["FindFilesWindowSize"]));
+            }
+            set {
+                this["FindFilesWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveInfoWindowsLocation {
+            get {
+                return ((bool)(this["SaveInfoWindowsLocation"]));
+            }
+            set {
+                this["SaveInfoWindowsLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point AuthorInfoWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["AuthorInfoWindowPos"]));
+            }
+            set {
+                this["AuthorInfoWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size AuthorInfoWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AuthorInfoWindowSize"]));
+            }
+            set {
+                this["AuthorInfoWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point BookInfoWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["BookInfoWindowPos"]));
+            }
+            set {
+                this["BookInfoWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size BookInfoWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["BookInfoWindowSize"]));
+            }
+            set {
+                this["BookInfoWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point CycleInfoWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["CycleInfoWindowPos"]));
+            }
+            set {
+                this["CycleInfoWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size CycleInfoWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CycleInfoWindowSize"]));
+            }
+            set {
+                this["CycleInfoWindowSize"] = value;
+            }
+        }
     }
 }
