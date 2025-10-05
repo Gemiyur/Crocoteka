@@ -14,7 +14,7 @@
     <Setting Name="TextExtensions" Type="System.String" Scope="User">
       <Value Profile="(Default)">.fb2;.fb3;.epub;.doc;.docx;.pdf;.rtf;.txt</Value>
     </Setting>
-    <Setting Name="NavAuthorFullName" Type="System.Boolean" Scope="User">
+    <Setting Name="NavPanelAuthorFullName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
   </Settings>
