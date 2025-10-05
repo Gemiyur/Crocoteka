@@ -28,6 +28,18 @@ public partial class App : Application
     public static readonly List<string> TextExtensions = [];
 
     /// <summary>
+    /// Отображает окно сообщения подтверждения операции.
+    /// </summary>
+    /// <param name="message">Сообщение.</param>
+    /// <param name="caption">Заголовок окна.</param>
+    /// <returns>Была ли подтверждена операция.</returns>
+    /// <remarks>
+    ///  Это обёртка для MessageBox.Show с кнопками Да и Нет.
+    /// </remarks>
+    public static bool ConfirmAction(string message, string caption) =>
+        MessageBox.Show(message, caption, MessageBoxButton.YesNo) == MessageBoxResult.Yes;
+
+    /// <summary>
     /// Возвращает указанное имя файла, гарантируя расширение .db.
     /// </summary>
     /// <param name="filename">Имя файла.</param>
@@ -85,10 +97,7 @@ public partial class App : Application
     /// <summary>
     /// Обновляет список файлов книг в окне поиска файлов книг.
     /// </summary>
-    public static void UpdateFindFilesWindow()
-    {
-        GetFindFilesWindow()?.ApplyFilter();
-    }
+    public static void UpdateFindFilesWindow() => GetFindFilesWindow()?.ApplyFilter();
 
     #region Получение окон приложения.
 

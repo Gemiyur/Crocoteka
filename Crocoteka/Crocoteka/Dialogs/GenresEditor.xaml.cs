@@ -67,6 +67,10 @@ public partial class GenresEditor : Window
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
         var genre = (Genre)GenresListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить жанр \"{genre.Title}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteGenre(genre))
         {
             MessageBox.Show("Не удалось удалить жанр.", Title);

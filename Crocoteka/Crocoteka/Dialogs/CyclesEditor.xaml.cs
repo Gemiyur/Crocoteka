@@ -67,6 +67,10 @@ public partial class CyclesEditor : Window
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
         var cycle = (Cycle)CyclesListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить серию \"{cycle.Title}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteCycle(cycle))
         {
             MessageBox.Show("Не удалось удалить серию.", Title);

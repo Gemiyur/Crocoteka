@@ -483,8 +483,7 @@ public partial class MainWindow : Window
     private void BookDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var book = (Book)BooksListView.SelectedItem;
-        if (MessageBox.Show($"Удалить книгу \"{book.Title}\" из библиотеки?", Title,
-                            MessageBoxButton.YesNo) != MessageBoxResult.Yes)
+        if (!App.ConfirmAction($"Удалить книгу \"{book.Title}\" из библиотеки?", Title))
         {
             return;
         }
@@ -544,6 +543,10 @@ public partial class MainWindow : Window
     private void AuthorDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var author = (Author)AuthorsListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить автора \"{author.NameLastFirstMiddle}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteAuthor(author))
         {
             MessageBox.Show("Не удалось удалить автора.", Title);
@@ -598,6 +601,10 @@ public partial class MainWindow : Window
     private void CycleDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var cycle = (Cycle)CyclesListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить серию \"{cycle.Title}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteCycle(cycle))
         {
             MessageBox.Show("Не удалось удалить серию.", Title);
@@ -646,6 +653,10 @@ public partial class MainWindow : Window
     private void GenreDelete_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         var genre = (Genre)GenresListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить жанр \"{genre.Title}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteGenre(genre))
         {
             MessageBox.Show("Не удалось удалить жанр.", Title);

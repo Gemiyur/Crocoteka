@@ -67,6 +67,10 @@ public partial class AuthorsEditor : Window
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
     {
         var author = (Author)AuthorsListBox.SelectedItem;
+        if (!App.ConfirmAction($"Удалить автора \"{author.NameLastFirstMiddle}\" из библиотеки?", Title))
+        {
+            return;
+        }
         if (!Library.DeleteAuthor(author))
         {
             MessageBox.Show("Не удалось удалить автора.", Title);
