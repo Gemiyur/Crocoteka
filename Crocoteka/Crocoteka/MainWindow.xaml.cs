@@ -380,7 +380,7 @@ public partial class MainWindow : Window
 
     private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        new SettingsDialog() { Owner = this }.ShowDialog();
     }
 
     private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
