@@ -110,12 +110,23 @@ public partial class BookInfoDialog : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-
+        if (Properties.Settings.Default.SaveInfoWindowsLocation &&
+            App.SizeDefined(Properties.Settings.Default.BookInfoWindowSize))
+        {
+            Left = Properties.Settings.Default.BookInfoWindowPos.X;
+            Top = Properties.Settings.Default.BookInfoWindowPos.Y;
+            Width = Properties.Settings.Default.BookInfoWindowSize.Width;
+            Height = Properties.Settings.Default.BookInfoWindowSize.Height;
+        }
     }
 
     private void Window_Closed(object sender, EventArgs e)
     {
-
+        if (Properties.Settings.Default.SaveInfoWindowsLocation)
+        {
+            Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point((int)Left, (int)Top);
+            Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);
+        }
     }
 
     private void AuthorLink_Click(object sender, RoutedEventArgs e)
