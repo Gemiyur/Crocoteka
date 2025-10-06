@@ -54,7 +54,20 @@
         <Setter Property="BorderThickness" Value="0" />
     </Style>
 
-    <DataTemplate x:Key="BookDataTemplate">
+    <DataTemplate x:Key="BookAuthorsFullNameDataTemplate">
+        <StackPanel>
+            <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding AuthorNamesFirstMiddleLast}" Padding="25,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="BookAuthorsShortNameDataTemplate">
         <StackPanel>
             <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
                        FontWeight="Bold"
@@ -67,7 +80,22 @@
         </StackPanel>
     </DataTemplate>
 
-    <DataTemplate x:Key="BookCycleDataTemplate">
+    <DataTemplate x:Key="BookCycleAuthorsFullNameDataTemplate">
+        <StackPanel>
+            <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
+                       FontWeight="Bold"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding AuthorNamesFirstMiddleLast}" Padding="25,0,0,0"
+                       FontStyle="Italic"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"
+                       TextWrapping="Wrap" />
+            <TextBlock Text="{Binding CycleNumbersText}" Padding="25,0,0,0"
+                       Foreground="{StaticResource BooksListViewForegroundBrush}"/>
+        </StackPanel>
+    </DataTemplate>
+
+    <DataTemplate x:Key="BookCycleAuthorsShortNameDataTemplate">
         <StackPanel>
             <TextBlock Text="{Binding Title}" Padding="5,0,0,0"
                        FontWeight="Bold"

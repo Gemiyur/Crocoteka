@@ -23,6 +23,8 @@ public partial class SettingsDialog : Window
     {
         InitializeComponent();
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
+        BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookListAuthorFullName;
+        BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
 
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
     }
@@ -39,8 +41,11 @@ public partial class SettingsDialog : Window
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
+        var mainWindow = App.GetMainWindow();
         Properties.Settings.Default.NavPanelAuthorFullName = NavPanelAuthorFullNameCheckBox.IsChecked == true;
-        App.GetMainWindow().CheckAuthorsNameFormat();
+        mainWindow.CheckAuthorsNameFormat();
+        Properties.Settings.Default.BookListAuthorFullName = BookListAuthorFullNameCheckBox.IsChecked == true;
+        mainWindow.UpdateShownBooks();
 
         Properties.Settings.Default.SaveMainWindowLocation = SaveMainWindowLocationCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveMainWindowLocation)

@@ -357,7 +357,7 @@
                             </Style>
                         </GridView.ColumnHeaderContainerStyle>
                         <GridViewColumn x:Name="BooksListViewTitleColumn" Header="Название"
-                                        CellTemplate="{StaticResource BookDataTemplate}" />
+                                        CellTemplate="{StaticResource BookAuthorsShortNameDataTemplate}" />
                         <GridViewColumn Header="Файлов" Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>

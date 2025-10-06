@@ -60,6 +60,9 @@ public partial class MainWindow : Window
         GenresListBox.ItemsSource = Genres;
         ShownBooks.AddRange(Library.Books);
         BooksListView.ItemsSource = ShownBooks;
+        BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
+            ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
+            : (DataTemplate)FindResource("BookAuthorsShortNameDataTemplate");
         UpdateStatusBarBooksCount();
     }
 
@@ -179,12 +182,14 @@ public partial class MainWindow : Window
     /// <summary>
     /// Обновляет список отображаемых книг.
     /// </summary>
-    private void UpdateShownBooks()
+    public void UpdateShownBooks()
     {
         if (AllBooksToggleButton.IsChecked == true)
         {
             ShownBooks.ReplaceRange(Library.Books);
-            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
+                ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
+                : (DataTemplate)FindResource("BookAuthorsShortNameDataTemplate");
             NavItemTextBlock.Text = "Все книги";
         }
         else if (AuthorsListBox.SelectedItem != null)
@@ -192,7 +197,9 @@ public partial class MainWindow : Window
             var author = (Author)AuthorsListBox.SelectedItem;
             var books = Library.GetAuthorBooks(author.AuthorId);
             ShownBooks.ReplaceRange(books);
-            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
+                ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
+                : (DataTemplate)FindResource("BookAuthorsShortNameDataTemplate");
             NavItemTextBlock.Text = $"Автор: {author.NameLastFirstMiddle}";
         }
         else if (CyclesListBox.SelectedItem != null)
@@ -200,7 +207,9 @@ public partial class MainWindow : Window
             var cycle = (Cycle)CyclesListBox.SelectedItem;
             var books = Library.GetCycleBooks(cycle.CycleId);
             ShownBooks.ReplaceRange(books);
-            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookCycleDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
+                ? (DataTemplate)FindResource("BookCycleAuthorsFullNameDataTemplate")
+                : (DataTemplate)FindResource("BookCycleAuthorsShortNameDataTemplate");
             NavItemTextBlock.Text = $"Серия: {cycle.Title}";
         }
         else if (GenresListBox.SelectedItem != null)
@@ -208,7 +217,9 @@ public partial class MainWindow : Window
             var genre = (Genre)GenresListBox.SelectedItem;
             var books = Library.GetGenreBooks(genre.GenreId);
             ShownBooks.ReplaceRange(books);
-            BooksListViewTitleColumn.CellTemplate = (DataTemplate)FindResource("BookDataTemplate");
+            BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
+                ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
+                : (DataTemplate)FindResource("BookAuthorsShortNameDataTemplate");
             NavItemTextBlock.Text = $"Жанр: {genre.Title}";
         }
         UpdateStatusBarBooksCount();
