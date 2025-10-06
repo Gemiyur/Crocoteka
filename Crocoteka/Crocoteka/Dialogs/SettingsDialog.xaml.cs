@@ -23,4 +23,11 @@ public partial class SettingsDialog : Window
     {
         InitializeComponent();
     }
+
+    private void SaveButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void CancelButton_Click(object sender, RoutedEventArgs e) => DialogResult = false;
 }
