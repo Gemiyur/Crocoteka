@@ -107,23 +107,23 @@ public partial class FindFilesWindow : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        //if (Properties.Settings.Default.SaveBookWindowsLocation &&
-        //    App.SizeDefined(Properties.Settings.Default.BookInfoSize))
-        //{
-        //    Left = Properties.Settings.Default.BookInfoPos.X;
-        //    Top = Properties.Settings.Default.BookInfoPos.Y;
-        //    Width = Properties.Settings.Default.BookInfoSize.Width;
-        //    Height = Properties.Settings.Default.BookInfoSize.Height;
-        //}
+        if (Properties.Settings.Default.SaveFindFilesWindowLocation &&
+            App.SizeDefined(Properties.Settings.Default.FindFilesWindowSize))
+        {
+            Left = Properties.Settings.Default.FindFilesWindowPos.X;
+            Top = Properties.Settings.Default.FindFilesWindowPos.Y;
+            Width = Properties.Settings.Default.FindFilesWindowSize.Width;
+            Height = Properties.Settings.Default.FindFilesWindowSize.Height;
+        }
     }
 
     private void Window_Closed(object sender, EventArgs e)
     {
-        //if (Properties.Settings.Default.SaveBookWindowsLocation)
-        //{
-        //    Properties.Settings.Default.BookInfoPos = new System.Drawing.Point((int)Left, (int)Top);
-        //    Properties.Settings.Default.BookInfoSize = new System.Drawing.Size((int)Width, (int)Height);
-        //}
+        if (Properties.Settings.Default.SaveFindFilesWindowLocation)
+        {
+            Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point((int)Left, (int)Top);
+            Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size((int)Width, (int)Height);
+        }
 
         // TODO: Надо ли восстанавливать и активировать главное окно при закрытии окна поиска файлов?
         var window = App.GetMainWindow();
