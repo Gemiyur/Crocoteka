@@ -26,10 +26,12 @@ public partial class BookInfoDialog : Window
 
     private void InitializeAuthors()
     {
-        Hyperlink link;
         for (int i = 0; i < book.Authors.Count; i++)
         {
-            link = new Hyperlink(new Run(book.Authors[i].NameFirstLast));
+            var run = Properties.Settings.Default.BookInfoAuthorFullName
+                ? new Run(book.Authors[i].NameFirstMiddleLast)
+                : new Run(book.Authors[i].NameFirstLast);
+            var link = new Hyperlink(run);
             link.Tag = book.Authors[i];
             link.Style = (Style)FindResource("HyperlinkStyle");
             link.Click += AuthorLink_Click;
