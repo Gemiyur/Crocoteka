@@ -24,6 +24,7 @@ public partial class SettingsDialog : Window
         InitializeComponent();
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
 
+        SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
     }
 
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
@@ -41,6 +42,12 @@ public partial class SettingsDialog : Window
         Properties.Settings.Default.NavPanelAuthorFullName = NavPanelAuthorFullNameCheckBox.IsChecked == true;
         App.GetMainWindow().CheckAuthorsNameFormat();
 
+        Properties.Settings.Default.SaveMainWindowLocation = SaveMainWindowLocationCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveMainWindowLocation)
+        {
+            Properties.Settings.Default.MainWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.MainWindowSize = new System.Drawing.Size(0, 0);
+        }
         DialogResult = true;
     }
 
