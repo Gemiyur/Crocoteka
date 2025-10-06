@@ -61,7 +61,6 @@
                       Content="Сохранять положение и размер окон информации о книге, авторе и серии"
                       Style="{StaticResource InterfaceCheckBoxStyle}" />
                 </StackPanel>
-
             </TabItem>
 
             <TabItem Header="Расширения файлов">

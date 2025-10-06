@@ -27,6 +27,8 @@ public partial class SettingsDialog : Window
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
 
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
+        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
+        SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
     }
 
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
@@ -54,6 +56,25 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.MainWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.MainWindowSize = new System.Drawing.Size(0, 0);
         }
+
+        Properties.Settings.Default.SaveFindFilesWindowLocation = SaveFindFilesWindowLocationCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveFindFilesWindowLocation)
+        {
+            Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
+        }
+
+        Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsLocationCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveInfoWindowsLocation)
+        {
+            Properties.Settings.Default.AuthorInfoWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size(0, 0);
+            Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size(0, 0);
+            Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
+        }
+
         DialogResult = true;
     }
 
