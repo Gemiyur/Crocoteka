@@ -24,6 +24,16 @@ public partial class SettingsDialog : Window
         InitializeComponent();
     }
 
+    private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void DbNameButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
 
