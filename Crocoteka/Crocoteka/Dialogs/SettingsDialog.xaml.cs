@@ -22,6 +22,8 @@ public partial class SettingsDialog : Window
     public SettingsDialog()
     {
         InitializeComponent();
+        NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
+
     }
 
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
@@ -36,7 +38,10 @@ public partial class SettingsDialog : Window
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
+        Properties.Settings.Default.NavPanelAuthorFullName = NavPanelAuthorFullNameCheckBox.IsChecked == true;
+        App.GetMainWindow().CheckAuthorsNameFormat();
 
+        DialogResult = true;
     }
 
     private void CancelButton_Click(object sender, RoutedEventArgs e) => DialogResult = false;

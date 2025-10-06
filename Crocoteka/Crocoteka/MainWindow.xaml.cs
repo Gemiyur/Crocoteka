@@ -273,7 +273,7 @@ public partial class MainWindow : Window
         //    Properties.Settings.Default.MainWindowPos = new System.Drawing.Point((int)Left, (int)Top);
         //    Properties.Settings.Default.MainWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         //}
-        //Properties.Settings.Default.Save();
+        Properties.Settings.Default.Save();
     }
 
     #endregion
