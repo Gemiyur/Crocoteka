@@ -39,8 +39,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0">
-            <TabItem Header="Интерфейс">
+        <TabControl Grid.Row="0" x:Name="SettingsTabControl"
+                    SelectionChanged="SettingsTabControl_SelectionChanged">
+            <TabItem x:Name="InterfaceTabItem" Header="Интерфейс">
                 <StackPanel Margin="10,0,0,0">
                     <CheckBox x:Name="NavPanelAuthorFullNameCheckBox"
                       Content="В панели навигации отображать полные имена авторов"
@@ -63,7 +64,7 @@
                 </StackPanel>
             </TabItem>
 
-            <TabItem Header="Расширения файлов">
+            <TabItem x:Name="ExtensionsTabItem" Header="Расширения файлов">
 
             </TabItem>
 
@@ -116,20 +117,29 @@
                         </Grid>
                     </GroupBox>
                 </StackPanel>
-
             </TabItem>
         </TabControl>
 
-        <StackPanel Grid.Row="2" Orientation="Horizontal"
-                    HorizontalAlignment="Right" VerticalAlignment="Bottom"
-                    Margin="0,10,0,0">
-            <Button x:Name="SaveButton" Content="Сохранить"
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" x:Name="ResetButton" Content="Сброс"
                     Style="{StaticResource ButtonStyle}"
-                    Click="SaveButton_Click" />
-            <Button x:Name="CancelButton" Content="Отмена"
-                    Style="{StaticResource ButtonStyle}"
-                    Margin="10,0,0,0"
-                    Click="CancelButton_Click" />
-        </StackPanel>
+                    HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    Click="ResetButton_Click" />
+            <StackPanel Grid.Column="1" Orientation="Horizontal"
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom"
+                        Margin="0,10,0,0">
+                <Button x:Name="SaveButton" Content="Сохранить"
+                        Style="{StaticResource ButtonStyle}"
+                        Click="SaveButton_Click" />
+                <Button x:Name="CancelButton" Content="Отмена"
+                        Style="{StaticResource ButtonStyle}"
+                        Margin="10,0,0,0"
+                        Click="CancelButton_Click" />
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

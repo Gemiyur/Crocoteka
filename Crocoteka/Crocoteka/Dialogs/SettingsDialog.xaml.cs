@@ -1,5 +1,6 @@
 ﻿using System.IO;
 using System.Windows;
+using System.Windows.Controls;
 using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
@@ -42,6 +43,27 @@ public partial class SettingsDialog : Window
         DbShrinkButton.IsEnabled = !DbNameChanged;
     }
 
+    private void ResetInterface()
+    {
+        NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetNavPanelAuthorFullName;
+        BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookListAuthorFullName;
+        BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookInfoAuthorFullName;
+        SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
+        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
+        SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
+    }
+
+    private void ResetExtensions()
+    {
+        MessageBox.Show("Вызов ResetExtensions");
+    }
+
+    private void SettingsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        ResetButton.IsEnabled = SettingsTabControl.SelectedItem == InterfaceTabItem ||
+                                SettingsTabControl.SelectedItem == ExtensionsTabItem;
+    }
+
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
     {
         if (!App.ConfirmAction("Сжать базу данных библиотеки?", Title))
@@ -63,6 +85,14 @@ public partial class SettingsDialog : Window
             return;
         DbNameTextBox.Text = App.EnsureDbExtension(dialog.FileName);
         CheckDbNameChanged();
+    }
+
+    private void ResetButton_Click(object sender, RoutedEventArgs e)
+    {
+        if (SettingsTabControl.SelectedItem == InterfaceTabItem)
+            ResetInterface();
+        else if (SettingsTabControl.SelectedItem == ExtensionsTabItem)
+            ResetExtensions();
     }
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
