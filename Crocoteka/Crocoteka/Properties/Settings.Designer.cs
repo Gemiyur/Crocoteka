@@ -61,7 +61,7 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".fb2;.fb3;.epub;.doc;.docx;.pdf;.rtf;.txt")]
+        [global::System.Configuration.DefaultSettingValueAttribute(".epub;.fb2;.fb3;.pdf;.txt")]
         public string TextExtensions {
             get {
                 return ((string)(this["TextExtensions"]));
@@ -260,6 +260,78 @@ namespace Crocoteka.Properties {
             }
             set {
                 this["CycleInfoWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".m4b;.mp3")]
+        public string PresetAudioExtensions {
+            get {
+                return ((string)(this["PresetAudioExtensions"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute(".epub;.fb2;.fb3;.pdf;.txt")]
+        public string PresetTextExtensions {
+            get {
+                return ((string)(this["PresetTextExtensions"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("True")]
+        public bool PresetNavPanelAuthorFullName {
+            get {
+                return ((bool)(this["PresetNavPanelAuthorFullName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetBookListAuthorFullName {
+            get {
+                return ((bool)(this["PresetBookListAuthorFullName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetBookInfoAuthorFullName {
+            get {
+                return ((bool)(this["PresetBookInfoAuthorFullName"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveMainWindowLocation {
+            get {
+                return ((bool)(this["PresetSaveMainWindowLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveFindFilesWindowLocation {
+            get {
+                return ((bool)(this["PresetSaveFindFilesWindowLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveInfoWindowsLocation {
+            get {
+                return ((bool)(this["PresetSaveInfoWindowsLocation"]));
             }
         }
     }

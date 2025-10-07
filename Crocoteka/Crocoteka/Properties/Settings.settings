@@ -12,7 +12,7 @@
       <Value Profile="(Default)">.m4b;.mp3</Value>
     </Setting>
     <Setting Name="TextExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.fb2;.fb3;.epub;.doc;.docx;.pdf;.rtf;.txt</Value>
+      <Value Profile="(Default)">.epub;.fb2;.fb3;.pdf;.txt</Value>
     </Setting>
     <Setting Name="NavPanelAuthorFullName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -61,6 +61,30 @@
     </Setting>
     <Setting Name="CycleInfoWindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="PresetAudioExtensions" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.m4b;.mp3</Value>
+    </Setting>
+    <Setting Name="PresetTextExtensions" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">.epub;.fb2;.fb3;.pdf;.txt</Value>
+    </Setting>
+    <Setting Name="PresetNavPanelAuthorFullName" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">True</Value>
+    </Setting>
+    <Setting Name="PresetBookListAuthorFullName" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PresetBookInfoAuthorFullName" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PresetSaveMainWindowLocation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PresetSaveFindFilesWindowLocation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PresetSaveInfoWindowsLocation" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>
 </SettingsFile>
