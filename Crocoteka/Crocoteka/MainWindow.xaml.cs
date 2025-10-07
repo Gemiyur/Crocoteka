@@ -47,7 +47,20 @@ public partial class MainWindow : Window
 #endif
         if (!File.Exists(App.DbName))
         {
-            Db.GenerateTestDb();
+            MessageBox.Show("Файл базы данных не найден.\nУкажите имя существующего или нового файла.", Title);
+            var dialog = App.PickDatabaseDialog;
+            dialog.FileName = Path.GetFileName(App.DbName);
+            if (dialog.ShowDialog() != true)
+            {
+                MessageBox.Show("Файл базы данных не выбран.\nПриложение закроется.", Title);
+                Close();
+            }
+            App.DbName = App.EnsureDbExtension(dialog.FileName);
+#if DEBUG
+            Properties.Settings.Default.DebugDbName = App.DbName;
+#else
+            Properties.Settings.Default.DbName = App.DbName;
+#endif
         }
         App.AudioExtensions.AddRange(Properties.Settings.Default.AudioExtensions.Split(';'));
         App.TextExtensions.AddRange(Properties.Settings.Default.TextExtensions.Split(';'));
