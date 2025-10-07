@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.IO;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
 
@@ -19,30 +9,65 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class SettingsDialog : Window
 {
+    private bool DbNameChanged =>
+        !DbNameTextBox.Text.Equals(App.DbName, StringComparison.CurrentCultureIgnoreCase);
+
     public SettingsDialog()
     {
         InitializeComponent();
+
+        // Интерфейс.
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
-
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
+
+        // Расширения файлов.
+
+        // База данных.
+#if DEBUG
+        DbNameTextBox.Text = Properties.Settings.Default.DebugDbName;
+#else
+        DbNameTextBox.Text = Properties.Settings.Default.DbName;
+#endif
+        CheckDbNameChanged();
+    }
+
+    private void CheckDbNameChanged()
+    {
+        DbChangedStackPanel.Visibility = DbNameChanged ? Visibility.Visible : Visibility.Collapsed;
+        DbNotChangedStackPanel.Visibility = DbNameChanged ? Visibility.Collapsed : Visibility.Visible;
+        DbShrinkButton.IsEnabled = !DbNameChanged;
     }
 
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
     {
-
+        if (!App.ConfirmAction("Сжать базу данных библиотеки?", Title))
+            return;
+        var path = Path.GetDirectoryName(App.DbName) ?? "";
+        var name = Path.GetFileNameWithoutExtension(App.DbName);
+        var ext = Path.GetExtension(App.DbName);
+        var filename = Path.Combine(path, name + "-backup" + ext);
+        try { File.Delete(filename); }
+        catch { }
+        Db.Shrink();
+        MessageBox.Show("Сжатие базы данных библиотеки завершено.", Title);
     }
 
     private void DbNameButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var dialog = App.PickDatabaseDialog;
+        if (dialog.ShowDialog() != true)
+            return;
+        DbNameTextBox.Text = App.EnsureDbExtension(dialog.FileName);
+        CheckDbNameChanged();
     }
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
+        // Интерфейс имена авторов.
         var mainWindow = App.GetMainWindow();
         Properties.Settings.Default.NavPanelAuthorFullName = NavPanelAuthorFullNameCheckBox.IsChecked == true;
         mainWindow.CheckAuthorsNameFormat();
@@ -50,6 +75,7 @@ public partial class SettingsDialog : Window
         mainWindow.UpdateShownBooks();
         Properties.Settings.Default.BookInfoAuthorFullName = BookInfoAuthorFullNameCheckBox.IsChecked == true;
 
+        // Интерфейс - позиция и размер главного окна.
         Properties.Settings.Default.SaveMainWindowLocation = SaveMainWindowLocationCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveMainWindowLocation)
         {
@@ -57,6 +83,7 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.MainWindowSize = new System.Drawing.Size(0, 0);
         }
 
+        // Интерфейс - позиция и размер окна поиска файлов.
         Properties.Settings.Default.SaveFindFilesWindowLocation = SaveFindFilesWindowLocationCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveFindFilesWindowLocation)
         {
@@ -64,6 +91,7 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
         }
 
+        // Интерфейс - позиции и размеры окон "Об авторе". "О книге" и "О серии".
         Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsLocationCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveInfoWindowsLocation)
         {
@@ -74,6 +102,15 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
         }
+
+        // Расширения файлов.
+
+        // База данных.
+#if DEBUG
+        Properties.Settings.Default.DebugDbName = DbNameTextBox.Text;
+#else
+        Properties.Settings.Default.DbName = DbNameTextBox.Text;
+#endif
 
         DialogResult = true;
     }

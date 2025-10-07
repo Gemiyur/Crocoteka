@@ -15,6 +15,12 @@ public static class Db
 {
     public static LiteDatabase GetDatabase() => new(App.DbName);
 
+    public static long Shrink()
+    {
+        using var db = GetDatabase();
+        return db.Rebuild();
+    }
+
     public static void GenerateTestDb()
     {
         using var db = GetDatabase();
