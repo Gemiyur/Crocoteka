@@ -55,6 +55,9 @@ public partial class SettingsDialog : Window
 
     private void ResetExtensions()
     {
+        // PresetAudioExtensions
+        // PresetTextExtensions
+
         MessageBox.Show("Вызов ResetExtensions");
     }
 
@@ -99,10 +102,18 @@ public partial class SettingsDialog : Window
     {
         // Интерфейс имена авторов.
         var mainWindow = App.GetMainWindow();
-        Properties.Settings.Default.NavPanelAuthorFullName = NavPanelAuthorFullNameCheckBox.IsChecked == true;
-        mainWindow.CheckAuthorsNameFormat();
-        Properties.Settings.Default.BookListAuthorFullName = BookListAuthorFullNameCheckBox.IsChecked == true;
-        mainWindow.UpdateShownBooks();
+        var isChecked = NavPanelAuthorFullNameCheckBox.IsChecked == true;
+        if (Properties.Settings.Default.NavPanelAuthorFullName != isChecked)
+        {
+            Properties.Settings.Default.NavPanelAuthorFullName = isChecked;
+            mainWindow.CheckAuthorsNameFormat();
+        }
+        isChecked = BookListAuthorFullNameCheckBox.IsChecked == true;
+        if (Properties.Settings.Default.BookListAuthorFullName != isChecked)
+        {
+            Properties.Settings.Default.BookListAuthorFullName = isChecked;
+            mainWindow.UpdateShownBooks();
+        }
         Properties.Settings.Default.BookInfoAuthorFullName = BookInfoAuthorFullNameCheckBox.IsChecked == true;
 
         // Интерфейс - позиция и размер главного окна.
