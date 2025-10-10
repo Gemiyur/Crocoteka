@@ -12,6 +12,12 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <Style x:Key="AddButtonStyle" TargetType="Button">
+                <Setter Property="Content" Value="+" />
+                <Setter Property="ToolTip" Value="Добавить" />
+                <Setter Property="Width" Value="20" />
+                <Setter Property="Margin" Value="5,0,0,0" />
+            </Style>
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="75" />
                 <Setter Property="Height" Value="25" />
@@ -65,7 +71,72 @@
             </TabItem>
 
             <TabItem x:Name="ExtensionsTabItem" Header="Расширения файлов">
-
+                <Grid Margin="5,0,5,5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="2" />
+                        <RowDefinition />
+                        <RowDefinition Height="8" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Аудио" />
+                    <ListBox Grid.Row="2" Grid.Column="0" x:Name="AudioExtsListBox"
+                             ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                             SelectionChanged="AudioExtsListBox_SelectionChanged">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="DeleteAudioExtMenuItem" Header="Удалить"
+                                          Click="DeleteAudioExtMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Images\Buttons\Enabled\Delete.png" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                    <Grid Grid.Row="4" Grid.Column="0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="AudioExtTextBox"
+                                 TextChanged="AudioExtTextBox_TextChanged" />
+                        <Button Grid.Column="1" x:Name="AddAudioExtButton"
+                                Style="{StaticResource AddButtonStyle}"
+                                Click="AddAudioExtButton_Click" />
+                    </Grid>
+                    <TextBlock Grid.Row="0" Grid.Column="2" Text="Текст" />
+                    <ListBox Grid.Row="2" Grid.Column="2" x:Name="TextExtsListBox"
+                             ItemContainerStyle="{StaticResource ListBoxItemStyle}"
+                             SelectionChanged="TextExtsListBox_SelectionChanged">
+                        <ListBox.ContextMenu>
+                            <ContextMenu>
+                                <MenuItem x:Name="DeleteTextExtMenuItem" Header="Удалить"
+                                          Click="DeleteTextExtMenuItem_Click">
+                                    <MenuItem.Icon>
+                                        <Image Source="\Images\Buttons\Enabled\Delete.png" />
+                                    </MenuItem.Icon>
+                                </MenuItem>
+                            </ContextMenu>
+                        </ListBox.ContextMenu>
+                    </ListBox>
+                    <Grid Grid.Row="4" Grid.Column="2">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBox Grid.Column="0" x:Name="TextExtTextBox"
+                                 TextChanged="TextExtTextBox_TextChanged" />
+                        <Button Grid.Column="1" x:Name="AddTextExtButton"
+                                Style="{StaticResource AddButtonStyle}"
+                                Click="AddTextExtButton_Click" />
+                    </Grid>
+                </Grid>
             </TabItem>
 
             <TabItem Header="База данных">

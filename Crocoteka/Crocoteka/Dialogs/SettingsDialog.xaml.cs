@@ -67,6 +67,46 @@ public partial class SettingsDialog : Window
                                 SettingsTabControl.SelectedItem == ExtensionsTabItem;
     }
 
+    private void AudioExtsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void DeleteAudioExtMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void AudioExtTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void AddAudioExtButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void TextExtsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+
+    }
+
+    private void DeleteTextExtMenuItem_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void TextExtTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+
+    }
+
+    private void AddTextExtButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)
     {
         if (!App.ConfirmAction("Сжать базу данных библиотеки?", Title))
