@@ -87,7 +87,7 @@
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Аудио" />
                     <ListBox Grid.Row="2" Grid.Column="0" x:Name="AudioExtsListBox"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
-                             SelectionChanged="AudioExtsListBox_SelectionChanged">
+                             ContextMenuOpening="AudioExtsListBox_ContextMenuOpening">
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="DeleteAudioExtMenuItem" Header="Удалить"
@@ -108,12 +108,13 @@
                                  TextChanged="AudioExtTextBox_TextChanged" />
                         <Button Grid.Column="1" x:Name="AddAudioExtButton"
                                 Style="{StaticResource AddButtonStyle}"
+                                IsEnabled="False"
                                 Click="AddAudioExtButton_Click" />
                     </Grid>
                     <TextBlock Grid.Row="0" Grid.Column="2" Text="Текст" />
                     <ListBox Grid.Row="2" Grid.Column="2" x:Name="TextExtsListBox"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
-                             SelectionChanged="TextExtsListBox_SelectionChanged">
+                             ContextMenuOpening="TextExtsListBox_ContextMenuOpening">
                         <ListBox.ContextMenu>
                             <ContextMenu>
                                 <MenuItem x:Name="DeleteTextExtMenuItem" Header="Удалить"
@@ -134,6 +135,7 @@
                                  TextChanged="TextExtTextBox_TextChanged" />
                         <Button Grid.Column="1" x:Name="AddTextExtButton"
                                 Style="{StaticResource AddButtonStyle}"
+                                IsEnabled="False"
                                 Click="AddTextExtButton_Click" />
                     </Grid>
                 </Grid>

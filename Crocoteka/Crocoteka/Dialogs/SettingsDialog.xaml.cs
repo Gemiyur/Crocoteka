@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using Gemiyur.Collections;
 using Crocoteka.Tools;
 
 namespace Crocoteka.Dialogs;
@@ -10,6 +11,12 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class SettingsDialog : Window
 {
+    private readonly ObservableCollectionEx<string> AudioExts = [];
+
+    private readonly ObservableCollectionEx<string> TextExts = [];
+
+    private readonly char[] invalidChars = Path.GetInvalidFileNameChars();
+
     private bool DbNameChanged =>
         !DbNameTextBox.Text.Equals(App.DbName, StringComparison.CurrentCultureIgnoreCase);
 
@@ -26,6 +33,12 @@ public partial class SettingsDialog : Window
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
 
         // Расширения файлов.
+        var array = Properties.Settings.Default.AudioExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
+        AudioExts.AddRange(array.Select(x => x.TrimStart('.')));
+        AudioExtsListBox.ItemsSource = AudioExts;
+        array = Properties.Settings.Default.TextExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
+        TextExts.AddRange(array.Select(x => x.TrimStart('.')));
+        TextExtsListBox.ItemsSource = TextExts;
 
         // База данных.
 #if DEBUG
@@ -55,10 +68,19 @@ public partial class SettingsDialog : Window
 
     private void ResetExtensions()
     {
-        // PresetAudioExtensions
-        // PresetTextExtensions
+        AudioExts.Clear();
+        var array = Properties.Settings.Default.PresetAudioExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
+        AudioExts.AddRange(array.Select(x => x.TrimStart('.')));
+        TextExts.Clear();
+        array = Properties.Settings.Default.PresetTextExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
+        TextExts.AddRange(array.Select(x => x.TrimStart('.')));
+    }
 
-        MessageBox.Show("Вызов ResetExtensions");
+    private bool ValidateExtension(string extension)
+    {
+        return !extension.Any(x => invalidChars.Contains(x)) &&
+               !extension.Contains(' ') &&
+               !(extension.Length > 0 && extension[0] == '.');
     }
 
     private void SettingsTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,44 +89,110 @@ public partial class SettingsDialog : Window
                                 SettingsTabControl.SelectedItem == ExtensionsTabItem;
     }
 
-    private void AudioExtsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void AudioExtsListBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
     {
-
+        if (e.OriginalSource is not TextBlock)
+        {
+            e.Handled = true;
+        }
     }
 
     private void DeleteAudioExtMenuItem_Click(object sender, RoutedEventArgs e)
     {
-
+        AudioExts.Remove((string)AudioExtsListBox.SelectedItem);
     }
+
+    private string oldAudioExt = string.Empty;
 
     private void AudioExtTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        if (oldAudioExt == AudioExtTextBox.Text)
+            return;
+        var text = AudioExtTextBox.Text;
+        if (text == string.Empty)
+        {
+            oldAudioExt = string.Empty;
+            AudioExtTextBox.Text = oldAudioExt;
+            AddAudioExtButton.IsEnabled = false;
+            return;
+        }
+        var pos = AudioExtTextBox.SelectionStart;
+        if (!ValidateExtension(AudioExtTextBox.Text))
+        {
+            AudioExtTextBox.Text = oldAudioExt;
+            AudioExtTextBox.SelectionStart = pos - 1;
+        }
+        else
+        {
+            oldAudioExt = AudioExtTextBox.Text;
+        }
+        AddAudioExtButton.IsEnabled = AudioExtTextBox.Text.Length > 0;
     }
 
     private void AddAudioExtButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var ext = AudioExtTextBox.Text.ToLower();
+        if (AudioExts.Contains(ext))
+        {
+            MessageBox.Show($"Расширение \"{ext}\" уже есть.", Title);
+            return;
+        }
+        AudioExts.Add(ext);
+        AudioExts.Sort(x => x, StringComparer.CurrentCultureIgnoreCase);
+        AudioExtTextBox.Clear();
     }
 
-    private void TextExtsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    private void TextExtsListBox_ContextMenuOpening(object sender, ContextMenuEventArgs e)
     {
-
+        if (e.OriginalSource is not TextBlock)
+        {
+            e.Handled = true;
+        }
     }
 
     private void DeleteTextExtMenuItem_Click(object sender, RoutedEventArgs e)
     {
-
+        TextExts.Remove((string)TextExtsListBox.SelectedItem);
     }
+
+    private string oldTextExt = string.Empty;
 
     private void TextExtTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {
-
+        if (oldTextExt == TextExtTextBox.Text)
+            return;
+        var text = TextExtTextBox.Text;
+        if (text == string.Empty)
+        {
+            oldTextExt = string.Empty;
+            TextExtTextBox.Text = oldTextExt;
+            AddTextExtButton.IsEnabled = false;
+            return;
+        }
+        var pos = TextExtTextBox.SelectionStart;
+        if (!ValidateExtension(TextExtTextBox.Text))
+        {
+            TextExtTextBox.Text = oldTextExt;
+            TextExtTextBox.SelectionStart = pos - 1;
+        }
+        else
+        {
+            oldTextExt = TextExtTextBox.Text;
+        }
+        AddTextExtButton.IsEnabled = TextExtTextBox.Text.Length > 0;
     }
 
     private void AddTextExtButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var ext = TextExtTextBox.Text.ToLower();
+        if (TextExts.Contains(ext))
+        {
+            MessageBox.Show($"Расширение \"{ext}\" уже есть.", Title);
+            return;
+        }
+        TextExts.Add(ext);
+        TextExts.Sort(x => x, StringComparer.CurrentCultureIgnoreCase);
+        TextExtTextBox.Clear();
     }
 
     private void DbShrinkButton_Click(object sender, RoutedEventArgs e)

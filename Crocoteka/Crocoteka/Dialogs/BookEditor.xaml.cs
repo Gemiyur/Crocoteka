@@ -276,7 +276,7 @@ public partial class BookEditor : Window
 
     private string oldCycleNumbers = string.Empty;
 
-    private bool CheckCycleNumbers()
+    private bool ValidateCycleNumbers()
     {
         var array = CycleNumbersTextBox.Text.Split([' ', ','], StringSplitOptions.RemoveEmptyEntries);
         foreach (var item in array)
@@ -320,7 +320,7 @@ public partial class BookEditor : Window
             return;
         }
         var pos = CycleNumbersTextBox.SelectionStart;
-        if (!CheckCycleNumbers())
+        if (!ValidateCycleNumbers())
         {
             CycleNumbersTextBox.Text = oldCycleNumbers;
             CycleNumbersTextBox.SelectionStart = pos - 1;
