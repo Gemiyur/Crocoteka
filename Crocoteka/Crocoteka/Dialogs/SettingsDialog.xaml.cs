@@ -273,6 +273,28 @@ public partial class SettingsDialog : Window
         }
 
         // Расширения файлов.
+        var newAudioExts = AudioExts.Select(x => $".{x}");
+        var newAudioExtsSetting = App.ListToString(newAudioExts, ";");
+        var audioExtsChanged = Properties.Settings.Default.AudioExtensions != newAudioExtsSetting;
+        if (audioExtsChanged)
+        {
+            Properties.Settings.Default.AudioExtensions = newAudioExtsSetting;
+            App.AudioExtensions.Clear();
+            App.AudioExtensions.AddRange(newAudioExts);
+        }
+
+        var newTextExts = TextExts.Select(x => $".{x}");
+        var newTextExtsSetting = App.ListToString(newTextExts, ";");
+        var textExtsChanged = Properties.Settings.Default.TextExtensions != newTextExtsSetting;
+        if (textExtsChanged)
+        {
+            Properties.Settings.Default.TextExtensions = newTextExtsSetting;
+            App.TextExtensions.Clear();
+            App.TextExtensions.AddRange(newTextExts);
+        }
+
+        if (audioExtsChanged || textExtsChanged)
+            mainWindow.UpdateShownBooks();
 
         // База данных.
 #if DEBUG
