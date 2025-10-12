@@ -1,5 +1,7 @@
 ﻿using Microsoft.Win32;
+using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
@@ -12,6 +14,36 @@ namespace Crocoteka;
 /// </summary>
 public partial class App : Application
 {
+    #region Запуск только одного экземпляра приложения.
+
+    [DllImport("user32.dll")]
+    private static extern bool ShowWindow(IntPtr handle, int cmdShow);
+
+    [DllImport("user32.dll")]
+    private static extern int SetForegroundWindow(IntPtr handle);
+
+    private readonly Mutex mutex = new(false, "Crocoteka");
+
+    private void Application_Startup(object sender, StartupEventArgs e)
+    {
+        if (!mutex.WaitOne(500, false))
+        {
+#if DEBUG
+            MessageBox.Show("Приложение уже запущено.", "Крокотека");
+#endif
+            var processName = Process.GetCurrentProcess().ProcessName;
+            var process = Process.GetProcesses().Where(p => p.ProcessName == processName).FirstOrDefault();
+            if (process != null)
+            {
+                IntPtr handle = process.MainWindowHandle;
+                ShowWindow(handle, 1);
+                Environment.Exit(0);
+            }
+        }
+    }
+
+    #endregion
+
     /// <summary>
     /// Имя файла базы данных с полным путём.
     /// </summary>
