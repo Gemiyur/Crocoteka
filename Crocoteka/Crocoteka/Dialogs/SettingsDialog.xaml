@@ -201,6 +201,7 @@
             <Button Grid.Column="0" x:Name="ResetButton" Content="Сброс"
                     Style="{StaticResource ButtonStyle}"
                     HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                    ToolTip="Установить настройки по-умолчанию (текущая вкладка)"
                     Click="ResetButton_Click" />
             <StackPanel Grid.Column="1" Orientation="Horizontal"
                         HorizontalAlignment="Right" VerticalAlignment="Bottom"
