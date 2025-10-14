@@ -21,6 +21,19 @@ public static class Db
         return db.Rebuild();
     }
 
+    public static bool ValidateDb(string? dbName)
+    {
+        try
+        {
+            using var db = new LiteDatabase(dbName);
+            return true;
+        }
+        catch
+        {
+            return false;
+        }
+    }
+
     #region Получение коллекций.
 
     public static ILiteCollection<Author> GetAuthorsCollection(LiteDatabase db) => db.GetCollection<Author>("Authors");
