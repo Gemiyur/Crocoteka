@@ -1,4 +1,6 @@
-﻿using LiteDB;
+﻿using System.IO;
+using System.Text;
+using LiteDB;
 using Crocoteka.Models;
 
 namespace Crocoteka.Tools;
@@ -21,11 +23,24 @@ public static class Db
         return db.Rebuild();
     }
 
-    public static bool ValidateDb(string? dbName)
+    public static bool ValidateDb(string filename)
     {
+        if (!File.Exists(filename))
+            return true;
         try
         {
-            using var db = new LiteDatabase(dbName);
+            using (var stream = new FileStream(filename, FileMode.Open, FileAccess.Read))
+            {
+                byte[] bytes = new byte[27];
+                stream.Seek(32, SeekOrigin.Begin);
+                stream.Read(bytes, 0, bytes.Length);
+                var sb = new StringBuilder();
+                foreach (var b in bytes)
+                    sb.Append((char)b);
+                if (sb.ToString() != "** This is a LiteDB file **")
+                    return false;
+            }
+            using var db = new LiteDatabase(filename);
             return true;
         }
         catch
