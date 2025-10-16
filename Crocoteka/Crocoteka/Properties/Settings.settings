@@ -3,10 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="DbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Databases\LiteDB\Crocoteka\Crocoteka.db</Value>
+      <Value Profile="(Default)">C:\Databases\LiteDB\Crocoteka\Crocoteka.litedb</Value>
     </Setting>
     <Setting Name="DebugDbName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">C:\Databases\LiteDB\Crocoteka\CrocotekaDebug.db</Value>
+      <Value Profile="(Default)">C:\Databases\LiteDB\Crocoteka\CrocotekaDebug.litedb</Value>
     </Setting>
     <Setting Name="AudioExtensions" Type="System.String" Scope="User">
       <Value Profile="(Default)">.m4b;.mp3</Value>
