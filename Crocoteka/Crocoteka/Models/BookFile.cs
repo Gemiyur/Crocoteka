@@ -44,15 +44,8 @@ public class BookFile : BaseModel
         {
             comment = value ?? string.Empty;
             OnPropertyChanged("Comment");
-            OnPropertyChanged("ListItemComment");
         }
     }
-
-    /// <summary>
-    /// Возвращает текст комментария для отображения в списке файлов.
-    /// </summary>
-    [BsonIgnore]
-    public string ListItemComment => string.IsNullOrWhiteSpace(Comment) ? TypeText : $"{TypeText}. {Comment}";
 
     /// <summary>
     /// Возвращает папку файла книги.
