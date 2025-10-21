@@ -100,7 +100,7 @@
                                Margin="4,0,4,0" />
                     <StackPanel Grid.Row="1" Grid.Column="1" Margin="4,0,4,0">
                         <TextBlock Text="{Binding TypeText}"
-                                   FontStyle="Italic" />
+                                   FontWeight="Bold" />
                         <TextBlock x:Name="CommentTextBlock"
                                    Text="{Binding Comment}"
                                    TextWrapping="Wrap" />
