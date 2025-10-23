@@ -21,6 +21,10 @@
                 <Setter Property="Width" Value="75" />
                 <Setter Property="Height" Value="20" />
             </Style>
+
+            <Style x:Key="DividerColumnStyle" TargetType="ColumnDefinition">
+                <Setter Property="Width" Value="16" />
+            </Style>
             
             <Style x:Key="FilesButtonStyle" TargetType="Button">
                 <Setter Property="Width" Value="95" />
@@ -219,17 +223,53 @@
             <TabItem Header="Файлы">
                 <Grid Margin="0,4,0,0">
                     <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
                         <RowDefinition />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
-                    <ListBox Grid.Row="0" x:Name="FilesListBox"
+                    <Grid Grid.Row="0" Margin="8,0,8,4">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Grid.Column="0" Orientation="Horizontal">
+                            <TextBlock Text="Всего: " />
+                            <TextBlock x:Name="TotalFilesTextBlock" Text="0" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="2" Orientation="Horizontal">
+                            <TextBlock Text="Аудио: " />
+                            <TextBlock x:Name="AudioFilesTextBlock" Text="0" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="4" Orientation="Horizontal">
+                            <TextBlock Text="Текст: " />
+                            <TextBlock x:Name="TextFilesTextBlock" Text="0" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="6" x:Name="UnknownFilesStackPanel" Orientation="Horizontal">
+                            <TextBlock Text="Неизвестных: " />
+                            <TextBlock x:Name="UnknownFilesTextBlock" Text="0" />
+                        </StackPanel>
+                        <StackPanel Grid.Column="7" x:Name="NotFoundFilesStackPanel" Orientation="Horizontal"
+                                    HorizontalAlignment="Right">
+                            <TextBlock Text="Не найдено: " Foreground="Red" />
+                            <TextBlock x:Name="NotFoundFilesTextBlock" Text="0" Foreground="Red" />
+                        </StackPanel>
+                    </Grid>
+
+                    <ListBox Grid.Row="1" x:Name="FilesListBox"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                              ItemTemplate="{StaticResource FileDataTemplate}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectionMode="Extended"
                              Margin="4,0,4,2"
                              SelectionChanged="FilesListBox_SelectionChanged" />
-                    <Grid Grid.Row="1" Margin="4,10,4,4">
+
+                    <Grid Grid.Row="2" Margin="4,10,4,4">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
@@ -239,11 +279,11 @@
                                 Style="{StaticResource FilesButtonStyle}"
                                 IsEnabled="False"
                                 Click="CommentFileButton_Click" />
-                        <TextBlock Grid.Column="1" x:Name="FileNotFoundTextBlock" Text="*Файл не найден"
+                        <!--<TextBlock Grid.Column="1" x:Name="FileNotFoundTextBlock" Text="*Файл не найден"
                                    Foreground="{StaticResource FileNotFoundBrush}"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center"
-                                   Visibility="Collapsed" />
+                                   Visibility="Collapsed" />-->
                         <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Right">
                             <Button x:Name="AddFilesButton" Content="Добавить"
                                 Style="{StaticResource FilesButtonStyle}"

@@ -108,7 +108,6 @@
             <TabItem Header="Файлы">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <!--<RowDefinition />-->
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
