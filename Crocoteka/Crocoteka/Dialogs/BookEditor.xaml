@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Книга"
-        Width="500" Height="500" ResizeMode="NoResize"
+        Width="500" Height="550" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -54,7 +54,7 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <!-- Авторы -->
                     <GroupBox Grid.Row="0" Header="Авторы" Margin="0,10,0,0">
@@ -135,6 +135,9 @@
                                          LostFocus="CycleNumbersTextBox_LostFocus"
                                          TextChanged="CycleNumbersTextBox_TextChanged" />
                             </Grid>
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="* Номера в серии вводятся через запятую и/или пробел."
+                                       VerticalAlignment="Center" />
                             <Button Grid.Row="0" Grid.Column="1" x:Name="PickCycleButton" Content="Выбрать"
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"
