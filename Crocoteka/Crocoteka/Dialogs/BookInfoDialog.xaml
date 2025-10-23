@@ -11,6 +11,7 @@
         d:Width="500" d:Height="500"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
+        SourceInitialized="Window_SourceInitialized"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
 

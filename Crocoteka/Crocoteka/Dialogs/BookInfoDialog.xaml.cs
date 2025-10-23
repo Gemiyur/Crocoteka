@@ -1,7 +1,9 @@
-﻿using System.Windows;
+﻿using Crocoteka.Models;
+using System.Runtime.InteropServices;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using Crocoteka.Models;
+using System.Windows.Interop;
 
 namespace Crocoteka.Dialogs;
 
@@ -10,6 +12,15 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class BookInfoDialog : Window
 {
+    [DllImport("user32.dll")]
+    private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+    [DllImport("user32.dll")]
+    private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+    private const int GWL_STYLE = -16;
+    private const int WS_MAXIMIZEBOX = 0x10000;
+    private const int WS_MINIMIZEBOX = 0x20000;
+
     private readonly Book book;
 
     public BookInfoDialog(Book book)
@@ -106,6 +117,13 @@ public partial class BookInfoDialog : Window
         List<BookFile> files = [];
         files.AddRange(book.Files.OrderBy(x => x.Filename, StringComparer.CurrentCultureIgnoreCase));
         FilesListBox.ItemsSource = files;
+    }
+
+    private void Window_SourceInitialized(object sender, EventArgs e)
+    {
+        IntPtr handle = new WindowInteropHelper(this).Handle;
+        _ = SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_MINIMIZEBOX);
+        _ = SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_MAXIMIZEBOX);
     }
 
     private void Window_Loaded(object sender, RoutedEventArgs e)

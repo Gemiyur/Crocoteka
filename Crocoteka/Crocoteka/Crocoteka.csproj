@@ -13,6 +13,7 @@
 на локальном компьютере.</Description>
     <Copyright>Copyright © Gemiyur 2025</Copyright>
     <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
   <ItemGroup>
