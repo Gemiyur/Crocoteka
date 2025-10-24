@@ -179,12 +179,14 @@ public partial class BookInfoDialog : Window
 
     private void SelectFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = ((BookFile)FilesListBox.SelectedItem).Filename;
+        App.ShowFileInFolder(filename, Title);
     }
 
     private void OpenFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = ((BookFile)FilesListBox.SelectedItem).Filename;
+        App.OpenFile(filename, Title);
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();

@@ -131,6 +131,42 @@ public partial class App : Application
     /// </summary>
     public static void UpdateFindFilesWindow() => GetFindFilesWindow()?.ApplyFilter();
 
+    #region Открытие и показ файла в папке.
+
+    /// <summary>
+    /// Открывает указанный файл в приложении по умолчанию.
+    /// </summary>
+    /// <param name="filename">Имя файла с полным путём.</param>
+    /// <param name="caption">Заголовок окна сообщения об ошибке.</param>
+    public static void OpenFile(string filename, string caption)
+    {
+        if (!File.Exists(filename))
+        {
+            MessageBox.Show($"Файл не найден.\n{filename}", caption);
+            return;
+        }
+        var argument = $"\"{filename}\"";
+        Process.Start("explorer.exe", argument);
+    }
+
+    /// <summary>
+    /// Открывает папку с указанным файлом в проводнике и выделяет файл.
+    /// </summary>
+    /// <param name="filename">Имя файла с полным путём.</param>
+    /// <param name="caption">Заголовок окна сообщения об ошибке.</param>
+    public static void ShowFileInFolder(string filename, string caption)
+    {
+        if (!File.Exists(filename))
+        {
+            MessageBox.Show($"Файл не найден.\n{filename}", caption);
+            return;
+        }
+        var argument = $"/select, \"{filename}\"";
+        Process.Start("explorer.exe", argument);
+    }
+
+    #endregion
+
     #region Получение окон приложения.
 
     /// <summary>
