@@ -483,12 +483,14 @@ public partial class BookEditor : Window
 
     private void SelectFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = ((BookFile)FilesListBox.SelectedItem).Filename;
+        App.ShowFileInFolder(filename, Title);
     }
 
     private void OpenFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = ((BookFile)FilesListBox.SelectedItem).Filename;
+        App.OpenFile(filename, Title);
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
