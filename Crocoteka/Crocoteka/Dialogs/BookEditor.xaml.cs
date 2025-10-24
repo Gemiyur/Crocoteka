@@ -465,6 +465,8 @@ public partial class BookEditor : Window
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         CommentFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         RemoveFilesButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
     }
 
@@ -477,6 +479,16 @@ public partial class BookEditor : Window
             file.Comment = editor.Comment;
             fileCommentsChanged = true;
         }
+    }
+
+    private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 
     private void AddFilesButton_Click(object sender, RoutedEventArgs e)
