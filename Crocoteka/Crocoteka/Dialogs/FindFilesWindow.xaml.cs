@@ -157,12 +157,24 @@ public partial class FindFilesWindow : Window
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         BookButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
+        SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
     }
 
     private void BookButton_Click(object sender, RoutedEventArgs e)
     {
         if (App.GetMainWindow().AddBook(FilesListBox.SelectedItems.Cast<string>().Select(FullName)))
             ApplyFilter();
+    }
+
+    private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
