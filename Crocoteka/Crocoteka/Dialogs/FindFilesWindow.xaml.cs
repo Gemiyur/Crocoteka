@@ -62,6 +62,8 @@ public partial class FindFilesWindow : Window
         TypeComboBox.ItemsSource = masks;
         TypeComboBox.SelectedIndex = 0;
 
+        NotInLibraryCheckBox.IsChecked = true;
+
         FilesListBox.ItemsSource = shownFiles;
     }
 
