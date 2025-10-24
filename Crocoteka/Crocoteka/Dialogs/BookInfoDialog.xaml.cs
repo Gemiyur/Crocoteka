@@ -147,6 +147,14 @@ public partial class BookInfoDialog : Window
         }
     }
 
+    private void BookInfoTabControl_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        SelectFileButton.Visibility = BookInfoTabControl.SelectedItem == FilesTabItem
+            ? Visibility.Visible : Visibility.Collapsed;
+        OpenFileButton.Visibility = BookInfoTabControl.SelectedItem == FilesTabItem
+            ? Visibility.Visible : Visibility.Collapsed;
+    }
+
     private void AuthorLink_Click(object sender, RoutedEventArgs e)
     {
         if (sender is not Hyperlink)
@@ -165,8 +173,18 @@ public partial class BookInfoDialog : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        if (FilesListBox.SelectedIndex >= 0)
-            FilesListBox.SelectedIndex = -1;
+        SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+    }
+
+    private void SelectFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
+    }
+
+    private void OpenFileButton_Click(object sender, RoutedEventArgs e)
+    {
+
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();

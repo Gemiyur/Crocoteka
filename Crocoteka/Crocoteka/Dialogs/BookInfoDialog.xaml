@@ -17,6 +17,11 @@
 
     <Window.Resources>
         <ResourceDictionary>
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="Width" Value="75" />
+                <Setter Property="Height" Value="25" />
+            </Style>
+
             <Style x:Key="HyperlinkStyle" TargetType="Hyperlink">
                 <Setter Property="TextDecorations" Value="None" />
                 <Style.Triggers>
@@ -38,7 +43,8 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0">
+        <TabControl Grid.Row="0" x:Name="BookInfoTabControl"
+                    SelectionChanged="BookInfoTabControl_SelectionChanged">
             <TabItem Header="Книга">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -105,8 +111,8 @@
                     </Grid>
                 </Grid>
             </TabItem>
-            
-            <TabItem Header="Файлы">
+
+            <TabItem x:Name="FilesTabItem" Header="Файлы">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -144,10 +150,27 @@
             </TabItem>
         </TabControl>
 
-        <Button Grid.Row="1" x:Name="CloseButton" Content="Закрыть"
-                Width="75" Height="25"
+        <Grid Grid.Row="1" Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0" Orientation="Horizontal">
+                <Button x:Name="SelectFileButton" Content="Показать"
+                                    Style="{StaticResource ButtonStyle}"
+                                    IsEnabled="False"
+                                    Click="SelectFileButton_Click" />
+                <Button x:Name="OpenFileButton" Content="Открыть"
+                                    Style="{StaticResource ButtonStyle}"
+                                    Margin="10,0,0,0"
+                                    IsEnabled="False"
+                                    Click="OpenFileButton_Click" />
+            </StackPanel>
+            <Button Grid.Column="2" x:Name="CloseButton" Content="Закрыть"
+                Style="{StaticResource ButtonStyle}"
                 HorizontalAlignment="Right"
-                Margin="0,10,0,0"
                 Click="CloseButton_Click" />
+        </Grid>
     </Grid>
 </Window>
