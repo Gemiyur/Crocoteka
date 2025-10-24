@@ -169,12 +169,14 @@ public partial class FindFilesWindow : Window
 
     private void SelectFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = FullName((string)FilesListBox.SelectedItem);
+        App.ShowFileInFolder(filename, Title);
     }
 
     private void OpenFileButton_Click(object sender, RoutedEventArgs e)
     {
-
+        var filename = FullName((string)FilesListBox.SelectedItem);
+        App.OpenFile(filename, Title);
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
