@@ -28,9 +28,11 @@ public partial class SettingsDialog : Window
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
+        NotInLibraryCheckedCheckBox.IsChecked = Properties.Settings.Default.NotInLibraryChecked;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
+        SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.SaveNotInLibraryState;
 
         // Расширения файлов.
         var array = Properties.Settings.Default.AudioExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
@@ -61,9 +63,11 @@ public partial class SettingsDialog : Window
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetNavPanelAuthorFullName;
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookInfoAuthorFullName;
+        NotInLibraryCheckedCheckBox.IsChecked = Properties.Settings.Default.PresetNotInLibraryChecked;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
+        SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.PresetSaveNotInLibraryState;
     }
 
     private void ResetExtensions()
@@ -249,6 +253,10 @@ public partial class SettingsDialog : Window
             mainWindow.UpdateShownBooks();
         }
         Properties.Settings.Default.BookInfoAuthorFullName = BookInfoAuthorFullNameCheckBox.IsChecked == true;
+
+        // Интерфейс - состояние флажка "Нет в библиотеке".
+        Properties.Settings.Default.NotInLibraryChecked = NotInLibraryCheckedCheckBox.IsChecked == true;
+        Properties.Settings.Default.SaveNotInLibraryState = SaveNotInLibraryStateCheckBox.IsChecked == true;
 
         // Интерфейс - позиция и размер главного окна.
         Properties.Settings.Default.SaveMainWindowLocation = SaveMainWindowLocationCheckBox.IsChecked == true;

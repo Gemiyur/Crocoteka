@@ -62,7 +62,7 @@ public partial class FindFilesWindow : Window
         TypeComboBox.ItemsSource = masks;
         TypeComboBox.SelectedIndex = 0;
 
-        NotInLibraryCheckBox.IsChecked = true;
+        NotInLibraryCheckBox.IsChecked = Properties.Settings.Default.NotInLibraryChecked;
 
         FilesListBox.ItemsSource = shownFiles;
     }
@@ -125,6 +125,10 @@ public partial class FindFilesWindow : Window
         {
             Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size((int)Width, (int)Height);
+        }
+        if (Properties.Settings.Default.SaveNotInLibraryState)
+        {
+            Properties.Settings.Default.NotInLibraryChecked = NotInLibraryCheckBox.IsChecked == true;
         }
 
         // TODO: Надо ли восстанавливать и активировать главное окно при закрытии окна поиска файлов?
