@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Настройки"
-        Width="500" Height="300" ResizeMode="NoResize"
+        Width="520" Height="330" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -50,23 +50,32 @@
             <TabItem x:Name="InterfaceTabItem" Header="Интерфейс">
                 <StackPanel Margin="10,0,0,0">
                     <CheckBox x:Name="NavPanelAuthorFullNameCheckBox"
-                      Content="В панели навигации отображать полные имена авторов"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
+                              Content="В панели навигации отображать полные имена авторов"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
                     <CheckBox x:Name="BookListAuthorFullNameCheckBox"
-                      Content="В списке книг отображать полные имена авторов"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
+                              Content="В списке книг отображать полные имена авторов"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
                     <CheckBox x:Name="BookInfoAuthorFullNameCheckBox"
-                      Content="В окне информации о книге отображать полные имена авторов"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
+                              Content="В окне информации о книге отображать полные имена авторов"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
+
+                    <CheckBox x:Name="NotInLibraryCheckedCheckBox"
+                              Content="В окне поиска файлов книг флажок «Нет в библиотеке» включён"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
+
                     <CheckBox x:Name="SaveMainWindowLocationCheckBox"
-                      Content="Сохранять положение и размер окна приложения"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
-                    <CheckBox x:Name="SaveFindFilesWindowLocationCheckBox"
-                      Content="Сохранять положение и размер окна поиска файлов книг"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
+                              Content="Сохранять положение и размер окна приложения"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
                     <CheckBox x:Name="SaveInfoWindowsLocationCheckBox"
-                      Content="Сохранять положение и размер окон информации о книге, авторе и серии"
-                      Style="{StaticResource InterfaceCheckBoxStyle}" />
+                              Content="Сохранять положение и размер окон информации о книге, авторе и серии"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
+                    <CheckBox x:Name="SaveFindFilesWindowLocationCheckBox"
+                              Content="Сохранять положение и размер окна поиска файлов книг"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
+
+                    <CheckBox x:Name="SaveNotInLibraryStateCheckBox"
+                              Content="Сохранять состояние флажка «Нет в библиотеке» в окне поиска файлов книг"
+                              Style="{StaticResource InterfaceCheckBoxStyle}" />
                 </StackPanel>
             </TabItem>
 

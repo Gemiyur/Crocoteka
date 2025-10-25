@@ -110,6 +110,18 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool NotInLibraryChecked {
+            get {
+                return ((bool)(this["NotInLibraryChecked"]));
+            }
+            set {
+                this["NotInLibraryChecked"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool SaveMainWindowLocation {
             get {
                 return ((bool)(this["SaveMainWindowLocation"]));
@@ -140,42 +152,6 @@ namespace Crocoteka.Properties {
             }
             set {
                 this["MainWindowSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SaveFindFilesWindowLocation {
-            get {
-                return ((bool)(this["SaveFindFilesWindowLocation"]));
-            }
-            set {
-                this["SaveFindFilesWindowLocation"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point FindFilesWindowPos {
-            get {
-                return ((global::System.Drawing.Point)(this["FindFilesWindowPos"]));
-            }
-            set {
-                this["FindFilesWindowPos"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size FindFilesWindowSize {
-            get {
-                return ((global::System.Drawing.Size)(this["FindFilesWindowSize"]));
-            }
-            set {
-                this["FindFilesWindowSize"] = value;
             }
         }
         
@@ -263,6 +239,54 @@ namespace Crocoteka.Properties {
             }
         }
         
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveFindFilesWindowLocation {
+            get {
+                return ((bool)(this["SaveFindFilesWindowLocation"]));
+            }
+            set {
+                this["SaveFindFilesWindowLocation"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Point FindFilesWindowPos {
+            get {
+                return ((global::System.Drawing.Point)(this["FindFilesWindowPos"]));
+            }
+            set {
+                this["FindFilesWindowPos"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size FindFilesWindowSize {
+            get {
+                return ((global::System.Drawing.Size)(this["FindFilesWindowSize"]));
+            }
+            set {
+                this["FindFilesWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveNotInLibraryState {
+            get {
+                return ((bool)(this["SaveNotInLibraryState"]));
+            }
+            set {
+                this["SaveNotInLibraryState"] = value;
+            }
+        }
+        
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute(".m4b;.mp3")]
@@ -320,6 +344,15 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveInfoWindowsLocation {
+            get {
+                return ((bool)(this["PresetSaveInfoWindowsLocation"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool PresetSaveFindFilesWindowLocation {
             get {
                 return ((bool)(this["PresetSaveFindFilesWindowLocation"]));
@@ -329,9 +362,18 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PresetSaveInfoWindowsLocation {
+        public bool PresetNotInLibraryChecked {
             get {
-                return ((bool)(this["PresetSaveInfoWindowsLocation"]));
+                return ((bool)(this["PresetNotInLibraryChecked"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveNotInLibraryState {
+            get {
+                return ((bool)(this["PresetSaveNotInLibraryState"]));
             }
         }
     }

@@ -29,8 +29,8 @@ public partial class SettingsDialog : Window
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
-        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
+        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
 
         // Расширения файлов.
         var array = Properties.Settings.Default.AudioExtensions.Split(';', StringSplitOptions.RemoveEmptyEntries);
@@ -62,8 +62,8 @@ public partial class SettingsDialog : Window
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookInfoAuthorFullName;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
-        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
+        SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
     }
 
     private void ResetExtensions()
@@ -258,14 +258,6 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.MainWindowSize = new System.Drawing.Size(0, 0);
         }
 
-        // Интерфейс - позиция и размер окна поиска файлов.
-        Properties.Settings.Default.SaveFindFilesWindowLocation = SaveFindFilesWindowLocationCheckBox.IsChecked == true;
-        if (!Properties.Settings.Default.SaveFindFilesWindowLocation)
-        {
-            Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point(0, 0);
-            Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
-        }
-
         // Интерфейс - позиции и размеры окон "Об авторе". "О книге" и "О серии".
         Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsLocationCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveInfoWindowsLocation)
@@ -276,6 +268,14 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size(0, 0);
             Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
+        }
+
+        // Интерфейс - позиция и размер окна поиска файлов.
+        Properties.Settings.Default.SaveFindFilesWindowLocation = SaveFindFilesWindowLocationCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveFindFilesWindowLocation)
+        {
+            Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point(0, 0);
+            Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
         }
 
         // Расширения файлов.
