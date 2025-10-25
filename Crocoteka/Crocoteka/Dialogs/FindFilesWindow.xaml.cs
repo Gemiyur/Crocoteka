@@ -130,8 +130,6 @@ public partial class FindFilesWindow : Window
         {
             Properties.Settings.Default.NotInLibraryChecked = NotInLibraryCheckBox.IsChecked == true;
         }
-
-        // TODO: Надо ли восстанавливать и активировать главное окно при закрытии окна поиска файлов?
         var window = App.GetMainWindow();
         if (window != null)
         {
