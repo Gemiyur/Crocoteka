@@ -37,6 +37,8 @@ public partial class App : Application
             {
                 IntPtr handle = process.MainWindowHandle;
                 ShowWindow(handle, 1);
+                if (SetForegroundWindow(handle) == 0)
+                    MessageBox.Show("Приложение уже запущено.", "Крокотека");
                 Environment.Exit(0);
             }
         }
