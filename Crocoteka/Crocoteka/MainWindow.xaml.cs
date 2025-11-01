@@ -98,7 +98,7 @@ public partial class MainWindow : Window
                 MessageBox.Show("Файл базы данных не выбран.\nПриложение закроется.", Title);
                 return false;
             }
-            dbName = App.EnsureDbExtension(dialog.FileName);
+            dbName = Db.EnsureDbExtension(dialog.FileName);
             if (Db.ValidateDb(dbName))
                 break;
             MessageBox.Show("Файл не является базой данных LiteDB или повреждён.", Title);

@@ -15,7 +15,26 @@ namespace Crocoteka.Tools;
 /// </remarks>
 public static class Db
 {
+    /// <summary>
+    /// Расширение файла базы данных. Начинается с точки.
+    /// </summary>
+    public const string DbExtension = ".litedb";
+
     public static LiteDatabase GetDatabase() => new(App.DbName);
+
+    /// <summary>
+    /// Возвращает указанное имя файла, гарантируя расширение .db.
+    /// </summary>
+    /// <param name="filename">Имя файла.</param>
+    /// <returns>Имя файла с расширением .db.</returns>
+    /// <remarks>
+    /// Если имя файла имеет расширение .db, то возвращает имя файла без изменений.<br/>
+    /// Если имя файла имеет другое расширение, то к имени файла добавляет расширение .db.
+    /// </remarks>
+    public static string EnsureDbExtension(string filename) =>
+        Path.GetExtension(filename).Equals(".litedb", StringComparison.CurrentCultureIgnoreCase)
+            ? filename
+            : filename + ".litedb";
 
     public static long Shrink()
     {

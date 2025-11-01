@@ -74,20 +74,6 @@ public partial class App : Application
         MessageBox.Show(message, caption, MessageBoxButton.YesNo) == MessageBoxResult.Yes;
 
     /// <summary>
-    /// Возвращает указанное имя файла, гарантируя расширение .db.
-    /// </summary>
-    /// <param name="filename">Имя файла.</param>
-    /// <returns>Имя файла с расширением .db.</returns>
-    /// <remarks>
-    /// Если имя файла имеет расширение .db, то возвращает имя файла без изменений.<br/>
-    /// Если имя файла имеет другое расширение, то к имени файла добавляет расширение .db.
-    /// </remarks>
-    public static string EnsureDbExtension(string filename) =>
-        Path.GetExtension(filename).Equals(".litedb", StringComparison.CurrentCultureIgnoreCase)
-            ? filename
-            : filename + ".litedb";
-
-    /// <summary>
     /// Возвращает BitmapImage из указанного файла изображения.
     /// </summary>
     /// <param name="path">Путь к файлу.</param>
