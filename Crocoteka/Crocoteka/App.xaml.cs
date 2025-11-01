@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows;
 using System.Windows.Media.Imaging;
 using Crocoteka.Dialogs;
+using Crocoteka.Tools;
 
 namespace Crocoteka;
 
@@ -188,7 +189,7 @@ public partial class App : Application
         CheckFileExists = false,
         OverwritePrompt = false,
         Title = "Файл базы данных",
-        Filter = $"Файлы базы данных|*.litedb"
+        Filter = $"Файлы базы данных|*{Db.DbExtension}"
     };
 
     /// <summary>

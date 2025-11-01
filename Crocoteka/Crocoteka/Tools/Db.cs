@@ -36,9 +36,9 @@ public static class Db
     /// Если имя файла имеет другое расширение, то к имени файла добавляет расширение, определённое константой DbExtension.
     /// </remarks>
     public static string EnsureDbExtension(string filename) =>
-        Path.GetExtension(filename).Equals(".litedb", StringComparison.CurrentCultureIgnoreCase)
+        Path.GetExtension(filename).Equals(DbExtension, StringComparison.CurrentCultureIgnoreCase)
             ? filename
-            : filename + ".litedb";
+            : filename + DbExtension;
 
     /// <summary>
     /// Сжимает файл базы данных, удаляя неиспользуемое пространство.
