@@ -11,7 +11,7 @@ namespace Crocoteka.Tools;
 /// <remarks>
 /// Содержит основные (базовые) методы: вставка, удаление и обновление.<br/>
 /// Методы удаления обеспечивают целостность данных,<br/>
-/// не позволяя удалять авторов и серии, если на них есть ссылки у книг.
+/// не позволяя удалять авторов, серии и жанры, если на них есть ссылки у книг.
 /// </remarks>
 public static class Db
 {
@@ -82,6 +82,22 @@ public static class Db
         }
     }
 
+    /// <summary>
+    /// Пересохраняет объекты в базе данных.
+    /// </summary>
+    /// <remarks>
+    /// Метод предназначен для удаления свойств объектов коллекций, которые были удалены из модели.
+    /// </remarks>
+    public static void ReSaveDbObjects()
+    {
+        //using var db = GetDatabase();
+        //var books = GetBooks(db);
+        //foreach (var book in books)
+        //{
+        //    UpdateBook(book, db);
+        //}
+    }
+
     #region Получение коллекций.
 
     public static ILiteCollection<Author> GetAuthorsCollection(LiteDatabase db) => db.GetCollection<Author>("Authors");
@@ -109,6 +125,14 @@ public static class Db
             .Include(x => x.Genres)
             .FindById(bookId);
 
+    public static Book GetBookOnly(int bookId)
+    {
+        using var db = GetDatabase();
+        return GetBookOnly(bookId, db);
+    }
+
+    public static Book GetBookOnly(int bookId, LiteDatabase db) => GetBooksCollection(db).FindById(bookId);
+
     public static List<Book> GetBooks()
     {
         using var db = GetDatabase();
@@ -123,6 +147,15 @@ public static class Db
             .FindAll()
             .OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
 
+    public static List<Book> GetBooksOnly()
+    {
+        using var db = GetDatabase();
+        return GetBooksOnly(db);
+    }
+
+    public static List<Book> GetBooksOnly(LiteDatabase db) =>
+        [.. GetBooksCollection(db).FindAll().OrderBy(x => x.Title, StringComparer.CurrentCultureIgnoreCase)];
+
     public static int InsertBook(Book book)
     {
         using var db = GetDatabase();
@@ -134,16 +167,10 @@ public static class Db
     public static bool DeleteBook(int bookId)
     {
         using var db = GetDatabase();
-        return GetBooksCollection(db).Delete(bookId);
+        return DeleteBook(bookId, db);
     }
 
-    public static bool DeleteBooK(int bookId)
-    {
-        using var db = GetDatabase();
-        return DeleteBooK(bookId, db);
-    }
-
-    public static bool DeleteBooK(int bookId, LiteDatabase db) => GetBooksCollection(db).Delete(bookId);
+    public static bool DeleteBook(int bookId, LiteDatabase db) => GetBooksCollection(db).Delete(bookId);
 
     public static bool UpdateBook(Book book)
     {
@@ -208,7 +235,7 @@ public static class Db
 
     #endregion
 
-    #region Циклы.
+    #region Серии.
 
     public static Cycle GetCycle(int cycleId)
     {
