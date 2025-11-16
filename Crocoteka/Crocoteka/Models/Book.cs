@@ -214,4 +214,15 @@ public class Book : BaseModel
     /// </summary>
     [BsonIgnore]
     public bool HasNotFound => NotFoundCount > 0;
+
+    /// <summary>
+    /// Вызывает изменение свойств, зависящих от авторов книги.
+    /// </summary>
+    public void AuthorsChanged()
+    {
+        OnPropertyChanged("AuthorNamesFirstLast");
+        OnPropertyChanged("AuthorNamesFirstMiddleLast");
+        OnPropertyChanged("AuthorNamesLastFirst");
+        OnPropertyChanged("AuthorNamesLastFirstMiddle");
+    }
 }

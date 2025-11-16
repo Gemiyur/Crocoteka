@@ -279,10 +279,7 @@ public partial class MainWindow : Window
     {
         foreach (var book in ShownBooks)
         {
-            book.OnPropertyChanged("AuthorNamesFirstLast");
-            book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
-            book.OnPropertyChanged("AuthorNamesLastFirst");
-            book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+            book.AuthorsChanged();
         }
     }
 
@@ -517,10 +514,7 @@ public partial class MainWindow : Window
         }
         if (editor.FilesChanged)
             App.UpdateFindFilesWindow();
-        book.OnPropertyChanged("AuthorNamesFirstLast");
-        book.OnPropertyChanged("AuthorNamesFirstMiddleLast");
-        book.OnPropertyChanged("AuthorNamesLastFirst");
-        book.OnPropertyChanged("AuthorNamesLastFirstMiddle");
+        book.AuthorsChanged();
         book.OnPropertyChanged("FilesCountText");
         book.OnPropertyChanged("AudioCountText");
         book.OnPropertyChanged("TextCountText");
