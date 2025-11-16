@@ -622,12 +622,6 @@ public partial class MainWindow : Window
     {
         var editor = new CyclesEditor() { Owner = this };
         editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = CyclesListBox.SelectedItem;
-        UpdateNavPanel(false, true, false);
-        if (selectedItem != null && CyclesListBox.SelectedItem == null)
-            UpdateShownBooks();
     }
 
     private void CycleInfo_Executed(object sender, ExecutedRoutedEventArgs e)

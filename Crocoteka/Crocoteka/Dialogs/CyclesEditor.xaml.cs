@@ -12,11 +12,6 @@ namespace Crocoteka.Dialogs;
 public partial class CyclesEditor : Window
 {
     /// <summary>
-    /// Были ли изменения в коллекции серий.
-    /// </summary>
-    public bool HasChanges;
-
-    /// <summary>
     /// Коллекция серий.
     /// </summary>
     private readonly ObservableCollectionEx<Cycle> cycles = [];
@@ -51,7 +46,7 @@ public partial class CyclesEditor : Window
             return;
         cycles.Add(cycle);
         SortCycles();
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, true, false);
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +56,7 @@ public partial class CyclesEditor : Window
         if (editor.ShowDialog() != true || !editor.TitleChanged)
             return;
         SortCycles();
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, true, false);
     }
 
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -77,7 +72,7 @@ public partial class CyclesEditor : Window
             return;
         }
         cycles.Remove(cycle);
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, true, false);
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
