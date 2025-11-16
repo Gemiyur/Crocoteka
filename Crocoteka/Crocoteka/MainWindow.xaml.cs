@@ -221,6 +221,7 @@ public partial class MainWindow : Window
             AllBooksToggleButton.IsChecked != true)
         {
             AllBooksToggleButton.IsChecked = true;
+            UpdateShownBooks();
         }
         UnlockNavHandlers();
     }
