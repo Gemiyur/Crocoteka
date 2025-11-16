@@ -680,12 +680,6 @@ public partial class MainWindow : Window
     {
         var editor = new GenresEditor() { Owner = this };
         editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = GenresListBox.SelectedItem;
-        UpdateNavPanel(false, false, true);
-        if (selectedItem != null && GenresListBox.SelectedItem == null)
-            UpdateShownBooks();
     }
 
     private void GenreEdit_Executed(object sender, ExecutedRoutedEventArgs e)

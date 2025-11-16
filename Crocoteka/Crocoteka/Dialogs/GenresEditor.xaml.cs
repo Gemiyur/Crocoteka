@@ -12,11 +12,6 @@ namespace Crocoteka.Dialogs;
 public partial class GenresEditor : Window
 {
     /// <summary>
-    /// Были ли изменения в коллекции жанров.
-    /// </summary>
-    public bool HasChanges;
-
-    /// <summary>
     /// Коллекция жанров.
     /// </summary>
     private readonly ObservableCollectionEx<Genre> genres = [];
@@ -51,7 +46,7 @@ public partial class GenresEditor : Window
             return;
         genres.Add(genre);
         SortGenres();
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, false, true);
     }
 
     private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +56,7 @@ public partial class GenresEditor : Window
         if (editor.ShowDialog() != true)
             return;
         SortGenres();
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, false, true);
     }
 
     private void DeleteButton_Click(object sender, RoutedEventArgs e)
@@ -77,7 +72,7 @@ public partial class GenresEditor : Window
             return;
         }
         genres.Remove(genre);
-        HasChanges = true;
+        App.GetMainWindow().UpdateNavPanel(false, false, true);
     }
 
     private void CloseButton_Click(object sender, RoutedEventArgs e) => Close();
