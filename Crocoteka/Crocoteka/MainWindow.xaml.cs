@@ -556,13 +556,6 @@ public partial class MainWindow : Window
     {
         var editor = new AuthorsEditor() { Owner = this };
         editor.ShowDialog();
-        if (!editor.HasChanges)
-            return;
-        var selectedItem = AuthorsListBox.SelectedItem;
-        UpdateNavPanel(true, false, false);
-        if (selectedItem != null && AuthorsListBox.SelectedItem == null)
-            UpdateShownBooks();
-        UpdateShownBooksAuthors();
     }
 
     private void AuthorInfo_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -578,7 +571,6 @@ public partial class MainWindow : Window
         if (editor.ShowDialog() != true || !editor.NameChanged)
             return;
         UpdateNavPanel(true, false, false);
-        UpdateShownBooksAuthors();
     }
 
     private void AuthorDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
