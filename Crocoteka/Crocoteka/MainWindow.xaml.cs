@@ -179,7 +179,7 @@ public partial class MainWindow : Window
     /// <param name="authors">Обновить список авторов.</param>
     /// <param name="cycles">Обновить список серий.</param>
     /// <param name="genres">Обновить список жанров.</param>
-    private void UpdateNavPanel(bool authors, bool cycles, bool genres)
+    public void UpdateNavPanel(bool authors, bool cycles, bool genres)
     {
         LockNavHandlers();
         if (authors)
