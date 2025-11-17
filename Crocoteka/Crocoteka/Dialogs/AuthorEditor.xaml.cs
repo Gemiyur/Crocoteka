@@ -97,6 +97,11 @@ public partial class AuthorEditor : Window
             return;
         }
 
+        if (NameChanged)
+        {
+            App.GetMainWindow().UpdateShownBooksAuthors();
+        }
+
         DialogResult = true;
     }
 

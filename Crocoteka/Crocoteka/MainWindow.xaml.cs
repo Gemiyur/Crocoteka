@@ -275,7 +275,7 @@ public partial class MainWindow : Window
     /// <summary>
     /// Обновляет имена авторов в списке отображаемых книг.
     /// </summary>
-    private void UpdateShownBooksAuthors()
+    public void UpdateShownBooksAuthors()
     {
         foreach (var book in ShownBooks)
         {
@@ -502,9 +502,7 @@ public partial class MainWindow : Window
     {
         var book = (Book)BooksListView.SelectedItem;
         var editor = new BookEditor(book) { Owner = this };
-        var result = editor.ShowDialog() == true;
-        UpdateNavPanel(true, true, true);
-        if (!result)
+        if (editor.ShowDialog() != true)
             return;
         if (editor.TitleChanged || editor.AuthorsChanged ||
             editor.CycleChanged || editor.CycleNumbersChanged || editor.GenresChanged)
@@ -515,10 +513,6 @@ public partial class MainWindow : Window
         if (editor.FilesChanged)
             App.UpdateFindFilesWindow();
         book.AuthorsChanged();
-        book.OnPropertyChanged("FilesCountText");
-        book.OnPropertyChanged("AudioCountText");
-        book.OnPropertyChanged("TextCountText");
-        book.OnPropertyChanged("NotFoundCountText");
     }
 
     private void BookDelete_CanExecute(object sender, CanExecuteRoutedEventArgs e)
