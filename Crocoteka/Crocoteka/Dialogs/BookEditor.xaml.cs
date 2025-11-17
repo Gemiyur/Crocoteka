@@ -84,8 +84,7 @@ public partial class BookEditor : Window
         authors.AddRange(book.Authors);
         SortAuthors();
         AuthorsListBox.ItemsSource = authors;
-        cycle = book.Cycle;
-        CycleTextBox.Text = cycle != null ? cycle.Title : string.Empty;
+        SetCycle(book.Cycle);
         CycleNumbersTextBox.Text = book.CycleNumbers;
         AnnotationTextBox.Text = book.Annotation;
         genres.AddRange(book.Genres);
@@ -197,6 +196,19 @@ public partial class BookEditor : Window
     }
 
     /// <summary>
+    /// Устанавливает серию книги.
+    /// </summary>
+    /// <param name="value">Серия книги.</param>
+    private void SetCycle(Cycle? value)
+    {
+        cycle = value;
+        EditCycleButton.IsEnabled = cycle != null;
+        RemoveCycleButton.IsEnabled = cycle != null;
+        CycleNumbersTextBox.IsEnabled = cycle != null;
+        CycleTextBox.Text = cycle != null ? cycle.Title : string.Empty;
+    }
+
+    /// <summary>
     /// Сортирует коллекцию авторов книги по фамилии, имени и отчеству.
     /// </summary>
     private void SortAuthors() => authors.Sort(x => x.NameLastFirstMiddle, StringComparer.CurrentCultureIgnoreCase);
@@ -261,27 +273,22 @@ public partial class BookEditor : Window
             return;
         authors.Add(author);
         SortAuthors();
+        App.GetMainWindow().UpdateNavPanel(true, false, false);
     }
 
     private void EditAuthorButton_Click(object sender, RoutedEventArgs e)
     {
         var author = (Author)AuthorsListBox.SelectedItem;
         var editor = new AuthorEditor(author) { Owner = this };
-        if (editor.ShowDialog() != true)
+        if (editor.ShowDialog() != true || !editor.NameChanged)
             return;
-        if (editor.NameChanged)
-            SortAuthors();
+        SortAuthors();
+        App.GetMainWindow().UpdateNavPanel(true, false, false);
     }
 
     private void RemoveAuthorsButton_Click(object sender, RoutedEventArgs e)
     {
         authors.RemoveRange(AuthorsListBox.SelectedItems.Cast<Author>());
-    }
-
-    private void CycleTextBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        EditCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
-        RemoveCycleButton.IsEnabled = CycleTextBox.Text.Length > 0;
     }
 
     private string oldCycleNumbers = string.Empty;
@@ -348,8 +355,7 @@ public partial class BookEditor : Window
             return;
         if (cycle != null && picker.PickedCycle.CycleId == cycle.CycleId)
             return;
-        cycle = picker.PickedCycle;
-        CycleTextBox.Text = cycle.Title;
+        SetCycle(picker.PickedCycle);
         CycleNumbersTextBox.Text = string.Empty;
     }
 
@@ -359,9 +365,9 @@ public partial class BookEditor : Window
         var editor = new CycleEditor(newCycle) { Owner = this };
         if (editor.ShowDialog() != true)
             return;
-        cycle = newCycle;
-        CycleTextBox.Text = cycle.Title;
+        SetCycle(newCycle);
         CycleNumbersTextBox.Text = string.Empty;
+        App.GetMainWindow().UpdateNavPanel(false, true, false);
     }
 
     private void EditCycleButton_Click(object sender, RoutedEventArgs e)
@@ -372,12 +378,12 @@ public partial class BookEditor : Window
         if (editor.ShowDialog() != true || !editor.TitleChanged)
             return;
         CycleTextBox.Text = cycle.Title;
+        App.GetMainWindow().UpdateNavPanel(false, true, false);
     }
 
     private void RemoveCycleButton_Click(object sender, RoutedEventArgs e)
     {
-        cycle = null;
-        CycleTextBox.Text = string.Empty;
+        SetCycle(null);
         CycleNumbersTextBox.Text = string.Empty;
     }
 
@@ -400,6 +406,17 @@ public partial class BookEditor : Window
         SortGenres();
     }
 
+    private void NewGenreButton_Click(object sender, RoutedEventArgs e)
+    {
+        var genre = new Genre();
+        var editor = new GenreEditor(genre) { Owner = this };
+        if (editor.ShowDialog() != true)
+            return;
+        genres.Add(genre);
+        SortGenres();
+        App.GetMainWindow().UpdateNavPanel(false, false, true);
+    }
+
     private void EditGenreButton_Click(object sender, RoutedEventArgs e)
     {
         var genre = (Genre)GenresListBox.SelectedItem;
@@ -407,55 +424,12 @@ public partial class BookEditor : Window
         if (editor.ShowDialog() != true)
             return;
         SortGenres();
+        App.GetMainWindow().UpdateNavPanel(false, false, true);
     }
 
     private void RemoveGenresButton_Click(object sender, RoutedEventArgs e)
     {
         genres.RemoveRange(GenresListBox.SelectedItems.Cast<Genre>());
-    }
-
-    private void NewGenreTextBox_TextChanged(object sender, TextChangedEventArgs e)
-    {
-        AddNewGenreButton.IsEnabled = !string.IsNullOrWhiteSpace(NewGenreTextBox.Text);
-    }
-
-    private void AddNewGenreButton_Click(object sender, RoutedEventArgs e)
-    {
-        var title = NewGenreTextBox.Text.Trim();
-        var genre = Library.Genres.Find(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase));
-        if (genre != null)
-        {
-            if (genres.Any(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                NewGenreTextBox.Text = string.Empty;
-                return;
-            }
-            else
-            {
-                genres.Add(genre);
-            }
-        }
-        else
-        {
-            if (genres.Any(x => x.Title.Equals(title, StringComparison.CurrentCultureIgnoreCase)))
-            {
-                NewGenreTextBox.Text = string.Empty;
-                return;
-            }
-            else
-            {
-                genre = new Genre() { Title = title };
-                if (!Library.AddGenre(genre))
-                {
-                    MessageBox.Show("Не удалось сохранить жанр.", Title);
-                    NewGenreTextBox.Text = string.Empty;
-                    return;
-                }
-                genres.Add(genre);
-            }
-        }
-        SortGenres();
-        NewGenreTextBox.Text = string.Empty;
     }
 
     #endregion
