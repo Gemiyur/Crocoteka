@@ -75,10 +75,7 @@ public partial class AuthorEditor : Window
             return;
         }
 
-        var origLastName = author.LastName;
-        var origFirstName = author.FirstName;
-        var origMiddleName = author.MiddleName;
-        var origAbout = author.About;
+        var origAuthor = author.Clone();
 
         author.LastName = lastName;
         author.FirstName = firstName;
@@ -89,10 +86,7 @@ public partial class AuthorEditor : Window
         if (!saved)
         {
             MessageBox.Show("Не удалось сохранить автора.", Title);
-            author.LastName = origLastName;
-            author.FirstName = origFirstName;
-            author.MiddleName = origMiddleName;
-            author.About = origAbout;
+            origAuthor.CopyTo(author);
             DialogResult = false;
             return;
         }
