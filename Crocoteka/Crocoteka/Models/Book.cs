@@ -231,7 +231,7 @@ public class Book : BaseModel
     /// </summary>
     /// <param name="book">Книга, в которую копируются данные книги.</param>
     /// <remarks>
-    /// Копируются все данные книги кроме идентификатора. BookId = 0.
+    /// Копируются все данные книги кроме идентификатора.
     /// </remarks>
     public void CopyTo(Book book)
     {
@@ -252,7 +252,7 @@ public class Book : BaseModel
     /// </summary>
     /// <returns>Неполная копия книги.</returns>
     /// <remarks>
-    /// Копия содержит все данные книги кроме идентификатора. BookId = 0.
+    /// Копия содержит все данные книги кроме идентификатора.
     /// </remarks>
     public Book Clone()
     {
