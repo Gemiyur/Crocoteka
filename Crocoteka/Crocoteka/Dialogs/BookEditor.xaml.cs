@@ -510,8 +510,8 @@ public partial class BookEditor : Window
         {
             MessageBox.Show("Не удалось сохранить книгу в базе данных.", Title);
             origBook.CopyTo(book);
-            //DialogResult = false;
-            //return;
+            DialogResult = false;
+            return;
         }
 
         DialogResult = true;
