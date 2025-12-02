@@ -499,6 +499,7 @@ public partial class BookEditor : Window
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
+        var origBook = book.Clone();
         if (!SaveBook())
         {
             DialogResult = false;
@@ -506,9 +507,15 @@ public partial class BookEditor : Window
         }
         var saved = book.BookId > 0 ? Library.UpdateBook(book) : Library.AddBook(book);
         if (!saved)
+        {
             MessageBox.Show("Не удалось сохранить книгу в базе данных.", Title);
+            origBook.CopyTo(book);
+            //DialogResult = false;
+            //return;
+        }
+
         DialogResult = true;
     }
 
-    private void CancelButton_Click(object sender, RoutedEventArgs e) => Close();
+    private void CancelButton_Click(object sender, RoutedEventArgs e) => DialogResult = false;
 }
