@@ -136,6 +136,8 @@ public partial class FindFilesWindow : Window
             App.RestoreWindow(window);
             window.Activate();
         }
+        else
+            Properties.Settings.Default.Save();
     }
 
     private void FolderButton_Click(object sender, RoutedEventArgs e)
