@@ -136,7 +136,7 @@ public partial class FindFilesWindow : Window
             App.RestoreWindow(window);
             window.Activate();
         }
-        else
+        else if (Properties.Settings.Default.SaveFindFilesWindowLocation || Properties.Settings.Default.SaveNotInLibraryState)
             Properties.Settings.Default.Save();
     }
 
