@@ -86,10 +86,10 @@ public partial class BookEditor : Window
         AuthorsListBox.ItemsSource = authors;
         SetCycle(book.Cycle);
         CycleNumbersTextBox.Text = book.CycleNumbers;
-        AnnotationTextBox.Text = book.Annotation;
         genres.AddRange(book.Genres);
         SortGenres();
         GenresListBox.ItemsSource = genres;
+        CommentTextBox.Text = book.Comment;
         files.AddRange(book.Files);
         SortFiles();
         FilesListBox.ItemsSource = files;
@@ -154,13 +154,6 @@ public partial class BookEditor : Window
             CycleNumbersChanged = true;
         }
 
-        // Аннотация.
-        if (book.Annotation != AnnotationTextBox.Text)
-        {
-            book.Annotation = AnnotationTextBox.Text;
-            changed = true;
-        }
-
         // Жанры.
         if (genres.Count != book.Genres.Count ||
             genres.Any(x => !book.Genres.Exists(g => g.GenreId == x.GenreId)) ||
@@ -170,6 +163,13 @@ public partial class BookEditor : Window
             book.Genres.AddRange(genres);
             changed = true;
             GenresChanged = true;
+        }
+
+        // Комментарий.
+        if (book.Comment != CommentTextBox.Text)
+        {
+            book.Comment = CommentTextBox.Text;
+            changed = true;
         }
 
         // Файлы.

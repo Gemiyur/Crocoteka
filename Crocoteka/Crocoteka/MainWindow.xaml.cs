@@ -48,6 +48,8 @@ public partial class MainWindow : Window
         App.DbName = Properties.Settings.Default.DbName;
 #endif
 
+        //Db.ReSaveDbObjects();
+
         // Проверяем файл базы данных.
         if (!File.Exists(App.DbName))
         {

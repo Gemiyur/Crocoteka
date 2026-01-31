@@ -156,14 +156,6 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Аннотация">
-                <TextBox x:Name="AnnotationTextBox"
-                         AcceptsReturn="True"
-                         TextWrapping="Wrap"
-                         VerticalScrollBarVisibility="Auto"
-                         Margin="4,4,4,2" />
-            </TabItem>
- 
             <TabItem Header="Жанры">
                 <Grid Margin="4,4,4,2">
                     <Grid>
@@ -202,6 +194,14 @@
                         </StackPanel>
                     </Grid>
                 </Grid>
+            </TabItem>
+
+            <TabItem Header="Комментарий">
+                <TextBox x:Name="CommentTextBox"
+                         AcceptsReturn="True"
+                         TextWrapping="Wrap"
+                         VerticalScrollBarVisibility="Auto"
+                         Margin="4,4,4,2" />
             </TabItem>
 
             <TabItem Header="Файлы">

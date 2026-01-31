@@ -65,21 +65,6 @@ public class Book : BaseModel
     public string AuthorNamesLastFirstMiddle =>
         App.ListToString(Authors.OrderBy(x => x.NameLastFirstMiddle), ", ", x => ((Author)x).NameLastFirstMiddle);
 
-    private string annotation = string.Empty;
-
-    /// <summary>
-    /// Аннотация к книге.
-    /// </summary>
-    public string Annotation
-    {
-        get => annotation;
-        set
-        {
-            annotation = value ?? string.Empty;
-            OnPropertyChanged("Annotation");
-        }
-    }
-
     private Cycle? cycle;
 
     /// <summary>
@@ -131,6 +116,21 @@ public class Book : BaseModel
     /// </summary>
     [BsonRef("Genres")]
     public List<Genre> Genres { get; set; } = [];
+
+    private string comment = string.Empty;
+
+    /// <summary>
+    /// Комментарий к книге.
+    /// </summary>
+    public string Comment
+    {
+        get => comment;
+        set
+        {
+            comment = value ?? string.Empty;
+            OnPropertyChanged("Comment");
+        }
+    }
 
     /// <summary>
     /// Список файлов книги.
@@ -238,11 +238,11 @@ public class Book : BaseModel
         book.Title = Title;
         book.Authors.Clear();
         book.Authors.AddRange(Authors);
-        book.Annotation = Annotation;
         book.Cycle = Cycle;
         book.CycleNumbers = CycleNumbers;
         book.Genres.Clear();
         book.Genres.AddRange(Genres);
+        book.Comment = Comment;
         book.Files.Clear();
         book.Files.AddRange(Files);
     }

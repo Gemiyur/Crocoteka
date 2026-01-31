@@ -30,8 +30,8 @@ public partial class BookInfoDialog : Window
         InitializeAuthors();
         InitializeTitle();
         InitializeCycle();
-        InitializeAnnotation();
         InitializeGenres();
+        InitializeComment();
         InitializeFiles();
     }
 
@@ -82,11 +82,6 @@ public partial class BookInfoDialog : Window
         }
     }
 
-    private void InitializeAnnotation()
-    {
-        AnnotationTextBox.Text = book.Annotation;
-    }
-
     private void InitializeGenres()
     {
         if (book.Genres.Count > 0)
@@ -99,6 +94,11 @@ public partial class BookInfoDialog : Window
         {
             GenresGrid.Visibility = Visibility.Collapsed;
         }
+    }
+
+    private void InitializeComment()
+    {
+        CommentTextBox.Text = book.Comment;
     }
 
     private void InitializeFiles()
