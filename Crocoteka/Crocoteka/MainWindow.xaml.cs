@@ -84,8 +84,6 @@ public partial class MainWindow : Window
         }
 
         // Загружаем данные приложения.
-        App.AudioExtensions.AddRange(Properties.Settings.Default.AudioExtensions.Split(';'));
-        App.TextExtensions.AddRange(Properties.Settings.Default.TextExtensions.Split(';'));
         Authors.AddRange(Library.Authors);
         AuthorsListBox.ItemsSource = Authors;
         CheckAuthorsNameFormat();

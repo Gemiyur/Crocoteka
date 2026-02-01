@@ -49,30 +49,6 @@ namespace Crocoteka.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".m4b;.mp3")]
-        public string AudioExtensions {
-            get {
-                return ((string)(this["AudioExtensions"]));
-            }
-            set {
-                this["AudioExtensions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".epub;.fb2;.fb3;.pdf;.txt")]
-        public string TextExtensions {
-            get {
-                return ((string)(this["TextExtensions"]));
-            }
-            set {
-                this["TextExtensions"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("True")]
         public bool NavPanelAuthorFullName {
             get {
@@ -284,24 +260,6 @@ namespace Crocoteka.Properties {
             }
             set {
                 this["SaveNotInLibraryState"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".m4b;.mp3")]
-        public string PresetAudioExtensions {
-            get {
-                return ((string)(this["PresetAudioExtensions"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute(".epub;.fb2;.fb3;.pdf;.txt")]
-        public string PresetTextExtensions {
-            get {
-                return ((string)(this["PresetTextExtensions"]));
             }
         }
         

@@ -8,12 +8,6 @@
     <Setting Name="DebugDbName" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Databases\LiteDB\Crocoteka\CrocotekaDebug.litedb</Value>
     </Setting>
-    <Setting Name="AudioExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.m4b;.mp3</Value>
-    </Setting>
-    <Setting Name="TextExtensions" Type="System.String" Scope="User">
-      <Value Profile="(Default)">.epub;.fb2;.fb3;.pdf;.txt</Value>
-    </Setting>
     <Setting Name="NavPanelAuthorFullName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
     </Setting>
@@ -67,12 +61,6 @@
     </Setting>
     <Setting Name="SaveNotInLibraryState" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="PresetAudioExtensions" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">.m4b;.mp3</Value>
-    </Setting>
-    <Setting Name="PresetTextExtensions" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">.epub;.fb2;.fb3;.pdf;.txt</Value>
     </Setting>
     <Setting Name="PresetNavPanelAuthorFullName" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">True</Value>

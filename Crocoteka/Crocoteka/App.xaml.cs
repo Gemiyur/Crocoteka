@@ -55,12 +55,12 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов аудио книг.
     /// </summary>
-    public static readonly List<string> AudioExtensions = [];
+    public static readonly List<string> AudioExtensions = [".m4b" ];
 
     /// <summary>
     /// Расширения файлов текстовых книг.
     /// </summary>
-    public static readonly List<string> TextExtensions = [];
+    public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".rtf", ".txt"];
 
     /// <summary>
     /// Отображает окно сообщения подтверждения операции.
