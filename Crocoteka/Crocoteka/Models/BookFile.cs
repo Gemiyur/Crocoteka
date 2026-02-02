@@ -32,6 +32,41 @@ public class BookFile : BaseModel
         }
     }
 
+    /// <summary>
+    /// Размер файла книги в байтах.
+    /// </summary>
+    public long Size { get; set; }
+
+    private string annotation = string.Empty;
+
+    /// <summary>
+    /// Аннотация к книге.
+    /// </summary>
+    public string Annotation
+    {
+        get => annotation;
+        set
+        {
+            annotation = value ?? string.Empty;
+            OnPropertyChanged("Annotation");
+        }
+    }
+
+    private string translator = string.Empty;
+
+    /// <summary>
+    /// Переводчик книги.
+    /// </summary>
+    public string Translator
+    {
+        get => translator;
+        set
+        {
+            translator = value ?? string.Empty;
+            OnPropertyChanged("Translator");
+        }
+    }
+
     private string comment = string.Empty;
 
     /// <summary>
@@ -90,8 +125,9 @@ public class BookFile : BaseModel
     public bool IsText => App.TextExtensions.Exists(x => x.Equals(Extension, StringComparison.CurrentCultureIgnoreCase));
 
     /// <summary>
-    /// Возвращает тест типа файла книги (аудио, текст, архив).
+    /// Возвращает тест типа файла книги (аудио, текст, неизвестный).
     /// </summary>
+    /// <remarks>Значение "Неизвестный" не должно возвращаться. Если оно возвращается, значит, где-то косяк.</remarks>
     [BsonIgnore]
     public string TypeText
     {
