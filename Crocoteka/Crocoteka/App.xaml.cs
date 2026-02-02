@@ -284,5 +284,12 @@ public partial class App : Application
         return ListToString(strings, separator);
     }
 
+    /// <summary>
+    /// Возвращает строковое представление указанного интервала времени в формате h:mm:ss.
+    /// </summary>
+    /// <param name="timeSpan">Интервал времени.</param>
+    /// <returns>Строковое представление интервала времени.</returns>
+    public static string TimeSpanToString(TimeSpan timeSpan) => timeSpan.ToString(@"h\:mm\:ss");
+
     #endregion
 }
