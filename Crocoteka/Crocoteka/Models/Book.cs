@@ -133,6 +133,16 @@ public class Book : BaseModel
     }
 
     /// <summary>
+    /// Список аудиофайлов книги.
+    /// </summary>
+    public List<AudioFile> AudioFiles { get; set; } = [];
+
+    /// <summary>
+    /// Список текстовых файлов книги.
+    /// </summary>
+    public List<TextFile> TextFiles { get; set; } = [];
+
+    /// <summary>
     /// Список файлов книги.
     /// </summary>
     public List<BookFile> Files { get; set; } = [];
@@ -243,6 +253,10 @@ public class Book : BaseModel
         book.Genres.Clear();
         book.Genres.AddRange(Genres);
         book.Comment = Comment;
+        book.AudioFiles.Clear();
+        book.AudioFiles.AddRange(AudioFiles);
+        book.TextFiles.Clear();
+        book.TextFiles.AddRange(TextFiles);
         book.Files.Clear();
         book.Files.AddRange(Files);
     }
