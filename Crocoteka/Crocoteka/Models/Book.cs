@@ -133,19 +133,25 @@ public class Book : BaseModel
     }
 
     /// <summary>
+    /// Список файлов книги.
+    /// </summary>
+    public List<BookFile> Files { get; set; } = [];
+
+    #region Списки аудио и текстовых файлов книги. Пока не используются и в БД не хранятся [BsonIgnore].
+
+    /// <summary>
     /// Список аудиофайлов книги.
     /// </summary>
+    [BsonIgnore]
     public List<AudioFile> AudioFiles { get; set; } = [];
 
     /// <summary>
     /// Список текстовых файлов книги.
     /// </summary>
+    [BsonIgnore]
     public List<TextFile> TextFiles { get; set; } = [];
 
-    /// <summary>
-    /// Список файлов книги.
-    /// </summary>
-    public List<BookFile> Files { get; set; } = [];
+    #endregion
 
     /// <summary>
     /// Возвращает строку количества файлов книги для отображения.
@@ -253,12 +259,12 @@ public class Book : BaseModel
         book.Genres.Clear();
         book.Genres.AddRange(Genres);
         book.Comment = Comment;
+        book.Files.Clear();
+        book.Files.AddRange(Files);
         book.AudioFiles.Clear();
         book.AudioFiles.AddRange(AudioFiles);
         book.TextFiles.Clear();
         book.TextFiles.AddRange(TextFiles);
-        book.Files.Clear();
-        book.Files.AddRange(Files);
     }
 
     /// <summary>
