@@ -117,17 +117,17 @@ public class Book : BaseModel
     [BsonRef("Genres")]
     public List<Genre> Genres { get; set; } = [];
 
-    private string comment = string.Empty;
+    private string description = string.Empty;
 
     /// <summary>
-    /// Комментарий к книге.
+    /// Описание книги.
     /// </summary>
-    public string Comment
+    public string Description
     {
-        get => comment;
+        get => description;
         set
         {
-            comment = value ?? string.Empty;
+            description = value ?? string.Empty;
             OnPropertyChanged("Comment");
         }
     }
@@ -258,7 +258,7 @@ public class Book : BaseModel
         book.CycleNumbers = CycleNumbers;
         book.Genres.Clear();
         book.Genres.AddRange(Genres);
-        book.Comment = Comment;
+        book.Description = Description;
         book.Files.Clear();
         book.Files.AddRange(Files);
         book.AudioFiles.Clear();

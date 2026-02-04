@@ -89,7 +89,7 @@ public partial class BookEditor : Window
         genres.AddRange(book.Genres);
         SortGenres();
         GenresListBox.ItemsSource = genres;
-        CommentTextBox.Text = book.Comment;
+        DescriptionTextBox.Text = book.Description;
         files.AddRange(book.Files);
         SortFiles();
         FilesListBox.ItemsSource = files;
@@ -165,10 +165,10 @@ public partial class BookEditor : Window
             GenresChanged = true;
         }
 
-        // Комментарий.
-        if (book.Comment != CommentTextBox.Text)
+        // Описание.
+        if (book.Description != DescriptionTextBox.Text)
         {
-            book.Comment = CommentTextBox.Text;
+            book.Description = DescriptionTextBox.Text;
             changed = true;
         }
 

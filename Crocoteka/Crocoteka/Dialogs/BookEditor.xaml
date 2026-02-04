@@ -196,8 +196,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Комментарий">
-                <TextBox x:Name="CommentTextBox"
+            <TabItem Header="Описание">
+                <TextBox x:Name="DescriptionTextBox"
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"

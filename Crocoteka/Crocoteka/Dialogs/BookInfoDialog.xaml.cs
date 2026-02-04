@@ -31,7 +31,7 @@ public partial class BookInfoDialog : Window
         InitializeTitle();
         InitializeCycle();
         InitializeGenres();
-        InitializeComment();
+        InitializeDescription();
         InitializeFiles();
     }
 
@@ -96,9 +96,9 @@ public partial class BookInfoDialog : Window
         }
     }
 
-    private void InitializeComment()
+    private void InitializeDescription()
     {
-        CommentTextBox.Text = book.Comment;
+        DescriptionTextBox.Text = book.Description;
     }
 
     private void InitializeFiles()

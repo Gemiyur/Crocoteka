@@ -90,9 +90,9 @@
                         </StackPanel>
                     </Grid>
 
-                    <!-- Комментарий -->
-                    <GroupBox Grid.Row="3" Header="Комментарий" Margin="0,8,0,0">
-                        <TextBox x:Name="CommentTextBox"
+                    <!-- Описание -->
+                    <GroupBox Grid.Row="3" Header="Описание" Margin="0,8,0,0">
+                        <TextBox x:Name="DescriptionTextBox"
                                  BorderThickness="0"
                                  TextWrapping="Wrap"
                                  VerticalScrollBarVisibility="Auto"
