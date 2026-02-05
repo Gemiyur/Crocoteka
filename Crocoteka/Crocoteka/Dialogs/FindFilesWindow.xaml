@@ -67,7 +67,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
 
-            <ComboBox Grid.Column="0" x:Name="TypeComboBox" Width="130"
+            <ComboBox Grid.Column="0" x:Name="TypeComboBox" Width="150"
                       SelectionChanged="TypeComboBox_SelectionChanged">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>

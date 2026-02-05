@@ -55,7 +55,7 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов аудио книг.
     /// </summary>
-    public static readonly List<string> AudioExtensions = [".m4b" ];
+    public static readonly List<string> AudioExtensions = [".m4b", ".mp3"];
 
     /// <summary>
     /// Расширения файлов текстовых книг.
@@ -214,8 +214,12 @@ public partial class App : Application
             var textExt = ListToString(TextExtensions, ";").Replace(".", "*.");
             var sb = new StringBuilder();
             sb.Append($"Все файлы книг|{audioExt};{textExt}|");
-            sb.Append($"Аудиокниги|{audioExt}|");
-            sb.Append($"Текстовые книги|{textExt}");
+            sb.Append($"Все аудиокниги|{audioExt}|");
+            sb.Append($"Все текстовые книги|{textExt}");
+            foreach (var ext in AudioExtensions)
+            {
+                sb.Append($"|Аудиофайлы {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
+            }
             foreach (var ext in TextExtensions)
             {
                 sb.Append($"|Файлы {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
