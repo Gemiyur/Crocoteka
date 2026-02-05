@@ -60,7 +60,7 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов текстовых книг.
     /// </summary>
-    public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".rtf", ".txt"];
+    public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".rtf", ".txt", ".docx", ".odt"];
 
     /// <summary>
     /// Отображает окно сообщения подтверждения операции.
@@ -212,10 +212,15 @@ public partial class App : Application
         {
             var audioExt = ListToString(AudioExtensions, ";").Replace(".", "*.");
             var textExt = ListToString(TextExtensions, ";").Replace(".", "*.");
-            var filterAll = $"Все книги|{audioExt};{textExt}";
-            var filterAudio = $"Аудио|{audioExt}";
-            var filterText = $"Текст|{textExt}";
-            return $"{filterAll}|{filterAudio}|{filterText}";
+            var sb = new StringBuilder();
+            sb.Append($"Все файлы книг|{audioExt};{textExt}|");
+            sb.Append($"Аудиокниги|{audioExt}|");
+            sb.Append($"Текстовые книги|{textExt}");
+            foreach (var ext in TextExtensions)
+            {
+                sb.Append($"|Файлы {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
+            }
+            return sb.ToString();
         }
     }
 
