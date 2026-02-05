@@ -60,7 +60,7 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов текстовых книг.
     /// </summary>
-    public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".rtf", ".txt", ".docx", ".odt"];
+    public static readonly List<string> TextExtensions = [".epub", ".fb2", ".fb3", ".pdf", ".rtf", ".txt", ".docx", ".odt"];
 
     /// <summary>
     /// Отображает окно сообщения подтверждения операции.
