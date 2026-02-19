@@ -32,26 +32,6 @@ public class BookFile : BaseModel
         }
     }
 
-    /// <summary>
-    /// Размер файла книги в байтах.
-    /// </summary>
-    public long Size { get; set; }
-
-    private string annotation = string.Empty;
-
-    /// <summary>
-    /// Аннотация к книге.
-    /// </summary>
-    public string Annotation
-    {
-        get => annotation;
-        set
-        {
-            annotation = value ?? string.Empty;
-            OnPropertyChanged("Annotation");
-        }
-    }
-
     private string translator = string.Empty;
 
     /// <summary>
@@ -64,6 +44,21 @@ public class BookFile : BaseModel
         {
             translator = value ?? string.Empty;
             OnPropertyChanged("Translator");
+        }
+    }
+
+    private string lector = string.Empty;
+
+    /// <summary>
+    /// Чтец аудиокниги.
+    /// </summary>
+    public string Lector
+    {
+        get => lector;
+        set
+        {
+            lector = value ?? string.Empty;
+            OnPropertyChanged("Lector");
         }
     }
 

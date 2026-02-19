@@ -98,7 +98,7 @@ public partial class BookInfoDialog : Window
 
     private void InitializeDescription()
     {
-        DescriptionTextBox.Text = book.Description;
+        AnnotationTextBox.Text = book.Annotation;
     }
 
     private void InitializeFiles()

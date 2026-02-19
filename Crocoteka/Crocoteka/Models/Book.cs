@@ -117,18 +117,33 @@ public class Book : BaseModel
     [BsonRef("Genres")]
     public List<Genre> Genres { get; set; } = [];
 
-    private string description = string.Empty;
+    private string annotation = string.Empty;
 
     /// <summary>
-    /// Описание книги.
+    /// Аннотация к книге.
     /// </summary>
-    public string Description
+    public string Annotation
     {
-        get => description;
+        get => annotation;
         set
         {
-            description = value ?? string.Empty;
-            OnPropertyChanged("Comment");
+            annotation = value ?? string.Empty;
+            OnPropertyChanged("Annotation");
+        }
+    }
+
+    private string note = string.Empty;
+
+    /// <summary>
+    /// Примечание к книге.
+    /// </summary>
+    public string Note
+    {
+        get => note;
+        set
+        {
+            note = value ?? string.Empty;
+            OnPropertyChanged("Note");
         }
     }
 
@@ -136,22 +151,6 @@ public class Book : BaseModel
     /// Список файлов книги.
     /// </summary>
     public List<BookFile> Files { get; set; } = [];
-
-    #region Списки аудио и текстовых файлов книги. Пока не используются и в БД не хранятся [BsonIgnore].
-
-    /// <summary>
-    /// Список аудиофайлов книги.
-    /// </summary>
-    [BsonIgnore]
-    public List<AudioFile> AudioFiles { get; set; } = [];
-
-    /// <summary>
-    /// Список текстовых файлов книги.
-    /// </summary>
-    [BsonIgnore]
-    public List<TextFile> TextFiles { get; set; } = [];
-
-    #endregion
 
     /// <summary>
     /// Возвращает строку количества файлов книги для отображения.
@@ -258,13 +257,10 @@ public class Book : BaseModel
         book.CycleNumbers = CycleNumbers;
         book.Genres.Clear();
         book.Genres.AddRange(Genres);
-        book.Description = Description;
+        book.Annotation = Annotation;
+        book.Note = Note;
         book.Files.Clear();
         book.Files.AddRange(Files);
-        book.AudioFiles.Clear();
-        book.AudioFiles.AddRange(AudioFiles);
-        book.TextFiles.Clear();
-        book.TextFiles.AddRange(TextFiles);
     }
 
     /// <summary>

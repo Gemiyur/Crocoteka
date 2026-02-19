@@ -196,8 +196,8 @@
                 </Grid>
             </TabItem>
 
-            <TabItem Header="Описание">
-                <TextBox x:Name="DescriptionTextBox"
+            <TabItem Header="Аннотация">
+                <TextBox x:Name="AnnotationTextBox"
                          AcceptsReturn="True"
                          TextWrapping="Wrap"
                          VerticalScrollBarVisibility="Auto"
