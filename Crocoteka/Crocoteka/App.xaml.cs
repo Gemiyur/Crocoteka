@@ -55,12 +55,12 @@ public partial class App : Application
     /// <summary>
     /// Расширения файлов аудио книг.
     /// </summary>
-    public static readonly List<string> AudioExtensions = [".m4b", ".mp3"];
+    public static readonly List<string> AudioExtensions = [".m4b"];
 
     /// <summary>
     /// Расширения файлов текстовых книг.
     /// </summary>
-    public static readonly List<string> TextExtensions = [".epub", ".fb2", ".fb3", ".pdf", ".rtf", ".txt", ".docx", ".odt"];
+    public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".docx"];
 
     /// <summary>
     /// Отображает окно сообщения подтверждения операции.
@@ -213,16 +213,15 @@ public partial class App : Application
             var audioExt = ListToString(AudioExtensions, ";").Replace(".", "*.");
             var textExt = ListToString(TextExtensions, ";").Replace(".", "*.");
             var sb = new StringBuilder();
-            sb.Append($"Все файлы книг|{audioExt};{textExt}|");
-            sb.Append($"Все аудиокниги|{audioExt}|");
-            sb.Append($"Все текстовые книги|{textExt}");
+            sb.Append($"Все книги|{audioExt};{textExt}");
             foreach (var ext in AudioExtensions)
             {
-                sb.Append($"|Аудиофайлы {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
+                sb.Append($"|Аудиокниги {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
             }
+            //sb.Append($"|Все текстовые книги|{textExt}");
             foreach (var ext in TextExtensions)
             {
-                sb.Append($"|Файлы {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
+                sb.Append($"|Текстовые книги {ext.TrimStart('.').ToUpper()}|{ext.Replace(".", "*.")}");
             }
             return sb.ToString();
         }

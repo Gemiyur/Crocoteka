@@ -47,28 +47,24 @@ public partial class FindFilesWindow : Window
         bookExtensions.AddRange(App.AudioExtensions);
         bookExtensions.AddRange(App.TextExtensions);
 
-        var mask = new KeyValuePair<string, List<string>>("Все файлы книг", []);
+        var mask = new KeyValuePair<string, List<string>>("Все книги", []);
         mask.Value.AddRange(bookExtensions);
         masks.Add(mask.Key, mask.Value);
 
-        mask = new KeyValuePair<string, List<string>>("Все аудиокниги", []);
-        mask.Value.AddRange(App.AudioExtensions);
-        masks.Add(mask.Key, mask.Value);
-
-        mask = new KeyValuePair<string, List<string>>("Все текстовые книги", []);
-        mask.Value.AddRange(App.TextExtensions);
-        masks.Add(mask.Key, mask.Value);
+        //mask = new KeyValuePair<string, List<string>>("Все текстовые книги", []);
+        //mask.Value.AddRange(App.TextExtensions);
+        //masks.Add(mask.Key, mask.Value);
 
         foreach (var extension in App.AudioExtensions)
         {
-            mask = new KeyValuePair<string, List<string>>($"Аудиофайлы {extension.TrimStart('.').ToUpper()}", []);
+            mask = new KeyValuePair<string, List<string>>($"Аудиокниги {extension.TrimStart('.').ToUpper()}", []);
             mask.Value.Add(extension);
             masks.Add(mask.Key, mask.Value);
         }
 
         foreach (var extension in App.TextExtensions)
         {
-            mask = new KeyValuePair<string, List<string>>($"Файлы {extension.TrimStart('.').ToUpper()}", []);
+            mask = new KeyValuePair<string, List<string>>($"Текстовые книги {extension.TrimStart('.').ToUpper()}", []);
             mask.Value.Add(extension);
             masks.Add(mask.Key, mask.Value);
         }

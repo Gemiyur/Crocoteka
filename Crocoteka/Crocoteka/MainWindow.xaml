@@ -363,9 +363,18 @@
                         <GridViewColumn Header="Файлов" Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding FilesCountText}"
+                                    <TextBlock x:Name="FilesCounrTextBlock" Text="{Binding FilesCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasNotFound}" Value="True">
+                                            <Setter TargetName="FilesCounrTextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
