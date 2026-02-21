@@ -98,6 +98,7 @@ public class BookFile : BaseModel
     /// <summary>
     /// Возвращает расширение файла книги.
     /// </summary>
+    /// <remarks>Начинается с точки.</remarks>
     [BsonIgnore]
     public string Extension => Path.GetExtension(filename);
 

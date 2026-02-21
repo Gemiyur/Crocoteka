@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:Crocoteka"
         mc:Ignorable="d"
         Title="Крокотека"
-        Width="950" Height="650" ResizeMode="CanResizeWithGrip"
-        MinWidth="800" MinHeight="450"
-        d:Width="800" d:Height="450"
+        Width="1000" Height="700" ResizeMode="CanResizeWithGrip"
+        MinWidth="900" MinHeight="450"
+        d:Width="900" d:Height="450"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
@@ -363,54 +363,126 @@
                         <GridViewColumn Header="Файлов" Width="60">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock x:Name="FilesCounrTextBlock" Text="{Binding FilesCountText}"
+                                    <TextBlock x:Name="AllFilesCountTextBlock" Text="{Binding AllFilesCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
                                     <DataTemplate.Triggers>
-                                        <DataTrigger Binding="{Binding Path=HasNotFound}" Value="True">
-                                            <Setter TargetName="FilesCounrTextBlock" Property="Foreground">
+                                        <DataTrigger Binding="{Binding Path=HasAllFilesNotFound}" Value="True">
+                                            <Setter TargetName="AllFilesCountTextBlock" Property="Foreground">
                                                 <Setter.Value>
                                                     <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
                                                 </Setter.Value>
                                             </Setter>
                                         </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=AllFilesCount}" Value="0">
+                                            <Setter TargetName="AllFilesCountTextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
                                     </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Аудио" Width="50">
+                        <GridViewColumn Header="M4B" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding AudioCountText}"
+                                    <TextBlock x:Name="M4BTextBlock" Text="{Binding M4BCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasM4BNotFound}" Value="True">
+                                            <Setter TargetName="M4BTextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=M4BCount}" Value="0">
+                                            <Setter TargetName="M4BTextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Текст" Width="50">
+                        <GridViewColumn Header="FB2" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding TextCountText}"
+                                    <TextBlock x:Name="FB2TextBlock" Text="{Binding FB2CountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasFB2NotFound}" Value="True">
+                                            <Setter TargetName="FB2TextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=FB2Count}" Value="0">
+                                            <Setter TargetName="FB2TextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="?" Width="50">
+                        <GridViewColumn Header="EPUB" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding UnknownCountText}"
+                                    <TextBlock x:Name="EPUBTextBlock" Text="{Binding EPUBCountText}"
                                                Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasEPUBNotFound}" Value="True">
+                                            <Setter TargetName="EPUBTextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=EPUBCount}" Value="0">
+                                            <Setter TargetName="EPUBTextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>
-                        <GridViewColumn Header="Нет файла" Width="65">
+                        <GridViewColumn Header="PDF" Width="50">
                             <GridViewColumn.CellTemplate>
                                 <DataTemplate>
-                                    <TextBlock Text="{Binding NotFoundCountText}"
-                                               Foreground="Red"
+                                    <TextBlock x:Name="PDFTextBlock" Text="{Binding PDFCountText}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
                                                HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasPDFNotFound}" Value="True">
+                                            <Setter TargetName="PDFTextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=PDFCount}" Value="0">
+                                            <Setter TargetName="PDFTextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
+                        <GridViewColumn Header="DOCX" Width="50">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock x:Name="DOCXTextBlock" Text="{Binding DOCXCountText}"
+                                               Foreground="{StaticResource BooksListViewForegroundBrush}"
+                                               HorizontalAlignment="Center" />
+                                    <DataTemplate.Triggers>
+                                        <DataTrigger Binding="{Binding Path=HasDOCXNotFound}" Value="True">
+                                            <Setter TargetName="DOCXTextBlock" Property="Foreground">
+                                                <Setter.Value>
+                                                    <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
+                                                </Setter.Value>
+                                            </Setter>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=DOCXCount}" Value="0">
+                                            <Setter TargetName="DOCXTextBlock" Property="Text" Value="" />
+                                        </DataTrigger>
+                                    </DataTemplate.Triggers>
                                 </DataTemplate>
                             </GridViewColumn.CellTemplate>
                         </GridViewColumn>

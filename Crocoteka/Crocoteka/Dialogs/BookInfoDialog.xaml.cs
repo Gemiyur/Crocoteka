@@ -103,7 +103,7 @@ public partial class BookInfoDialog : Window
 
     private void InitializeFiles()
     {
-        TotalFilesTextBlock.Text += book.FilesCountText;
+        TotalFilesTextBlock.Text += book.AllFilesCountText;
         AudioFilesTextBlock.Text += book.AudioCountText;
         TextFilesTextBlock.Text += book.TextCountText;
         if (book.UnknownCount > 0)

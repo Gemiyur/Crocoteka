@@ -529,7 +529,10 @@ public partial class MainWindow : Window
             SelectBookInShownBooks(book);
         }
         if (editor.FilesChanged)
+        {
+            book.FilesChanged();
             App.UpdateFindFilesWindow();
+        }
         book.AuthorsChanged();
     }
 

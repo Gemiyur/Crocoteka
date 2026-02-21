@@ -153,10 +153,112 @@ public class Book : BaseModel
     public List<BookFile> Files { get; set; } = [];
 
     /// <summary>
+    /// Возвращает количество файлов книги.
+    /// </summary>
+    [BsonIgnore]
+    public int AllFilesCount => Files.Count;
+
+    /// <summary>
     /// Возвращает строку количества файлов книги для отображения.
     /// </summary>
     [BsonIgnore]
-    public string FilesCountText => Files.Count.ToString();
+    public string AllFilesCountText => Files.Count.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы книги.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasAllFilesNotFound => Files.Any(x => !x.Exists);
+
+    /// <summary>
+    /// Возвращает количество файлов M4B.
+    /// </summary>
+    [BsonIgnore]
+    public int M4BCount => FilesCount(".m4b");
+
+    /// <summary>
+    /// Возвращает строку количества файлов M4B для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string M4BCountText => M4BCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы M4B.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasM4BNotFound => HasNotFoundFiles(".m4b");
+
+    /// <summary>
+    /// Возвращает количество файлов FB2.
+    /// </summary>
+    [BsonIgnore]
+    public int FB2Count => FilesCount(".fb2");
+
+    /// <summary>
+    /// Возвращает строку количества файлов FB2 для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string FB2CountText => FB2Count.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы FB2.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasFB2NotFound => HasNotFoundFiles(".fb2");
+
+    /// <summary>
+    /// Возвращает количество файлов EPUB.
+    /// </summary>
+    [BsonIgnore]
+    public int EPUBCount => FilesCount(".epub");
+
+    /// <summary>
+    /// Возвращает строку количества файлов EPUB для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string EPUBCountText => EPUBCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы EPUB.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasEPUBNotFound => HasNotFoundFiles(".epub");
+
+    /// <summary>
+    /// Возвращает количество файлов PDF.
+    /// </summary>
+    [BsonIgnore]
+    public int PDFCount => FilesCount(".pdf");
+
+    /// <summary>
+    /// Возвращает строку количества файлов PDF для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string PDFCountText => PDFCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы PDF.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasPDFNotFound => HasNotFoundFiles(".pdf");
+
+    /// <summary>
+    /// Возвращает количество файлов DOCX.
+    /// </summary>
+    [BsonIgnore]
+    public int DOCXCount => FilesCount(".docx");
+
+    /// <summary>
+    /// Возвращает строку количества файлов DOCX для отображения.
+    /// </summary>
+    [BsonIgnore]
+    public string DOCXCountText => DOCXCount.ToString();
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы DOCX.
+    /// </summary>
+    [BsonIgnore]
+    public bool HasDOCXNotFound => HasNotFoundFiles(".docx");
 
     /// <summary>
     /// Возвращает количество аудио файлов книги.
@@ -242,6 +344,20 @@ public class Book : BaseModel
     }
 
     /// <summary>
+    /// Создаёт и возвращает неполную копию книги.
+    /// </summary>
+    /// <returns>Неполная копия книги.</returns>
+    /// <remarks>
+    /// Копия содержит все данные книги кроме идентификатора.
+    /// </remarks>
+    public Book Clone()
+    {
+        var book = new Book();
+        CopyTo(book);
+        return book;
+    }
+
+    /// <summary>
     /// Копирует данные книги в указанную книгу.
     /// </summary>
     /// <param name="book">Книга, в которую копируются данные книги.</param>
@@ -264,16 +380,51 @@ public class Book : BaseModel
     }
 
     /// <summary>
-    /// Создаёт и возвращает неполную копию книги.
+    /// Вызывает изменение свойств, зависящих от файлов книги.
     /// </summary>
-    /// <returns>Неполная копия книги.</returns>
-    /// <remarks>
-    /// Копия содержит все данные книги кроме идентификатора.
-    /// </remarks>
-    public Book Clone()
+    public void FilesChanged()
     {
-        var book = new Book();
-        CopyTo(book);
-        return book;
+        OnPropertyChanged("AllFilesCount");
+        OnPropertyChanged("AllFilesCountText");
+        OnPropertyChanged("HasAllFilesNotFound");
+
+        OnPropertyChanged("M4BCount");
+        OnPropertyChanged("M4BCountText");
+        OnPropertyChanged("HasM4BNotFound");
+
+        OnPropertyChanged("FB2Count");
+        OnPropertyChanged("FB2CountText");
+        OnPropertyChanged("HasFB2NotFound");
+
+        OnPropertyChanged("EPUBCount");
+        OnPropertyChanged("EPUBCountText");
+        OnPropertyChanged("HasEPUBNotFound");
+
+        OnPropertyChanged("PDFCount");
+        OnPropertyChanged("PDFCountText");
+        OnPropertyChanged("HasPDFNotFound");
+
+        OnPropertyChanged("DOCXCount");
+        OnPropertyChanged("DOCXCountText");
+        OnPropertyChanged("HasDOCXNotFound");
+
     }
+
+    /// <summary>
+    /// Возвращает количество файлов с указанным расширением.
+    /// </summary>
+    /// <param name="extension">Расширение файла. Должно начинаться с точки.</param>
+    /// <returns>Количество файлов с указанным расширением.</returns>
+    /// <remarks>Расширение файла должно начинаться с точки.</remarks>
+    public int FilesCount(string extension) =>
+        Files.Count(x => x.Extension.Equals(extension, StringComparison.CurrentCultureIgnoreCase));
+
+    /// <summary>
+    /// Возвращает есть ли ненайденные файлы с указанным расширением.
+    /// </summary>
+    /// <param name="extension">Расширение файла. Должно начинаться с точки.</param>
+    /// <returns>Есть ли ненайденные файлы с указанным расширением.</returns>
+    /// <remarks>Расширение файла должно начинаться с точки.</remarks>
+    public bool HasNotFoundFiles(string extension) =>
+        Files.Any(x => x.Extension.Equals(extension, StringComparison.CurrentCultureIgnoreCase) && !x.Exists);
 }
