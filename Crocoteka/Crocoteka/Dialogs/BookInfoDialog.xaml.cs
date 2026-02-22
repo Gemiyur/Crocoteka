@@ -106,8 +106,8 @@ public partial class BookInfoDialog : Window
         TotalFilesTextBlock.Text += book.AllFilesCountText;
         AudioFilesTextBlock.Text += book.AudioCountText;
         TextFilesTextBlock.Text += book.TextCountText;
-        if (book.NotFoundCount > 0)
-            NotFoundFilesTextBlock.Text += book.NotFoundCountText;
+        if (book.HasAllFilesNotFound)
+            NotFoundFilesTextBlock.Text += (book.Files.Count > 0 ? book.Files.Count(x => !x.Exists) : 0).ToString();
         else
             NotFoundFilesTextBlock.Visibility = Visibility.Collapsed;
         List<BookFile> files = [];

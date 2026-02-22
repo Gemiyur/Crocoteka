@@ -297,24 +297,6 @@ public class Book : BaseModel
     public bool HasText => TextCount > 0;
 
     /// <summary>
-    /// Возвращает количество ненайденных файлов книги.
-    /// </summary>
-    [BsonIgnore]
-    public int NotFoundCount => Files.Count > 0 ? Files.Count(x => !x.Exists) : 0;
-
-    /// <summary>
-    /// Возвращает строку количества ненайденных файлов книги для отображения.
-    /// </summary>
-    [BsonIgnore]
-    public string NotFoundCountText => NotFoundCount > 0 ? NotFoundCount.ToString() : string.Empty;
-
-    /// <summary>
-    /// Возвращает есть ли ненайденные файлы книги.
-    /// </summary>
-    [BsonIgnore]
-    public bool HasNotFound => NotFoundCount > 0;
-
-    /// <summary>
     /// Вызывает изменение свойств, зависящих от авторов книги.
     /// </summary>
     public void AuthorsChanged()
