@@ -98,13 +98,10 @@
                                Text="{Binding Filename}"
                                TextWrapping="Wrap"
                                Margin="4,0,4,0" />
-                    <StackPanel Grid.Row="1" Grid.Column="1" Margin="4,0,4,0">
-                        <TextBlock Text="{Binding TypeText}"
-                                   FontWeight="Bold" />
-                        <TextBlock x:Name="CommentTextBlock"
-                                   Text="{Binding Comment}"
-                                   TextWrapping="Wrap" />
-                    </StackPanel>
+                    <TextBlock Grid.Row="1" Grid.Column="1"
+                               Text="{Binding TypeText}"
+                               FontStyle="Italic"
+                               Margin="4,0,4,0" />
                 </Grid>
                 <DataTemplate.Triggers>
                     <DataTrigger Binding="{Binding Path=Exists}" Value="False">
@@ -113,9 +110,6 @@
                                 <SolidColorBrush Color="{StaticResource FileNotFoundColor}" />
                             </Setter.Value>
                         </Setter>
-                    </DataTrigger>
-                    <DataTrigger Binding="{Binding Path=Comment}" Value="">
-                        <Setter TargetName="CommentTextBlock" Property="Visibility" Value="Collapsed" />
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
