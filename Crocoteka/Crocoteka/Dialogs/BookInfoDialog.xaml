@@ -126,15 +126,12 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <TextBlock Grid.Column="0" x:Name="TotalFilesTextBlock" Text="Всего: " />
                         <TextBlock Grid.Column="2" x:Name="AudioFilesTextBlock"  Text="Аудио: " />
                         <TextBlock Grid.Column="4" x:Name="TextFilesTextBlock" Text="Текст: " />
-                        <TextBlock Grid.Column="6" x:Name="UnknownFilesTextBlock" Text="Неизвестных: " />
-                        <TextBlock Grid.Column="7" x:Name="NotFoundFilesTextBlock" Text="Не найдено: "
+                        <TextBlock Grid.Column="5" x:Name="NotFoundFilesTextBlock" Text="Не найдено: "
                                    HorizontalAlignment="Right" Foreground="Red" />
                     </Grid>
 

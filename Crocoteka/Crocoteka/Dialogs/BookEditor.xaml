@@ -218,8 +218,6 @@
                             <ColumnDefinition Width="Auto" />
                             <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
                             <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Style="{StaticResource DividerColumnStyle}" />
-                            <ColumnDefinition Width="Auto" />
                             <ColumnDefinition />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
@@ -234,11 +232,7 @@
                             <TextBlock Text="Текст: " />
                             <TextBlock x:Name="TextFilesTextBlock" Text="0" />
                         </StackPanel>
-                        <StackPanel Grid.Column="6" x:Name="UnknownFilesStackPanel" Orientation="Horizontal">
-                            <TextBlock Text="Неизвестных: " />
-                            <TextBlock x:Name="UnknownFilesTextBlock" Text="0" />
-                        </StackPanel>
-                        <StackPanel Grid.Column="7" x:Name="NotFoundFilesStackPanel" Orientation="Horizontal"
+                        <StackPanel Grid.Column="5" x:Name="NotFoundFilesStackPanel" Orientation="Horizontal"
                                     HorizontalAlignment="Right">
                             <TextBlock Text="Не найдено: " Foreground="Red" />
                             <TextBlock x:Name="NotFoundFilesTextBlock" Text="0" Foreground="Red" />

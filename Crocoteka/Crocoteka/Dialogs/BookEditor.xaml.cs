@@ -231,9 +231,6 @@ public partial class BookEditor : Window
         TotalFilesTextBlock.Text = files.Count.ToString();
         AudioFilesTextBlock.Text = files.Count > 0 ? files.Count(x => x.IsAudio).ToString() : "0";
         TextFilesTextBlock.Text = files.Count > 0 ? files.Count(x => x.IsText).ToString() : "0";
-        var unknownCount = files.Count(x => !x.IsAudio && !x.IsText);
-        UnknownFilesTextBlock.Text = unknownCount.ToString();
-        UnknownFilesStackPanel.Visibility = unknownCount > 0 ? Visibility.Visible : Visibility.Collapsed;
         var notFoundCount = files.Count(x => !x.Exists);
         NotFoundFilesTextBlock.Text = notFoundCount.ToString();
         NotFoundFilesStackPanel.Visibility = notFoundCount > 0 ? Visibility.Visible : Visibility.Collapsed;
