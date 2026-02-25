@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Об авторе"
         Width="400" Height="350" ResizeMode="CanResizeWithGrip"
-        MinWidth="300" MinHeight="300"
+        MinWidth="400" MinHeight="350"
         d:Width="400" d:Height="350"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"

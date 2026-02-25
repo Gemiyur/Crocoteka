@@ -1,7 +1,4 @@
-﻿using Crocoteka.Dialogs;
-using Crocoteka.Models;
-using Crocoteka.Tools;
-using Microsoft.Win32;
+﻿using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
@@ -9,6 +6,9 @@ using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using Crocoteka.Dialogs;
+using Crocoteka.Models;
+using Crocoteka.Tools;
 
 namespace Crocoteka;
 
