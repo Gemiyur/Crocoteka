@@ -9,8 +9,7 @@
     <Version>1.5.0</Version>
     <Company>Gemiyur</Company>
     <Product>Крокотека</Product>
-    <Description>Библиотека электронных книг
-на локальном компьютере.</Description>
+    <Description>Библиотека электронных книг</Description>
     <Copyright>Copyright © Gemiyur 2026</Copyright>
     <ApplicationIcon>Images\Icon.ico</ApplicationIcon>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
