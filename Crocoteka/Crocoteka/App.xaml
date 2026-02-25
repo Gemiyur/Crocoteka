@@ -8,6 +8,7 @@
 
     <Application.Resources>
         <ResourceDictionary>
+ 
             <SolidColorBrush x:Key="TextBoxReadOnlyBackgroundBrush" Color="#FFF0F0F0" />
 
             <SolidColorBrush x:Key="SelectedListItemBackgroundBrush" Color="#FFCBE8F6" />
@@ -113,6 +114,29 @@
                     </DataTrigger>
                 </DataTemplate.Triggers>
             </DataTemplate>
+
+            <DataTemplate x:Key="FileInfoDataTemplate">
+                <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Перевод:" FontStyle="Italic" />
+                            <TextBlock Text="{Binding Translator}" />
+                        </StackPanel>
+                        <StackPanel x:Name="LectorStackPanel" Orientation="Horizontal">
+                            <TextBlock Text="Читает:" FontStyle="Italic" />
+                            <TextBlock Text="{Binding Lector}" />
+                        </StackPanel>
+                        <TextBlock Text="Комментарий:" FontStyle="Italic" />
+                        <TextBlock Text="{Binding Comment}" TextWrapping="Wrap" />
+                    </StackPanel>
+                </ScrollViewer>
+                <DataTemplate.Triggers>
+                    <DataTrigger Binding="{Binding Path=IsAudio}" Value="False">
+                        <Setter TargetName="LectorStackPanel" Property="Visibility" Value="Collapsed" />
+                    </DataTrigger>
+                </DataTemplate.Triggers>
+            </DataTemplate>
+
         </ResourceDictionary>
     </Application.Resources>
 </Application>

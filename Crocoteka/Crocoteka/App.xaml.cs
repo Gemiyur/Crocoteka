@@ -1,12 +1,14 @@
-﻿using Microsoft.Win32;
+﻿using Crocoteka.Dialogs;
+using Crocoteka.Models;
+using Crocoteka.Tools;
+using Microsoft.Win32;
 using System.Diagnostics;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Media.Imaging;
-using Crocoteka.Dialogs;
-using Crocoteka.Tools;
 
 namespace Crocoteka;
 
@@ -119,6 +121,40 @@ public partial class App : Application
     /// Обновляет список файлов книг в окне поиска файлов книг.
     /// </summary>
     public static void UpdateFindFilesWindow() => GetFindFilesWindow()?.ApplyFilter();
+
+    #region Содержимое элемента информации о файле книги.
+
+    /// <summary>
+    /// Устанавливает содержимое элемента информации о файле книги.
+    /// </summary>
+    /// <param name="contentControl">Элемент содержимого информации о файле книги.</param>
+    /// <param name="file">Файл книги.</param>
+    public static void SetBookFileContent(ContentControl contentControl, BookFile? file)
+    {
+        if (file != null)
+        {
+            contentControl.Content = file;
+            contentControl.Visibility = Visibility.Visible;
+        }
+        else
+        {
+            contentControl.Content = null;
+            contentControl.Visibility = Visibility.Collapsed;
+        }
+    }
+
+    /// <summary>
+    /// Обновляет содержимое элемента информации о файле книги.
+    /// </summary>
+    /// <param name="contentControl">Элемент содержимого информации о файле книги.</param>
+    public static void UpdateBookFileContent(ContentControl contentControl)
+    {
+        var file = (BookFile)contentControl.Content;
+        contentControl.Content = null;
+        SetBookFileContent(contentControl, file);
+    }
+
+    #endregion
 
     #region Открытие и показ файла в папке.
 

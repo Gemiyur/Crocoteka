@@ -4,13 +4,13 @@ using System.Windows.Controls;
 namespace Crocoteka.Dialogs;
 
 /// <summary>
-/// Класс редактора комментария к файлу.
+/// Класс редактора информации о файле книги.
 /// </summary>
-public partial class FileCommentEditor : Window
+public partial class FileInfoEditor : Window
 {
     public string Comment { get; private set; }
 
-    public FileCommentEditor(string comment)
+    public FileInfoEditor(string comment)
     {
         InitializeComponent();
         Comment = comment;

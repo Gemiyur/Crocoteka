@@ -196,6 +196,15 @@ public partial class BookEditor : Window
     }
 
     /// <summary>
+    /// Устанавливает содержимое элемента в панели информации о файле книги.
+    /// </summary>
+    private void SetBookFileContent()
+    {
+        var file = FilesListBox.SelectedItems.Count == 1 ? (BookFile)FilesListBox.SelectedItem : null;
+        App.SetBookFileContent(FileInfoContentControl, file);
+    }
+
+    /// <summary>
     /// Устанавливает серию книги.
     /// </summary>
     /// <param name="value">Серия книги.</param>
@@ -222,6 +231,11 @@ public partial class BookEditor : Window
     /// Сортирует коллекцию файлов книги в алфавитном порядке.
     /// </summary>
     private void SortFiles() => files.Sort(x => x.Filename, StringComparer.CurrentCultureIgnoreCase);
+
+    /// <summary>
+    /// Обновляет содержимое элемента в панели информации о файле книги.
+    /// </summary>
+    private void UpdateBookFileContent() => App.UpdateBookFileContent(FileInfoContentControl);
 
     /// <summary>
     /// Обновляет отображаемое количество файлов.
@@ -439,12 +453,13 @@ public partial class BookEditor : Window
         SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         RemoveFilesButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
+        SetBookFileContent();
     }
 
     private void CommentFileButton_Click(object sender, RoutedEventArgs e)
     {
         var file = (BookFile)FilesListBox.SelectedItem;
-        var editor = new FileCommentEditor(file.Comment) { Owner = this };
+        var editor = new FileInfoEditor(file.Comment) { Owner = this };
         if (editor.ShowDialog() == true)
         {
             file.Comment = editor.Comment;
