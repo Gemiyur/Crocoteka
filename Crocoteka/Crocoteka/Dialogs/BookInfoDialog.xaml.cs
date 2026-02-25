@@ -31,7 +31,8 @@ public partial class BookInfoDialog : Window
         InitializeTitle();
         InitializeCycle();
         InitializeGenres();
-        InitializeDescription();
+        InitializeAnnotation();
+        InitializeNote();
         InitializeFiles();
     }
 
@@ -96,9 +97,14 @@ public partial class BookInfoDialog : Window
         }
     }
 
-    private void InitializeDescription()
+    private void InitializeAnnotation()
     {
         AnnotationTextBox.Text = book.Annotation;
+    }
+
+    private void InitializeNote()
+    {
+        NoteTextBox.Text = book.Note;
     }
 
     private void InitializeFiles()
