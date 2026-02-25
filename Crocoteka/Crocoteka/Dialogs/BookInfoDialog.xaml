@@ -116,8 +116,8 @@
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
                         <RowDefinition />
+                        <RowDefinition Height="150" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="8,4,8,4">
                         <Grid.ColumnDefinitions>
@@ -135,14 +135,17 @@
                                    HorizontalAlignment="Right" Foreground="Red" />
                     </Grid>
 
-                    <Separator Grid.Row="1" />
-
-                    <ListBox Grid.Row="2" x:Name="FilesListBox"
-                             BorderThickness="0"
+                    <ListBox Grid.Row="1" x:Name="FilesListBox" Margin="2,0,2,0"
                              ItemContainerStyle="{StaticResource ListBoxItemStyle}"
                              ItemTemplate="{StaticResource FileDataTemplate}"
                              ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                              SelectionChanged="FilesListBox_SelectionChanged" />
+
+                    <GroupBox Grid.Row="2" Margin="2,8,2,0">
+                        <ContentControl x:Name="FileInfoContentControl"
+                                        ContentTemplate="{StaticResource FileInfoDataTemplate}"
+                                        Visibility="Collapsed" Margin="0,5,0,0" />
+                    </GroupBox>
                 </Grid>
             </TabItem>
         </TabControl>

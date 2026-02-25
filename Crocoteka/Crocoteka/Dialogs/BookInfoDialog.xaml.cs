@@ -115,6 +115,12 @@ public partial class BookInfoDialog : Window
         FilesListBox.ItemsSource = files;
     }
 
+    private void SetBookFileContent()
+    {
+        var file = FilesListBox.SelectedItems.Count == 1 ? (BookFile)FilesListBox.SelectedItem : null;
+        App.SetBookFileContent(FileInfoContentControl, file);
+    }
+
     private void Window_SourceInitialized(object sender, EventArgs e)
     {
         IntPtr handle = new WindowInteropHelper(this).Handle;
@@ -171,6 +177,7 @@ public partial class BookInfoDialog : Window
     {
         SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        SetBookFileContent();
     }
 
     private void SelectFileButton_Click(object sender, RoutedEventArgs e)
