@@ -90,6 +90,7 @@ public partial class BookEditor : Window
         SortGenres();
         GenresListBox.ItemsSource = genres;
         AnnotationTextBox.Text = book.Annotation;
+        NoteTextBox.Text = book.Note;
         files.AddRange(book.Files);
         SortFiles();
         FilesListBox.ItemsSource = files;
@@ -165,10 +166,17 @@ public partial class BookEditor : Window
             GenresChanged = true;
         }
 
-        // Описание.
+        // Аннотация.
         if (book.Annotation != AnnotationTextBox.Text)
         {
             book.Annotation = AnnotationTextBox.Text;
+            changed = true;
+        }
+
+        // Примечание.
+        if (book.Note != NoteTextBox.Text)
+        {
+            book.Note = NoteTextBox.Text;
             changed = true;
         }
 
