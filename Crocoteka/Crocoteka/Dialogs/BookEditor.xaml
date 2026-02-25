@@ -209,7 +209,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition />
-                        <RowDefinition Height="100" />
+                        <RowDefinition Height="150" />
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
                     <Grid Grid.Row="0" Margin="8,0,8,4">
@@ -261,11 +261,10 @@
                             <ColumnDefinition Width="Auto" />
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0" Orientation="Horizontal">
-                            <Button x:Name="CommentFileButton" Content="Комментарий"
+                            <Button x:Name="EditFileButton" Content="Изменить"
                                     Style="{StaticResource EditorButtonStyle}"
-                                    Width="90"
                                     IsEnabled="False"
-                                    Click="CommentFileButton_Click" />
+                                    Click="EditFileButton_Click" />
                             <Button x:Name="SelectFileButton" Content="Показать"
                                     Style="{StaticResource EditorButtonStyle}"
                                     Margin="10,0,0,0"

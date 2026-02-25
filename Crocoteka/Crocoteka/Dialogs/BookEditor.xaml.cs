@@ -68,9 +68,9 @@ public partial class BookEditor : Window
     private readonly ObservableCollectionEx<BookFile> files = [];
 
     /// <summary>
-    /// Были ли изменения в комментариях к фалах книги.
+    /// Были ли изменения в информации о файлах книги.
     /// </summary>
-    private bool fileCommentsChanged;
+    private bool fileInfoChanged;
 
     /// <summary>
     /// Инициализирует новый экземпляр класса. 
@@ -184,7 +184,7 @@ public partial class BookEditor : Window
         }
         else
         {
-            if (fileCommentsChanged)
+            if (fileInfoChanged)
             {
                 changed = true;
                 FilesChanged = true;
@@ -449,21 +449,21 @@ public partial class BookEditor : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        CommentFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        EditFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
         RemoveFilesButton.IsEnabled = FilesListBox.SelectedItems.Count > 0;
         SetBookFileContent();
     }
 
-    private void CommentFileButton_Click(object sender, RoutedEventArgs e)
+    private void EditFileButton_Click(object sender, RoutedEventArgs e)
     {
         var file = (BookFile)FilesListBox.SelectedItem;
-        var editor = new FileInfoEditor(file.Comment) { Owner = this };
+        var editor = new FileInfoEditor(file) { Owner = this };
         if (editor.ShowDialog() == true)
         {
-            file.Comment = editor.Comment;
-            fileCommentsChanged = true;
+            UpdateBookFileContent();
+            fileInfoChanged = true;
         }
     }
 
@@ -525,7 +525,6 @@ public partial class BookEditor : Window
             DialogResult = false;
             return;
         }
-
         DialogResult = true;
     }
 

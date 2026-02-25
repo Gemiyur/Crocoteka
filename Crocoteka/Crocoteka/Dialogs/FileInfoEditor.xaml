@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
-        Title="Комментарий к файлу"
-        Width="400" Height="160" ResizeMode="NoResize"
+        Title="Информация о файле"
+        Width="500" Height="250" ResizeMode="NoResize"
         WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False">
 
@@ -21,16 +21,42 @@
 
     <Grid Margin="10,10,10,10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
 
-        <TextBox Grid.Row="0" x:Name="CommentTextBox"
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="Перевод" VerticalAlignment="Center" />
+            <TextBox Grid.Row="0" Grid.Column="2" x:Name="TranslatorTextBox"
+                     TextChanged="TranslatorTextBox_TextChanged" />
+
+            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="LectorTextBlock" Text="Читает"
+                       VerticalAlignment="Center" Margin="0,10,0,0" />
+            <TextBox Grid.Row="1" Grid.Column="2" x:Name="LectorTextBox" Margin="0,10,0,0"
+                     TextChanged="LectorTextBox_TextChanged" />
+        </Grid>
+
+        <TextBlock Grid.Row="1" Text="Комментарий" Margin="0,10,0,2" />
+
+        <TextBox Grid.Row="2" x:Name="CommentTextBox"
+                 AcceptsReturn="True"
                  TextWrapping="Wrap"
                  VerticalScrollBarVisibility="Auto"
                  TextChanged="CommentTextBox_TextChanged" />
 
-        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,10,0,0">
             <Button x:Name="SaveButton" Content="Сохранить"
                     Style="{StaticResource ButtonStyle}"
                     IsEnabled="False"

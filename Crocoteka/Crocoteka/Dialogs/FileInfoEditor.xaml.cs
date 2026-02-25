@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using Crocoteka.Models;
 
 namespace Crocoteka.Dialogs;
 
@@ -8,21 +9,39 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class FileInfoEditor : Window
 {
-    public string Comment { get; private set; }
+    private readonly BookFile file;
 
-    public FileInfoEditor(string comment)
+    public FileInfoEditor(BookFile file)
     {
         InitializeComponent();
-        Comment = comment;
-        CommentTextBox.Text = comment;
+        this.file = file;
+        if (!file.IsAudio)
+        {
+            LectorTextBlock.Visibility = Visibility.Collapsed;
+            LectorTextBox.Visibility = Visibility.Collapsed;
+        }
+        TranslatorTextBox.Text = file.Translator;
+        LectorTextBox.Text = file.Lector;
+        CommentTextBox.Text = file.Comment;
     }
 
-    private void CommentTextBox_TextChanged(object sender, TextChangedEventArgs e) =>
-        SaveButton.IsEnabled = CommentTextBox.Text != Comment;
+    private void CheckSaveButton() => SaveButton.IsEnabled =
+        file.Translator != TranslatorTextBox.Text ||
+        file.Lector != LectorTextBox.Text ||
+        file.Comment != CommentTextBox.Text;
+        
+
+    private void TranslatorTextBox_TextChanged(object sender, TextChangedEventArgs e) => CheckSaveButton();
+
+    private void LectorTextBox_TextChanged(object sender, TextChangedEventArgs e) => CheckSaveButton();
+
+    private void CommentTextBox_TextChanged(object sender, TextChangedEventArgs e) => CheckSaveButton();
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
     {
-        Comment = CommentTextBox.Text;
+        file.Translator = TranslatorTextBox.Text;
+        file.Lector = LectorTextBox.Text;
+        file.Comment = CommentTextBox.Text;
         DialogResult = true;
     }
 

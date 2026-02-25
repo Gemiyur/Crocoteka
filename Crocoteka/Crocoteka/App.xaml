@@ -119,11 +119,11 @@
                 <ScrollViewer Padding="0" VerticalScrollBarVisibility="Auto">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Перевод:" FontStyle="Italic" />
+                            <TextBlock Text="Перевод:" FontStyle="Italic" Margin="0,0,10,0" />
                             <TextBlock Text="{Binding Translator}" />
                         </StackPanel>
                         <StackPanel x:Name="LectorStackPanel" Orientation="Horizontal">
-                            <TextBlock Text="Читает:" FontStyle="Italic" />
+                            <TextBlock Text="Читает:" FontStyle="Italic" Margin="0,0,8,0" />
                             <TextBlock Text="{Binding Lector}" />
                         </StackPanel>
                         <TextBlock Text="Комментарий:" FontStyle="Italic" />
