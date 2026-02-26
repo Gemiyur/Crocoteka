@@ -34,6 +34,7 @@
     <None Remove="Images\Buttons\Enabled\Edit.png" />
     <None Remove="Images\Buttons\Enabled\FindBooks.png" />
     <None Remove="Images\Buttons\Enabled\Info.png" />
+    <None Remove="Images\Buttons\Enabled\Refresh.png" />
     <None Remove="Images\Buttons\Enabled\Search.png" />
     <None Remove="Images\Buttons\Enabled\Settings.png" />
   </ItemGroup>
@@ -71,6 +72,7 @@
     <Resource Include="Images\Buttons\Enabled\Edit.png" />
     <Resource Include="Images\Buttons\Enabled\FindBooks.png" />
     <Resource Include="Images\Buttons\Enabled\Info.png" />
+    <Resource Include="Images\Buttons\Enabled\Refresh.png" />
     <Resource Include="Images\Buttons\Enabled\Search.png" />
     <Resource Include="Images\Buttons\Enabled\Settings.png" />
     <Resource Include="Images\Buttons\Enabled\Genres.png" />

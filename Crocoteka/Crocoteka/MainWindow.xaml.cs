@@ -522,6 +522,11 @@ public partial class MainWindow : Window
 
     #region Обработчики команд библиотеки.
 
+    private void Refresh_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+        UpdateShownBooks();
+    }
+
     private void Settings_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         new SettingsDialog() { Owner = this }.ShowDialog();

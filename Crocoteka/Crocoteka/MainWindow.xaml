@@ -23,6 +23,8 @@
 
     <Window.CommandBindings>
         <!-- Команды библиотеки -->
+        <CommandBinding Command="local:AppCommands.Refresh"
+                        Executed="Refresh_Executed" />
         <CommandBinding Command="local:AppCommands.Settings"
                         Executed="Settings_Executed" />
         <CommandBinding Command="local:AppCommands.Exit"
@@ -117,6 +119,13 @@
                 </MenuItem>
                 <Separator />
                 <MenuItem Style="{StaticResource MenuItemStyle}"
+                          Command="local:AppCommands.Refresh">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Buttons\Enabled\Refresh.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
+                <Separator />
+                <MenuItem Style="{StaticResource MenuItemStyle}"
                           Command="local:AppCommands.Settings">
                     <MenuItem.Icon>
                         <Image Source="Images\Buttons\Enabled\Settings.png" />
@@ -179,6 +188,11 @@
                 <Button Style="{StaticResource ToolBarButtonStyle}"
                         Command="local:AppCommands.Genres">
                     <Image Source="Images\Buttons\Enabled\Genres.png" Style="{StaticResource ToolBarIconStyle}" />
+                </Button>
+                <Separator />
+                <Button Style="{StaticResource ToolBarButtonStyle}"
+                        Command="local:AppCommands.Refresh">
+                    <Image Source="Images\Buttons\Enabled\Refresh.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
                 <Separator />
                 <Button Style="{StaticResource ToolBarButtonStyle}"

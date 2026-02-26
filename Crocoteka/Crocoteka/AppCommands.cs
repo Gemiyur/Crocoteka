@@ -10,6 +10,11 @@ public static class AppCommands
     #region Команды библиотеки.
 
     /// <summary>
+    /// Команда обновления списка книг.
+    /// </summary>
+    public static RoutedUICommand Refresh { get; private set; }
+
+    /// <summary>
     /// Команда настроек приложения.
     /// </summary>
     public static RoutedUICommand Settings { get; private set; }
@@ -132,6 +137,7 @@ public static class AppCommands
     static AppCommands()
     {
         // Команды библиотеки".
+        Refresh = new RoutedUICommand("Обновить список книг", "Refresh", typeof(AppCommands));
         Settings = new RoutedUICommand("Настройки...", "Settings", typeof(AppCommands));
         Exit = new RoutedUICommand("Выход", "Exit", typeof(AppCommands));
 
