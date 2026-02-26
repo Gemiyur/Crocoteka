@@ -35,6 +35,11 @@ public partial class MainWindow : Window
     private readonly ObservableCollectionEx<Genre> Genres = [];
 
     /// <summary>
+    /// Текст для поиска, содержащийся в названии.
+    /// </summary>
+    private string searchText = string.Empty;
+
+    /// <summary>
     /// Инициализирует новый экземпляр класса.
     /// </summary>
     public MainWindow()
@@ -183,6 +188,28 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
+    /// Разрешает или запрещает кнопку "Очистить" в панели поиска.
+    /// </summary>
+    /// <param name="enabled">true - разрешить, false - запретить.</param>
+    private void SetClearButtonEnabled(bool enabled)
+    {
+        ClearButton.IsEnabled = enabled;
+        ((Image)ClearButton.Content).Source = App.GetBitmapImage(
+            enabled ? @"Images\Buttons\Enabled\Clear.png" : @"Images\Buttons\Disabled\Clear.png");
+    }
+
+    /// <summary>
+    /// Разрешает или запрещает кнопку "Найти" в панели поиска.
+    /// </summary>
+    /// <param name="enabled">true - разрешить, false - запретить.</param>
+    private void SetSearchButtonEnabled(bool enabled)
+    {
+        SearchButton.IsEnabled = enabled;
+        ((Image)SearchButton.Content).Source = App.GetBitmapImage(
+            enabled ? @"Images\Buttons\Enabled\Search.png" : @"Images\Buttons\Disabled\Search.png");
+    }
+
+    /// <summary>
     /// Отображает окно информации о книге.
     /// </summary>
     /// <param name="book">Книга.</param>
@@ -251,7 +278,10 @@ public partial class MainWindow : Window
     {
         if (AllBooksToggleButton.IsChecked == true)
         {
-            ShownBooks.ReplaceRange(Library.Books);
+            var books = string.IsNullOrEmpty(searchText)
+                ? Library.Books
+                : Library.Books.FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
+            ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
                 : (DataTemplate)FindResource("BookAuthorsShortNameDataTemplate");
@@ -260,7 +290,10 @@ public partial class MainWindow : Window
         else if (AuthorsListBox.SelectedItem != null)
         {
             var author = (Author)AuthorsListBox.SelectedItem;
-            var books = Library.GetAuthorBooks(author.AuthorId);
+            var books = string.IsNullOrEmpty(searchText)
+                ? Library.GetAuthorBooks(author.AuthorId)
+                : Library.GetAuthorBooks(author.AuthorId)
+                    .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
@@ -270,7 +303,10 @@ public partial class MainWindow : Window
         else if (CyclesListBox.SelectedItem != null)
         {
             var cycle = (Cycle)CyclesListBox.SelectedItem;
-            var books = Library.GetCycleBooks(cycle.CycleId);
+            var books = string.IsNullOrEmpty(searchText)
+                ? Library.GetCycleBooks(cycle.CycleId)
+                : Library.GetCycleBooks(cycle.CycleId)
+                    .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookCycleAuthorsFullNameDataTemplate")
@@ -280,7 +316,10 @@ public partial class MainWindow : Window
         else if (GenresListBox.SelectedItem != null)
         {
             var genre = (Genre)GenresListBox.SelectedItem;
-            var books = Library.GetGenreBooks(genre.GenreId);
+            var books = string.IsNullOrEmpty(searchText)
+                ? Library.GetGenreBooks(genre.GenreId)
+                : Library.GetGenreBooks(genre.GenreId)
+                    .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
@@ -347,6 +386,38 @@ public partial class MainWindow : Window
             Properties.Settings.Default.MainWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }
         Properties.Settings.Default.Save();
+    }
+
+    #endregion
+
+    #region Обработчики событий панели поиска книг.
+
+    private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (SearchTextBox.Text.Length > 0)
+        {
+            SetSearchButtonEnabled(true);
+            SetClearButtonEnabled(true);
+        }
+        else
+        {
+            SetSearchButtonEnabled(false);
+            SetClearButtonEnabled(false);
+        }
+    }
+
+    private void SearchButton_Click(object sender, RoutedEventArgs e)
+    {
+        searchText = SearchTextBox.Text;
+        SetSearchButtonEnabled(false);
+        UpdateShownBooks();
+    }
+
+    private void ClearButton_Click(object sender, RoutedEventArgs e)
+    {
+        SearchTextBox.Clear();
+        searchText = string.Empty;
+        UpdateShownBooks();
     }
 
     #endregion
