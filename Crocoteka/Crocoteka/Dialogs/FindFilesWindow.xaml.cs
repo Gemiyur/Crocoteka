@@ -104,11 +104,20 @@ public partial class FindFilesWindow : Window
     {
         files.Clear();
         var trimCount = folder.Length + 1;
-        var list = Directory.GetFiles(folder, "*.*", SearchOption.AllDirectories)
-            .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
-            .Select(x => x[trimCount..])
-            .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
-        files.AddRange(list);
+        try
+        {
+            var options = new EnumerationOptions() { RecurseSubdirectories = true };
+            var list = Directory.EnumerateFiles(folder, "*.*", options)
+                .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
+                .Select(x => x[trimCount..])
+                .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
+            files.AddRange(list);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show(ex.Message, Title);
+            return;
+        }
         ApplyFilter();
     }
 
