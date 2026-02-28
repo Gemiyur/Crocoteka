@@ -100,30 +100,25 @@ public partial class FindFilesWindow : Window
     /// <summary>
     /// Загружает список файлов книг в папке.
     /// </summary>
-    private async Task LoadFilesAsync()
+    private void LoadFiles()
     {
-        var task = new Task(() =>
-            {
-                var trimCount = folder.Length + 1;
-                var options = new EnumerationOptions() { RecurseSubdirectories = true };
-                var list = Directory.EnumerateFiles(folder, "*.*", options)
-                    .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
-                    .Select(x => x[trimCount..])
-                    .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
-                files.AddRange(list);
-            });
-        task.Start();
+        files.Clear();
+        var trimCount = folder.Length + 1;
         try
         {
-            await task;
+            var options = new EnumerationOptions() { RecurseSubdirectories = true };
+            var list = Directory.EnumerateFiles(folder, "*.*", options)
+                .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
+                .Select(x => x[trimCount..])
+                .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
+            files.AddRange(list);
         }
         catch (Exception ex)
         {
             MessageBox.Show(ex.Message, Title);
+            return;
         }
         ApplyFilter();
-        FolderButton.IsEnabled = true;
-        FindButton.IsEnabled = true;
     }
 
     /// <summary>
@@ -174,18 +169,11 @@ public partial class FindFilesWindow : Window
         }
         folder = dialog.FolderName;
         FolderTextBox.Text = folder;
-        FindButton.IsEnabled = true;
+        LoadFiles();
+        ReloadButton.IsEnabled = true;
     }
 
-    private void FindButton_Click(object sender, RoutedEventArgs e)
-    {
-        files.Clear();
-        ApplyFilter();
-        CountTextBlock.Text = "Поиск...";
-        FolderButton.IsEnabled = false;
-        FindButton.IsEnabled = false;
-        _ = LoadFilesAsync();
-    }
+    private void ReloadButton_Click(object sender, RoutedEventArgs e) => LoadFiles();
 
     private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => ApplyFilter();
 
