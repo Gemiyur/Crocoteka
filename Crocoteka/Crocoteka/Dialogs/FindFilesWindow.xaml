@@ -52,11 +52,11 @@
                      VerticalContentAlignment="Center"
                      IsReadOnly="True"
                      Background="{StaticResource TextBoxReadOnlyBackgroundBrush}" />
-            <Button Grid.Column="2" x:Name="ReloadButton" Content="Обновить"
+            <Button Grid.Column="2" x:Name="FindButton" Content="Найти"
                     Style="{StaticResource CommonButtonStyle}"
                     IsEnabled="False"
                     Margin="10,0,0,0"
-                    Click="ReloadButton_Click" />
+                    Click="FindButton_Click" />
         </Grid>
 
         <!-- Фильтр -->
@@ -80,6 +80,7 @@
                       VerticalAlignment="Center"
                       Margin="20,0,0,0"
                       Click="NotInLibraryCheckBox_Click" />
+
             <StackPanel Grid.Column="2" Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
