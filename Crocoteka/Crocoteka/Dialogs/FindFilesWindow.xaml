@@ -52,11 +52,11 @@
                      VerticalContentAlignment="Center"
                      IsReadOnly="True"
                      Background="{StaticResource TextBoxReadOnlyBackgroundBrush}" />
-            <Button Grid.Column="2" x:Name="ReloadButton" Content="Обновить"
+            <Button Grid.Column="2" x:Name="FindButton" Content="Найти"
                     Style="{StaticResource CommonButtonStyle}"
                     IsEnabled="False"
                     Margin="10,0,0,0"
-                    Click="ReloadButton_Click" />
+                    Click="FindButton_Click" />
         </Grid>
 
         <!-- Фильтр -->
@@ -80,12 +80,20 @@
                       VerticalAlignment="Center"
                       Margin="20,0,0,0"
                       Click="NotInLibraryCheckBox_Click" />
-            <StackPanel Grid.Column="2" Orientation="Horizontal"
+
+            <StackPanel Grid.Column="2" x:Name="FoundStackPanel" Orientation="Horizontal"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center">
                 <TextBlock Text="Найдено файлов:" Margin="0,0,0,0" />
                 <TextBlock x:Name="CountTextBlock" Text="0" Margin="5,0,5,0" />
             </StackPanel>
+
+            <TextBlock Grid.Column="2" x:Name="FindingTextBlock" Text="Поиск файлов..."
+                       FontWeight="Bold"
+                       HorizontalAlignment="Right"
+                       VerticalAlignment="Center"
+                       Margin="0,0,5,0"
+                       Visibility="Collapsed" />
         </Grid>
 
         <!-- Список файлов -->

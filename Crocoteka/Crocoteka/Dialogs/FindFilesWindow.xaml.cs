@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System.ComponentModel;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using Gemiyur.Collections;
@@ -37,12 +38,17 @@ public partial class FindFilesWindow : Window
     /// </summary>
     private readonly ObservableCollectionEx<string> shownFiles = [];
 
+    private readonly BackgroundWorker worker = new();
+
     /// <summary>
     /// Инициализирует новый экземпляр класса.
     /// </summary>
     public FindFilesWindow()
     {
         InitializeComponent();
+
+        worker.DoWork += Worker_DoWork;
+        worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
 
         bookExtensions.AddRange(App.AudioExtensions);
         bookExtensions.AddRange(App.TextExtensions);
@@ -98,30 +104,6 @@ public partial class FindFilesWindow : Window
     private string FullName(string name) => Path.Combine(folder, name);
 
     /// <summary>
-    /// Загружает список файлов книг в папке.
-    /// </summary>
-    private void LoadFiles()
-    {
-        files.Clear();
-        var trimCount = folder.Length + 1;
-        try
-        {
-            var options = new EnumerationOptions() { RecurseSubdirectories = true };
-            var list = Directory.EnumerateFiles(folder, "*.*", options)
-                .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
-                .Select(x => x[trimCount..])
-                .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
-            files.AddRange(list);
-        }
-        catch (Exception ex)
-        {
-            MessageBox.Show(ex.Message, Title);
-            return;
-        }
-        ApplyFilter();
-    }
-
-    /// <summary>
     /// Обновляет количество файлов книг в списке файлов книг.
     /// </summary>
     private void UpdateCount() => CountTextBlock.Text = shownFiles.Count.ToString();
@@ -159,6 +141,31 @@ public partial class FindFilesWindow : Window
             Properties.Settings.Default.Save();
     }
 
+    private void Worker_DoWork(object? sender, DoWorkEventArgs e)
+    {
+        var trimCount = folder.Length + 1;
+        var options = new EnumerationOptions() { RecurseSubdirectories = true };
+        var list = Directory.EnumerateFiles(folder, "*.*", options)
+            .Where(x => bookExtensions.Contains(Path.GetExtension(x), StringComparer.CurrentCultureIgnoreCase))
+            .Select(x => x[trimCount..])
+            .OrderBy(x => x, StringComparer.CurrentCultureIgnoreCase);
+        files.AddRange(list);
+    }
+
+    private void Worker_RunWorkerCompleted(object? sender, RunWorkerCompletedEventArgs e)
+    {
+        if (e.Error != null)
+            MessageBox.Show(e.Error.Message, Title);
+        else
+            ApplyFilter();
+        FolderButton.IsEnabled = true;
+        FindButton.IsEnabled = true;
+        TypeComboBox.IsEnabled = true;
+        NotInLibraryCheckBox.IsEnabled = true;
+        FoundStackPanel.Visibility = Visibility.Visible;
+        FindingTextBlock.Visibility = Visibility.Collapsed;
+    }
+
     private void FolderButton_Click(object sender, RoutedEventArgs e)
     {
         var dialog = App.PickBooksFolderDialog;
@@ -169,11 +176,23 @@ public partial class FindFilesWindow : Window
         }
         folder = dialog.FolderName;
         FolderTextBox.Text = folder;
-        LoadFiles();
-        ReloadButton.IsEnabled = true;
+        files.Clear();
+        ApplyFilter();
+        FindButton.IsEnabled = true;
     }
 
-    private void ReloadButton_Click(object sender, RoutedEventArgs e) => LoadFiles();
+    private void FindButton_Click(object sender, RoutedEventArgs e)
+    {
+        files.Clear();
+        ApplyFilter();
+        FolderButton.IsEnabled = false;
+        FindButton.IsEnabled = false;
+        TypeComboBox.IsEnabled = false;
+        NotInLibraryCheckBox.IsEnabled = false;
+        FoundStackPanel.Visibility = Visibility.Collapsed;
+        FindingTextBlock.Visibility = Visibility.Visible;
+        worker.RunWorkerAsync();
+    }
 
     private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e) => ApplyFilter();
 
