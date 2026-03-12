@@ -181,8 +181,9 @@ public partial class BookInfoDialog : Window
 
     private void FilesListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        SelectFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
-        OpenFileButton.IsEnabled = FilesListBox.SelectedItems.Count == 1;
+        var fileButtonsEnabled = FilesListBox.SelectedItems.Count == 1 && ((BookFile)FilesListBox.SelectedItem).Exists;
+        SelectFileButton.IsEnabled = fileButtonsEnabled;
+        OpenFileButton.IsEnabled = fileButtonsEnabled;
         SetBookFileContent();
     }
 
