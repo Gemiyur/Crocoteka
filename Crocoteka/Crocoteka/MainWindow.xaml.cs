@@ -174,6 +174,30 @@ public partial class MainWindow : Window
     }
 
     /// <summary>
+    /// Возвращает список книг, удовлетворяющих фильтру по типу книг.
+    /// </summary>
+    /// <param name="books">Список книг для фильтрации.</param>
+    /// <returns>Список книг, удовлетворяющих фильтру.</returns>
+    private List<Book> GetTypeFilteredBooks(List<Book> books)
+    {
+        if (TypeComboBox.SelectedIndex == 0)
+            return books;
+        if (TypeComboBox.SelectedIndex == 1)
+            return books.FindAll(x => x.HasAudio);
+        if (TypeComboBox.SelectedIndex == 2)
+            return books.FindAll(x => x.HasText);
+        if (TypeComboBox.SelectedIndex == 3)
+            return books.FindAll(x => x.HasAudio && x.HasText);
+        if (TypeComboBox.SelectedIndex == 4)
+            return books.FindAll(x => x.HasAudio && !x.HasText);
+        if (TypeComboBox.SelectedIndex == 5)
+            return books.FindAll(x => !x.HasAudio && x.HasText);
+        if (TypeComboBox.SelectedIndex == 6)
+            return books.FindAll(x => !x.HasAudio && !x.HasText);
+        return books;
+    }
+
+    /// <summary>
     /// Выделяет указанную книгу в списке отображаемых книг.
     /// </summary>
     /// <param name="book">Книга.</param>
@@ -281,6 +305,7 @@ public partial class MainWindow : Window
             var books = string.IsNullOrEmpty(searchText)
                 ? Library.Books
                 : Library.Books.FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
+            books = GetTypeFilteredBooks(books);
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
@@ -294,6 +319,7 @@ public partial class MainWindow : Window
                 ? Library.GetAuthorBooks(author.AuthorId)
                 : Library.GetAuthorBooks(author.AuthorId)
                     .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
+            books = GetTypeFilteredBooks(books);
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
@@ -307,6 +333,7 @@ public partial class MainWindow : Window
                 ? Library.GetCycleBooks(cycle.CycleId)
                 : Library.GetCycleBooks(cycle.CycleId)
                     .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
+            books = GetTypeFilteredBooks(books);
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookCycleAuthorsFullNameDataTemplate")
@@ -320,6 +347,7 @@ public partial class MainWindow : Window
                 ? Library.GetGenreBooks(genre.GenreId)
                 : Library.GetGenreBooks(genre.GenreId)
                     .FindAll(x => x.Title.Contains(searchText, StringComparison.CurrentCultureIgnoreCase));
+            books = GetTypeFilteredBooks(books);
             ShownBooks.ReplaceRange(books);
             BooksListViewTitleColumn.CellTemplate = Properties.Settings.Default.BookListAuthorFullName
                 ? (DataTemplate)FindResource("BookAuthorsFullNameDataTemplate")
@@ -391,6 +419,13 @@ public partial class MainWindow : Window
     #endregion
 
     #region Обработчики событий панели поиска книг.
+
+    private void TypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (!IsVisible)
+            return;
+        UpdateShownBooks();
+    }
 
     private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
     {

@@ -224,11 +224,24 @@
             </ToolBar>
         </ToolBarTray>
 
-        <!-- Панель поиска книг -->
+        <!-- Панель фильтра и поиска книг -->
         <StackPanel Grid.Row="1" Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center"
                     Margin="0,0,10,0">
+            <ComboBox Name="TypeComboBox"
+                      Width="150"
+                      Margin="0,0,20,0"
+                      SelectedIndex="0"
+                      SelectionChanged="TypeComboBox_SelectionChanged">
+                <ComboBoxItem Content="Все книги" />
+                <ComboBoxItem Content="Аудио книги" />
+                <ComboBoxItem Content="Текстовые книги" />
+                <ComboBoxItem Content="Есть аудио и текст" />
+                <ComboBoxItem Content="Есть только аудио" />
+                <ComboBoxItem Content="Есть только текст" />
+                <ComboBoxItem Content="Нет аудио и текста" />
+            </ComboBox>
             <TextBox x:Name="SearchTextBox"
                      Width="200"
                      VerticalContentAlignment="Center"
