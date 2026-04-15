@@ -58,12 +58,6 @@
                     <CheckBox x:Name="BookInfoAuthorFullNameCheckBox"
                               Content="В окне информации о книге отображать полные имена авторов"
                               Style="{StaticResource InterfaceCheckBoxStyle}" />
-
-                    <CheckBox x:Name="NotInLibraryCheckedCheckBox"
-                              Content="В окне поиска файлов книг флажок «Нет в библиотеке» включён *"
-                              ToolTip="Изменения вступят в силу при следующем открытии окна поиска файлов книг."
-                              Style="{StaticResource InterfaceCheckBoxStyle}" />
-
                     <CheckBox x:Name="SaveMainWindowLocationCheckBox"
                               Content="Сохранять положение и размер окна приложения"
                               Style="{StaticResource InterfaceCheckBoxStyle}" />

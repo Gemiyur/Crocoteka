@@ -57,10 +57,6 @@ public partial class FindFilesWindow : Window
         mask.Value.AddRange(bookExtensions);
         masks.Add(mask.Key, mask.Value);
 
-        //mask = new KeyValuePair<string, List<string>>("Все текстовые книги", []);
-        //mask.Value.AddRange(App.TextExtensions);
-        //masks.Add(mask.Key, mask.Value);
-
         foreach (var extension in App.AudioExtensions)
         {
             mask = new KeyValuePair<string, List<string>>($"Аудиокниги {extension.TrimStart('.').ToUpper()}", []);
@@ -127,10 +123,9 @@ public partial class FindFilesWindow : Window
             Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }
-        if (Properties.Settings.Default.SaveNotInLibraryState)
-        {
-            Properties.Settings.Default.NotInLibraryChecked = NotInLibraryCheckBox.IsChecked == true;
-        }
+        Properties.Settings.Default.NotInLibraryChecked = Properties.Settings.Default.SaveNotInLibraryState
+            ? NotInLibraryCheckBox.IsChecked == true
+            : Properties.Settings.Default.PresetNotInLibraryChecked;
         var window = App.GetMainWindow();
         if (window != null)
         {
