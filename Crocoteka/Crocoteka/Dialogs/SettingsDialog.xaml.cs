@@ -25,6 +25,7 @@ public partial class SettingsDialog : Window
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.SaveNotInLibraryState;
+        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.CascadeGenreDelete;
 
         // База данных.
 #if DEBUG
@@ -83,6 +84,7 @@ public partial class SettingsDialog : Window
         SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.PresetSaveNotInLibraryState;
+        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.PresetCascadeGenreDelete;
     }
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -137,6 +139,9 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.FindFilesWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
         }
+
+        // Интерфейс - каскадное удаление жанров.
+        Properties.Settings.Default.CascadeGenreDelete = CascadeGenreDeleteCheckBox.IsChecked == true;
 
         // База данных.
         if (DbNameChanged)
