@@ -617,7 +617,7 @@ public partial class MainWindow : Window
 
     private void Database_Executed(object sender, ExecutedRoutedEventArgs e)
     {
-
+        new DatabaseDialog() { Owner = this }.ShowDialog();
     }
 
     private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
