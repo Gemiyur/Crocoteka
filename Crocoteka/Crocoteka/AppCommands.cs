@@ -20,6 +20,11 @@ public static class AppCommands
     public static RoutedUICommand Settings { get; private set; }
 
     /// <summary>
+    /// Команда настроек базы данных.
+    /// </summary>
+    public static RoutedUICommand Database { get; private set; }
+
+    /// <summary>
     /// Команда выхода из приложения.
     /// </summary>
     public static RoutedUICommand Exit { get; private set; }
@@ -139,6 +144,7 @@ public static class AppCommands
         // Команды библиотеки".
         Refresh = new RoutedUICommand("Обновить список книг", "Refresh", typeof(AppCommands));
         Settings = new RoutedUICommand("Настройки...", "Settings", typeof(AppCommands));
+        Database = new RoutedUICommand("База данных...", "Database", typeof(AppCommands));
         Exit = new RoutedUICommand("Выход", "Exit", typeof(AppCommands));
 
         // Команды книг.

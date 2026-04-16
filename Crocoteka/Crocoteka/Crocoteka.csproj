@@ -30,6 +30,7 @@
     <None Remove="Images\Buttons\Enabled\BookInfo.png" />
     <None Remove="Images\Buttons\Enabled\Clear.png" />
     <None Remove="Images\Buttons\Enabled\Cycles.png" />
+    <None Remove="Images\Buttons\Enabled\Database.png" />
     <None Remove="Images\Buttons\Enabled\Delete.png" />
     <None Remove="Images\Buttons\Enabled\Edit.png" />
     <None Remove="Images\Buttons\Enabled\FindBooks.png" />
@@ -68,6 +69,7 @@
     <Resource Include="Images\Buttons\Enabled\BookInfo.png" />
     <Resource Include="Images\Buttons\Enabled\Clear.png" />
     <Resource Include="Images\Buttons\Enabled\Cycles.png" />
+    <Resource Include="Images\Buttons\Enabled\Database.png" />
     <Resource Include="Images\Buttons\Enabled\Delete.png" />
     <Resource Include="Images\Buttons\Enabled\Edit.png" />
     <Resource Include="Images\Buttons\Enabled\FindBooks.png" />

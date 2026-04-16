@@ -615,6 +615,11 @@ public partial class MainWindow : Window
         new SettingsDialog() { Owner = this }.ShowDialog();
     }
 
+    private void Database_Executed(object sender, ExecutedRoutedEventArgs e)
+    {
+
+    }
+
     private void Exit_Executed(object sender, ExecutedRoutedEventArgs e)
     {
         Close();

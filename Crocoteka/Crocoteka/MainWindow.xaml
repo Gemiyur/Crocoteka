@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="Крокотека"
         Width="1000" Height="700" ResizeMode="CanResizeWithGrip"
-        MinWidth="900" MinHeight="450"
-        d:Width="900" d:Height="450"
+        MinWidth="950" MinHeight="450"
+        d:Width="950" d:Height="450"
         WindowStartupLocation="CenterScreen"
         Loaded="Window_Loaded"
         Closed="Window_Closed">
@@ -27,6 +27,8 @@
                         Executed="Refresh_Executed" />
         <CommandBinding Command="local:AppCommands.Settings"
                         Executed="Settings_Executed" />
+        <CommandBinding Command="local:AppCommands.Database"
+                        Executed="Database_Executed" />
         <CommandBinding Command="local:AppCommands.Exit"
                         Executed="Exit_Executed" />
         <!-- Команды книг -->
@@ -131,6 +133,12 @@
                         <Image Source="Images\Buttons\Enabled\Settings.png" />
                     </MenuItem.Icon>
                 </MenuItem>
+                <MenuItem Style="{StaticResource MenuItemStyle}"
+                          Command="local:AppCommands.Database">
+                    <MenuItem.Icon>
+                        <Image Source="Images\Buttons\Enabled\Database.png" />
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
                 <MenuItem x:Name="ExitMenuItem" Style="{StaticResource MenuItemStyle}"
                           Command="local:AppCommands.Exit" />
@@ -198,6 +206,10 @@
                 <Button Style="{StaticResource ToolBarButtonStyle}"
                         Command="local:AppCommands.Settings">
                     <Image Source="Images\Buttons\Enabled\Settings.png" Style="{StaticResource ToolBarIconStyle}" />
+                </Button>
+                <Button Style="{StaticResource ToolBarButtonStyle}"
+                        Command="local:AppCommands.Database">
+                    <Image Source="Images\Buttons\Enabled\Database.png" Style="{StaticResource ToolBarIconStyle}" />
                 </Button>
             </ToolBar>
             <ToolBar x:Name="BookToolBar">
