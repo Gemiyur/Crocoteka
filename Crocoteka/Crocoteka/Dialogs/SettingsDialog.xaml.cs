@@ -17,6 +17,7 @@ public partial class SettingsDialog : Window
         CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.CascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
         SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsSize;
+        SaveEditorsSizeCheckBox.IsChecked = Properties.Settings.Default.SaveEditorsSize;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.SaveNotInLibraryState;
     }
@@ -29,6 +30,7 @@ public partial class SettingsDialog : Window
         CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.PresetCascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
         SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsSize;
+        SaveEditorsSizeCheckBox.IsChecked = Properties.Settings.Default.PresetSaveEditorsSize;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.PresetSaveNotInLibraryState;
     }
@@ -71,6 +73,15 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size(0, 0);
             //Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
+        }
+
+        // Размеры редакторов книги, автора и серии.
+        Properties.Settings.Default.SaveEditorsSize = SaveEditorsSizeCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveEditorsSize)
+        {
+            Properties.Settings.Default.AuthorEditorSize = new System.Drawing.Size(0, 0);
+            Properties.Settings.Default.BookEditorSize = new System.Drawing.Size(0, 0);
+            Properties.Settings.Default.CycleEditorSize = new System.Drawing.Size(0, 0);
         }
 
         // Позиция и размер окна поиска файлов.
