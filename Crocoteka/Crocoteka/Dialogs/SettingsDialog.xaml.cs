@@ -97,6 +97,7 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.NotInLibraryChecked = Properties.Settings.Default.PresetNotInLibraryChecked;
         }
 
+        Properties.Settings.Default.Save();
         DialogResult = true;
     }
 

@@ -72,8 +72,11 @@ public partial class DatabaseDialog : Window
             using var db = Db.GetDatabase(DbNameTextBox.Text);
             if (newDb)
                 Db.InitializeCollections(db);
+            Properties.Settings.Default.Save();
+            DialogResult = true;
         }
-        DialogResult = true;
+        else
+            DialogResult = false;
     }
 
     private void CancelButton_Click(object sender, RoutedEventArgs e) => DialogResult = false;
