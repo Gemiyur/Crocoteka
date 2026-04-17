@@ -9,7 +9,6 @@
         Width="550" Height="600" ResizeMode="CanResizeWithGrip"
         MinWidth="500" MinHeight="500"
         d:Width="500" d:Height="500"
-        WindowStartupLocation="CenterOwner"
         ShowInTaskbar="False"
         SourceInitialized="Window_SourceInitialized"
         Loaded="Window_Loaded"
