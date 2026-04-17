@@ -39,18 +39,16 @@ public partial class CycleInfoDialog : Window
         if (Properties.Settings.Default.SaveInfoWindowsSize &&
             App.SizeDefined(Properties.Settings.Default.CycleInfoWindowSize))
         {
-            Left = Properties.Settings.Default.CycleInfoWindowPos.X;
-            Top = Properties.Settings.Default.CycleInfoWindowPos.Y;
             Width = Properties.Settings.Default.CycleInfoWindowSize.Width;
             Height = Properties.Settings.Default.CycleInfoWindowSize.Height;
         }
+        App.CenterOnScreen(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)
     {
         if (Properties.Settings.Default.SaveInfoWindowsSize)
         {
-            Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }
     }

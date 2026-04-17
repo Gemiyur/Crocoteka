@@ -43,9 +43,11 @@ public partial class BookInfoDialog : Window
             var run = Properties.Settings.Default.BookInfoAuthorFullName
                 ? new Run(book.Authors[i].NameFirstMiddleLast)
                 : new Run(book.Authors[i].NameFirstLast);
-            var link = new Hyperlink(run);
-            link.Tag = book.Authors[i];
-            link.Style = (Style)FindResource("HyperlinkStyle");
+            var link = new Hyperlink(run)
+            {
+                Tag = book.Authors[i],
+                Style = (Style)FindResource("HyperlinkStyle")
+            };
             link.Click += AuthorLink_Click;
             AuthorsTextBlock.Inlines.Add(link);
             if (i < book.Authors.Count - 1)
@@ -64,9 +66,11 @@ public partial class BookInfoDialog : Window
         if (book.Cycle != null)
         {
             CycleGrid.Visibility = Visibility.Visible;
-            var link = new Hyperlink(new Run(book.Cycle.Title));
-            link.Tag = book.Cycle;
-            link.Style = (Style)FindResource("HyperlinkStyle");
+            var link = new Hyperlink(new Run(book.Cycle.Title))
+            {
+                Tag = book.Cycle,
+                Style = (Style)FindResource("HyperlinkStyle")
+            };
             link.Click += CycleLink_Click;
             CycleTitleTextBlock.Inlines.Add(link);
             if (book.CycleNumbers.Length > 0)
@@ -139,18 +143,16 @@ public partial class BookInfoDialog : Window
         if (Properties.Settings.Default.SaveInfoWindowsSize &&
             App.SizeDefined(Properties.Settings.Default.BookInfoWindowSize))
         {
-            Left = Properties.Settings.Default.BookInfoWindowPos.X;
-            Top = Properties.Settings.Default.BookInfoWindowPos.Y;
             Width = Properties.Settings.Default.BookInfoWindowSize.Width;
             Height = Properties.Settings.Default.BookInfoWindowSize.Height;
         }
+        App.CenterOnScreen(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)
     {
         if (Properties.Settings.Default.SaveInfoWindowsSize)
         {
-            Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }
     }
