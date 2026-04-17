@@ -158,18 +158,6 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point AuthorInfoWindowPos {
-            get {
-                return ((global::System.Drawing.Point)(this["AuthorInfoWindowPos"]));
-            }
-            set {
-                this["AuthorInfoWindowPos"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Size AuthorInfoWindowSize {
             get {
                 return ((global::System.Drawing.Size)(this["AuthorInfoWindowSize"]));
@@ -182,36 +170,12 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point BookInfoWindowPos {
-            get {
-                return ((global::System.Drawing.Point)(this["BookInfoWindowPos"]));
-            }
-            set {
-                this["BookInfoWindowPos"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
         public global::System.Drawing.Size BookInfoWindowSize {
             get {
                 return ((global::System.Drawing.Size)(this["BookInfoWindowSize"]));
             }
             set {
                 this["BookInfoWindowSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Point CycleInfoWindowPos {
-            get {
-                return ((global::System.Drawing.Point)(this["CycleInfoWindowPos"]));
-            }
-            set {
-                this["CycleInfoWindowPos"] = value;
             }
         }
         

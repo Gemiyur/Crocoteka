@@ -69,9 +69,7 @@ public partial class SettingsDialog : Window
         if (!Properties.Settings.Default.SaveInfoWindowsSize)
         {
             Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size(0, 0);
-            //Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size(0, 0);
-            //Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
         }
 
