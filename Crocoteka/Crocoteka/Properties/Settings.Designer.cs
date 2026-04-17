@@ -86,6 +86,18 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool CascadeGenreDelete {
+            get {
+                return ((bool)(this["CascadeGenreDelete"]));
+            }
+            set {
+                this["CascadeGenreDelete"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool NotInLibraryChecked {
             get {
                 return ((bool)(this["NotInLibraryChecked"]));
@@ -134,12 +146,12 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SaveInfoWindowsLocation {
+        public bool SaveInfoWindowsSize {
             get {
-                return ((bool)(this["SaveInfoWindowsLocation"]));
+                return ((bool)(this["SaveInfoWindowsSize"]));
             }
             set {
-                this["SaveInfoWindowsLocation"] = value;
+                this["SaveInfoWindowsSize"] = value;
             }
         }
         
@@ -212,6 +224,54 @@ namespace Crocoteka.Properties {
             }
             set {
                 this["CycleInfoWindowSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveEditorsSize {
+            get {
+                return ((bool)(this["SaveEditorsSize"]));
+            }
+            set {
+                this["SaveEditorsSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size AuthorEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AuthorEditorSize"]));
+            }
+            set {
+                this["AuthorEditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size BookEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["BookEditorSize"]));
+            }
+            set {
+                this["BookEditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size CycleEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CycleEditorSize"]));
+            }
+            set {
+                this["CycleEditorSize"] = value;
             }
         }
         
@@ -293,6 +353,15 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetCascadeGenreDelete {
+            get {
+                return ((bool)(this["PresetCascadeGenreDelete"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
         public bool PresetSaveMainWindowLocation {
             get {
                 return ((bool)(this["PresetSaveMainWindowLocation"]));
@@ -302,9 +371,18 @@ namespace Crocoteka.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PresetSaveInfoWindowsLocation {
+        public bool PresetSaveInfoWindowsSize {
             get {
-                return ((bool)(this["PresetSaveInfoWindowsLocation"]));
+                return ((bool)(this["PresetSaveInfoWindowsSize"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveEditorsSize {
+            get {
+                return ((bool)(this["PresetSaveEditorsSize"]));
             }
         }
         
@@ -332,84 +410,6 @@ namespace Crocoteka.Properties {
         public bool PresetSaveNotInLibraryState {
             get {
                 return ((bool)(this["PresetSaveNotInLibraryState"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool CascadeGenreDelete {
-            get {
-                return ((bool)(this["CascadeGenreDelete"]));
-            }
-            set {
-                this["CascadeGenreDelete"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PresetCascadeGenreDelete {
-            get {
-                return ((bool)(this["PresetCascadeGenreDelete"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool SaveEditorsSize {
-            get {
-                return ((bool)(this["SaveEditorsSize"]));
-            }
-            set {
-                this["SaveEditorsSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size AuthorEditorSize {
-            get {
-                return ((global::System.Drawing.Size)(this["AuthorEditorSize"]));
-            }
-            set {
-                this["AuthorEditorSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size BookEditorSize {
-            get {
-                return ((global::System.Drawing.Size)(this["BookEditorSize"]));
-            }
-            set {
-                this["BookEditorSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
-        public global::System.Drawing.Size CycleEditorSize {
-            get {
-                return ((global::System.Drawing.Size)(this["CycleEditorSize"]));
-            }
-            set {
-                this["CycleEditorSize"] = value;
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool PresetSaveEditorsSize {
-            get {
-                return ((bool)(this["PresetSaveEditorsSize"]));
             }
         }
     }

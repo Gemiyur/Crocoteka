@@ -36,7 +36,7 @@ public partial class AuthorInfoDialog : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        if (Properties.Settings.Default.SaveInfoWindowsLocation &&
+        if (Properties.Settings.Default.SaveInfoWindowsSize &&
             App.SizeDefined(Properties.Settings.Default.AuthorInfoWindowSize))
         {
             Width = Properties.Settings.Default.AuthorInfoWindowSize.Width;
@@ -47,7 +47,7 @@ public partial class AuthorInfoDialog : Window
 
     private void Window_Closed(object sender, EventArgs e)
     {
-        if (Properties.Settings.Default.SaveInfoWindowsLocation)
+        if (Properties.Settings.Default.SaveInfoWindowsSize)
         {
             Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }

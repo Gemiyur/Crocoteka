@@ -17,6 +17,9 @@
     <Setting Name="BookInfoAuthorFullName" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="CascadeGenreDelete" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="NotInLibraryChecked" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
@@ -29,7 +32,7 @@
     <Setting Name="MainWindowSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
-    <Setting Name="SaveInfoWindowsLocation" Type="System.Boolean" Scope="User">
+    <Setting Name="SaveInfoWindowsSize" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="AuthorInfoWindowPos" Type="System.Drawing.Point" Scope="User">
@@ -48,6 +51,18 @@
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="CycleInfoWindowSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="SaveEditorsSize" Type="System.Boolean" Scope="User">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="AuthorEditorSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="BookEditorSize" Type="System.Drawing.Size" Scope="User">
+      <Value Profile="(Default)">0, 0</Value>
+    </Setting>
+    <Setting Name="CycleEditorSize" Type="System.Drawing.Size" Scope="User">
       <Value Profile="(Default)">0, 0</Value>
     </Setting>
     <Setting Name="SaveFindFilesWindowLocation" Type="System.Boolean" Scope="User">
@@ -71,10 +86,16 @@
     <Setting Name="PresetBookInfoAuthorFullName" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
+    <Setting Name="PresetCascadeGenreDelete" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
     <Setting Name="PresetSaveMainWindowLocation" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
-    <Setting Name="PresetSaveInfoWindowsLocation" Type="System.Boolean" Scope="Application">
+    <Setting Name="PresetSaveInfoWindowsSize" Type="System.Boolean" Scope="Application">
+      <Value Profile="(Default)">False</Value>
+    </Setting>
+    <Setting Name="PresetSaveEditorsSize" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="PresetSaveFindFilesWindowLocation" Type="System.Boolean" Scope="Application">
@@ -84,27 +105,6 @@
       <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="PresetSaveNotInLibraryState" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="CascadeGenreDelete" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="PresetCascadeGenreDelete" Type="System.Boolean" Scope="Application">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="SaveEditorsSize" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">False</Value>
-    </Setting>
-    <Setting Name="AuthorEditorSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="BookEditorSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="CycleEditorSize" Type="System.Drawing.Size" Scope="User">
-      <Value Profile="(Default)">0, 0</Value>
-    </Setting>
-    <Setting Name="PresetSaveEditorsSize" Type="System.Boolean" Scope="Application">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

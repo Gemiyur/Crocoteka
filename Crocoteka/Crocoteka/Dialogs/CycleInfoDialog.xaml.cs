@@ -36,7 +36,7 @@ public partial class CycleInfoDialog : Window
 
     private void Window_Loaded(object sender, RoutedEventArgs e)
     {
-        if (Properties.Settings.Default.SaveInfoWindowsLocation &&
+        if (Properties.Settings.Default.SaveInfoWindowsSize &&
             App.SizeDefined(Properties.Settings.Default.CycleInfoWindowSize))
         {
             Left = Properties.Settings.Default.CycleInfoWindowPos.X;
@@ -48,7 +48,7 @@ public partial class CycleInfoDialog : Window
 
     private void Window_Closed(object sender, EventArgs e)
     {
-        if (Properties.Settings.Default.SaveInfoWindowsLocation)
+        if (Properties.Settings.Default.SaveInfoWindowsSize)
         {
             Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);

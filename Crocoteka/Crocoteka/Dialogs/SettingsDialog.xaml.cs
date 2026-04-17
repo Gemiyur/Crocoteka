@@ -16,7 +16,7 @@ public partial class SettingsDialog : Window
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
         CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.CascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
-        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
+        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsSize;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.SaveNotInLibraryState;
     }
@@ -28,7 +28,7 @@ public partial class SettingsDialog : Window
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookInfoAuthorFullName;
         CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.PresetCascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
-        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
+        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsSize;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.PresetSaveNotInLibraryState;
     }
@@ -63,8 +63,8 @@ public partial class SettingsDialog : Window
         }
 
         // Размеры окон "Об авторе". "О книге" и "О серии".
-        Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsSizeCheckBox.IsChecked == true;
-        if (!Properties.Settings.Default.SaveInfoWindowsLocation)
+        Properties.Settings.Default.SaveInfoWindowsSize = SaveInfoWindowsSizeCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveInfoWindowsSize)
         {
             Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size(0, 0);
             //Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point(0, 0);
