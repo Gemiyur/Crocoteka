@@ -14,11 +14,11 @@ public partial class SettingsDialog : Window
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.NavPanelAuthorFullName;
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.BookInfoAuthorFullName;
+        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.CascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveMainWindowLocation;
-        SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
+        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.SaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.SaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.SaveNotInLibraryState;
-        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.CascadeGenreDelete;
     }
 
     private void ResetButton_Click(object sender, RoutedEventArgs e)
@@ -26,11 +26,11 @@ public partial class SettingsDialog : Window
         NavPanelAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetNavPanelAuthorFullName;
         BookListAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookListAuthorFullName;
         BookInfoAuthorFullNameCheckBox.IsChecked = Properties.Settings.Default.PresetBookInfoAuthorFullName;
+        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.PresetCascadeGenreDelete;
         SaveMainWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveMainWindowLocation;
-        SaveInfoWindowsLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
+        SaveInfoWindowsSizeCheckBox.IsChecked = Properties.Settings.Default.PresetSaveInfoWindowsLocation;
         SaveFindFilesWindowLocationCheckBox.IsChecked = Properties.Settings.Default.PresetSaveFindFilesWindowLocation;
         SaveNotInLibraryStateCheckBox.IsChecked = Properties.Settings.Default.PresetSaveNotInLibraryState;
-        CascadeGenreDeleteCheckBox.IsChecked = Properties.Settings.Default.PresetCascadeGenreDelete;
     }
 
     private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -51,12 +51,8 @@ public partial class SettingsDialog : Window
         }
         Properties.Settings.Default.BookInfoAuthorFullName = BookInfoAuthorFullNameCheckBox.IsChecked == true;
 
-        // Состояние флажка "Нет в библиотеке".
-        Properties.Settings.Default.SaveNotInLibraryState = SaveNotInLibraryStateCheckBox.IsChecked == true;
-        if (!Properties.Settings.Default.SaveNotInLibraryState)
-        {
-            Properties.Settings.Default.NotInLibraryChecked = Properties.Settings.Default.PresetNotInLibraryChecked;
-        }
+        // Каскадное удаление жанров.
+        Properties.Settings.Default.CascadeGenreDelete = CascadeGenreDeleteCheckBox.IsChecked == true;
 
         // Позиция и размер главного окна.
         Properties.Settings.Default.SaveMainWindowLocation = SaveMainWindowLocationCheckBox.IsChecked == true;
@@ -66,15 +62,14 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.MainWindowSize = new System.Drawing.Size(0, 0);
         }
 
-        // Позиции и размеры окон "Об авторе". "О книге" и "О серии".
-        Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsLocationCheckBox.IsChecked == true;
+        // Размеры окон "Об авторе". "О книге" и "О серии".
+        Properties.Settings.Default.SaveInfoWindowsLocation = SaveInfoWindowsSizeCheckBox.IsChecked == true;
         if (!Properties.Settings.Default.SaveInfoWindowsLocation)
         {
-            Properties.Settings.Default.AuthorInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size(0, 0);
-            Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point(0, 0);
+            //Properties.Settings.Default.BookInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.BookInfoWindowSize = new System.Drawing.Size(0, 0);
-            Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
+            //Properties.Settings.Default.CycleInfoWindowPos = new System.Drawing.Point(0, 0);
             Properties.Settings.Default.CycleInfoWindowSize = new System.Drawing.Size(0, 0);
         }
 
@@ -86,8 +81,12 @@ public partial class SettingsDialog : Window
             Properties.Settings.Default.FindFilesWindowSize = new System.Drawing.Size(0, 0);
         }
 
-        // Каскадное удаление жанров.
-        Properties.Settings.Default.CascadeGenreDelete = CascadeGenreDeleteCheckBox.IsChecked == true;
+        // Состояние флажка "Нет в библиотеке".
+        Properties.Settings.Default.SaveNotInLibraryState = SaveNotInLibraryStateCheckBox.IsChecked == true;
+        if (!Properties.Settings.Default.SaveNotInLibraryState)
+        {
+            Properties.Settings.Default.NotInLibraryChecked = Properties.Settings.Default.PresetNotInLibraryChecked;
+        }
 
         DialogResult = true;
     }

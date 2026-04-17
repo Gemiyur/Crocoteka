@@ -39,20 +39,23 @@
             <CheckBox x:Name="BookInfoAuthorFullNameCheckBox"
                               Content="В окне информации о книге отображать полные имена авторов"
                               Style="{StaticResource CheckBoxStyle}" />
+            <CheckBox x:Name="CascadeGenreDeleteCheckBox"
+                              Content="Разрешить удаление жанров, которые есть у книг"
+                              Style="{StaticResource CheckBoxStyle}" />
             <CheckBox x:Name="SaveMainWindowLocationCheckBox"
                               Content="Сохранять положение и размер окна приложения"
                               Style="{StaticResource CheckBoxStyle}" />
-            <CheckBox x:Name="SaveInfoWindowsLocationCheckBox"
-                              Content="Сохранять положение и размер окон информации о книге, авторе и серии"
+            <CheckBox x:Name="SaveInfoWindowsSizeCheckBox"
+                              Content="Сохранять размеры окон информации о книге, авторе и серии"
+                              Style="{StaticResource CheckBoxStyle}" />
+            <CheckBox x:Name="SaveEditorsSizeCheckBox"
+                              Content="Сохранять размеры окон редакторов книги, автора и серии"
                               Style="{StaticResource CheckBoxStyle}" />
             <CheckBox x:Name="SaveFindFilesWindowLocationCheckBox"
                               Content="Сохранять положение и размер окна поиска файлов книг"
                               Style="{StaticResource CheckBoxStyle}" />
             <CheckBox x:Name="SaveNotInLibraryStateCheckBox"
                               Content="Сохранять состояние флажка «Нет в библиотеке» в окне поиска файлов книг"
-                              Style="{StaticResource CheckBoxStyle}" />
-            <CheckBox x:Name="CascadeGenreDeleteCheckBox"
-                              Content="Разрешить удаление жанров, которые есть у книг"
                               Style="{StaticResource CheckBoxStyle}" />
         </StackPanel>
 

@@ -355,5 +355,62 @@ namespace Crocoteka.Properties {
                 return ((bool)(this["PresetCascadeGenreDelete"]));
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool SaveEditorsSize {
+            get {
+                return ((bool)(this["SaveEditorsSize"]));
+            }
+            set {
+                this["SaveEditorsSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size AuthorEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["AuthorEditorSize"]));
+            }
+            set {
+                this["AuthorEditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size BookEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["BookEditorSize"]));
+            }
+            set {
+                this["BookEditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0, 0")]
+        public global::System.Drawing.Size CycleEditorSize {
+            get {
+                return ((global::System.Drawing.Size)(this["CycleEditorSize"]));
+            }
+            set {
+                this["CycleEditorSize"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool PresetSaveEditorsSize {
+            get {
+                return ((bool)(this["PresetSaveEditorsSize"]));
+            }
+        }
     }
 }

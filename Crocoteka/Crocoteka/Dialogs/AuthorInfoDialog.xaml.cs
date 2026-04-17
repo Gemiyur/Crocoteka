@@ -39,18 +39,16 @@ public partial class AuthorInfoDialog : Window
         if (Properties.Settings.Default.SaveInfoWindowsLocation &&
             App.SizeDefined(Properties.Settings.Default.AuthorInfoWindowSize))
         {
-            Left = Properties.Settings.Default.AuthorInfoWindowPos.X;
-            Top = Properties.Settings.Default.AuthorInfoWindowPos.Y;
             Width = Properties.Settings.Default.AuthorInfoWindowSize.Width;
             Height = Properties.Settings.Default.AuthorInfoWindowSize.Height;
         }
+        App.CenterOnScreen(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)
     {
         if (Properties.Settings.Default.SaveInfoWindowsLocation)
         {
-            Properties.Settings.Default.AuthorInfoWindowPos = new System.Drawing.Point((int)Left, (int)Top);
             Properties.Settings.Default.AuthorInfoWindowSize = new System.Drawing.Size((int)Width, (int)Height);
         }
     }
