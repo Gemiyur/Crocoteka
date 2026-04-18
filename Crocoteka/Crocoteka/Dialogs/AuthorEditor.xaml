@@ -6,9 +6,11 @@
         xmlns:local="clr-namespace:Crocoteka.Dialogs"
         mc:Ignorable="d"
         Title="Автор"
-        Width="400" Height="400" ResizeMode="NoResize"
-        WindowStartupLocation="CenterOwner"
-        ShowInTaskbar="False">
+        Width="400" Height="400" ResizeMode="CanResizeWithGrip"
+        ShowInTaskbar="False"
+        SourceInitialized="Window_SourceInitialized"
+        Loaded="Window_Loaded"
+        Closed="Window_Closed">
 
     <Window.Resources>
         <ResourceDictionary>

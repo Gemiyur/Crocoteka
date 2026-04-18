@@ -1,6 +1,8 @@
 ﻿using System.Globalization;
+using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Interop;
 using Gemiyur.Collections;
 using Crocoteka.Models;
 using Crocoteka.Tools;
@@ -12,6 +14,15 @@ namespace Crocoteka.Dialogs;
 /// </summary>
 public partial class BookEditor : Window
 {
+    [DllImport("user32.dll")]
+    private static extern int GetWindowLong(IntPtr hWnd, int nIndex);
+    [DllImport("user32.dll")]
+    private static extern int SetWindowLong(IntPtr hWnd, int nIndex, int dwNewLong);
+
+    private const int GWL_STYLE = -16;
+    private const int WS_MAXIMIZEBOX = 0x10000;
+    private const int WS_MINIMIZEBOX = 0x20000;
+
     /// <summary>
     /// Возвращает было ли изменено название книги.
     /// </summary>
@@ -257,6 +268,36 @@ public partial class BookEditor : Window
         NotFoundFilesTextBlock.Text = notFoundCount.ToString();
         NotFoundFilesStackPanel.Visibility = notFoundCount > 0 ? Visibility.Visible : Visibility.Collapsed;
     }
+
+    #region Обработчики событий окна.
+
+    private void Window_SourceInitialized(object sender, EventArgs e)
+    {
+        IntPtr handle = new WindowInteropHelper(this).Handle;
+        _ = SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_MINIMIZEBOX);
+        _ = SetWindowLong(handle, GWL_STYLE, GetWindowLong(handle, GWL_STYLE) & ~WS_MAXIMIZEBOX);
+    }
+
+    private void Window_Loaded(object sender, RoutedEventArgs e)
+    {
+        if (Properties.Settings.Default.SaveEditorsSize &&
+            App.SizeDefined(Properties.Settings.Default.BookEditorSize))
+        {
+            Width = Properties.Settings.Default.BookEditorSize.Width;
+            Height = Properties.Settings.Default.BookEditorSize.Height;
+        }
+        App.CenterOnScreen(this);
+    }
+
+    private void Window_Closed(object sender, EventArgs e)
+    {
+        if (Properties.Settings.Default.SaveEditorsSize)
+        {
+            Properties.Settings.Default.BookEditorSize = new System.Drawing.Size((int)Width, (int)Height);
+        }
+    }
+
+    #endregion
 
     #region Обработчики событий элементов названия книги.
 
