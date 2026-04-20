@@ -78,7 +78,7 @@ public partial class AuthorEditor : Window
             Width = Properties.Settings.Default.AuthorEditorSize.Width;
             Height = Properties.Settings.Default.AuthorEditorSize.Height;
         }
-        App.CenterOnScreen(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)

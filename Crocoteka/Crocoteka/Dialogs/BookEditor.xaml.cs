@@ -286,7 +286,7 @@ public partial class BookEditor : Window
             Width = Properties.Settings.Default.BookEditorSize.Width;
             Height = Properties.Settings.Default.BookEditorSize.Height;
         }
-        App.CenterOnScreen(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)

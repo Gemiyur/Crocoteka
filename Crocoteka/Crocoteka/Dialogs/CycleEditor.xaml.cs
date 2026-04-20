@@ -68,7 +68,7 @@ public partial class CycleEditor : Window
             Width = Properties.Settings.Default.CycleEditorSize.Width;
             Height = Properties.Settings.Default.CycleEditorSize.Height;
         }
-        App.CenterOnScreen(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)
