@@ -65,18 +65,6 @@ public partial class App : Application
     public static readonly List<string> TextExtensions = [".fb2", ".epub", ".pdf", ".docx"];
 
     /// <summary>
-    /// Позиционирует указанное окно в центре рабочей области экрана.
-    /// </summary>
-    /// <param name="window">Окно.</param>
-    public static void CenterOnScreen(Window window)
-    {
-        // Важно! Позиция верхней левой точки окна задаётся относительно всего экрана, а не рабочей области.
-        var area = SystemParameters.WorkArea;
-        window.Left = area.Width > window.Width ? ((area.Width - window.Width) / 2) + area.Left : area.Left;
-        window.Top = area.Height > window.Height ? ((area.Height - window.Height) / 2) + area.Top : area.Top;
-    }
-
-    /// <summary>
     /// Позиционирует указанное окно по центру окна-владельца.
     /// </summary>
     /// <param name="window">Окно.</param>
@@ -115,6 +103,18 @@ public partial class App : Application
                 top = area.Top;
         }
         window.Top = top;
+    }
+
+    /// <summary>
+    /// Позиционирует указанное окно в центре рабочей области экрана.
+    /// </summary>
+    /// <param name="window">Окно.</param>
+    public static void CenterOnScreen(Window window)
+    {
+        // Важно! Позиция верхней левой точки окна задаётся относительно всего экрана, а не рабочей области.
+        var area = SystemParameters.WorkArea;
+        window.Left = area.Width > window.Width ? ((area.Width - window.Width) / 2) + area.Left : area.Left;
+        window.Top = area.Height > window.Height ? ((area.Height - window.Height) / 2) + area.Top : area.Top;
     }
 
     /// <summary>

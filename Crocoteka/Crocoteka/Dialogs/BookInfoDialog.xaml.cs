@@ -146,7 +146,7 @@ public partial class BookInfoDialog : Window
             Width = Properties.Settings.Default.BookInfoWindowSize.Width;
             Height = Properties.Settings.Default.BookInfoWindowSize.Height;
         }
-        App.CenterOnScreen(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)

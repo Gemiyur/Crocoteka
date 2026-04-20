@@ -42,7 +42,7 @@ public partial class CycleInfoDialog : Window
             Width = Properties.Settings.Default.CycleInfoWindowSize.Width;
             Height = Properties.Settings.Default.CycleInfoWindowSize.Height;
         }
-        App.CenterOnScreen(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)

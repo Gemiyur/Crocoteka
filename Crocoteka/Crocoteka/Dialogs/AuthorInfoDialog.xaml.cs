@@ -42,8 +42,7 @@ public partial class AuthorInfoDialog : Window
             Width = Properties.Settings.Default.AuthorInfoWindowSize.Width;
             Height = Properties.Settings.Default.AuthorInfoWindowSize.Height;
         }
-        App.CenterOnScreen(this);
-        //App.CenterOnOwner(this);
+        App.CenterOnOwner(this);
     }
 
     private void Window_Closed(object sender, EventArgs e)
