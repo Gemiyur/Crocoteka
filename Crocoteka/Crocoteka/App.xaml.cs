@@ -77,6 +77,47 @@ public partial class App : Application
     }
 
     /// <summary>
+    /// Позиционирует указанное окно по центру окна-владельца.
+    /// </summary>
+    /// <param name="window">Окно.</param>
+    /// <remarks>
+    /// Если окна-владельца нет, то окно позиционируется в центре рабочей области экрана.
+    /// </remarks>
+    public static void CenterOnOwner(Window window)
+    {
+        if (window.Owner == null)
+        {
+            CenterOnScreen(window);
+            return;
+        }
+        // Важно! Позиция верхней левой точки окна задаётся относительно всего экрана, а не рабочей области.
+        var area = SystemParameters.WorkArea;
+        var owner = window.Owner;
+
+        var left = ((owner.Width - window.Width) / 2) + owner.Left;
+        if (left < area.Left)
+            left = area.Left;
+        else if (left + window.Width > area.Left + area.Width)
+        {
+            left = area.Width - window.Width;
+            if (left < area.Left)
+                left = area.Left;
+        }
+        window.Left = left;
+
+        var top = ((owner.Height - window.Height) / 2) + owner.Top;
+        if (top < area.Top)
+            top = area.Top;
+        else if (top + window.Height > area.Top + area.Height)
+        {
+            top = area.Height - window.Height;
+            if (top < area.Top)
+                top = area.Top;
+        }
+        window.Top = top;
+    }
+
+    /// <summary>
     /// Отображает окно сообщения подтверждения операции.
     /// </summary>
     /// <param name="message">Сообщение.</param>
